@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
@@ -132,6 +133,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const SizedBox(height: 40),
                     InkWell(
+                      onTap: () {
+                        Get.defaultDialog(
+                          title: "This is a Simple Dialog",
+                          middleText: "This is the content of the dialog",
+                          textConfirm: "OK",
+                          confirmTextColor: Colors.white,
+                          onConfirm: () {
+                            Get.back();
+                          },
+                        );
+                      },
                       child: Container(
                         width: double.infinity,
                         height: 48,
