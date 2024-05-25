@@ -1,9 +1,12 @@
 class ImagesConstant {
-  static const String logoPotrait = 'assets/images/logo_potrait.png';
-  static const String logoSplash = "assets/images/greeve_logo.png";
-  static const String screenOne =
-      'assets/images/Shops re-opening soon-rafiki 1.png';
-  static const String screenTwo = 'assets/images/we are open-rafiki 1.png';
-  static const String screenThree = 'assets/images/Shopping-rafiki 1.png';
+  static const String logoPotrait = 'assets/images/logo_potrait.svg';
+  static const String logoLandscape = "assets/images/logo_landscape.svg";
   static const String logoOnly = 'assets/images/logo_only.svg';
+  static const String onboardingImage1 =
+      'assets/images/onboarding_image1.svg';
+  static const String onboardingImage2 =
+      'assets/images/onboarding_image2.svg';
+  static const String onboardingImage3 =
+      'assets/images/onboarding_image3.svg';
+  
 }

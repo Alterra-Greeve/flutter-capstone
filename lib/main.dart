@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
-import 'package:greeve/view/auth_flow/screens/login_screen.dart';
-import 'package:greeve/view/introduction/splash/splash_screen.dart';
+import 'package:greeve/view/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,7 +22,6 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
             name: RoutesConstant.splashApp, page: () => const SplashScreen()),
-        GetPage(name: RoutesConstant.loginApp, page: () => const LoginScreen()),
       ],
     );
   }

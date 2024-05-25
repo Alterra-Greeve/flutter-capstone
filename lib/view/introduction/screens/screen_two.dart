@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
@@ -9,11 +10,11 @@ class ScreenTwo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 220,
         ),
-        Image.asset(ImagesConstant.screenTwo),
-        SizedBox(
+        SvgPicture.asset(ImagesConstant.onboardingImage2),
+        const SizedBox(
           height: 25,
         ),
         Padding(
@@ -24,13 +25,13 @@ class ScreenTwo extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 5,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Jelajahii dan beli produk yang mendukung keberlanjutan planet kita',
+            'Jelajahii dan beli produk yang mendukung keberlanjutan planet kita.',
             style: TextStylesConstant.nunitoSubtitle,
             textAlign: TextAlign.center,
           ),
