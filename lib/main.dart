@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       getPages: [
-        GetPage(name: RoutesConstant.splashApp, page: () => const LoginScreen()),
+        GetPage(name: RoutesConstant.splashApp, page: () => const SplashScreen()),
       ],
     );
   }
