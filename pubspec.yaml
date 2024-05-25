@@ -28,20 +28,15 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  another_flutter_splash_screen: ^1.2.0
   cupertino_icons: ^1.0.2
   dio: ^5.4.3+1
   flutter:
     sdk: flutter
-  flutter_native_splash: ^2.4.0
   get: ^4.6.6
+  smooth_page_indicator: ^1.1.0
 
 dev_dependencies:
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
@@ -58,7 +53,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/introduction/
+    - assets/images/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see
@@ -68,7 +63,6 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  
   fonts:
     - family: Nunito
       fonts:
@@ -83,6 +77,5 @@ flutter:
           weight: 800
         - asset: assets/fonts/Nunito-Italic.ttf
           style: italic
-  
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
