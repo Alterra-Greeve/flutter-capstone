@@ -17,10 +17,22 @@ class ScreenThree extends StatelessWidget {
           height: 25,
         ),
         Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Text(
+            'Ikuti Tantangan dan Dapatkan Reward',
+            style: TextStylesConstant.nunitoHeading3,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Know a lot about caring for your plants',
-            style: TextStylesConstant.nunitoHeading4,
+            'Selesaikan tantangn harian dan kumpulkan coin untuk mendapatkan diskon dan rewards',
+            style: TextStylesConstant.nunitoSubtitle,
+            textAlign: TextAlign.center,
           ),
         ),
       ],

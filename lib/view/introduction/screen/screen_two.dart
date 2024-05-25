@@ -19,8 +19,20 @@ class ScreenTwo extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
-            'Know a lot about caring for your plants',
-            style: TextStylesConstant.nunitoHeading4,
+            'Beli Produk Ramah Lingkungan',
+            style: TextStylesConstant.nunitoHeading3,
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(
+          height: 5,
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'Jelajahii dan beli produk yang mendukung keberlanjutan planet kita',
+            style: TextStylesConstant.nunitoSubtitle,
+            textAlign: TextAlign.center,
           ),
         ),
       ],

@@ -8,6 +8,7 @@ class ScreenOne extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      // crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(
           height: 220,
@@ -21,13 +22,18 @@ class ScreenOne extends StatelessWidget {
           child: Text(
             'Selamat Datang di Greeve ! ',
             style: TextStylesConstant.nunitoHeading3,
+            textAlign: TextAlign.center,
           ),
+        ),
+        SizedBox(
+          height: 5,
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Text(
             'Temukan cara mudah untuk berkontribusi pada keberlanjutan lingkungan',
             style: TextStylesConstant.nunitoSubtitle,
+            textAlign: TextAlign.center,
           ),
         ),
       ],

@@ -33,6 +33,7 @@ dependencies:
   dio: ^5.4.3+1
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.10+1
   get: ^4.6.6
   smooth_page_indicator: ^1.1.0
 

@@ -52,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
           ),
         ),
         Positioned(
-          top: 720,
+          top: 735,
           left: 15,
           child: Row(
             children: [
@@ -62,7 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   },
                   child: Text('Lewati')),
               SizedBox(
-                width: 155,
+                width: 185,
               ),
               GestureDetector(
                 onTap: () {
@@ -80,8 +80,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   }
                 },
                 child: Container(
-                  width: 130,
-                  height: 60,
+                  width: 110,
+                  height: 50,
                   decoration: BoxDecoration(
                       color: ColorsConstant.primary500,
                       borderRadius: BorderRadius.all(Radius.circular(10))),
