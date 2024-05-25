@@ -1,0 +1,1 @@
+// Untuk Global Widget dari button yang panjang 

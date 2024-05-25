@@ -1,0 +1,1 @@
+// Untuk Global widget dari button pendek

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/view/auth_flow/screens/login_screen.dart';
-import 'package:greeve/view/splash_screen.dart';
+import 'package:greeve/view/auth_flow/introduction/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
