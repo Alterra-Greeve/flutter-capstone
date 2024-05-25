@@ -13,13 +13,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Greeve',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       getPages: [
-        GetPage(name: RoutesConstant.splashApp, page: () => const SplashScreen()),
+        GetPage(
+            name: RoutesConstant.splashApp, page: () => const SplashScreen()),
       ],
     );
   }
