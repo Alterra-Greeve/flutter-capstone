@@ -112,6 +112,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                   remindMe = newValue!;
                                 });
                               },
+                              checkColor: ColorsConstant.white,
+                              activeColor: ColorsConstant.primary500,
+                              shape: const RoundedRectangleBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(4),
+                                ),
+                              ),
+                              side: BorderSide(
+                                color: ColorsConstant.primary500,
+                                width: 2,
+                              ),
                             ),
                             Text(
                               'Ingatkan Saya',
@@ -119,8 +130,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ],
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8),
+                        TextButton(
+                          onPressed: () {},
                           child: Text(
                             'Lupa Kata Sandi',
                             style:
@@ -135,13 +146,52 @@ class _LoginScreenState extends State<LoginScreen> {
                     InkWell(
                       onTap: () {
                         Get.defaultDialog(
-                          title: "This is a Simple Dialog",
-                          middleText: "This is the content of the dialog",
-                          textConfirm: "OK",
-                          confirmTextColor: Colors.white,
-                          onConfirm: () {
-                            Get.back();
-                          },
+                          title: 'Gagal Masuk!',
+                          titleStyle:
+                              TextStylesConstant.nunitoHeading3.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
+                          contentPadding:
+                              const EdgeInsets.symmetric(vertical: 24),
+                          content: Padding(
+                            padding: const EdgeInsets.only(
+                              bottom: 24,
+                              left: 24,
+                              right: 24,
+                            ),
+                            child: Text(
+                              "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
+                              textAlign: TextAlign.center,
+                              style: TextStylesConstant.nunitoSubtitle.copyWith(
+                                color: ColorsConstant.neutral600,
+                              ),
+                            ),
+                          ),
+                          confirm: GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Container(
+                              width: 250,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: ColorsConstant.primary500,
+                                ),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  'Masuk Kembali',
+                                  style: TextStylesConstant.nunitoButtonLarge
+                                      .copyWith(
+                                          color: ColorsConstant.primary500),
+                                ),
+                              ),
+                            ),
+                          ),
                         );
                       },
                       child: Container(

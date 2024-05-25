@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/view/auth_flow/screens/loading_screen.dart';
 import 'package:greeve/view/auth_flow/screens/login_screen.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: RoutesConstant.splashApp,
-          page: () => const LoginScreen(),
+          page: () => const LoadingScreen(),
         ),
       ],
     );
