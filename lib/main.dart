@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/view/splash_screen.dart';
 
 void main() {
@@ -10,13 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Greeve',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const SplashScreen(),
+      getPages: [
+        GetPage(name: RoutesConstant.splashApp, page: () => const SplashScreen()),
+      ],
     );
   }
 }
