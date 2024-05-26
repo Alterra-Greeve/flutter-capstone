@@ -120,12 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ForgotPassScreen(),
-                              ),
-                            );
+                            Get.to(const ForgotPassScreen());
                           },
                           child: Text(
                             'Lupa Kata Sandi',

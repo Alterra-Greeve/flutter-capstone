@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/auth_flow/screens/login_screen.dart';
+import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
 import 'package:greeve/view/introduction/screens/screen_one.dart';
 import 'package:greeve/view/introduction/screens/screen_three.dart';
 import 'package:greeve/view/introduction/screens/screen_two.dart';
@@ -74,12 +75,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_controller.page!.toInt() == totalPage - 1) {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
-                        ),
-                      );
+                      Get.to(const LoginScreen());
                     } else {
                       _controller.nextPage(
                         duration: const Duration(milliseconds: 500),

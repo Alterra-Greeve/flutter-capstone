@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
@@ -38,7 +39,7 @@ class _OtpScreenState extends State<OtpScreen> {
         ),
         body: Container(
           width: double.maxFinite,
-          padding: EdgeInsets.symmetric(
+          padding: const EdgeInsets.symmetric(
             horizontal: 16,
             vertical: 36,
           ),
@@ -49,14 +50,14 @@ class _OtpScreenState extends State<OtpScreen> {
                 "Verifikasi Kode OTP",
                 style: TextStylesConstant.nunitoHeading3,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 3,
               ),
               Text(
                 "Masukkan kode OTP yang telah kami kirim ke",
                 style: TextStylesConstant.nunitoSubtitle,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 3,
               ),
               Text(
@@ -65,7 +66,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 26,
               ),
               CustomPinCodeTextField(
@@ -74,12 +75,12 @@ class _OtpScreenState extends State<OtpScreen> {
               Align(
                 alignment: Alignment.centerRight,
                 child: Padding(
-                  padding: EdgeInsets.only(right: 8),
+                  padding: const EdgeInsets.only(right: 8),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: 1),
+                        padding: const EdgeInsets.only(bottom: 1),
                         child: Text("Tidak Menerima Kode?",
                             style:
                                 TextStylesConstant.nunitoButtonLarge.copyWith(
@@ -87,7 +88,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             )),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 8),
+                        padding: const EdgeInsets.only(left: 8),
                         child: Text(
                           "Kirim Ulang",
                           style: TextStylesConstant.nunitoButtonLarge.copyWith(
@@ -99,18 +100,13 @@ class _OtpScreenState extends State<OtpScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 36,
               ),
               GlobalButtonWidget(
                 text: 'Konfirmasi',
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const ConfirmPassScreen(),
-                    ),
-                  );
+                  Get.to(const ConfirmPassScreen());
                 },
               ),
             ],

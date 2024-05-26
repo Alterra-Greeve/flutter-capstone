@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
@@ -113,12 +114,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   GlobalButtonWidget(
                     text: 'Kirim Tautan',
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const OtpScreen(),
-                        ),
-                      );
+                      Get.to(const OtpScreen());
                     },
                   ),
                 ],
