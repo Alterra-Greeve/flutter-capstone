@@ -5,7 +5,8 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 class GlobalButtonWidget extends StatelessWidget {
   final String text;
   final void Function()? onTap;
-  const GlobalButtonWidget({super.key, required this.text, required this.onTap});
+  const GlobalButtonWidget(
+      {super.key, required this.text, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
