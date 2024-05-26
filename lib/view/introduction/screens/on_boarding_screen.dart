@@ -56,7 +56,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             right: 16.0,
             child: Row(
               mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween, // Space buttons evenly
+                  MainAxisAlignment.spaceBetween, 
               children: [
                 TextButton(
                   onPressed: () {

@@ -65,6 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           prefixIcon: IconsConstant.message,
                           showSuffixIcon: false,
                           onChanged: (value) => controller.validateEmail(value),
+                          helperText: 'Contoh : johndoe123@gmail.com',
                         )),
                     const SizedBox(height: 20),
                     SizedBox(
