@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
 import 'package:greeve/view/introduction/screens/screen_one.dart';
@@ -55,8 +56,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             left: 16.0,
             right: 16.0,
             child: Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween, 
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 TextButton(
                   onPressed: () {
@@ -75,7 +75,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_controller.page!.toInt() == totalPage - 1) {
-                      Get.to(() => const LoginScreen());
+                      Get.offAndToNamed(RoutesConstant.login);
                     } else {
                       _controller.nextPage(
                         duration: const Duration(milliseconds: 500),

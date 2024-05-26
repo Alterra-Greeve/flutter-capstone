@@ -4,6 +4,7 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/view/auth_flow/screens/forgot_password/confirmation_screen.dart';
 import 'package:greeve/view/auth_flow/screens/forgot_password/forgot_password_screen.dart';
+import 'package:greeve/view/auth_flow/screens/forgot_password/new_pass_screen.dart';
 import 'package:greeve/view/auth_flow/screens/forgot_password/otp_screen.dart';
 import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
 import 'package:greeve/view/auth_flow/screens/register/register_screen.dart';
@@ -54,6 +55,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: RoutesConstant.registerSuccess,
           page: () => const RegisterSuccessScreen(),
+        ),
+        GetPage(
+          name: RoutesConstant.newPassword,
+          page: () => const NewPasswordScreen(),
         ),
       ],
     );

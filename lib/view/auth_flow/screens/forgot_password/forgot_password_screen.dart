@@ -5,6 +5,7 @@ import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/view/auth_flow/screens/forgot_password/otp_screen.dart';
@@ -115,7 +116,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   GlobalButtonWidget(
                     text: 'Kirim Tautan',
                     onTap: () {
-                      Get.to(() => const OtpScreen());
+                      Get.offAndToNamed(RoutesConstant.otp);
                     },
                   ),
                 ],

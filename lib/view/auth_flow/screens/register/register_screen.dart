@@ -6,6 +6,7 @@ import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/auth_flow/screens/register/register_success_screen.dart';
 
@@ -135,7 +136,7 @@ class RegisterScreen extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          Get.toNamed('/login');
+                          Get.offAndToNamed(RoutesConstant.login);
                         },
                         child: Text(
                           'Masuk',

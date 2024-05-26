@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -106,7 +107,7 @@ class _OtpScreenState extends State<OtpScreen> {
               GlobalButtonWidget(
                 text: 'Konfirmasi',
                 onTap: () {
-                  Get.to(const ConfirmPassScreen());
+                  Get.offAndToNamed(RoutesConstant.confirmPassword);
                 },
               ),
             ],

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/auth_flow/screens/forgot_password/new_pass_screen.dart';
 
@@ -86,17 +88,17 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Tetap di sini',
-                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                        color: ColorsConstant.neutral100,
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: ColorsConstant.primary500,
+                    ),
+                    child: Text(
+                      'Tetap di sini',
+                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                        color: ColorsConstant.neutral100,
+                      ),
                     )),
               ],
             ),
@@ -193,12 +195,7 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                       if (_formKey.currentState!.validate() &&
                           _passwordErrorText == null &&
                           _confirmPasswordErrorText == null) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NewPasswordScreen(),
-                          ),
-                        );
+                        Get.offAndToNamed(RoutesConstant.newPassword);
                       }
                     },
                   ),
