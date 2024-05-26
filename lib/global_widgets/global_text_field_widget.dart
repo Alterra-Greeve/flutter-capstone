@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/login_controller.dart';
 
 class GlobalTextFieldWidget extends StatelessWidget {
   final FocusNode focusNode;
@@ -13,8 +15,9 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final String? suffixIcon;
   final void Function(String)? onChanged;
   final bool showSuffixIcon;
+  final bool obscureText;
 
-  GlobalTextFieldWidget({
+  const GlobalTextFieldWidget({
     super.key,
     required this.focusNode,
     required this.controller,
@@ -24,14 +27,15 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.suffixIcon,
     this.onChanged,
     required this.showSuffixIcon,
+    this.obscureText = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       focusNode: focusNode,
       controller: controller,
-      // obscureText: obscureText,
+      obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: TextStylesConstant.nunitoButtonMedium.copyWith(
@@ -56,10 +60,11 @@ class GlobalTextFieldWidget extends StatelessWidget {
             ? Padding(
                 padding: const EdgeInsets.all(1.0),
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.put(LoginController()).toggleObscureText();
+                  },
                   icon: SvgPicture.asset(
-                    // obscureText ? IconsConstant.show : IconsConstant.hide,
-                    IconsConstant.hide,
+                    obscureText ? IconsConstant.hide : IconsConstant.show,
                     colorFilter: ColorFilter.mode(
                       focusNode.hasFocus || controller.text != ''
                           ? ColorsConstant.neutral800

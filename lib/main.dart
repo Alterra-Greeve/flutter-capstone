@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/view/splash_screen.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Greeve',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         useMaterial3: true,
       ),
       getPages: [

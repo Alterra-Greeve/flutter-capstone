@@ -31,35 +31,42 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ScreenThree(),
             ],
           ),
-          Container(
-            alignment: Alignment.center,
-            margin: const EdgeInsets.only(top: 530, left: 145),
-            child: Row(
-              children: [
-                SmoothPageIndicator(
-                  controller: _controller,
-                  count: totalPage,
-                  effect: WormEffect(
-                    dotColor: ColorsConstant.neutral500,
-                    activeDotColor: ColorsConstant.primary500,
-                    spacing: 5,
-                    dotHeight: 2.5,
-                    dotWidth: 25,
-                  ),
+          Positioned(
+            bottom: 104,
+            left: 0,
+            right: 0,
+            child: Center(
+              child: SmoothPageIndicator(
+                controller: _controller,
+                count: totalPage,
+                effect: WormEffect(
+                  dotColor: ColorsConstant.neutral500,
+                  activeDotColor: ColorsConstant.primary500,
+                  spacing: 5,
+                  dotHeight: 2.5,
+                  dotWidth: 25,
                 ),
-              ],
+              ),
             ),
           ),
           Positioned(
-            top: 735,
-            left: 15,
+            bottom: 16.0,
+            left: 16.0,
+            right: 16.0,
             child: Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween, // Space buttons evenly
               children: [
                 TextButton(
                   onPressed: () {
                     _controller.jumpToPage(2);
                   },
-                  child: const Text('Lewati'),
+                  child: Text(
+                    'Lewati',
+                    style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                      color: ColorsConstant.primary500,
+                    ),
+                  ),
                 ),
                 const SizedBox(
                   width: 185,
@@ -70,7 +77,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
+                          builder: (context) => LoginScreen(),
                         ),
                       );
                     } else {
