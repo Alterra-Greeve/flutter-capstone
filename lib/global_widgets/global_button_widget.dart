@@ -11,7 +11,7 @@ class GlobalButtonWidget extends StatelessWidget {
     super.key,
     required this.text,
     required this.onTap,
-    required this.isFormValid,
+    this.isFormValid = false,
   });
 
   @override

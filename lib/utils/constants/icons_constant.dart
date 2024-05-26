@@ -3,4 +3,5 @@ class IconsConstant {
   static const String lock = 'assets/images/lock.svg';
   static const String show = 'assets/images/show.svg';
   static const String hide = 'assets/images/hide.svg';
+  static const String arrow = 'assets/images/arrow.svg';
 }
