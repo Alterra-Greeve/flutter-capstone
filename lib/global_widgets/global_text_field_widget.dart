@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view_model/login_controller.dart';
 
 class GlobalTextFieldWidget extends StatelessWidget {
   final FocusNode focusNode;
@@ -16,6 +14,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final void Function(String)? onChanged;
   final bool showSuffixIcon;
   final bool obscureText;
+  final void Function()? onPressedSuffixIcon;
 
   const GlobalTextFieldWidget({
     super.key,
@@ -28,6 +27,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.onChanged,
     required this.showSuffixIcon,
     this.obscureText = false,
+    this.onPressedSuffixIcon,
   });
 
   @override
@@ -60,9 +60,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
             ? Padding(
                 padding: const EdgeInsets.all(1.0),
                 child: IconButton(
-                  onPressed: () {
-                    Get.put(LoginController()).toggleObscureText();
-                  },
+                  onPressed: onPressedSuffixIcon,
                   icon: SvgPicture.asset(
                     obscureText ? IconsConstant.hide : IconsConstant.show,
                     colorFilter: ColorFilter.mode(

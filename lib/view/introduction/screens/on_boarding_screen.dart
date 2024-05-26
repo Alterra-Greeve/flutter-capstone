@@ -75,7 +75,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 GestureDetector(
                   onTap: () {
                     if (_controller.page!.toInt() == totalPage - 1) {
-                      Get.to(const LoginScreen());
+                      Get.to(() => const LoginScreen());
                     } else {
                       _controller.nextPage(
                         duration: const Duration(milliseconds: 500),

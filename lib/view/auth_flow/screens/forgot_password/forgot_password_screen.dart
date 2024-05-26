@@ -45,10 +45,9 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
           leading: Padding(
             padding: const EdgeInsets.only(top: 24),
             child: IconButton(
-              icon: SvgPicture.asset(
-                IconsConstant.arrow,
-                color: ColorsConstant.black,
-              ),
+              icon: SvgPicture.asset(IconsConstant.arrow,
+                  colorFilter:
+                      ColorFilter.mode(ColorsConstant.black, BlendMode.srcIn)),
               iconSize: 24,
               onPressed: () {
                 Navigator.of(context).pop();
@@ -60,7 +59,9 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-              top: 16, bottom: MediaQuery.of(context).viewInsets.bottom),
+            top: 16,
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
           child: Form(
             child: Container(
               width: double.maxFinite,
@@ -114,7 +115,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                   GlobalButtonWidget(
                     text: 'Kirim Tautan',
                     onTap: () {
-                      Get.to(const OtpScreen());
+                      Get.to(() => const OtpScreen());
                     },
                   ),
                 ],

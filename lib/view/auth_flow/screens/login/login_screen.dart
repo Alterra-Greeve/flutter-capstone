@@ -22,9 +22,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
@@ -64,8 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Masukkan Email Anda',
                           prefixIcon: IconsConstant.message,
                           showSuffixIcon: false,
-                          onChanged: (value) =>
-                              controller.validateEmail(value),
+                          onChanged: (value) => controller.validateEmail(value),
                         )),
                     const SizedBox(height: 20),
                     SizedBox(
@@ -87,6 +86,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           onChanged: (value) =>
                               controller.validatePassword(value),
                           obscureText: controller.obscureText.value,
+                          onPressedSuffixIcon: () =>
+                              controller.toggleObscureText(),
                         )),
                     const SizedBox(height: 20),
                     Row(
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(const ForgotPassScreen());
+                            Get.to(() => const ForgotPassScreen());
                           },
                           child: Text(
                             'Lupa Kata Sandi',
@@ -181,8 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStylesConstant
                                           .nunitoButtonLarge
                                           .copyWith(
-                                              color:
-                                                  ColorsConstant.primary500),
+                                              color: ColorsConstant.primary500),
                                     ),
                                   ),
                                 ),
@@ -199,11 +199,25 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Belum Punya Akun?',
                             style: TextStylesConstant.nunitoSubtitle,
                           ),
-                          const SizedBox(width: 6),
-                          Text(
-                            'Daftar',
-                            style: TextStylesConstant.nunitoSubtitle.copyWith(
-                              color: ColorsConstant.primary500,
+                          TextButton(
+                            style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                  horizontal: 4,
+                                ),
+                              ),
+                              minimumSize: MaterialStateProperty.all<Size>(
+                                const Size(41, 24),
+                              ),
+                            ),
+                            onPressed: () {},
+                            child: Text(
+                              'Daftar',
+                              style: TextStylesConstant.nunitoSubtitle.copyWith(
+                                color: ColorsConstant.primary500,
+                              ),
                             ),
                           ),
                         ],
