@@ -212,7 +212,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const Size(41, 24),
                               ),
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.toNamed('/register');
+                            },
                             child: Text(
                               'Daftar',
                               style: TextStylesConstant.nunitoSubtitle.copyWith(

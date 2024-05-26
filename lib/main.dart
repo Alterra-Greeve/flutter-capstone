@@ -6,6 +6,8 @@ import 'package:greeve/view/auth_flow/screens/forgot_password/confirmation_scree
 import 'package:greeve/view/auth_flow/screens/forgot_password/forgot_password_screen.dart';
 import 'package:greeve/view/auth_flow/screens/forgot_password/otp_screen.dart';
 import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
+import 'package:greeve/view/auth_flow/screens/register/register_screen.dart';
+import 'package:greeve/view/auth_flow/screens/register/register_success_screen.dart';
 import 'package:greeve/view/splash_screen.dart';
 
 void main() {
@@ -44,6 +46,14 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: RoutesConstant.confirmPassword,
           page: () => const ConfirmPassScreen(),
+        ),
+        GetPage(
+          name: RoutesConstant.register,
+          page: () => const RegisterScreen(),
+        ),
+        GetPage(
+          name: RoutesConstant.registerSuccess,
+          page: () => const RegisterSuccessScreen(),
         ),
       ],
     );
