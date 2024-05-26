@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
@@ -143,7 +144,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    InkWell(
+                    GlobalButtonWidget(
+                      text: 'Masuk',
                       onTap: () {
                         Get.defaultDialog(
                           title: 'Gagal Masuk!',
@@ -194,22 +196,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         );
                       },
-                      child: Container(
-                        width: double.infinity,
-                        height: 48,
-                        padding: const EdgeInsets.all(16.0),
-                        decoration: BoxDecoration(
-                          color: ColorsConstant.neutral200,
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Text(
-                          'Masuk',
-                          style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                            color: ColorsConstant.neutral500,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
                     ),
                     SizedBox(
                       height: 40,
