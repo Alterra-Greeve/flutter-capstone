@@ -40,7 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: SmoothPageIndicator(
                 controller: _controller,
                 count: totalPage,
-                effect: WormEffect(
+                effect: const WormEffect(
                   dotColor: ColorsConstant.neutral500,
                   activeDotColor: ColorsConstant.primary500,
                   spacing: 5,
@@ -57,20 +57,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {
-                    _controller.jumpToPage(2);
-                  },
-                  child: Text(
-                    'Lewati',
-                    style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                      color: ColorsConstant.primary500,
+                Flexible(
+                  child: TextButton(
+                    onPressed: () {
+                      _controller.jumpToPage(2);
+                    },
+                    child: Text(
+                      'Lewati',
+                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                        color: ColorsConstant.primary500,
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 185,
-                ),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
                     if (_controller.page!.toInt() == totalPage - 1) {
@@ -85,16 +85,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Container(
                     width: 110,
                     height: 50,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: ColorsConstant.primary500,
-                      borderRadius: const BorderRadius.all(
+                      borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
                     child: Center(
                       child: Text(
                         'Selanjutnya',
-                        style: TextStylesConstant.nunitoButtonLarge,
+                        style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                          color: ColorsConstant.neutral100,
+                        ),
                       ),
                     ),
                   ),
