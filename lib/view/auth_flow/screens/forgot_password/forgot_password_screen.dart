@@ -8,7 +8,6 @@ import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/otp_screen.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);

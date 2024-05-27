@@ -123,27 +123,41 @@ class RegisterScreen extends StatelessWidget {
                   height: 44,
                 ),
                 RegisterButtonWidget(),
-                const SizedBox(
-                  height: 14,
-                ),
                 Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Sudah punya akun?',
-                        style: TextStylesConstant.nunitoSubtitle,
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Get.offAndToNamed(RoutesConstant.login);
-                        },
-                        child: Text(
-                          'Masuk',
+                  child: SizedBox(
+                    height: 40,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Sudah Punya Akun?',
                           style: TextStylesConstant.nunitoSubtitle,
                         ),
-                      )
-                    ],
+                        TextButton(
+                          style: ButtonStyle(
+                            padding:
+                                MaterialStateProperty.all<EdgeInsetsGeometry>(
+                              const EdgeInsets.symmetric(
+                                vertical: 2,
+                                horizontal: 4,
+                              ),
+                            ),
+                            minimumSize: MaterialStateProperty.all<Size>(
+                              const Size(41, 24),
+                            ),
+                          ),
+                          onPressed: () {
+                            Get.offAllNamed(RoutesConstant.login);
+                          },
+                          child: Text(
+                            'Masuk',
+                            style: TextStylesConstant.nunitoSubtitle.copyWith(
+                              color: ColorsConstant.primary500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

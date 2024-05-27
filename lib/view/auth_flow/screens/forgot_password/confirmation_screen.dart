@@ -7,7 +7,6 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/new_pass_screen.dart';
 
 class ConfirmPassScreen extends StatefulWidget {
   const ConfirmPassScreen({super.key});

@@ -7,7 +7,6 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/confirmation_screen.dart';
 
 class OtpScreen extends StatefulWidget {
   const OtpScreen({super.key});
@@ -27,7 +26,7 @@ class _OtpScreenState extends State<OtpScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                color: ColorsConstant.black,
+                colorFilter: ColorFilter.mode(ColorsConstant.black, BlendMode.srcIn)
               ),
               iconSize: 24,
               onPressed: () {

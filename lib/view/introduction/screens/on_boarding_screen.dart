@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
 import 'package:greeve/view/introduction/screens/screen_one.dart';
 import 'package:greeve/view/introduction/screens/screen_three.dart';
 import 'package:greeve/view/introduction/screens/screen_two.dart';
