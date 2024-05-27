@@ -27,9 +27,13 @@ class _OtpScreenState extends State<OtpScreen> {
           leading: Padding(
             padding: const EdgeInsets.only(top: 24),
             child: IconButton(
-              icon: SvgPicture.asset(IconsConstant.arrow,
-                  colorFilter:
-                      ColorFilter.mode(ColorsConstant.black, BlendMode.srcIn)),
+              icon: SvgPicture.asset(
+                IconsConstant.arrow,
+                colorFilter: ColorFilter.mode(
+                  ColorsConstant.black,
+                  BlendMode.srcIn,
+                ),
+              ),
               iconSize: 24,
               onPressed: () {
                 Navigator.of(context).pop();

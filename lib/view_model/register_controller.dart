@@ -83,7 +83,7 @@ class RegisterController extends GetxController {
 
   void validatePasswordConfirmation(String value) {
     if (value != _passwordController.text) {
-      passwordConfirmationErrorText.value = 'Kata sandi tidak sama';
+      passwordConfirmationErrorText.value = 'Kata sandi tidak cocok';
     } else {
       passwordConfirmationErrorText.value = null;
     }

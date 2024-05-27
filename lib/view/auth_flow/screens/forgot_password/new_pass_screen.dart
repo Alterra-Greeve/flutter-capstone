@@ -40,8 +40,9 @@ class NewPasswordScreen extends StatelessWidget {
               const SizedBox(height: 40),
               GlobalButtonWidget(
                 text: 'Kembali ke Halaman Masuk',
+                isFormValid: true,
                 onTap: () {
-                  Get.offAndToNamed(RoutesConstant.login);
+                  Get.offAllNamed(RoutesConstant.login);
                 },
               ),
             ],

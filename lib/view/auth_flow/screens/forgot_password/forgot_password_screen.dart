@@ -29,9 +29,13 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
           leading: Padding(
             padding: const EdgeInsets.only(top: 24),
             child: IconButton(
-              icon: SvgPicture.asset(IconsConstant.arrow,
-                  colorFilter:
-                      ColorFilter.mode(ColorsConstant.black, BlendMode.srcIn)),
+              icon: SvgPicture.asset(
+                IconsConstant.arrow,
+                colorFilter: ColorFilter.mode(
+                  ColorsConstant.black,
+                  BlendMode.srcIn,
+                ),
+              ),
               iconSize: 24,
               onPressed: () {
                 Navigator.of(context).pop();
@@ -88,23 +92,22 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                     ),
                   ),
                   Obx(() => GlobalTextFieldWidget(
-                    focusNode: _controller.emailFocusNode,
-                    controller: _controller.emailController,
-                    errorText: _controller.emailErrorText.value,
-                    hintText: 'Masukkan Email Anda',
-                    prefixIcon: IconsConstant.message,
-                    showSuffixIcon: false,
-                    onChanged: (value) => _controller.validateEmail(value),
-                  )),
+                        focusNode: _controller.emailFocusNode,
+                        controller: _controller.emailController,
+                        errorText: _controller.emailErrorText.value,
+                        hintText: 'Masukkan Email Anda',
+                        prefixIcon: IconsConstant.message,
+                        showSuffixIcon: false,
+                        onChanged: (value) => _controller.validateEmail(value),
+                      )),
                   const SizedBox(height: 27),
                   Obx(() => GlobalButtonWidget(
-                    text: 'Kirim Tautan',
-                    isFormValid: _controller.isFormValid.value,
-                    onTap: () {
-                      _controller.clearForm();
-                      Get.offAndToNamed(RoutesConstant.otp);
-                    },
-                  )),
+                        text: 'Kirim Tautan',
+                        isFormValid: _controller.isFormValid.value,
+                        onTap: () {
+                          Get.offAndToNamed(RoutesConstant.otp);
+                        },
+                      )),
                 ],
               ),
             ),

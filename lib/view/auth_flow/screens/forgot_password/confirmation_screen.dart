@@ -7,6 +7,7 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/create_new_password_controller.dart';
 
 class ConfirmPassScreen extends StatefulWidget {
   const ConfirmPassScreen({super.key});
@@ -16,41 +17,8 @@ class ConfirmPassScreen extends StatefulWidget {
 }
 
 class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController =
-      TextEditingController();
-  final FocusNode _passwordFocusNode = FocusNode();
-  final FocusNode _confirmPasswordFocusNode = FocusNode();
-  String? _passwordErrorText;
-  String? _confirmPasswordErrorText;
-
-  @override
-  void dispose() {
-    _passwordController.dispose();
-    _confirmPasswordController.dispose();
-    _passwordFocusNode.dispose();
-    _confirmPasswordFocusNode.dispose();
-    super.dispose();
-  }
-
-  void _validatePasswords() {
-    setState(() {
-      if (_passwordController.text.isEmpty) {
-        _passwordErrorText = 'Kata sandi tidak boleh kosong';
-      } else {
-        _passwordErrorText = null;
-      }
-
-      if (_confirmPasswordController.text.isEmpty) {
-        _confirmPasswordErrorText = 'Konfirmasi kata sandi tidak boleh kosong';
-      } else if (_confirmPasswordController.text != _passwordController.text) {
-        _confirmPasswordErrorText = 'Kata sandi tidak cocok';
-      } else {
-        _confirmPasswordErrorText = null;
-      }
-    });
-  }
+  final CreateNewPasswordController _controller =
+      Get.put(CreateNewPasswordController());
 
   void _showConfirmationPopup() {
     showDialog(
@@ -117,7 +85,10 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                color: ColorsConstant.black,
+                colorFilter: ColorFilter.mode(
+                  ColorsConstant.black,
+                  BlendMode.srcIn,
+                ),
               ),
               iconSize: 24,
               onPressed: () => _showConfirmationPopup(),
@@ -129,77 +100,87 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
               top: 16, bottom: MediaQuery.of(context).viewInsets.bottom),
-          child: Form(
-            key: _formKey,
-            child: Container(
-              width: double.maxFinite,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Buat Kata Sandi Baru",
-                    style: TextStylesConstant.nunitoHeading3,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    "Masukkan kata sandi baru untuk akun Anda. \nPastikan kata sandi kuat dan mudah diingat.",
-                    style: TextStylesConstant.nunitoSubtitle,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 28),
-                  SizedBox(
-                    height: 20,
-                    child: Text(
-                      'Kata Sandi Baru',
-                      style: TextStylesConstant.nunitoCaption.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: ColorsConstant.neutral800,
-                      ),
+          child: Container(
+            width: double.maxFinite,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Buat Kata Sandi Baru",
+                  style: TextStylesConstant.nunitoHeading3,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  "Masukkan kata sandi baru untuk akun Anda. \nPastikan kata sandi kuat dan mudah diingat.",
+                  style: TextStylesConstant.nunitoSubtitle,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 28),
+                SizedBox(
+                  height: 20,
+                  child: Text(
+                    'Kata Sandi Baru',
+                    style: TextStylesConstant.nunitoCaption.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: ColorsConstant.neutral800,
                     ),
                   ),
-                  GlobalTextFieldWidget(
-                    focusNode: _passwordFocusNode,
-                    controller: _passwordController,
-                    errorText: _passwordErrorText,
+                ),
+                Obx(
+                  () => GlobalTextFieldWidget(
+                    focusNode: _controller.passwordFocusNode,
+                    controller: _controller.passwordController,
+                    errorText: _controller.passwordErrorText.value,
                     hintText: 'Masukkan Kata Sandi Anda',
                     prefixIcon: IconsConstant.lock,
                     showSuffixIcon: true,
+                    onChanged: (value) => _controller.validatePassword(value),
+                    onPressedSuffixIcon: () =>
+                        _controller.toggleObscurePasswordText(),
+                    obscureText: _controller.obscurePasswordText.value,
                   ),
-                  const SizedBox(height: 36),
-                  SizedBox(
-                    height: 20,
-                    child: Text(
-                      'Konfirmasi Kata Sandi',
-                      style: TextStylesConstant.nunitoCaption.copyWith(
-                        fontWeight: FontWeight.w700,
-                        color: ColorsConstant.neutral800,
-                      ),
+                ),
+                const SizedBox(height: 36),
+                SizedBox(
+                  height: 20,
+                  child: Text(
+                    'Konfirmasi Kata Sandi',
+                    style: TextStylesConstant.nunitoCaption.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: ColorsConstant.neutral800,
                     ),
                   ),
-                  GlobalTextFieldWidget(
-                    focusNode: _confirmPasswordFocusNode,
-                    controller: _confirmPasswordController,
-                    errorText: _confirmPasswordErrorText,
+                ),
+                Obx(
+                  () => GlobalTextFieldWidget(
+                    focusNode: _controller.passwordConfirmationFocusNode,
+                    controller: _controller.passwordConfirmationController,
+                    errorText: _controller.passwordConfirmationErrorText.value,
                     hintText: 'Konfirmasi Kata Sandi Anda',
                     prefixIcon: IconsConstant.lock,
                     showSuffixIcon: true,
+                    helperText: 'Masukkan kembali kata sandi yang sama',
+                    onChanged: (value) =>
+                        _controller.validatePasswordConfirmation(value),
+                    onPressedSuffixIcon: () =>
+                        _controller.toggleObscurePasswordConfirmationText(),
+                    obscureText:
+                        _controller.obscurePasswordConfimationText.value,
                   ),
-                  const SizedBox(height: 36),
-                  GlobalButtonWidget(
+                ),
+                const SizedBox(height: 36),
+                Obx(
+                  () => GlobalButtonWidget(
                     text: 'Simpan Kata Sandi',
+                    isFormValid: _controller.isFormValid.value,
                     onTap: () {
-                      _validatePasswords();
-                      if (_formKey.currentState!.validate() &&
-                          _passwordErrorText == null &&
-                          _confirmPasswordErrorText == null) {
-                        Get.offAndToNamed(RoutesConstant.newPassword);
-                      }
+                      Get.offAndToNamed(RoutesConstant.newPassword);
                     },
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

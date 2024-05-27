@@ -141,7 +141,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           text: 'Masuk',
                           isFormValid: _controller.isFormValid.value,
                           onTap: () {
-                            _controller.clearForm();
                             Get.defaultDialog(
                               title: 'Gagal Masuk!',
                               titleStyle:

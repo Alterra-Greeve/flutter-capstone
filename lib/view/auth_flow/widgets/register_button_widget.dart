@@ -12,7 +12,6 @@ class RegisterButtonWidget extends StatelessWidget {
         text: 'Daftar',
         isFormValid: _controller.isFormValid.value,
         onTap: () {
-          _controller.clearForm();
           Get.toNamed(RoutesConstant.registerSuccess);
         },
       ),
