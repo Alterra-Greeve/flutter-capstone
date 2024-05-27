@@ -1,4 +1,4 @@
-part of '../view/auth_flow/screens/register/register_screen.dart';
+part of '../view/register/screens/register_screen.dart';
 
 class RegisterController extends GetxController {
   Rx<String?> nameErrorText = Rx<String?>(null);

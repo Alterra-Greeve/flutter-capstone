@@ -1,4 +1,5 @@
-part of '../screens/register/register_screen.dart';
+part of '../screens/register_screen.dart';
+
 
 class RegisterFormPasswordWidget extends StatelessWidget {
   

@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/confirmation_screen.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/forgot_password_screen.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/new_pass_screen.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/otp_screen.dart';
-import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
-import 'package:greeve/view/auth_flow/screens/register/register_screen.dart';
-import 'package:greeve/view/auth_flow/screens/register/register_success_screen.dart';
+import 'package:greeve/view/forgot_password/confirmation_screen.dart';
+import 'package:greeve/view/forgot_password/forgot_password_screen.dart';
+import 'package:greeve/view/forgot_password/new_pass_screen.dart';
+import 'package:greeve/view/forgot_password/otp_screen.dart';
+import 'package:greeve/view/login/login_screen.dart';
+import 'package:greeve/view/register/register_success_screen.dart';
+import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/splash_screen.dart';
 
 void main() {
