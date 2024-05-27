@@ -26,7 +26,7 @@ class _OtpScreenState extends State<OtpScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                color: ColorsConstant.black,
+                //color: ColorsConstant.black,
               ),
               iconSize: 24,
               onPressed: () {

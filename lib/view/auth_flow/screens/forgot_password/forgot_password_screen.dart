@@ -47,7 +47,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                color: ColorsConstant.black,
+                //color: ColorsConstant.black,
               ),
               iconSize: 24,
               onPressed: () {

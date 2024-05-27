@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
 
 class TextStylesConstant {
   static const TextStyle _baseNunito = TextStyle(
@@ -18,6 +19,8 @@ class TextStylesConstant {
   static final TextStyle nunitoSubtitle = _baseNunito.copyWith(
     fontSize: 14,
   );
+  static final TextStyle nunitoSubtitle2 =
+      _baseNunito.copyWith(fontSize: 17, color: ColorsConstant.neutral500);
 
   static final TextStyle nunitoFooter = _baseNunito.copyWith(
     fontSize: 10,

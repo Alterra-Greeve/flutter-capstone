@@ -86,17 +86,17 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                 ),
                 ElevatedButton(
                     onPressed: () => Navigator.pop(context),
-                    child: Text(
-                      'Tetap di sini',
-                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                        color: ColorsConstant.neutral100,
-                      ),
-                    ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                       backgroundColor: ColorsConstant.primary500,
+                    ),
+                    child: Text(
+                      'Tetap di sini',
+                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                        color: ColorsConstant.neutral100,
+                      ),
                     )),
               ],
             ),
@@ -116,7 +116,7 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                color: ColorsConstant.black,
+                //color: ColorsConstant.black,
               ),
               iconSize: 24,
               onPressed: () => _showConfirmationPopup(),
