@@ -18,8 +18,8 @@ class RegisterFormPasswordWidget extends StatelessWidget {
         onChanged: (value) => controller.validatePassword(
           value,
         ),
-        obscureText: controller.obscureText.value,
-        onPressedSuffixIcon: () => controller.toggleObscureText(),
+        obscureText: controller.obscurePasswordConfimationText.value,
+        onPressedSuffixIcon: () => controller.toggleObscurePasswordConfirmationText(),
       ),
     );
   }

@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/introduction/screens/screen_one.dart';
-import 'package:greeve/view/introduction/screens/screen_three.dart';
-import 'package:greeve/view/introduction/screens/screen_two.dart';
+import 'package:greeve/view/on_boarding/screens/screen_one.dart';
+import 'package:greeve/view/on_boarding/screens/screen_three.dart';
+import 'package:greeve/view/on_boarding/screens/screen_two.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {

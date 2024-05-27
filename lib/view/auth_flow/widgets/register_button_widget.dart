@@ -13,9 +13,7 @@ class RegisterButtonWidget extends StatelessWidget {
         isFormValid: controller.isFormValid.value,
         onTap: () {
           controller.clearForm();
-          Get.to(
-            const RegisterSuccessScreen(),
-          );
+          Get.toNamed(RoutesConstant.registerSuccess);
         },
       ),
     );

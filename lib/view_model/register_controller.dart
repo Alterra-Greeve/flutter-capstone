@@ -6,7 +6,8 @@ class RegisterController extends GetxController {
   Rx<String?> passwordErrorText = Rx<String?>(null);
   Rx<String?> passwordConfirmationErrorText = Rx<String?>(null);
   Rx<bool> isFormValid = Rx<bool>(false);
-  Rx<bool> obscureText = true.obs;
+  Rx<bool> obscurePasswordText = true.obs;
+  Rx<bool> obscurePasswordConfimationText = true.obs;
 
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -48,6 +49,7 @@ class RegisterController extends GetxController {
     } else {
       nameErrorText.value = null;
     }
+    validateForm();
   }
 
   void validateEmail(String value) {
@@ -58,6 +60,7 @@ class RegisterController extends GetxController {
     } else {
       emailErrorText.value = null;
     }
+    validateForm();
   }
 
   void validatePassword(String value) {
@@ -66,6 +69,7 @@ class RegisterController extends GetxController {
     } else {
       passwordErrorText.value = null;
     }
+    validateForm();
   }
 
   void validatePasswordConfirmation(String value) {
@@ -74,6 +78,7 @@ class RegisterController extends GetxController {
     } else {
       passwordConfirmationErrorText.value = null;
     }
+    validateForm();
   }
 
   void validateForm() {
@@ -91,8 +96,12 @@ class RegisterController extends GetxController {
     }
   }
 
-  void toggleObscureText() {
-    obscureText.value = !obscureText.value;
+  void toggleObscurePasswordText() {
+    obscurePasswordText.value = !obscurePasswordText.value;
+  }
+
+  void toggleObscurePasswordConfirmationText() {
+    obscurePasswordConfimationText.value = !obscurePasswordConfimationText.value;
   }
 
   void clearForm() {

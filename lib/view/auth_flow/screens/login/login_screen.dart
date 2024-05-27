@@ -77,19 +77,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    Obx(() => GlobalTextFieldWidget(
-                          focusNode: controller.passwordFocusNode,
-                          controller: controller.passwordController,
-                          errorText: controller.passwordErrorText.value,
-                          hintText: 'Masukkan Kata Sandi Anda',
-                          prefixIcon: IconsConstant.lock,
-                          showSuffixIcon: true,
-                          onChanged: (value) =>
-                              controller.validatePassword(value),
-                          obscureText: controller.obscureText.value,
-                          onPressedSuffixIcon: () =>
-                              controller.toggleObscureText(),
-                        )),
+                    Obx(
+                      () => GlobalTextFieldWidget(
+                        focusNode: controller.passwordFocusNode,
+                        controller: controller.passwordController,
+                        errorText: controller.passwordErrorText.value,
+                        hintText: 'Masukkan Kata Sandi Anda',
+                        prefixIcon: IconsConstant.lock,
+                        showSuffixIcon: true,
+                        onChanged: (value) =>
+                            controller.validatePassword(value),
+                        obscureText: controller.obscureText.value,
+                        onPressedSuffixIcon: () =>
+                            controller.toggleObscureText(),
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

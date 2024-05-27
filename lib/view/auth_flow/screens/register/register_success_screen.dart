@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class RegisterSuccessScreen extends StatelessWidget {
@@ -41,7 +42,7 @@ class RegisterSuccessScreen extends StatelessWidget {
               GlobalButtonWidget(
                 text: 'Masuk Sekarang',
                 onTap: () {
-                  Get.toNamed('/login');
+                  Get.offAllNamed(RoutesConstant.login);
                 },
                 isFormValid: true,
               ),

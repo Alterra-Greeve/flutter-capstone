@@ -39,6 +39,7 @@ class LoginController extends GetxController {
     } else {
       emailErrorText.value = null;
     }
+    validateForm();
   }
 
   void validatePassword(String value) {
@@ -47,6 +48,7 @@ class LoginController extends GetxController {
     } else {
       passwordErrorText.value = null;
     }
+    validateForm();
   }
 
   void validateForm() {

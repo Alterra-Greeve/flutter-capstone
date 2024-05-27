@@ -8,7 +8,6 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/auth_flow/screens/register/register_success_screen.dart';
 
 part '../../widgets/register_form_name_widget.dart';
 part '../../widgets/register_form_email_widget.dart';
