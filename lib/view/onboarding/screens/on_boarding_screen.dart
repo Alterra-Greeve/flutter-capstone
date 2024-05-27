@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/auth_flow/screens/login/login_screen.dart';
-import 'package:greeve/view/introduction/screens/screen_one.dart';
-import 'package:greeve/view/introduction/screens/screen_three.dart';
-import 'package:greeve/view/introduction/screens/screen_two.dart';
+import 'package:greeve/view/onboarding/screens/screen_one.dart';
+import 'package:greeve/view/onboarding/screens/screen_three.dart';
+import 'package:greeve/view/onboarding/screens/screen_two.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -40,7 +40,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: SmoothPageIndicator(
                 controller: _controller,
                 count: totalPage,
-                effect: WormEffect(
+                effect: const WormEffect(
                   dotColor: ColorsConstant.neutral500,
                   activeDotColor: ColorsConstant.primary500,
                   spacing: 5,
@@ -55,27 +55,26 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             left: 16.0,
             right: 16.0,
             child: Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween, // Space buttons evenly
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                TextButton(
-                  onPressed: () {
-                    _controller.jumpToPage(2);
-                  },
-                  child: Text(
-                    'Lewati',
-                    style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                      color: ColorsConstant.primary500,
+                Flexible(
+                  child: TextButton(
+                    onPressed: () {
+                      _controller.jumpToPage(2);
+                    },
+                    child: Text(
+                      'Lewati',
+                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                        color: ColorsConstant.primary500,
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(
-                  width: 185,
-                ),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
                     if (_controller.page!.toInt() == totalPage - 1) {
-                      Get.to(const LoginScreen());
+                      Get.offAndToNamed(RoutesConstant.login);
                     } else {
                       _controller.nextPage(
                         duration: const Duration(milliseconds: 500),
@@ -86,16 +85,18 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   child: Container(
                     width: 110,
                     height: 50,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: ColorsConstant.primary500,
-                      borderRadius: const BorderRadius.all(
+                      borderRadius: BorderRadius.all(
                         Radius.circular(10),
                       ),
                     ),
                     child: Center(
                       child: Text(
                         'Selanjutnya',
-                        style: TextStylesConstant.nunitoButtonLarge,
+                        style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                          color: ColorsConstant.neutral100,
+                        ),
                       ),
                     ),
                   ),

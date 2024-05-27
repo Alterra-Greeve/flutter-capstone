@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:greeve/global_widgets/global_button_widget.dart';
+import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/login_controller.dart';
-import 'package:greeve/view/auth_flow/screens/forgot_password/forgot_password_screen.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final LoginController controller = Get.put(LoginController());
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+    final LoginController controller = Get.put(LoginController());
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
           child: Column(
             children: [
               Padding(
@@ -64,8 +58,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Masukkan Email Anda',
                           prefixIcon: IconsConstant.message,
                           showSuffixIcon: false,
-                          onChanged: (value) =>
-                              controller.validateEmail(value),
+                          onChanged: (value) => controller.validateEmail(value),
+                          helperText: 'Contoh : johndoe123@gmail.com',
                         )),
                     const SizedBox(height: 20),
                     SizedBox(
@@ -77,17 +71,21 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                    Obx(() => GlobalTextFieldWidget(
-                          focusNode: controller.passwordFocusNode,
-                          controller: controller.passwordController,
-                          errorText: controller.passwordErrorText.value,
-                          hintText: 'Masukkan Kata Sandi Anda',
-                          prefixIcon: IconsConstant.lock,
-                          showSuffixIcon: true,
-                          onChanged: (value) =>
-                              controller.validatePassword(value),
-                          obscureText: controller.obscureText.value,
-                        )),
+                    Obx(
+                      () => GlobalTextFieldWidget(
+                        focusNode: controller.passwordFocusNode,
+                        controller: controller.passwordController,
+                        errorText: controller.passwordErrorText.value,
+                        hintText: 'Masukkan Kata Sandi Anda',
+                        prefixIcon: IconsConstant.lock,
+                        showSuffixIcon: true,
+                        onChanged: (value) =>
+                            controller.validatePassword(value),
+                        obscureText: controller.obscureText.value,
+                        onPressedSuffixIcon: () =>
+                            controller.toggleObscureText(),
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -107,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Radius.circular(4),
                                     ),
                                   ),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     color: ColorsConstant.primary500,
                                     width: 2,
                                   ),
@@ -120,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.to(const ForgotPassScreen());
+                            Get.toNamed(RoutesConstant.forgotPassword);
                           },
                           child: Text(
                             'Lupa Kata Sandi',
@@ -133,61 +131,62 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    Obx(() => GlobalButtonWidget(
+                    Obx(() => GlobalFormButtonWidget(
                           text: 'Masuk',
                           isFormValid: controller.isFormValid.value,
                           onTap: () {
-                            Get.defaultDialog(
-                              title: 'Gagal Masuk!',
-                              titleStyle:
-                                  TextStylesConstant.nunitoHeading3.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 24),
-                              content: Padding(
-                                padding: const EdgeInsets.only(
-                                  bottom: 24,
-                                  left: 24,
-                                  right: 24,
-                                ),
-                                child: Text(
-                                  "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
-                                  textAlign: TextAlign.center,
-                                  style: TextStylesConstant.nunitoSubtitle
-                                      .copyWith(
-                                    color: ColorsConstant.neutral600,
-                                  ),
-                                ),
-                              ),
-                              confirm: GestureDetector(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Container(
-                                  width: 250,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: ColorsConstant.primary500,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Masuk Kembali',
-                                      style: TextStylesConstant
-                                          .nunitoButtonLarge
-                                          .copyWith(
-                                              color:
-                                                  ColorsConstant.primary500),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
+                            controller.login();
+                            // Get.defaultDialog(
+                            //   backgroundColor: ColorsConstant.white,
+                            //   title: 'Gagal Masuk!',
+                            //   titleStyle:
+                            //       TextStylesConstant.nunitoHeading3.copyWith(
+                            //     fontWeight: FontWeight.w600,
+                            //   ),
+                            //   contentPadding:
+                            //       const EdgeInsets.symmetric(vertical: 24),
+                            //   content: Padding(
+                            //     padding: const EdgeInsets.only(
+                            //       bottom: 24,
+                            //       left: 24,
+                            //       right: 24,
+                            //     ),
+                            //     child: Text(
+                            //       "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
+                            //       textAlign: TextAlign.center,
+                            //       style: TextStylesConstant.nunitoSubtitle
+                            //           .copyWith(
+                            //         color: ColorsConstant.neutral600,
+                            //       ),
+                            //     ),
+                            //   ),
+                            //   confirm: GestureDetector(
+                            //     onTap: () {
+                            //       Get.back();
+                            //     },
+                            //     child: Container(
+                            //       width: 250,
+                            //       height: 48,
+                            //       decoration: BoxDecoration(
+                            //         border: Border.all(
+                            //           color: ColorsConstant.primary500,
+                            //         ),
+                            //         borderRadius: const BorderRadius.all(
+                            //           Radius.circular(8),
+                            //         ),
+                            //       ),
+                            //       child: Center(
+                            //         child: Text(
+                            //           'Masuk Kembali',
+                            //           style: TextStylesConstant
+                            //               .nunitoButtonLarge
+                            //               .copyWith(
+                            //                   color: ColorsConstant.primary500),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // );
                           },
                         )),
                     SizedBox(
@@ -199,11 +198,27 @@ class _LoginScreenState extends State<LoginScreen> {
                             'Belum Punya Akun?',
                             style: TextStylesConstant.nunitoSubtitle,
                           ),
-                          const SizedBox(width: 6),
-                          Text(
-                            'Daftar',
-                            style: TextStylesConstant.nunitoSubtitle.copyWith(
-                              color: ColorsConstant.primary500,
+                          TextButton(
+                            style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                  horizontal: 4,
+                                ),
+                              ),
+                              minimumSize: MaterialStateProperty.all<Size>(
+                                const Size(41, 24),
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.toNamed(RoutesConstant.register);
+                            },
+                            child: Text(
+                              'Daftar',
+                              style: TextStylesConstant.nunitoSubtitle.copyWith(
+                                color: ColorsConstant.primary500,
+                              ),
                             ),
                           ),
                         ],
