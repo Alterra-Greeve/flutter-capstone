@@ -135,57 +135,58 @@ class LoginScreen extends StatelessWidget {
                           text: 'Masuk',
                           isFormValid: controller.isFormValid.value,
                           onTap: () {
-                            Get.defaultDialog(
-                              backgroundColor: ColorsConstant.white,
-                              title: 'Gagal Masuk!',
-                              titleStyle:
-                                  TextStylesConstant.nunitoHeading3.copyWith(
-                                fontWeight: FontWeight.w600,
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 24),
-                              content: Padding(
-                                padding: const EdgeInsets.only(
-                                  bottom: 24,
-                                  left: 24,
-                                  right: 24,
-                                ),
-                                child: Text(
-                                  "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
-                                  textAlign: TextAlign.center,
-                                  style: TextStylesConstant.nunitoSubtitle
-                                      .copyWith(
-                                    color: ColorsConstant.neutral600,
-                                  ),
-                                ),
-                              ),
-                              confirm: GestureDetector(
-                                onTap: () {
-                                  Get.back();
-                                },
-                                child: Container(
-                                  width: 250,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color: ColorsConstant.primary500,
-                                    ),
-                                    borderRadius: const BorderRadius.all(
-                                      Radius.circular(8),
-                                    ),
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      'Masuk Kembali',
-                                      style: TextStylesConstant
-                                          .nunitoButtonLarge
-                                          .copyWith(
-                                              color: ColorsConstant.primary500),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            );
+                            controller.login();
+                            // Get.defaultDialog(
+                            //   backgroundColor: ColorsConstant.white,
+                            //   title: 'Gagal Masuk!',
+                            //   titleStyle:
+                            //       TextStylesConstant.nunitoHeading3.copyWith(
+                            //     fontWeight: FontWeight.w600,
+                            //   ),
+                            //   contentPadding:
+                            //       const EdgeInsets.symmetric(vertical: 24),
+                            //   content: Padding(
+                            //     padding: const EdgeInsets.only(
+                            //       bottom: 24,
+                            //       left: 24,
+                            //       right: 24,
+                            //     ),
+                            //     child: Text(
+                            //       "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
+                            //       textAlign: TextAlign.center,
+                            //       style: TextStylesConstant.nunitoSubtitle
+                            //           .copyWith(
+                            //         color: ColorsConstant.neutral600,
+                            //       ),
+                            //     ),
+                            //   ),
+                            //   confirm: GestureDetector(
+                            //     onTap: () {
+                            //       Get.back();
+                            //     },
+                            //     child: Container(
+                            //       width: 250,
+                            //       height: 48,
+                            //       decoration: BoxDecoration(
+                            //         border: Border.all(
+                            //           color: ColorsConstant.primary500,
+                            //         ),
+                            //         borderRadius: const BorderRadius.all(
+                            //           Radius.circular(8),
+                            //         ),
+                            //       ),
+                            //       child: Center(
+                            //         child: Text(
+                            //           'Masuk Kembali',
+                            //           style: TextStylesConstant
+                            //               .nunitoButtonLarge
+                            //               .copyWith(
+                            //                   color: ColorsConstant.primary500),
+                            //         ),
+                            //       ),
+                            //     ),
+                            //   ),
+                            // );
                           },
                         )),
                     SizedBox(
