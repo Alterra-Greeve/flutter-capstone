@@ -9,18 +9,12 @@ import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-class OtpScreen extends StatefulWidget {
+class OtpScreen extends StatelessWidget {
   const OtpScreen({super.key});
 
   @override
-  State<OtpScreen> createState() => _OtpScreenState();
-}
-
-class _OtpScreenState extends State<OtpScreen> {
-  final OtpController _controller = Get.put(OtpController());
-
-  @override
   Widget build(BuildContext context) {
+    final OtpController controller = Get.put(OtpController());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -29,7 +23,7 @@ class _OtpScreenState extends State<OtpScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                colorFilter: ColorFilter.mode(
+                colorFilter: const ColorFilter.mode(
                   ColorsConstant.black,
                   BlendMode.srcIn,
                 ),
@@ -76,7 +70,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 height: 26,
               ),
               CustomPinCodeTextField(
-                controller: _controller.otpController,
+                controller: controller.otpController,
                 onChanged: (String value) {},
               ),
               Align(
@@ -112,7 +106,7 @@ class _OtpScreenState extends State<OtpScreen> {
               ),
               Obx(() => GlobalFormButtonWidget(
                     text: 'Konfirmasi',
-                    isFormValid: _controller.isFormValid.value,
+                    isFormValid: controller.isFormValid.value,
                     onTap: () {
                       Get.offAndToNamed(RoutesConstant.confirmPassword);
                     },

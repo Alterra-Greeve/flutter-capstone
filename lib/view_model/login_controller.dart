@@ -27,15 +27,6 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
-    super.onClose();
-  }
-
   void validateEmail(String value) {
     final RegExp emailRegex = RegExp(
         r"""^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$""");

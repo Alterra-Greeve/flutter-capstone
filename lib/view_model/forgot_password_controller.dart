@@ -18,13 +18,6 @@ class ForgotPasswordController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    _emailController.dispose();
-    _emailFocusNode.dispose();
-    super.onClose();
-  }
-
   void validateEmail(String value) {
     final RegExp emailRegex = RegExp(
         r"""^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$""");

@@ -9,18 +9,10 @@ import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/create_new_password_controller.dart';
 
-class ConfirmPassScreen extends StatefulWidget {
+class ConfirmPassScreen extends StatelessWidget {
   const ConfirmPassScreen({super.key});
 
-  @override
-  State<ConfirmPassScreen> createState() => _ConfirmPassScreenState();
-}
-
-class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
-  final CreateNewPasswordController _controller =
-      Get.put(CreateNewPasswordController());
-
-  void _showConfirmationPopup() {
+  void _showConfirmationPopup(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -45,7 +37,7 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () => Get.offAllNamed(RoutesConstant.login),
                   child: Text(
                     'Keluar',
                     style: TextStylesConstant.nunitoButtonLarge.copyWith(
@@ -77,6 +69,8 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final CreateNewPasswordController controller =
+        Get.put(CreateNewPasswordController());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -85,13 +79,13 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                colorFilter: ColorFilter.mode(
+                colorFilter: const ColorFilter.mode(
                   ColorsConstant.black,
                   BlendMode.srcIn,
                 ),
               ),
               iconSize: 24,
-              onPressed: () => _showConfirmationPopup(),
+              onPressed: () => _showConfirmationPopup(context),
             ),
           ),
           backgroundColor: Colors.transparent,
@@ -130,16 +124,16 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                 ),
                 Obx(
                   () => GlobalTextFieldWidget(
-                    focusNode: _controller.passwordFocusNode,
-                    controller: _controller.passwordController,
-                    errorText: _controller.passwordErrorText.value,
+                    focusNode: controller.passwordFocusNode,
+                    controller: controller.passwordController,
+                    errorText: controller.passwordErrorText.value,
                     hintText: 'Masukkan Kata Sandi Anda',
                     prefixIcon: IconsConstant.lock,
                     showSuffixIcon: true,
-                    onChanged: (value) => _controller.validatePassword(value),
+                    onChanged: (value) => controller.validatePassword(value),
                     onPressedSuffixIcon: () =>
-                        _controller.toggleObscurePasswordText(),
-                    obscureText: _controller.obscurePasswordText.value,
+                        controller.toggleObscurePasswordText(),
+                    obscureText: controller.obscurePasswordText.value,
                   ),
                 ),
                 const SizedBox(height: 36),
@@ -155,26 +149,26 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                 ),
                 Obx(
                   () => GlobalTextFieldWidget(
-                    focusNode: _controller.passwordConfirmationFocusNode,
-                    controller: _controller.passwordConfirmationController,
-                    errorText: _controller.passwordConfirmationErrorText.value,
+                    focusNode: controller.passwordConfirmationFocusNode,
+                    controller: controller.passwordConfirmationController,
+                    errorText: controller.passwordConfirmationErrorText.value,
                     hintText: 'Konfirmasi Kata Sandi Anda',
                     prefixIcon: IconsConstant.lock,
                     showSuffixIcon: true,
                     helperText: 'Masukkan kembali kata sandi yang sama',
                     onChanged: (value) =>
-                        _controller.validatePasswordConfirmation(value),
+                        controller.validatePasswordConfirmation(value),
                     onPressedSuffixIcon: () =>
-                        _controller.toggleObscurePasswordConfirmationText(),
+                        controller.toggleObscurePasswordConfirmationText(),
                     obscureText:
-                        _controller.obscurePasswordConfimationText.value,
+                        controller.obscurePasswordConfimationText.value,
                   ),
                 ),
                 const SizedBox(height: 36),
                 Obx(
                   () => GlobalFormButtonWidget(
                     text: 'Simpan Kata Sandi',
-                    isFormValid: _controller.isFormValid.value,
+                    isFormValid: controller.isFormValid.value,
                     onTap: () {
                       Get.offAndToNamed(RoutesConstant.newPassword);
                     },

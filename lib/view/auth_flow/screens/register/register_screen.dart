@@ -79,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                RegisterFormNameWidget(),
+                const RegisterFormNameWidget(),
                 const SizedBox(
                   height: 24,
                 ),
@@ -92,7 +92,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                RegisterFormEmailWidget(),
+                const RegisterFormEmailWidget(),
                 const SizedBox(
                   height: 24,
                 ),
@@ -105,7 +105,7 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                RegisterFormPasswordWidget(),
+                const RegisterFormPasswordWidget(),
                 const SizedBox(
                   height: 24,
                 ),
@@ -118,11 +118,11 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                RegisterFormPasswordConfirmationWidget(),
+                const RegisterFormPasswordConfirmationWidget(),
                 const SizedBox(
                   height: 44,
                 ),
-                RegisterButtonWidget(),
+                const RegisterButtonWidget(),
                 Center(
                   child: SizedBox(
                     height: 40,

@@ -13,12 +13,6 @@ class OtpController extends GetxController {
     super.onInit();
   }
 
-  @override
-  void onClose() {
-    _otpController.dispose();
-    super.onClose();
-  }
-
   void validateOtp() {
     if (_otpController.text.length != 4) {
       isFormValid.value = false;

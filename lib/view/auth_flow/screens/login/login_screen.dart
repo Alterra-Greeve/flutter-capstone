@@ -10,18 +10,12 @@ import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/login_controller.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  final LoginController _controller = Get.put(LoginController());
-
-  @override
   Widget build(BuildContext context) {
+    final LoginController controller = Get.put(LoginController());
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -58,14 +52,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     Obx(() => GlobalTextFieldWidget(
-                          focusNode: _controller.emailFocusNode,
-                          controller: _controller.emailController,
-                          errorText: _controller.emailErrorText.value,
+                          focusNode: controller.emailFocusNode,
+                          controller: controller.emailController,
+                          errorText: controller.emailErrorText.value,
                           hintText: 'Masukkan Email Anda',
                           prefixIcon: IconsConstant.message,
                           showSuffixIcon: false,
-                          onChanged: (value) =>
-                              _controller.validateEmail(value),
+                          onChanged: (value) => controller.validateEmail(value),
                           helperText: 'Contoh : johndoe123@gmail.com',
                         )),
                     const SizedBox(height: 20),
@@ -80,17 +73,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Obx(
                       () => GlobalTextFieldWidget(
-                        focusNode: _controller.passwordFocusNode,
-                        controller: _controller.passwordController,
-                        errorText: _controller.passwordErrorText.value,
+                        focusNode: controller.passwordFocusNode,
+                        controller: controller.passwordController,
+                        errorText: controller.passwordErrorText.value,
                         hintText: 'Masukkan Kata Sandi Anda',
                         prefixIcon: IconsConstant.lock,
                         showSuffixIcon: true,
                         onChanged: (value) =>
-                            _controller.validatePassword(value),
-                        obscureText: _controller.obscureText.value,
+                            controller.validatePassword(value),
+                        obscureText: controller.obscureText.value,
                         onPressedSuffixIcon: () =>
-                            _controller.toggleObscureText(),
+                            controller.toggleObscureText(),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -101,9 +94,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
                             Obx(() => Checkbox(
-                                  value: _controller.remindMe.value,
+                                  value: controller.remindMe.value,
                                   onChanged: (bool? newValue) {
-                                    _controller.setRemindMe(newValue);
+                                    controller.setRemindMe(newValue);
                                   },
                                   checkColor: ColorsConstant.white,
                                   activeColor: ColorsConstant.primary500,
@@ -112,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       Radius.circular(4),
                                     ),
                                   ),
-                                  side: BorderSide(
+                                  side: const BorderSide(
                                     color: ColorsConstant.primary500,
                                     width: 2,
                                   ),
@@ -140,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 40),
                     Obx(() => GlobalFormButtonWidget(
                           text: 'Masuk',
-                          isFormValid: _controller.isFormValid.value,
+                          isFormValid: controller.isFormValid.value,
                           onTap: () {
                             Get.defaultDialog(
                               backgroundColor: ColorsConstant.white,

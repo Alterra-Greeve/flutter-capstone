@@ -94,30 +94,30 @@ class GlobalTextFieldWidget extends StatelessWidget {
                 Radius.circular(7),
               ),
             ),
-            focusedBorder: OutlineInputBorder(
+            focusedBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 width: 0.5,
                 color: ColorsConstant.neutral800,
               ),
-              borderRadius: const BorderRadius.all(
+              borderRadius: BorderRadius.all(
                 Radius.circular(7),
               ),
             ),
-            focusedErrorBorder: OutlineInputBorder(
+            focusedErrorBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 width: 0.5,
                 color: ColorsConstant.danger500,
               ),
-              borderRadius: const BorderRadius.all(
+              borderRadius: BorderRadius.all(
                 Radius.circular(7),
               ),
             ),
-            errorBorder: OutlineInputBorder(
+            errorBorder: const OutlineInputBorder(
               borderSide: BorderSide(
                 width: 0.5,
                 color: ColorsConstant.danger500,
               ),
-              borderRadius: const BorderRadius.all(
+              borderRadius: BorderRadius.all(
                 Radius.circular(7),
               ),
             ),

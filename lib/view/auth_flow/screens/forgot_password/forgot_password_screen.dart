@@ -10,19 +10,15 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/view_model/forgot_password_controller.dart';
 
-class ForgotPassScreen extends StatefulWidget {
+class ForgotPassScreen extends StatelessWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);
 
-  @override
-  State<ForgotPassScreen> createState() => _ForgotPassScreenState();
-}
-
-class _ForgotPassScreenState extends State<ForgotPassScreen> {
-  final ForgotPasswordController _controller =
-      Get.put(ForgotPasswordController());
+  
 
   @override
   Widget build(BuildContext context) {
+    final ForgotPasswordController controller =
+      Get.put(ForgotPasswordController());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -31,7 +27,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-                colorFilter: ColorFilter.mode(
+                colorFilter: const ColorFilter.mode(
                   ColorsConstant.black,
                   BlendMode.srcIn,
                 ),
@@ -92,18 +88,18 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                     ),
                   ),
                   Obx(() => GlobalTextFieldWidget(
-                        focusNode: _controller.emailFocusNode,
-                        controller: _controller.emailController,
-                        errorText: _controller.emailErrorText.value,
+                        focusNode: controller.emailFocusNode,
+                        controller: controller.emailController,
+                        errorText: controller.emailErrorText.value,
                         hintText: 'Masukkan Email Anda',
                         prefixIcon: IconsConstant.message,
                         showSuffixIcon: false,
-                        onChanged: (value) => _controller.validateEmail(value),
+                        onChanged: (value) => controller.validateEmail(value),
                       )),
                   const SizedBox(height: 27),
                   Obx(() => GlobalFormButtonWidget(
                         text: 'Kirim Tautan',
-                        isFormValid: _controller.isFormValid.value,
+                        isFormValid: controller.isFormValid.value,
                         onTap: () {
                           Get.offAndToNamed(RoutesConstant.otp);
                         },

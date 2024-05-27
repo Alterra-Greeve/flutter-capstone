@@ -22,7 +22,8 @@ class RegisterController extends GetxController {
   TextEditingController get nameController => _nameController;
   TextEditingController get emailController => _emailController;
   TextEditingController get passwordController => _passwordController;
-  TextEditingController get passwordConfirmationController => _passwordConfirmationController;
+  TextEditingController get passwordConfirmationController =>
+      _passwordConfirmationController;
   FocusNode get nameFocusNode => _nameFocusNode;
   FocusNode get emailFocusNode => _emailFocusNode;
   FocusNode get passwordFocusNode => _passwordFocusNode;
@@ -37,19 +38,6 @@ class RegisterController extends GetxController {
     _passwordController.addListener(validateForm);
     _passwordConfirmationController.addListener(validateForm);
     super.onInit();
-  }
-
-  @override
-  void onClose() {
-    _nameController.dispose();
-    _emailController.dispose();
-    _passwordController.dispose();
-    _passwordConfirmationController.dispose();
-    _nameFocusNode.dispose();
-    _emailFocusNode.dispose();
-    _passwordFocusNode.dispose();
-    _passwordConfirmationFocusNode.dispose();
-    super.onClose();
   }
 
   void validateName(String value) {
@@ -110,7 +98,8 @@ class RegisterController extends GetxController {
   }
 
   void toggleObscurePasswordConfirmationText() {
-    obscurePasswordConfimationText.value = !obscurePasswordConfimationText.value;
+    obscurePasswordConfimationText.value =
+        !obscurePasswordConfimationText.value;
   }
 
   void clearForm() {
