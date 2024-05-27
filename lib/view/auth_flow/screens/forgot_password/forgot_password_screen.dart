@@ -87,7 +87,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                       ),
                     ),
                   ),
-                  GlobalTextFieldWidget(
+                  Obx(() => GlobalTextFieldWidget(
                     focusNode: _controller.emailFocusNode,
                     controller: _controller.emailController,
                     errorText: _controller.emailErrorText.value,
@@ -95,16 +95,16 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                     prefixIcon: IconsConstant.message,
                     showSuffixIcon: false,
                     onChanged: (value) => _controller.validateEmail(value),
-                  ),
+                  )),
                   const SizedBox(height: 27),
-                  GlobalButtonWidget(
+                  Obx(() => GlobalButtonWidget(
                     text: 'Kirim Tautan',
                     isFormValid: _controller.isFormValid.value,
                     onTap: () {
                       _controller.clearForm();
                       Get.offAndToNamed(RoutesConstant.otp);
                     },
-                  ),
+                  )),
                 ],
               ),
             ),

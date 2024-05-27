@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 class ForgotPasswordController extends GetxController {
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<String?> emailErrorText = Rx<String?>(null);
-  Rx<bool?> remindMe = Rx<bool?>(false);
 
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/view_model/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -16,6 +17,8 @@ class OtpScreen extends StatefulWidget {
 }
 
 class _OtpScreenState extends State<OtpScreen> {
+  final OtpController _controller = Get.put(OtpController());
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -24,10 +27,9 @@ class _OtpScreenState extends State<OtpScreen> {
           leading: Padding(
             padding: const EdgeInsets.only(top: 24),
             child: IconButton(
-              icon: SvgPicture.asset(
-                IconsConstant.arrow,
-                colorFilter: ColorFilter.mode(ColorsConstant.black, BlendMode.srcIn)
-              ),
+              icon: SvgPicture.asset(IconsConstant.arrow,
+                  colorFilter:
+                      ColorFilter.mode(ColorsConstant.black, BlendMode.srcIn)),
               iconSize: 24,
               onPressed: () {
                 Navigator.of(context).pop();
@@ -70,6 +72,7 @@ class _OtpScreenState extends State<OtpScreen> {
                 height: 26,
               ),
               CustomPinCodeTextField(
+                controller: _controller.otpController,
                 onChanged: (String value) {},
               ),
               Align(
@@ -103,12 +106,13 @@ class _OtpScreenState extends State<OtpScreen> {
               const SizedBox(
                 height: 36,
               ),
-              GlobalButtonWidget(
-                text: 'Konfirmasi',
-                onTap: () {
-                  Get.offAndToNamed(RoutesConstant.confirmPassword);
-                },
-              ),
+              Obx(() => GlobalButtonWidget(
+                    text: 'Konfirmasi',
+                    isFormValid: _controller.isFormValid.value,
+                    onTap: () {
+                      Get.offAndToNamed(RoutesConstant.confirmPassword);
+                    },
+                  )),
             ],
           ),
         ),
@@ -119,9 +123,11 @@ class _OtpScreenState extends State<OtpScreen> {
 
 class CustomPinCodeTextField extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final TextEditingController? controller;
 
   const CustomPinCodeTextField({
     Key? key,
+    required this.controller,
     required this.onChanged,
     final Duration? animationDuration,
     final BuildContext? appContext,
@@ -140,6 +146,7 @@ class CustomPinCodeTextField extends StatelessWidget {
         appContext: context,
         length: 4,
         keyboardType: TextInputType.number,
+        controller: controller,
         enableActiveFill: true,
         animationType: AnimationType.fade,
         animationDuration: const Duration(milliseconds: 300),
