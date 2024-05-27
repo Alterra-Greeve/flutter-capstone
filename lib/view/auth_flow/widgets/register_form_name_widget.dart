@@ -1,7 +1,7 @@
 part of '../screens/register/register_screen.dart';
 
 class RegisterFormNameWidget extends StatelessWidget {
-  final RegisterController controller = Get.put(RegisterController());
+  final RegisterController _controller = Get.put(RegisterController());
 
   RegisterFormNameWidget({super.key});
 
@@ -9,12 +9,12 @@ class RegisterFormNameWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => GlobalTextFieldWidget(
-        focusNode: controller.nameFocusNode,
-        controller: controller.nameController,
-        errorText: controller.nameErrorText.value,
+        focusNode: _controller.nameFocusNode,
+        controller: _controller.nameController,
+        errorText: _controller.nameErrorText.value,
         hintText: 'Masukkan Nama Lengkap Anda',
         showSuffixIcon: false,
-        onChanged: (value) => controller.validateName(
+        onChanged: (value) => _controller.validateName(
           value,
         ),
       ),

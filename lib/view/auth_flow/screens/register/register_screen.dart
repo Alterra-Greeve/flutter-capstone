@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -9,12 +10,12 @@ import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-part '../../widgets/register_form_name_widget.dart';
-part '../../widgets/register_form_email_widget.dart';
-part '../../widgets/register_form_password_widget.dart';
-part '../../widgets/register_form_password_confirmation_widget.dart';
-part '../../widgets/register_button_widget.dart';
 part '../../../../view_model/register_controller.dart';
+part '../../widgets/register_button_widget.dart';
+part '../../widgets/register_form_email_widget.dart';
+part '../../widgets/register_form_name_widget.dart';
+part '../../widgets/register_form_password_confirmation_widget.dart';
+part '../../widgets/register_form_password_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
   const RegisterScreen({super.key});

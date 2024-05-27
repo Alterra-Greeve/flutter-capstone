@@ -8,6 +8,7 @@ import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
+import 'package:greeve/view_model/forgot_password_controller.dart';
 
 class ForgotPassScreen extends StatefulWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);
@@ -17,25 +18,8 @@ class ForgotPassScreen extends StatefulWidget {
 }
 
 class _ForgotPassScreenState extends State<ForgotPassScreen> {
-  final FocusNode _focusNode = FocusNode();
-  final _controller = TextEditingController();
-  String? _errorText;
-  bool remindMe = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _focusNode.addListener(() {
-      setState(() {});
-    });
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    _controller.dispose();
-    super.dispose();
-  }
+  final ForgotPasswordController _controller =
+      Get.put(ForgotPasswordController());
 
   @override
   Widget build(BuildContext context) {
@@ -104,17 +88,20 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                     ),
                   ),
                   GlobalTextFieldWidget(
-                    focusNode: _focusNode,
-                    controller: _controller,
-                    errorText: _errorText,
+                    focusNode: _controller.emailFocusNode,
+                    controller: _controller.emailController,
+                    errorText: _controller.emailErrorText.value,
                     hintText: 'Masukkan Email Anda',
                     prefixIcon: IconsConstant.message,
                     showSuffixIcon: false,
+                    onChanged: (value) => _controller.validateEmail(value),
                   ),
                   const SizedBox(height: 27),
                   GlobalButtonWidget(
                     text: 'Kirim Tautan',
+                    isFormValid: _controller.isFormValid.value,
                     onTap: () {
+                      _controller.clearForm();
                       Get.offAndToNamed(RoutesConstant.otp);
                     },
                   ),

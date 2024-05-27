@@ -8,26 +8,31 @@ class LoginController extends GetxController {
   Rx<bool?> remindMe = Rx<bool?>(false);
   Rx<bool> obscureText = true.obs;
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  final FocusNode emailFocusNode = FocusNode();
-  final FocusNode passwordFocusNode = FocusNode();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+
+  TextEditingController get emailController => _emailController;
+  TextEditingController get passwordController => _passwordController;
+  FocusNode get emailFocusNode => _emailFocusNode;
+  FocusNode get passwordFocusNode => _passwordFocusNode;
 
   @override
   void onInit() {
-    emailFocusNode.addListener(() => update());
-    passwordFocusNode.addListener(() => update());
-    emailController.addListener(validateForm);
-    passwordController.addListener(validateForm);
+    _emailFocusNode.addListener(() => update());
+    _passwordFocusNode.addListener(() => update());
+    _emailController.addListener(validateForm);
+    _passwordController.addListener(validateForm);
     super.onInit();
   }
 
   @override
   void onClose() {
-    emailController.dispose();
-    passwordController.dispose();
-    emailFocusNode.dispose();
-    passwordFocusNode.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
     super.onClose();
   }
 
@@ -54,8 +59,8 @@ class LoginController extends GetxController {
   void validateForm() {
     if (emailErrorText.value != null ||
         passwordErrorText.value != null ||
-        emailController.text == '' ||
-        passwordController.text == '') {
+        _emailController.text == '' ||
+        _passwordController.text == '') {
       isFormValid.value = false;
     } else {
       isFormValid.value = true;
@@ -68,5 +73,13 @@ class LoginController extends GetxController {
 
   void toggleObscureText() {
     obscureText.value = !obscureText.value;
+  }
+
+  void clearForm() {
+    _emailController.clear();
+    _passwordController.clear();
+    emailErrorText.value = null;
+    passwordErrorText.value = null;
+    isFormValid.value = false;
   }
 }

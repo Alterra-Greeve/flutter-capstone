@@ -9,37 +9,46 @@ class RegisterController extends GetxController {
   Rx<bool> obscurePasswordText = true.obs;
   Rx<bool> obscurePasswordConfimationText = true.obs;
 
-  TextEditingController nameController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController passwordConfirmationController =
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _passwordConfirmationController =
       TextEditingController();
-  final FocusNode nameFocusNode = FocusNode();
-  final FocusNode emailFocusNode = FocusNode();
-  final FocusNode passwordFocusNode = FocusNode();
-  final FocusNode passwordConfirmationFocusNode = FocusNode();
+  final FocusNode _nameFocusNode = FocusNode();
+  final FocusNode _emailFocusNode = FocusNode();
+  final FocusNode _passwordFocusNode = FocusNode();
+  final FocusNode _passwordConfirmationFocusNode = FocusNode();
+
+  TextEditingController get nameController => _nameController;
+  TextEditingController get emailController => _emailController;
+  TextEditingController get passwordController => _passwordController;
+  TextEditingController get passwordConfirmationController => _passwordConfirmationController;
+  FocusNode get nameFocusNode => _nameFocusNode;
+  FocusNode get emailFocusNode => _emailFocusNode;
+  FocusNode get passwordFocusNode => _passwordFocusNode;
+  FocusNode get passwordConfirmationFocusNode => _passwordConfirmationFocusNode;
 
   @override
   void onInit() {
-    emailFocusNode.addListener(() => update());
-    passwordFocusNode.addListener(() => update());
-    nameController.addListener(validateForm);
-    emailController.addListener(validateForm);
-    passwordController.addListener(validateForm);
-    passwordConfirmationController.addListener(validateForm);
+    _emailFocusNode.addListener(() => update());
+    _passwordFocusNode.addListener(() => update());
+    _nameController.addListener(validateForm);
+    _emailController.addListener(validateForm);
+    _passwordController.addListener(validateForm);
+    _passwordConfirmationController.addListener(validateForm);
     super.onInit();
   }
 
   @override
   void onClose() {
-    nameController.dispose();
-    emailController.dispose();
-    passwordController.dispose();
-    passwordConfirmationController.dispose();
-    nameFocusNode.dispose();
-    emailFocusNode.dispose();
-    passwordFocusNode.dispose();
-    passwordConfirmationFocusNode.dispose();
+    _nameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _passwordConfirmationController.dispose();
+    _nameFocusNode.dispose();
+    _emailFocusNode.dispose();
+    _passwordFocusNode.dispose();
+    _passwordConfirmationFocusNode.dispose();
     super.onClose();
   }
 
@@ -73,7 +82,7 @@ class RegisterController extends GetxController {
   }
 
   void validatePasswordConfirmation(String value) {
-    if (value != passwordController.text) {
+    if (value != _passwordController.text) {
       passwordConfirmationErrorText.value = 'Kata sandi tidak sama';
     } else {
       passwordConfirmationErrorText.value = null;
@@ -86,10 +95,10 @@ class RegisterController extends GetxController {
         emailErrorText.value != null ||
         passwordErrorText.value != null ||
         passwordConfirmationErrorText.value != null ||
-        nameController.text == '' ||
-        emailController.text == '' ||
-        passwordController.text == '' ||
-        passwordConfirmationController.text == '') {
+        _nameController.text == '' ||
+        _emailController.text == '' ||
+        _passwordController.text == '' ||
+        _passwordConfirmationController.text == '') {
       isFormValid.value = false;
     } else {
       isFormValid.value = true;
@@ -105,10 +114,10 @@ class RegisterController extends GetxController {
   }
 
   void clearForm() {
-    nameController.clear();
-    emailController.clear();
-    passwordController.clear();
-    passwordConfirmationController.clear();
+    _nameController.clear();
+    _emailController.clear();
+    _passwordController.clear();
+    _passwordConfirmationController.clear();
     nameErrorText.value = null;
     emailErrorText.value = null;
     passwordErrorText.value = null;

@@ -1,7 +1,7 @@
 part of '../screens/register/register_screen.dart';
 
 class RegisterFormPasswordWidget extends StatelessWidget {
-  final RegisterController controller = Get.put(RegisterController());
+  final RegisterController _controller = Get.put(RegisterController());
 
   RegisterFormPasswordWidget({super.key});
 
@@ -9,17 +9,17 @@ class RegisterFormPasswordWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => GlobalTextFieldWidget(
-        focusNode: controller.passwordFocusNode,
-        controller: controller.passwordController,
-        errorText: controller.passwordErrorText.value,
+        focusNode: _controller.passwordFocusNode,
+        controller: _controller.passwordController,
+        errorText: _controller.passwordErrorText.value,
         hintText: 'Masukkan Kata Sandi Anda',
         prefixIcon: IconsConstant.lock,
         showSuffixIcon: true,
-        onChanged: (value) => controller.validatePassword(
+        onChanged: (value) => _controller.validatePassword(
           value,
         ),
-        obscureText: controller.obscurePasswordConfimationText.value,
-        onPressedSuffixIcon: () => controller.toggleObscurePasswordConfirmationText(),
+        obscureText: _controller.obscurePasswordConfimationText.value,
+        onPressedSuffixIcon: () => _controller.toggleObscurePasswordConfirmationText(),
       ),
     );
   }

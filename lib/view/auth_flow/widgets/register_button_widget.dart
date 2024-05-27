@@ -1,7 +1,7 @@
 part of '../screens/register/register_screen.dart';
 
 class RegisterButtonWidget extends StatelessWidget {
-  final RegisterController controller = Get.put(RegisterController());
+  final RegisterController _controller = Get.put(RegisterController());
 
   RegisterButtonWidget({super.key});
 
@@ -10,9 +10,9 @@ class RegisterButtonWidget extends StatelessWidget {
     return Obx(
       () => GlobalButtonWidget(
         text: 'Daftar',
-        isFormValid: controller.isFormValid.value,
+        isFormValid: _controller.isFormValid.value,
         onTap: () {
-          controller.clearForm();
+          _controller.clearForm();
           Get.toNamed(RoutesConstant.registerSuccess);
         },
       ),
