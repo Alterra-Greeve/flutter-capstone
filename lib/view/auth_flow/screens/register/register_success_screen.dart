@@ -39,7 +39,7 @@ class RegisterSuccessScreen extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              GlobalButtonWidget(
+              GlobalFormButtonWidget(
                 text: 'Masuk Sekarang',
                 onTap: () {
                   Get.offAllNamed(RoutesConstant.login);

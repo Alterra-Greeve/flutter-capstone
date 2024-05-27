@@ -137,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     const SizedBox(height: 40),
-                    Obx(() => GlobalButtonWidget(
+                    Obx(() => GlobalFormButtonWidget(
                           text: 'Masuk',
                           isFormValid: _controller.isFormValid.value,
                           onTap: () {

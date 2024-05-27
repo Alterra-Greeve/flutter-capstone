@@ -101,7 +101,7 @@ class _ForgotPassScreenState extends State<ForgotPassScreen> {
                         onChanged: (value) => _controller.validateEmail(value),
                       )),
                   const SizedBox(height: 27),
-                  Obx(() => GlobalButtonWidget(
+                  Obx(() => GlobalFormButtonWidget(
                         text: 'Kirim Tautan',
                         isFormValid: _controller.isFormValid.value,
                         onTap: () {

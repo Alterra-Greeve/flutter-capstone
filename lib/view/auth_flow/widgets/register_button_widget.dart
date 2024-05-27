@@ -8,7 +8,7 @@ class RegisterButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => GlobalButtonWidget(
+      () => GlobalFormButtonWidget(
         text: 'Daftar',
         isFormValid: _controller.isFormValid.value,
         onTap: () {

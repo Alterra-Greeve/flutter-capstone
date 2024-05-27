@@ -172,7 +172,7 @@ class _ConfirmPassScreenState extends State<ConfirmPassScreen> {
                 ),
                 const SizedBox(height: 36),
                 Obx(
-                  () => GlobalButtonWidget(
+                  () => GlobalFormButtonWidget(
                     text: 'Simpan Kata Sandi',
                     isFormValid: _controller.isFormValid.value,
                     onTap: () {

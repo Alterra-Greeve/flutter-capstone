@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-class GlobalButtonWidget extends StatelessWidget {
+class GlobalFormButtonWidget extends StatelessWidget {
   final String text;
   final VoidCallback? onTap;
   final bool isFormValid;
 
-  const GlobalButtonWidget({
+  const GlobalFormButtonWidget({
     super.key,
     required this.text,
     required this.onTap,

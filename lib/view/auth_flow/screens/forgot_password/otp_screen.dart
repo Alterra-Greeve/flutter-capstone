@@ -110,7 +110,7 @@ class _OtpScreenState extends State<OtpScreen> {
               const SizedBox(
                 height: 36,
               ),
-              Obx(() => GlobalButtonWidget(
+              Obx(() => GlobalFormButtonWidget(
                     text: 'Konfirmasi',
                     isFormValid: _controller.isFormValid.value,
                     onTap: () {
