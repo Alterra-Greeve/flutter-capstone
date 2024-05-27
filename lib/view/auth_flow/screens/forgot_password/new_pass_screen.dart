@@ -38,9 +38,8 @@ class NewPasswordScreen extends StatelessWidget {
                 style: TextStylesConstant.nunitoSubtitle,
               ),
               const SizedBox(height: 40),
-              GlobalFormButtonWidget(
+              GlobalButtonWidget(
                 text: 'Kembali ke Halaman Masuk',
-                isFormValid: true,
                 onTap: () {
                   Get.offAllNamed(RoutesConstant.login);
                 },

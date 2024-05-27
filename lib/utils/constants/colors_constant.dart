@@ -1,14 +1,14 @@
 import 'dart:ui';
 
 class ColorsConstant {
-  static Color white = const Color(0xFFFFFFFF);
-  static Color black = const Color(0xFF000000);
-  static Color neutral100 = const Color(0xFFF5F5F5);
-  static Color neutral200 = const Color(0xFFEDEDED);
-  static Color neutral400 = const Color(0xFFD4D4D4);
-  static Color neutral500 = const Color(0xFFA3A3A3);
-  static Color neutral600 = const Color(0xFF737373);
-  static Color neutral800 = const Color(0xFF262626);
-  static Color primary500 = const Color(0xFF1C6758);
-  static Color danger500 = const Color(0xFFD32D28);
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color black = Color(0xFF000000);
+  static const Color neutral100 = Color(0xFFF5F5F5);
+  static const Color neutral200 = Color(0xFFEDEDED);
+  static const Color neutral400 = Color(0xFFD4D4D4);
+  static const Color neutral500 = Color(0xFFA3A3A3);
+  static const Color neutral600 = Color(0xFF737373);
+  static const Color neutral800 = Color(0xFF262626);
+  static const Color primary500 = Color(0xFF1C6758);
+  static const Color danger500 = Color(0xFFD32D28);
 }

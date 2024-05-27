@@ -5,7 +5,7 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/view_model/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:greeve/global_widgets/global_button_widget.dart';
+import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 

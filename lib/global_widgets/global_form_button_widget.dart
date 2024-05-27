@@ -2,42 +2,38 @@ import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-class GlobalButtonWidget extends StatelessWidget {
+class GlobalFormButtonWidget extends StatelessWidget {
   final String text;
-  final void Function()? onTap;
-  final Color? buttonColor;
-  final Color? textColor;
-  final double? buttonHeight;
-  final double? buttonWidth;
-  final EdgeInsetsGeometry? buttonPadding;
+  final VoidCallback? onTap;
+  final bool isFormValid;
 
-  const GlobalButtonWidget({
+  const GlobalFormButtonWidget({
     super.key,
     required this.text,
     required this.onTap,
-    this.buttonColor = ColorsConstant.primary500,
-    this.textColor = ColorsConstant.neutral100,
-    this.buttonHeight = 48,
-    this.buttonWidth = double.infinity,
-    this.buttonPadding,
+    this.isFormValid = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: onTap,
+      onTap: isFormValid ? onTap : null,
       child: Container(
-        width: buttonWidth,
-        height: buttonHeight,
+        width: double.infinity,
+        height: 48,
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          color: buttonColor,
+          color: isFormValid
+              ? ColorsConstant.primary500
+              : ColorsConstant.neutral200,
           borderRadius: BorderRadius.circular(10.0),
         ),
         child: Text(
           text,
           style: TextStylesConstant.nunitoButtonLarge.copyWith(
-            color: textColor,
+            color: isFormValid
+                ? ColorsConstant.neutral100
+                : ColorsConstant.neutral500,
           ),
           textAlign: TextAlign.center,
         ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:greeve/global_widgets/global_button_widget.dart';
+import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
@@ -64,7 +64,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           hintText: 'Masukkan Email Anda',
                           prefixIcon: IconsConstant.message,
                           showSuffixIcon: false,
-                          onChanged: (value) => _controller.validateEmail(value),
+                          onChanged: (value) =>
+                              _controller.validateEmail(value),
                           helperText: 'Contoh : johndoe123@gmail.com',
                         )),
                     const SizedBox(height: 20),
@@ -142,6 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           isFormValid: _controller.isFormValid.value,
                           onTap: () {
                             Get.defaultDialog(
+                              backgroundColor: ColorsConstant.white,
                               title: 'Gagal Masuk!',
                               titleStyle:
                                   TextStylesConstant.nunitoHeading3.copyWith(
