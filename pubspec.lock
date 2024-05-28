@@ -85,10 +85,17 @@ packages:
     dependency: transitive
     description:
       name: ffi
+<<<<<<< HEAD
       sha256: "493f37e7df1804778ff3a53bd691d8692ddf69702cf4c1c1096a2e41b4779e21"
       url: "https://pub.dev"
     source: hosted
     version: "2.1.2"
+=======
+      sha256: "7bf0adc28a23d395f19f3f1eb21dd7cfd1dd9f8e1c50051c069122e6853bc878"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
+>>>>>>> 8091286543e1105ca84caed4d1eadeab82d60d70
   file:
     dependency: transitive
     description:
@@ -184,6 +191,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  loading_indicator:
+    dependency: "direct main"
+    description:
+      name: loading_indicator
+      sha256: a101ffb2aa3e646137d7810bfa90b50525dd3f72c01235b6df7491cf6af6f284
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.1.1"
   matcher:
     dependency: transitive
     description:
@@ -457,10 +472,17 @@ packages:
     dependency: transitive
     description:
       name: win32
+<<<<<<< HEAD
       sha256: a79dbe579cb51ecd6d30b17e0cae4e0ea15e2c0e66f69ad4198f22a6789e94f4
       url: "https://pub.dev"
     source: hosted
     version: "5.5.1"
+=======
+      sha256: "464f5674532865248444b4c3daca12bd9bf2d7c47f759ce2617986e7229494a8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.2.0"
+>>>>>>> 8091286543e1105ca84caed4d1eadeab82d60d70
   xdg_directories:
     dependency: transitive
     description:
@@ -478,5 +500,9 @@ packages:
     source: hosted
     version: "6.5.0"
 sdks:
+<<<<<<< HEAD
   dart: ">=3.4.0 <4.0.0"
+=======
+  dart: ">=3.3.0 <4.0.0"
+>>>>>>> 8091286543e1105ca84caed4d1eadeab82d60d70
   flutter: ">=3.18.0-18.0.pre.54"
