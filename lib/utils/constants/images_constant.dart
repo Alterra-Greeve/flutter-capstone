@@ -7,10 +7,7 @@ class ImagesConstant {
   static const String onboardingImage3 = 'assets/images/onboarding_image3.svg';
   static const String forgotPass = 'assets/images/forgot_password.svg';
   static const String success = 'assets/images/success.svg';
-<<<<<<< HEAD
   static const String search = 'assets/images/search.svg';
   static const String searchEngines = 'assets/images/search_engines.svg';
-=======
   static const String registerSuccessImage = 'assets/images/register_success_image.svg';
->>>>>>> 8091286543e1105ca84caed4d1eadeab82d60d70
 }

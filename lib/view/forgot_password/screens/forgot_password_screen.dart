@@ -27,14 +27,11 @@ class ForgotPassScreen extends StatelessWidget {
             child: IconButton(
               icon: SvgPicture.asset(
                 IconsConstant.arrow,
-<<<<<<< HEAD:lib/view/auth_flow/screens/forgot_password/forgot_password_screen.dart
                 //color: ColorsConstant.black,
-=======
                 colorFilter: const ColorFilter.mode(
                   ColorsConstant.black,
                   BlendMode.srcIn,
                 ),
->>>>>>> 8091286543e1105ca84caed4d1eadeab82d60d70:lib/view/forgot_password/screens/forgot_password_screen.dart
               ),
               iconSize: 24,
               onPressed: () {
