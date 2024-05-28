@@ -4,12 +4,12 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/onboarding/screens/screen_one.dart';
-import 'package:greeve/view/onboarding/screens/screen_three.dart';
 import 'package:greeve/view/onboarding/screens/screen_two.dart';
+import 'package:greeve/view/onboarding/screens/screen_three.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({super.key});
+  const OnBoardingScreen({Key? key}) : super(key: key);
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -17,6 +17,7 @@ class OnBoardingScreen extends StatefulWidget {
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
   final PageController _controller = PageController();
+  int currentPage = 0;
   int totalPage = 3;
 
   @override
@@ -26,10 +27,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         children: [
           PageView(
             controller: _controller,
+            onPageChanged: (index) {
+              setState(() {
+                currentPage = index;
+              });
+            },
             children: const [
-              ScreenOne(),
-              ScreenTwo(),
-              ScreenThree(),
+              ScreenOne(key: PageStorageKey('ScreenOne')),
+              ScreenTwo(key: PageStorageKey('ScreenTwo')),
+              ScreenThree(key: PageStorageKey('ScreenThree')),
             ],
           ),
           Positioned(
@@ -50,62 +56,93 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
           ),
-          Positioned(
-            bottom: 16.0,
-            left: 16.0,
-            right: 16.0,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  child: TextButton(
-                    onPressed: () {
-                      _controller.jumpToPage(2);
-                    },
-                    child: Text(
-                      'Lewati',
-                      style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                        color: ColorsConstant.primary500,
-                      ),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                GestureDetector(
-                  onTap: () {
-                    if (_controller.page!.toInt() == totalPage - 1) {
-                      Get.offAndToNamed(RoutesConstant.login);
-                    } else {
-                      _controller.nextPage(
-                        duration: const Duration(milliseconds: 500),
-                        curve: Curves.easeIn,
-                      );
-                    }
-                  },
-                  child: Container(
-                    width: 110,
-                    height: 50,
-                    decoration: const BoxDecoration(
-                      color: ColorsConstant.primary500,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Selanjutnya',
-                        style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                          color: ColorsConstant.neutral100,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+          _buildButton(),
         ],
       ),
     );
+  }
+
+  Widget _buildButton() {
+    if (currentPage == 2) {
+      return Positioned(
+        bottom: 16.0,
+        left: 16.0,
+        right: 16.0,
+        child: InkWell(
+          onTap: () {
+            Get.offAndToNamed(RoutesConstant.login);
+          },
+          child: Ink(
+            width: double.infinity,
+            height: 50,
+            decoration: const BoxDecoration(
+              color: ColorsConstant.primary500,
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                'Mulai',
+                style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                  color: ColorsConstant.neutral100,
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return Positioned(
+        bottom: 16.0,
+        left: 16.0,
+        right: 16.0,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              child: TextButton(
+                onPressed: () {
+                  _controller.jumpToPage(2);
+                },
+                child: Text(
+                  'Lewati',
+                  style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                    color: ColorsConstant.primary500,
+                  ),
+                ),
+              ),
+            ),
+            const Spacer(),
+            InkWell(
+              onTap: () {
+                _controller.nextPage(
+                  duration: const Duration(milliseconds: 500),
+                  curve: Curves.easeIn,
+                );
+              },
+              child: Ink(
+                width: 110,
+                height: 50,
+                decoration: const BoxDecoration(
+                  color: ColorsConstant.primary500,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    'Selanjutnya',
+                    style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                      color: ColorsConstant.neutral100,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
   }
 }

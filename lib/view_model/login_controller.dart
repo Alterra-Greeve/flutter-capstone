@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/models/api_responses/login_response.dart';
+import 'package:greeve/models/api_responses/login_response_model.dart';
 import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class LoginController extends GetxController {
   final ApiService _apiService = ApiService();
@@ -12,7 +16,7 @@ class LoginController extends GetxController {
   Rx<bool?> remindMe = Rx<bool?>(false);
   Rx<bool> obscureText = true.obs;
   Rx<bool> isLoading = Rx<bool>(false);
-  Rx<LoginResponse?> loginData = Rx<LoginResponse?>(null);
+  Rx<LoginResponseModel?> loginData = Rx<LoginResponseModel?>(null);
   Rx<String> errorMessage = Rx<String>('');
 
   final TextEditingController _emailController = TextEditingController();
@@ -37,11 +41,17 @@ class LoginController extends GetxController {
   void login() async {
     isLoading.value = true;
     try {
-      final result = await _apiService.login(_emailController.text, _passwordController.text);
+      final result = await _apiService.login(
+          _emailController.text, _passwordController.text);
       loginData.value = result;
       errorMessage.value = '';
+      if (result.status == true && result.data != null) {
+        SharedPreferencesManager.saveToken(token: result.data!.token!);
+      }
+      Get.offAllNamed(RoutesConstant.loading);
     } catch (e) {
       errorMessage.value = e.toString();
+      showLoginFailedDialog();
     } finally {
       isLoading.value = false;
     }
@@ -92,5 +102,54 @@ class LoginController extends GetxController {
     emailErrorText.value = null;
     passwordErrorText.value = null;
     isFormValid.value = false;
+  }
+
+  void showLoginFailedDialog() {
+    Get.defaultDialog(
+      backgroundColor: ColorsConstant.white,
+      title: 'Gagal Masuk!',
+      titleStyle: TextStylesConstant.nunitoHeading3.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 24),
+      content: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 24,
+          left: 24,
+          right: 24,
+        ),
+        child: Text(
+          "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
+          textAlign: TextAlign.center,
+          style: TextStylesConstant.nunitoSubtitle.copyWith(
+            color: ColorsConstant.neutral600,
+          ),
+        ),
+      ),
+      confirm: InkWell(
+        onTap: () {
+          Get.back();
+        },
+        child: Ink(
+          width: 250,
+          height: 48,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: ColorsConstant.primary500,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Masuk Kembali',
+              style: TextStylesConstant.nunitoButtonLarge
+                  .copyWith(color: ColorsConstant.primary500),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

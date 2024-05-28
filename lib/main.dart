@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/routes_constant.dart';
-import 'package:greeve/view/forgot_password/confirmation_screen.dart';
-import 'package:greeve/view/forgot_password/forgot_password_screen.dart';
-import 'package:greeve/view/forgot_password/new_pass_screen.dart';
-import 'package:greeve/view/forgot_password/otp_screen.dart';
-import 'package:greeve/view/login/login_screen.dart';
+import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
+import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
+import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
+import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
+import 'package:greeve/view/login/screens/loading_screen.dart';
+import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/splash_screen.dart';
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         useMaterial3: true,
       ),
+      initialRoute: RoutesConstant.splashApp,
       getPages: [
         GetPage(
           name: RoutesConstant.splashApp,
@@ -59,6 +61,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: RoutesConstant.newPassword,
           page: () => const NewPasswordScreen(),
+        ),
+        GetPage(
+          name: RoutesConstant.loading,
+          page: () => const LoadingScreen(),
         ),
       ],
     );

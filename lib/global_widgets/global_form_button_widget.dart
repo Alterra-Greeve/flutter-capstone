@@ -18,7 +18,7 @@ class GlobalFormButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: isFormValid ? onTap : null,
-      child: Container(
+      child: Ink(
         width: double.infinity,
         height: 48,
         padding: const EdgeInsets.all(16.0),
