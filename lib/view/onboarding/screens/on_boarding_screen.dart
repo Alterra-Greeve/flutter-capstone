@@ -104,6 +104,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         bottom: 16.0,
         left: 16.0,
         right: 16.0,
+
+        
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
