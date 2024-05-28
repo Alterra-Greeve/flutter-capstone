@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class NewPasswordScreen extends StatelessWidget {
@@ -41,7 +41,7 @@ class NewPasswordScreen extends StatelessWidget {
               GlobalButtonWidget(
                 text: 'Kembali ke Halaman Masuk',
                 onTap: () {
-                  Get.offAllNamed(RoutesConstant.login);
+                  Get.offAllNamed(AppRoutes.login);
                 },
               ),
             ],

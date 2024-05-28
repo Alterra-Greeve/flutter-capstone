@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
@@ -28,42 +28,42 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         useMaterial3: true,
       ),
-      initialRoute: RoutesConstant.splashApp,
+      initialRoute: AppRoutes.splashApp,
       getPages: [
         GetPage(
-          name: RoutesConstant.splashApp,
+          name: AppRoutes.splashApp,
           page: () => const SplashScreen(),
         ),
         GetPage(
-          name: RoutesConstant.forgotPassword,
+          name: AppRoutes.forgotPassword,
           page: () => const ForgotPassScreen(),
         ),
         GetPage(
-          name: RoutesConstant.login,
+          name: AppRoutes.login,
           page: () => const LoginScreen(),
         ),
         GetPage(
-          name: RoutesConstant.otp,
+          name: AppRoutes.otp,
           page: () => const OtpScreen(),
         ),
         GetPage(
-          name: RoutesConstant.confirmPassword,
+          name: AppRoutes.confirmPassword,
           page: () => const ConfirmPassScreen(),
         ),
         GetPage(
-          name: RoutesConstant.register,
+          name: AppRoutes.register,
           page: () => const RegisterScreen(),
         ),
         GetPage(
-          name: RoutesConstant.registerSuccess,
+          name: AppRoutes.registerSuccess,
           page: () => const RegisterSuccessScreen(),
         ),
         GetPage(
-          name: RoutesConstant.newPassword,
+          name: AppRoutes.newPassword,
           page: () => const NewPasswordScreen(),
         ),
         GetPage(
-          name: RoutesConstant.loading,
+          name: AppRoutes.loading,
           page: () => const LoadingScreen(),
         ),
       ],

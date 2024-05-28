@@ -6,7 +6,7 @@ import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/login_controller.dart';
 import 'package:loading_indicator/loading_indicator.dart';
@@ -122,7 +122,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             TextButton(
                               onPressed: () {
-                                Get.toNamed(RoutesConstant.forgotPassword);
+                                Get.toNamed(AppRoutes.forgotPassword);
                               },
                               child: Text(
                                 'Lupa Kata Sandi',
@@ -167,7 +167,7 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ),
                                 onPressed: () {
-                                  Get.toNamed(RoutesConstant.register);
+                                  Get.toNamed(AppRoutes.register);
                                 },
                                 child: Text(
                                   'Daftar',

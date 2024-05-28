@@ -4,7 +4,7 @@ import 'package:greeve/models/api_responses/login_response_model.dart';
 import 'package:greeve/services/api/api_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class LoginController extends GetxController {
@@ -48,7 +48,7 @@ class LoginController extends GetxController {
       if (result.status == true && result.data != null) {
         SharedPreferencesManager.saveToken(token: result.data!.token!);
       }
-      Get.offAllNamed(RoutesConstant.loading);
+      Get.offAllNamed(AppRoutes.loading);
     } catch (e) {
       errorMessage.value = e.toString();
       showLoginFailedDialog();

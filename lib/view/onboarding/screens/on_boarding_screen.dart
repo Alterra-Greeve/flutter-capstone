@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/onboarding/screens/screen_one.dart';
 import 'package:greeve/view/onboarding/screens/screen_two.dart';
@@ -70,7 +70,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         right: 16.0,
         child: InkWell(
           onTap: () {
-            Get.offAndToNamed(RoutesConstant.login);
+            Get.offAndToNamed(AppRoutes.login);
           },
           child: Ink(
             width: double.infinity,

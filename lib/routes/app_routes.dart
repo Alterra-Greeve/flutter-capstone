@@ -1,4 +1,4 @@
-class RoutesConstant {
+class AppRoutes {
   static const String splashApp = '/';
   static const String login = '/login';
   static const String forgotPassword = '/forgot_password';
