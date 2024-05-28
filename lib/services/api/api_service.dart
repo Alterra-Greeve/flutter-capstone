@@ -10,8 +10,8 @@ class ApiService {
       Map<String, dynamic> data = {'email': email, 'password': password};
 
       final response = await _dio.post(ApiConstant.login, data: data);
+      print(response);
       if (response.statusCode == 200) {
-        print(response);
         return LoginResponse.fromJson(response.data);
       } else {
         throw Exception('Login gagal');

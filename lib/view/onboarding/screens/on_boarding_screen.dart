@@ -30,7 +30,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             onPageChanged: (index) {
               setState(() {
                 currentPage = index;
-              }); // Rebuilds the widget tree when page changes
+              });
             },
             children: const [
               ScreenOne(key: PageStorageKey('ScreenOne')),
@@ -64,42 +64,35 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
   Widget _buildButton() {
     if (currentPage == 2) {
-      // If on the last page
       return Positioned(
         bottom: 16.0,
         left: 16.0,
         right: 16.0,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.offAndToNamed(RoutesConstant.login);
-              },
-              child: Container(
-                width: 350,
-                height: 50,
-                decoration: const BoxDecoration(
-                  color: ColorsConstant.primary500,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(10),
-                  ),
-                ),
-                child: Center(
-                  child: Text(
-                    'Mulai',
-                    style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                      color: ColorsConstant.neutral100,
-                    ),
-                  ),
+        child: InkWell(
+          onTap: () {
+            Get.offAndToNamed(RoutesConstant.login);
+          },
+          child: Ink(
+            width: double.infinity,
+            height: 50,
+            decoration: const BoxDecoration(
+              color: ColorsConstant.primary500,
+              borderRadius: BorderRadius.all(
+                Radius.circular(10),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                'Mulai',
+                style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                  color: ColorsConstant.neutral100,
                 ),
               ),
             ),
-          ],
+          ),
         ),
       );
     } else {
-      // If on pages 0 or 1
       return Positioned(
         bottom: 16.0,
         left: 16.0,
@@ -121,14 +114,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
             const Spacer(),
-            GestureDetector(
+            InkWell(
               onTap: () {
                 _controller.nextPage(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeIn,
                 );
               },
-              child: Container(
+              child: Ink(
                 width: 110,
                 height: 50,
                 decoration: const BoxDecoration(
