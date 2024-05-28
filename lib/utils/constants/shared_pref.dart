@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 String _keyToken = "token";
 String _passToken = "pass";
 
+//untuk menyimpan token username
 class ShredPref {
   static void saveToken({required String token}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -17,6 +18,7 @@ class ShredPref {
     return token;
   }
 
+//untuk menyimpan token password
   static void savePass({required String pass}) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
@@ -35,6 +37,7 @@ class ShredPref {
     await preferences.remove(_keyToken);
   }
 
+// pakai yang ini untuk sekaligus menghapus semua token ketika user log out
   static void removeAllKey() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.clear();
