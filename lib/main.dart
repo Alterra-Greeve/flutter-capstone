@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: RoutesConstant.splashApp,
-          page: () => const SearchScreen(),
+          page: () => const SplashScreen(),
         ),
         GetPage(
           name: RoutesConstant.forgotPassword,
