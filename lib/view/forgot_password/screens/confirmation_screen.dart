@@ -5,7 +5,7 @@ import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/create_new_password_controller.dart';
 
@@ -37,7 +37,7 @@ class ConfirmPassScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
-                  onPressed: () => Get.offAllNamed(RoutesConstant.login),
+                  onPressed: () => Get.offAllNamed(AppRoutes.login),
                   child: Text(
                     'Keluar',
                     style: TextStylesConstant.nunitoButtonLarge.copyWith(
@@ -170,7 +170,7 @@ class ConfirmPassScreen extends StatelessWidget {
                     text: 'Simpan Kata Sandi',
                     isFormValid: controller.isFormValid.value,
                     onTap: () {
-                      Get.offAndToNamed(RoutesConstant.newPassword);
+                      Get.offAndToNamed(AppRoutes.newPassword);
                     },
                   ),
                 ),

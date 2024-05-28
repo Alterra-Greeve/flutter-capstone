@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view_model/otp_controller.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_form_button_widget.dart';
@@ -108,7 +108,7 @@ class OtpScreen extends StatelessWidget {
                     text: 'Konfirmasi',
                     isFormValid: controller.isFormValid.value,
                     onTap: () {
-                      Get.offAndToNamed(RoutesConstant.confirmPassword);
+                      Get.offAndToNamed(AppRoutes.confirmPassword);
                     },
                   )),
             ],

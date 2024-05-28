@@ -1,24 +1,24 @@
 import 'dart:convert';
 
-GenericResponse genericResponseFromJson(String str) =>
-    GenericResponse.fromJson(json.decode(str));
+GenericResponseModel genericResponseFromJson(String str) =>
+    GenericResponseModel.fromJson(json.decode(str));
 
-String genericResponseToJson(GenericResponse data) =>
+String genericResponseToJson(GenericResponseModel data) =>
     json.encode(data.toJson());
 
-class GenericResponse {
+class GenericResponseModel {
   bool? status;
   String? message;
   dynamic data;
 
-  GenericResponse({
+  GenericResponseModel({
     this.status,
     this.message,
     this.data,
   });
 
-  factory GenericResponse.fromJson(Map<String, dynamic> json) =>
-      GenericResponse(
+  factory GenericResponseModel.fromJson(Map<String, dynamic> json) =>
+      GenericResponseModel(
         status: json["status"],
         message: json["message"],
         data: json["data"],

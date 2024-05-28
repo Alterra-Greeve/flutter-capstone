@@ -7,7 +7,7 @@ import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 part '../../../view_model/register_controller.dart';
@@ -136,18 +136,18 @@ class RegisterScreen extends StatelessWidget {
                         TextButton(
                           style: ButtonStyle(
                             padding:
-                                MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                WidgetStateProperty.all<EdgeInsetsGeometry>(
                               const EdgeInsets.symmetric(
                                 vertical: 2,
                                 horizontal: 4,
                               ),
                             ),
-                            minimumSize: MaterialStateProperty.all<Size>(
+                            minimumSize: WidgetStateProperty.all<Size>(
                               const Size(41, 24),
                             ),
                           ),
                           onPressed: () {
-                            Get.offAllNamed(RoutesConstant.login);
+                            Get.offAllNamed(AppRoutes.login);
                           },
                           child: Text(
                             'Masuk',
