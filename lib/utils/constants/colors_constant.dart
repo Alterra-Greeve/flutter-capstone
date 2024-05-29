@@ -9,6 +9,7 @@ class ColorsConstant {
   static const Color neutral500 = Color(0xFFA3A3A3);
   static const Color neutral600 = Color(0xFF737373);
   static const Color neutral800 = Color(0xFF262626);
+  static const Color neutral900 = Color(0xFF171717);
   static const Color primary500 = Color(0xFF1C6758);
   static const Color danger500 = Color(0xFFD32D28);
 }

@@ -5,6 +5,7 @@ import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart'
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
 import 'package:greeve/view/home/screens/home_screen.dart';
+import 'package:greeve/view/list_challenge/screens/list_challenge_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/onboarding/screens/on_boarding_screen.dart';
@@ -57,6 +58,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.onboarding,
       page: () => const OnBoardingScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.listChallenge,
+      page: () => const ListChallengeScreen(),
     ),
   ];
 }

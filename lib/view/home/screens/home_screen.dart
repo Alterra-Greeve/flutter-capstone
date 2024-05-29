@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -6,12 +8,26 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: (){
-          SharedPreferencesManager.removeToken();
-          
-        }, child: const Text('Delete Token')),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                SharedPreferencesManager.removeToken();
+              },
+              child: const Text('Delete Token'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Get.offAllNamed(AppRoutes.listChallenge);
+              },
+              child: const Text('List Challenges'),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -10,4 +10,5 @@ class AppRoutes {
   static const String loading = '/loading';
   static const String home = '/home';
   static const String onboarding = '/onboarding';
+  static const String listChallenge = '/list_challenge';
 }

@@ -6,6 +6,7 @@ import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
+import 'package:greeve/view/list_challenge/screens/list_challenge_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/register/register_success_screen.dart';
@@ -65,6 +66,10 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: AppRoutes.loading,
           page: () => const LoadingScreen(),
+        ),
+        GetPage(
+          name: AppRoutes.listChallenge,
+          page: () => const ListChallengeScreen(),
         ),
       ],
     );

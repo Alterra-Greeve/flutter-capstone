@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class ErrorHandlerHelper {
+class AuthErrorHelper {
   static String tryPostLogin(int? statusCode) {
     switch (statusCode) {
       case 400:
