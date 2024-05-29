@@ -1,16 +1,17 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:flutter/material.dart';
 import 'package:greeve/routes/app_routes.dart';
+// import 'package:greeve/view/splash_screen.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/view/login/screens/login_screen.dart';
+import 'package:greeve/view/login/screens/loading_screen.dart';
+import 'package:greeve/view/register/screens/register_screen.dart';
+import 'package:greeve/view/register/register_success_screen.dart';
+import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
+import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
-import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
-import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
-import 'package:greeve/view/login/screens/loading_screen.dart';
-import 'package:greeve/view/login/screens/login_screen.dart';
-import 'package:greeve/view/register/register_success_screen.dart';
-import 'package:greeve/view/register/screens/register_screen.dart';
-import 'package:greeve/view/splash_screen.dart';
+import 'package:greeve/view/view_product/screens/search_product/search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: AppRoutes.splashApp,
-          page: () => const SplashScreen(),
+          page: () => const SearchScreen(),
         ),
         GetPage(
           name: AppRoutes.forgotPassword,
