@@ -1,6 +1,5 @@
 part of '../screens/register_screen.dart';
 
-
 class RegisterFormEmailWidget extends StatelessWidget {
   const RegisterFormEmailWidget({super.key});
 
@@ -18,6 +17,7 @@ class RegisterFormEmailWidget extends StatelessWidget {
         onChanged: (value) => controller.validateEmail(
           value,
         ),
+        keyboardType: TextInputType.emailAddress,
       ),
     );
   }
