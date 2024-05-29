@@ -6,12 +6,16 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       body: Center(
-        child: ElevatedButton(onPressed: (){
-          SharedPreferencesManager.removeToken();
-          
-        }, child: Text('Delete Token')),
+        child: ElevatedButton(
+          onPressed: () {
+            SharedPreferencesManager.removeToken();
+          },
+          child:  const Text(
+            'Delete Token',
+          ),
+        ),
       ),
     );
   }

@@ -9,7 +9,7 @@ class ProductScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mau Beli apa hari ini ? '),
+        title: const Text('Mau Beli apa hari ini ? '),
         actions: [
           IconButton(
             onPressed: () {},
@@ -21,7 +21,7 @@ class ProductScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Column(
           children: [
             // Text('data'),
