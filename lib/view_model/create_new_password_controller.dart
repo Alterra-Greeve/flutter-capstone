@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/models/api_responses/generic_response_model.dart';
+import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class CreateNewPasswordController extends GetxController {
+  final ApiService _apiService = ApiService();
+
   Rx<String?> passwordErrorText = Rx<String?>(null);
   Rx<String?> passwordConfirmationErrorText = Rx<String?>(null);
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<bool> obscurePasswordText = true.obs;
   Rx<bool> obscurePasswordConfimationText = true.obs;
+  Rx<bool> isLoading = Rx<bool>(false);
+  Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);
+  Rx<String> errorMessage = Rx<String>('');
+  Rx<String?> email = Rx<String?>(null);
+  Rx<String?> otp = Rx<String?>(null);
 
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _passwordConfirmationController =
@@ -27,6 +38,39 @@ class CreateNewPasswordController extends GetxController {
     _passwordController.addListener(validateForm);
     _passwordConfirmationController.addListener(validateForm);
     super.onInit();
+  }
+
+  void postResetPassword() async {
+    isLoading.value = true;
+    try {
+      final String? token = await SharedPreferencesManager.getToken();
+      final String? email =
+          await SharedPreferencesManager.getForgotPasswordEmail();
+      final String? otp = await SharedPreferencesManager.getOtpNumber();
+
+      final result = await _apiService.postResetPassword(
+        email,
+        otp,
+        _passwordController.text,
+        _passwordConfirmationController.text,
+        token,
+      );
+      responseData.value = result;
+      errorMessage.value = '';
+      SharedPreferencesManager.removeForgotPasswordEmail();
+      SharedPreferencesManager.removeOtpNumber();
+      Get.offNamed(AppRoutes.newPassword);
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        'Gagal membuat kata sandi baru',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void validatePassword(String value) {
@@ -63,6 +107,7 @@ class CreateNewPasswordController extends GetxController {
   }
 
   void toggleObscurePasswordConfirmationText() {
-    obscurePasswordConfimationText.value = !obscurePasswordConfimationText.value;
+    obscurePasswordConfimationText.value =
+        !obscurePasswordConfimationText.value;
   }
 }

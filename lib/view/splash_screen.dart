@@ -6,7 +6,6 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/view_model/splash_controller.dart'; 
 
-// SplashScreen
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
 

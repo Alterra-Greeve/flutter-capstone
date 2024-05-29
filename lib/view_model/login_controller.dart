@@ -38,10 +38,10 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  void login() async {
+  void postLogin() async {
     isLoading.value = true;
     try {
-      final result = await _apiService.login(
+      final result = await _apiService.postLogin(
           _emailController.text, _passwordController.text);
       loginData.value = result;
       errorMessage.value = '';
@@ -54,6 +54,7 @@ class LoginController extends GetxController {
       showLoginFailedDialog();
     } finally {
       isLoading.value = false;
+      clearForm();
     }
   }
 

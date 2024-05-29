@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
         child: ElevatedButton(onPressed: (){
           SharedPreferencesManager.removeToken();
           
-        }, child: Text('Delete Token')),
+        }, child: const Text('Delete Token')),
       ),
     );
   }

@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'package:greeve/models/api_responses/generic_response_model.dart';
+import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
+
 class ForgotPasswordController extends GetxController {
+  final ApiService _apiService = ApiService();
+
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<String?> emailErrorText = Rx<String?>(null);
+  Rx<bool> isLoading = Rx<bool>(false);
+  Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);
+  Rx<String> errorMessage = Rx<String>('');
 
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
@@ -16,6 +26,33 @@ class ForgotPasswordController extends GetxController {
     _emailFocusNode.addListener(() => update());
     _emailController.addListener(validateForm);
     super.onInit();
+  }
+
+  void postForgotPassword() async {
+    isLoading.value = true;
+    try {
+      final String? token = await SharedPreferencesManager.getToken();
+
+      final result = await _apiService.postForgotPassword(
+        _emailController.text,
+        token,
+      );
+      responseData.value = result;
+      errorMessage.value = '';
+      SharedPreferencesManager.saveForgotPasswordEmail(
+          email: _emailController.text);
+      Get.offNamed(AppRoutes.otp);
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        'Email tidak terdaftar',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void validateEmail(String value) {
