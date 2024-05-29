@@ -8,11 +8,19 @@ class ErrorHandlerHelper {
       case 409:
         return 'Email sudah terdaftar! Silahkan gunakan email lain.';
       default:
-        return 'Unexpected Error - An unexpected error occurred (Status Code: $statusCode).';
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
     }
   }
 
-  static String catchError(error) => (error is DioException)
-      ? tryRegister(error.response?.statusCode)
-      : 'Maaf, terjadi masalah saat terhubung ke server. Mohon periksa koneksi internet Anda dan coba lagi.';
+  static String catchRegister(
+    DioException e,
+  ) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryRegister(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }

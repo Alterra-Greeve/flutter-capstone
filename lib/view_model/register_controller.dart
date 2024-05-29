@@ -53,8 +53,8 @@ class RegisterController extends GetxController {
       registerData.value = result;
       if (result.status == true) {
         clearForm();
-        Get.offAllNamed(AppRoutes.login);
-      }
+        Get.offAllNamed(AppRoutes.registerSuccess);
+      } 
     } catch (e) {
       errorMessage.value = e.toString();
       showRegisterFailedDialog(errorMessage.value ?? '');

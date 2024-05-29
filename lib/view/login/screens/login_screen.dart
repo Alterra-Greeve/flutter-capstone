@@ -24,8 +24,8 @@ class LoginScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 56, bottom: 40),
-                child: Center(
-                    child: SvgPicture.asset(ImagesConstant.logoPotrait)),
+                child:
+                    Center(child: SvgPicture.asset(ImagesConstant.logoPotrait)),
               ),
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -60,9 +60,9 @@ class LoginScreen extends StatelessWidget {
                         hintText: 'Masukkan Email Anda',
                         prefixIcon: IconsConstant.message,
                         showSuffixIcon: false,
-                        onChanged: (value) =>
-                            controller.validateEmail(value),
+                        onChanged: (value) => controller.validateEmail(value),
                         helperText: 'Contoh : johndoe123@gmail.com',
+                        keyboardType: TextInputType.emailAddress,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -88,6 +88,7 @@ class LoginScreen extends StatelessWidget {
                         obscureText: controller.obscureText.value,
                         onPressedSuffixIcon: () =>
                             controller.toggleObscureText(),
+                        keyboardType: TextInputType.text,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -128,8 +129,8 @@ class LoginScreen extends StatelessWidget {
                           },
                           child: Text(
                             'Lupa Kata Sandi',
-                            style: TextStylesConstant.nunitoButtonLarge
-                                .copyWith(
+                            style:
+                                TextStylesConstant.nunitoButtonLarge.copyWith(
                               color: ColorsConstant.primary500,
                             ),
                           ),
@@ -157,8 +158,8 @@ class LoginScreen extends StatelessWidget {
                           ),
                           TextButton(
                             style: ButtonStyle(
-                              padding: WidgetStateProperty.all<
-                                  EdgeInsetsGeometry>(
+                              padding:
+                                  WidgetStateProperty.all<EdgeInsetsGeometry>(
                                 const EdgeInsets.symmetric(
                                   vertical: 2,
                                   horizontal: 4,
@@ -173,8 +174,7 @@ class LoginScreen extends StatelessWidget {
                             },
                             child: Text(
                               'Daftar',
-                              style: TextStylesConstant.nunitoSubtitle
-                                  .copyWith(
+                              style: TextStylesConstant.nunitoSubtitle.copyWith(
                                 color: ColorsConstant.primary500,
                               ),
                             ),

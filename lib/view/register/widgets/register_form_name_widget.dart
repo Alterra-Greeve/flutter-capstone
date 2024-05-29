@@ -18,6 +18,7 @@ class RegisterFormNameWidget extends StatelessWidget {
         onChanged: (value) => controller.validateName(
           value,
         ),
+        keyboardType: TextInputType.name,
       ),
     );
   }

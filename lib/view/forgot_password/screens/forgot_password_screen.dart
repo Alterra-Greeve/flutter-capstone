@@ -96,6 +96,7 @@ class ForgotPassScreen extends StatelessWidget {
                       prefixIcon: IconsConstant.message,
                       showSuffixIcon: false,
                       onChanged: (value) => controller.validateEmail(value),
+                      keyboardType: TextInputType.emailAddress,
                     ),
                   ),
                   const SizedBox(height: 27),
