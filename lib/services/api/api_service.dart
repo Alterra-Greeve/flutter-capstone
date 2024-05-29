@@ -16,10 +16,10 @@ class ApiService {
       if (response.statusCode == 200) {
         return LoginResponseModel.fromJson(response.data);
       } else {
-        throw Exception('Login gagal');
+        throw ErrorHandlerHelper.tryPostLogin(response.statusCode);
       }
-    } catch (e) {
-      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchPostLogin(e);
     }
   }
 
@@ -42,10 +42,10 @@ class ApiService {
       if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw ErrorHandlerHelper.tryRegister(response.statusCode);
+        throw ErrorHandlerHelper.tryPostRegister(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchRegister(e);
+      throw ErrorHandlerHelper.catchPostRegister(e);
     }
   }
 
@@ -60,10 +60,10 @@ class ApiService {
       if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw Exception('Permintaan lupa kata sandi gagal');
+        throw ErrorHandlerHelper.tryPostForgotPassword(response.statusCode);
       }
-    } catch (e) {
-      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchPostForgotPassword(e);
     }
   }
 
@@ -79,10 +79,10 @@ class ApiService {
       if (response.statusCode == 200) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw Exception('Gagal mengirim kode OTP');
+        throw ErrorHandlerHelper.tryPostOtp(response.statusCode);
       }
-    } catch (e) {
-      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchPostOtp(e);
     }
   }
 
@@ -102,10 +102,10 @@ class ApiService {
       if (response.statusCode == 200) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw Exception('Permintaan lupa kata sandi gagal');
+        throw ErrorHandlerHelper.tryPostResetPassword(response.statusCode);
       }
-    } catch (e) {
-      throw Exception('Terjadi kesalahan: ${e.toString()}');
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchPostResetPassword(e);
     }
   }
 }

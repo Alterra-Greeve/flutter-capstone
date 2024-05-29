@@ -15,7 +15,7 @@ class CreateNewPasswordController extends GetxController {
   Rx<bool> obscurePasswordConfimationText = true.obs;
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);
-  Rx<String> errorMessage = Rx<String>('');
+  Rx<String?> errorMessage = Rx<String?>(null);
   Rx<String?> email = Rx<String?>(null);
   Rx<String?> otp = Rx<String?>(null);
 
@@ -56,7 +56,6 @@ class CreateNewPasswordController extends GetxController {
         token,
       );
       responseData.value = result;
-      errorMessage.value = '';
       SharedPreferencesManager.removeForgotPasswordEmail();
       SharedPreferencesManager.removeOtpNumber();
       Get.offNamed(AppRoutes.newPassword);
@@ -64,7 +63,7 @@ class CreateNewPasswordController extends GetxController {
       errorMessage.value = e.toString();
       Get.snackbar(
         'Error',
-        'Gagal membuat kata sandi baru',
+        errorMessage.value ?? '',
         snackPosition: SnackPosition.BOTTOM,
         margin: const EdgeInsets.all(16),
       );

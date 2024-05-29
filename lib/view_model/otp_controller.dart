@@ -11,7 +11,7 @@ class OtpController extends GetxController {
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);
-  Rx<String> errorMessage = Rx<String>('');
+  Rx<String?> errorMessage = Rx<String?>(null);
   Rx<String?> email = Rx<String?>(null);
 
   final TextEditingController _otpController = TextEditingController();
@@ -21,29 +21,31 @@ class OtpController extends GetxController {
   void onInit() {
     _otpController.addListener(validateOtp);
     super.onInit();
+    _loadEmail();
+  }
+
+  void _loadEmail() async {
+    email.value = await SharedPreferencesManager.getForgotPasswordEmail();
   }
 
   void postOtp() async {
     isLoading.value = true;
     try {
       final String? token = await SharedPreferencesManager.getToken();
-      final String? email =
-          await SharedPreferencesManager.getForgotPasswordEmail();
+
       final result = await _apiService.postOtp(
-        email,
+        email.value,
         _otpController.text,
         token,
       );
       responseData.value = result;
-      errorMessage.value = '';
-      SharedPreferencesManager.saveOtpNumber(
-          otp: _otpController.text);
+      SharedPreferencesManager.saveOtpNumber(otp: _otpController.text);
       Get.offNamed(AppRoutes.confirmPassword);
     } catch (e) {
       errorMessage.value = e.toString();
       Get.snackbar(
         'Error',
-        'Kode OTP tidak valid atau sudah kedaluwarsa',
+        errorMessage.value ?? '',
         snackPosition: SnackPosition.BOTTOM,
         margin: const EdgeInsets.all(16),
       );

@@ -61,12 +61,12 @@ class OtpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 3,
                 ),
-                Text(
-                  "budi123@gmail.com",
-                  style: TextStylesConstant.nunitoSubtitle.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Obx(() => Text(
+                      controller.email.value ?? '',
+                      style: TextStylesConstant.nunitoSubtitle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 const SizedBox(
                   height: 26,
                 ),
@@ -84,8 +84,8 @@ class OtpScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 1),
                           child: Text("Tidak Menerima Kode?",
-                              style: TextStylesConstant.nunitoButtonLarge
-                                  .copyWith(
+                              style:
+                                  TextStylesConstant.nunitoButtonLarge.copyWith(
                                 color: ColorsConstant.black,
                               )),
                         ),
@@ -93,8 +93,8 @@ class OtpScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 8),
                           child: Text(
                             "Kirim Ulang",
-                            style: TextStylesConstant.nunitoButtonLarge
-                                .copyWith(
+                            style:
+                                TextStylesConstant.nunitoButtonLarge.copyWith(
                               color: ColorsConstant.primary500,
                             ),
                           ),

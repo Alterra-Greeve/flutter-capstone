@@ -17,7 +17,7 @@ class LoginController extends GetxController {
   Rx<bool> obscureText = true.obs;
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<LoginResponseModel?> loginData = Rx<LoginResponseModel?>(null);
-  Rx<String> errorMessage = Rx<String>('');
+  Rx<String?> errorMessage = Rx<String?>(null);
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -51,7 +51,7 @@ class LoginController extends GetxController {
       Get.offAllNamed(AppRoutes.loading);
     } catch (e) {
       errorMessage.value = e.toString();
-      showLoginFailedDialog();
+      showLoginFailedDialog(errorMessage.value ?? '');
     } finally {
       isLoading.value = false;
       clearForm();
@@ -105,7 +105,7 @@ class LoginController extends GetxController {
     isFormValid.value = false;
   }
 
-  void showLoginFailedDialog() {
+  void showLoginFailedDialog(String errorMessage) {
     Get.defaultDialog(
       backgroundColor: ColorsConstant.white,
       title: 'Gagal Masuk!',
@@ -120,7 +120,7 @@ class LoginController extends GetxController {
           right: 24,
         ),
         child: Text(
-          "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
+          errorMessage,
           textAlign: TextAlign.center,
           style: TextStylesConstant.nunitoSubtitle.copyWith(
             color: ColorsConstant.neutral600,
