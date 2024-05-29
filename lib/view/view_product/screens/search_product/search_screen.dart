@@ -5,10 +5,11 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/view_product/screens/search_product/search_history_widget.dart';
 import 'package:greeve/view_model/search_product_controller.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 // import 'package:greeve/view/view_product/screens/search_product/not_found_widget.dart';
-import 'package:greeve/view/view_product/screens/search_product/empty_state_widget.dart';
+// import 'package:greeve/view/view_product/screens/search_product/empty_state_widget.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -85,7 +86,7 @@ class SearchScreen extends StatelessWidget {
                     ],
                   );
                 } else {
-                  return const EmptyStateWidget();
+                  return const SearchHistoryWidget();
                 }
               },
             ),
