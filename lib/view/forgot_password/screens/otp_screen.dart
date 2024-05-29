@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/view_model/otp_controller.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -17,104 +18,120 @@ class OtpScreen extends StatelessWidget {
     final OtpController controller = Get.put(OtpController());
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(top: 24),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                IconsConstant.arrow,
-                colorFilter: const ColorFilter.mode(
-                  ColorsConstant.black,
-                  BlendMode.srcIn,
-                ),
-              ),
-              iconSize: 24,
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-        ),
-        body: Container(
-          width: double.maxFinite,
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 36,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Verifikasi Kode OTP",
-                style: TextStylesConstant.nunitoHeading3,
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Text(
-                "Masukkan kode OTP yang telah kami kirim ke",
-                style: TextStylesConstant.nunitoSubtitle,
-              ),
-              const SizedBox(
-                height: 3,
-              ),
-              Text(
-                "budi123@gmail.com",
-                style: TextStylesConstant.nunitoSubtitle.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              const SizedBox(
-                height: 26,
-              ),
-              CustomPinCodeTextField(
-                controller: controller.otpController,
-                onChanged: (String value) {},
-              ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 1),
-                        child: Text("Tidak Menerima Kode?",
-                            style:
-                                TextStylesConstant.nunitoButtonLarge.copyWith(
-                              color: ColorsConstant.black,
-                            )),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 8),
-                        child: Text(
-                          "Kirim Ulang",
-                          style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                            color: ColorsConstant.primary500,
-                          ),
-                        ),
-                      ),
-                    ],
+          appBar: AppBar(
+            leading: Padding(
+              padding: const EdgeInsets.only(top: 24),
+              child: IconButton(
+                icon: SvgPicture.asset(
+                  IconsConstant.arrow,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsConstant.black,
+                    BlendMode.srcIn,
                   ),
                 ),
+                iconSize: 24,
+                onPressed: () {
+                  Get.offNamed(AppRoutes.login);
+                },
               ),
-              const SizedBox(
-                height: 36,
-              ),
-              Obx(() => GlobalFormButtonWidget(
+            ),
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+          ),
+          body: Container(
+            width: double.maxFinite,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 36,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Verifikasi Kode OTP",
+                  style: TextStylesConstant.nunitoHeading3,
+                ),
+                const SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  "Masukkan kode OTP yang telah kami kirim ke",
+                  style: TextStylesConstant.nunitoSubtitle,
+                ),
+                const SizedBox(
+                  height: 3,
+                ),
+                Text(
+                  "budi123@gmail.com",
+                  style: TextStylesConstant.nunitoSubtitle.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(
+                  height: 26,
+                ),
+                CustomPinCodeTextField(
+                  controller: controller.otpController,
+                  onChanged: (String value) {},
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 1),
+                          child: Text("Tidak Menerima Kode?",
+                              style: TextStylesConstant.nunitoButtonLarge
+                                  .copyWith(
+                                color: ColorsConstant.black,
+                              )),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 8),
+                          child: Text(
+                            "Kirim Ulang",
+                            style: TextStylesConstant.nunitoButtonLarge
+                                .copyWith(
+                              color: ColorsConstant.primary500,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 36,
+                ),
+                Obx(
+                  () => GlobalFormButtonWidget(
                     text: 'Konfirmasi',
                     isFormValid: controller.isFormValid.value,
                     onTap: () {
-                      Get.offAndToNamed(AppRoutes.confirmPassword);
+                      controller.postOtp();
                     },
-                  )),
-            ],
-          ),
-        ),
-      ),
+                  ),
+                ),
+                Obx(
+                  () => controller.isLoading.value
+                      ? const Center(
+                          child: SizedBox(
+                            width: 50,
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.ballBeat,
+                              strokeWidth: 4.0,
+                              pathBackgroundColor: ColorsConstant.black,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                ),
+              ],
+            ),
+          )),
     );
   }
 }
@@ -138,11 +155,13 @@ class CustomPinCodeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double fieldWidth = (screenWidth - 32) / 6 - 8;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: PinCodeTextField(
         appContext: context,
-        length: 4,
+        length: 6,
         keyboardType: TextInputType.number,
         controller: controller,
         enableActiveFill: true,
@@ -152,8 +171,8 @@ class CustomPinCodeTextField extends StatelessWidget {
         pinTheme: PinTheme(
           shape: PinCodeFieldShape.box,
           borderRadius: BorderRadius.circular(8),
-          fieldHeight: 76,
-          fieldWidth: 73,
+          fieldHeight: 50,
+          fieldWidth: fieldWidth,
           selectedColor: ColorsConstant.primary500,
           selectedFillColor: ColorsConstant.white,
           inactiveColor: ColorsConstant.neutral400,
