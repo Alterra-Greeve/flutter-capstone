@@ -81,23 +81,51 @@ class OtpScreen extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 1),
-                          child: Text("Tidak Menerima Kode?",
-                              style: TextStylesConstant.nunitoButtonLarge
-                                  .copyWith(
-                                color: ColorsConstant.black,
-                              )),
+                        Obx(
+                          () => controller.isResendClickable.value
+                              ? Padding(
+                                  padding: const EdgeInsets.only(bottom: 1),
+                                  child: Text(
+                                    "Tidak Menerima Kode? ",
+                                    style: TextStylesConstant.nunitoButtonLarge
+                                        .copyWith(
+                                      color: ColorsConstant.black,
+                                    ),
+                                  ),
+                                )
+                              : Padding(
+                                  padding: const EdgeInsets.only(bottom: 1),
+                                  child: Text(
+                                    "Kirim ulang kode ",
+                                    style: TextStylesConstant.nunitoButtonLarge
+                                        .copyWith(
+                                      color: ColorsConstant.black,
+                                    ),
+                                  ),
+                                ),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8),
-                          child: Text(
-                            "Kirim Ulang",
-                            style: TextStylesConstant.nunitoButtonLarge
-                                .copyWith(
-                              color: ColorsConstant.primary500,
-                            ),
-                          ),
+                        Obx(
+                          () => controller.isResendClickable.value
+                              ? GestureDetector(
+                                  onTap: () {
+                                    controller.resendOtp();
+                                    controller.startResendCountdown();
+                                  },
+                                  child: Text(
+                                    "Kirim ulang",
+                                    style: TextStylesConstant.nunitoButtonLarge
+                                        .copyWith(
+                                      color: ColorsConstant.primary500,
+                                    ),
+                                  ),
+                                )
+                              : Text(
+                                  controller.getFormattedCountdown(),
+                                  style: TextStylesConstant.nunitoButtonLarge
+                                      .copyWith(
+                                    color: ColorsConstant.primary500,
+                                  ),
+                                ),
                         ),
                       ],
                     ),

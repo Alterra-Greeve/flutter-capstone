@@ -1,7 +1,7 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
-import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
@@ -13,6 +13,10 @@ class OtpController extends GetxController {
   Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);
   Rx<String> errorMessage = Rx<String>('');
   Rx<String?> email = Rx<String?>(null);
+  var isResendClickable = true.obs;
+  var countdown = 0.obs;
+  var resendAttempts = 0;
+  Timer? _timer;
 
   final TextEditingController _otpController = TextEditingController();
   TextEditingController get otpController => _otpController;
@@ -36,9 +40,7 @@ class OtpController extends GetxController {
       );
       responseData.value = result;
       errorMessage.value = '';
-      SharedPreferencesManager.saveOtpNumber(
-          otp: _otpController.text);
-      Get.offNamed(AppRoutes.confirmPassword);
+      SharedPreferencesManager.saveOtpNumber(otp: _otpController.text);
     } catch (e) {
       errorMessage.value = e.toString();
       Get.snackbar(
@@ -58,5 +60,46 @@ class OtpController extends GetxController {
     } else {
       isFormValid.value = true;
     }
+  }
+
+  void startResendCountdown() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+
+    resendAttempts += 1;
+    countdown.value = 30 + (resendAttempts - 1) * 10;
+    isResendClickable.value = false;
+
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (countdown.value > 0) {
+        countdown.value -= 1;
+      } else {
+        _timer!.cancel();
+        isResendClickable.value = true;
+      }
+    });
+  }
+
+  String getFormattedCountdown() {
+    int minutes = countdown.value ~/ 60;
+    int seconds = countdown.value % 60;
+    return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
+  }
+
+  void resendOtp() async {
+    final String? token = await SharedPreferencesManager.getToken();
+    final String? email =
+        await SharedPreferencesManager.getForgotPasswordEmail();
+
+    _apiService.postForgotPassword(email, token);
+  }
+
+  @override
+  void onClose() {
+    if (_timer != null) {
+      _timer!.cancel();
+    }
+    super.onClose();
   }
 }

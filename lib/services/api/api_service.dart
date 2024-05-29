@@ -50,7 +50,7 @@ class ApiService {
   }
 
   Future<GenericResponseModel> postForgotPassword(
-      String email, String? token) async {
+      String? email, String? token) async {
     try {
       Map<String, dynamic> data = {'email': email};
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
