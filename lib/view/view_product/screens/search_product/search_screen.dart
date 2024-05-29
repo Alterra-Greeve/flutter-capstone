@@ -2,10 +2,13 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/search_product_controller.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
+// import 'package:greeve/view/view_product/screens/search_product/not_found_widget.dart';
+import 'package:greeve/view/view_product/screens/search_product/empty_state_widget.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -62,41 +65,27 @@ class SearchScreen extends StatelessWidget {
                 if (searchProductController.isTextFieldFocused.value) {
                   return Column(
                     children: [
-                      const SizedBox(height: 130),
+                      const SizedBox(height: 10),
                       Container(
+                        width: 328,
+                        height: 68,
                         padding: const EdgeInsets.all(16.0),
-                        color: Colors.grey[200],
-                        child: Text(
-                          'Coba cari produk atau kata kunci',
-                          style: TextStylesConstant.nunitoSubtitle2,
-                          textAlign: TextAlign.center,
+                        decoration: BoxDecoration(
+                          color: ColorsConstant.neutral200,
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ),
+                        child: Center(
+                          child: Text(
+                            'Coba cari produk atau kata kunci',
+                            style: TextStylesConstant.nunitoSubtitle3,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      )
                     ],
                   );
                 } else {
-                  return Column(
-                    children: [
-                      const SizedBox(height: 130),
-                      SvgPicture.asset(
-                        ImagesConstant.searchEngines,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20, right: 20),
-                        child: Text(
-                          'Hmm, Kamu belum pernah cari barang nih',
-                          style: TextStylesConstant.nunitoHeading4,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Text(
-                        'Cari barang yang kamu inginkan, yuk!',
-                        style: TextStylesConstant.nunitoSubtitle2,
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  );
+                  return const EmptyStateWidget();
                 }
               },
             ),
