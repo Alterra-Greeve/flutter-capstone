@@ -135,6 +135,7 @@ class ConfirmPassScreen extends StatelessWidget {
                       onPressedSuffixIcon: () =>
                           controller.toggleObscurePasswordText(),
                       obscureText: controller.obscurePasswordText.value,
+                      keyboardType: TextInputType.text,
                     ),
                   ),
                   const SizedBox(height: 36),
@@ -163,6 +164,7 @@ class ConfirmPassScreen extends StatelessWidget {
                           controller.toggleObscurePasswordConfirmationText(),
                       obscureText:
                           controller.obscurePasswordConfimationText.value,
+                      keyboardType: TextInputType.text,
                     ),
                   ),
                   const SizedBox(height: 36),

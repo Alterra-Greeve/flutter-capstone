@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/utils/helpers/error_handler_helper.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/login_response_model.dart';
@@ -24,6 +25,12 @@ class ApiService {
 
   Future<GenericResponseModel> postRegister(
       String name, String email, String password) async {
+    if (kDebugMode) {
+      print('name: $name');
+      print('email: $email');
+      print('password: $password');
+    }
+
     try {
       Map<String, dynamic> data = {
         'name': name,
@@ -38,7 +45,7 @@ class ApiService {
         throw ErrorHandlerHelper.tryRegister(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchError(e.response?.statusCode);
+      throw ErrorHandlerHelper.catchRegister(e);
     }
   }
 
