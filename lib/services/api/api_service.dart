@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:greeve/helpers/error_handler_helper.dart';
+import 'package:greeve/utils/helpers/error_handler_helper.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/login_response_model.dart';
 import 'package:greeve/utils/constants/api_constant.dart';

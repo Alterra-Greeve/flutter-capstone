@@ -11,6 +11,7 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 part '../../../view_model/register_controller.dart';
 part '../widgets/register_button_widget.dart';
@@ -24,6 +25,7 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final RegisterController controller = Get.put(RegisterController());
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -161,6 +163,20 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+                Obx(
+                  () => controller.isLoading.value
+                      ? const Center(
+                          child: SizedBox(
+                            width: 50,
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.ballBeat,
+                              strokeWidth: 4.0,
+                              pathBackgroundColor: ColorsConstant.black,
+                            ),
+                          ),
+                        )
+                      : const SizedBox.shrink(),
                 ),
               ],
             ),
