@@ -52,14 +52,14 @@ class RegisterController extends GetxController {
           _emailController.text, _passwordController.text);
       registerData.value = result;
       if (result.status == true) {
-        clearForm();
         Get.offAllNamed(AppRoutes.registerSuccess);
-      } 
+      }
     } catch (e) {
       errorMessage.value = e.toString();
       showRegisterFailedDialog(errorMessage.value ?? '');
     } finally {
       isLoading.value = false;
+      clearForm();
     }
   }
 

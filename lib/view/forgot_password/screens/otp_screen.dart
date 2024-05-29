@@ -61,12 +61,12 @@ class OtpScreen extends StatelessWidget {
                 const SizedBox(
                   height: 3,
                 ),
-                Text(
-                  "budi123@gmail.com",
-                  style: TextStylesConstant.nunitoSubtitle.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Obx(() => Text(
+                      controller.email.value ?? '',
+                      style: TextStylesConstant.nunitoSubtitle.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    )),
                 const SizedBox(
                   height: 26,
                 ),

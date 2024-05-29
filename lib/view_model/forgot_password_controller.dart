@@ -13,7 +13,7 @@ class ForgotPasswordController extends GetxController {
   Rx<String?> emailErrorText = Rx<String?>(null);
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);
-  Rx<String> errorMessage = Rx<String>('');
+  Rx<String?> errorMessage = Rx<String?>(null);
 
   final TextEditingController _emailController = TextEditingController();
   final FocusNode _emailFocusNode = FocusNode();
@@ -38,7 +38,6 @@ class ForgotPasswordController extends GetxController {
         token,
       );
       responseData.value = result;
-      errorMessage.value = '';
       SharedPreferencesManager.saveForgotPasswordEmail(
           email: _emailController.text);
       Get.offNamed(AppRoutes.otp);
@@ -46,7 +45,7 @@ class ForgotPasswordController extends GetxController {
       errorMessage.value = e.toString();
       Get.snackbar(
         'Error',
-        'Email tidak terdaftar',
+        errorMessage.value ?? '',
         snackPosition: SnackPosition.BOTTOM,
         margin: const EdgeInsets.all(16),
       );
