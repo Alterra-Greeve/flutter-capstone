@@ -1,8 +1,6 @@
 part of '../screens/register_screen.dart';
 
 class RegisterButtonWidget extends StatelessWidget {
-  
-
   const RegisterButtonWidget({super.key});
 
   @override
@@ -13,7 +11,7 @@ class RegisterButtonWidget extends StatelessWidget {
         text: 'Daftar',
         isFormValid: controller.isFormValid.value,
         onTap: () {
-          Get.toNamed(AppRoutes.registerSuccess);
+          controller.register();
         },
       ),
     );

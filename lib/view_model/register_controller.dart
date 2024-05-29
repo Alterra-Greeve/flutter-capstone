@@ -1,6 +1,8 @@
 part of '../view/register/screens/register_screen.dart';
 
 class RegisterController extends GetxController {
+  final ApiService _apiService = ApiService();
+
   Rx<String?> nameErrorText = Rx<String?>(null);
   Rx<String?> emailErrorText = Rx<String?>(null);
   Rx<String?> passwordErrorText = Rx<String?>(null);
@@ -8,6 +10,9 @@ class RegisterController extends GetxController {
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<bool> obscurePasswordText = true.obs;
   Rx<bool> obscurePasswordConfimationText = true.obs;
+  Rx<bool> isLoading = Rx<bool>(false);
+  Rx<GenericResponseModel?> registerData = Rx<GenericResponseModel?>(null);
+  Rx<String?> errorMessage = Rx<String?>(null);
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -38,6 +43,24 @@ class RegisterController extends GetxController {
     _passwordController.addListener(validateForm);
     _passwordConfirmationController.addListener(validateForm);
     super.onInit();
+  }
+
+  void register() async {
+    isLoading.value = true;
+    try {
+      final result = await _apiService.register(_nameController.text,
+          _emailController.text, _passwordController.text);
+      registerData.value = result;
+      if (result.status == true) {
+        clearForm();
+        Get.offAllNamed(AppRoutes.login);
+      }
+    } catch (e) {
+      errorMessage.value = e.toString();
+      showRegisterFailedDialog(errorMessage.value ?? '');
+    } finally {
+      isLoading.value = false;
+    }
   }
 
   void validateName(String value) {
@@ -112,5 +135,54 @@ class RegisterController extends GetxController {
     passwordErrorText.value = null;
     passwordConfirmationErrorText.value = null;
     isFormValid.value = false;
+  }
+
+  void showRegisterFailedDialog(String errorMessage) {
+    Get.defaultDialog(
+      backgroundColor: ColorsConstant.white,
+      title: 'Gagal Daftar!',
+      titleStyle: TextStylesConstant.nunitoHeading3.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 24),
+      content: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 24,
+          left: 24,
+          right: 24,
+        ),
+        child: Text(
+          errorMessage,
+          textAlign: TextAlign.center,
+          style: TextStylesConstant.nunitoSubtitle.copyWith(
+            color: ColorsConstant.neutral600,
+          ),
+        ),
+      ),
+      confirm: InkWell(
+        onTap: () {
+          Get.back();
+        },
+        child: Ink(
+          width: 250,
+          height: 48,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: ColorsConstant.primary500,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Daftar Kembali',
+              style: TextStylesConstant.nunitoButtonLarge
+                  .copyWith(color: ColorsConstant.primary500),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
