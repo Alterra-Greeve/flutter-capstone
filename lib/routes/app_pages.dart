@@ -63,5 +63,9 @@ class AppPages {
       name: AppRoutes.splashApp,
       page: () => const SearchScreen(),
     ),
+    GetPage(
+      name: AppRoutes.searchProduct,
+      page: () => const SearchScreen(),
+    ),
   ];
 }
