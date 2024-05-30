@@ -11,4 +11,6 @@ class ColorsConstant {
   static const Color neutral800 = Color(0xFF262626);
   static const Color primary500 = Color(0xFF1C6758);
   static const Color danger500 = Color(0xFFD32D28);
+  static const Color bg_switch_act = Color(0xFF98C7FF);
+  static const Color switch_act = Color(0xFF4D9FFF);
 }
