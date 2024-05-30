@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_form_button_widget.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/view_model/forgot_password_controller.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class ForgotPassScreen extends StatelessWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);
 
-  
-
   @override
   Widget build(BuildContext context) {
     final ForgotPasswordController controller =
-      Get.put(ForgotPasswordController());
+        Get.put(ForgotPasswordController());
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -34,7 +33,7 @@ class ForgotPassScreen extends StatelessWidget {
               ),
               iconSize: 24,
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.offNamed(AppRoutes.login);
               },
             ),
           ),
@@ -49,7 +48,8 @@ class ForgotPassScreen extends StatelessWidget {
           child: Form(
             child: Container(
               width: double.maxFinite,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
               child: Column(
                 children: [
                   SvgPicture.asset(
@@ -87,23 +87,42 @@ class ForgotPassScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Obx(() => GlobalTextFieldWidget(
-                        focusNode: controller.emailFocusNode,
-                        controller: controller.emailController,
-                        errorText: controller.emailErrorText.value,
-                        hintText: 'Masukkan Email Anda',
-                        prefixIcon: IconsConstant.message,
-                        showSuffixIcon: false,
-                        onChanged: (value) => controller.validateEmail(value),
-                      )),
+                  Obx(
+                    () => GlobalTextFieldWidget(
+                      focusNode: controller.emailFocusNode,
+                      controller: controller.emailController,
+                      errorText: controller.emailErrorText.value,
+                      hintText: 'Masukkan Email Anda',
+                      prefixIcon: IconsConstant.message,
+                      showSuffixIcon: false,
+                      onChanged: (value) => controller.validateEmail(value),
+                      keyboardType: TextInputType.emailAddress,
+                    ),
+                  ),
                   const SizedBox(height: 27),
-                  Obx(() => GlobalFormButtonWidget(
-                        text: 'Kirim Tautan',
-                        isFormValid: controller.isFormValid.value,
-                        onTap: () {
-                          Get.offAndToNamed(RoutesConstant.otp);
-                        },
-                      )),
+                  Obx(
+                    () => GlobalFormButtonWidget(
+                      text: 'Kirim Tautan',
+                      isFormValid: controller.isFormValid.value,
+                      onTap: () {
+                        controller.postForgotPassword();
+                      },
+                    ),
+                  ),
+                  Obx(
+                    () => controller.isLoading.value
+                        ? const Center(
+                            child: SizedBox(
+                              width: 50,
+                              child: LoadingIndicator(
+                                indicatorType: Indicator.ballBeat,
+                                strokeWidth: 4.0,
+                                pathBackgroundColor: ColorsConstant.black,
+                              ),
+                            ),
+                          )
+                        : const SizedBox.shrink(),
+                  ),
                 ],
               ),
             ),

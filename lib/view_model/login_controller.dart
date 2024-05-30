@@ -4,7 +4,7 @@ import 'package:greeve/models/api_responses/login_response_model.dart';
 import 'package:greeve/services/api/api_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class LoginController extends GetxController {
@@ -17,7 +17,7 @@ class LoginController extends GetxController {
   Rx<bool> obscureText = true.obs;
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<LoginResponseModel?> loginData = Rx<LoginResponseModel?>(null);
-  Rx<String> errorMessage = Rx<String>('');
+  Rx<String?> errorMessage = Rx<String?>(null);
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -38,22 +38,23 @@ class LoginController extends GetxController {
     super.onInit();
   }
 
-  void login() async {
+  void postLogin() async {
     isLoading.value = true;
     try {
-      final result = await _apiService.login(
+      final result = await _apiService.postLogin(
           _emailController.text, _passwordController.text);
       loginData.value = result;
       errorMessage.value = '';
       if (result.status == true && result.data != null) {
         SharedPreferencesManager.saveToken(token: result.data!.token!);
       }
-      Get.offAllNamed(RoutesConstant.loading);
+      Get.offAllNamed(AppRoutes.loading);
     } catch (e) {
       errorMessage.value = e.toString();
-      showLoginFailedDialog();
+      showLoginFailedDialog(errorMessage.value ?? '');
     } finally {
       isLoading.value = false;
+      clearForm();
     }
   }
 
@@ -104,7 +105,7 @@ class LoginController extends GetxController {
     isFormValid.value = false;
   }
 
-  void showLoginFailedDialog() {
+  void showLoginFailedDialog(String errorMessage) {
     Get.defaultDialog(
       backgroundColor: ColorsConstant.white,
       title: 'Gagal Masuk!',
@@ -119,7 +120,7 @@ class LoginController extends GetxController {
           right: 24,
         ),
         child: Text(
-          "Email atau kata sandi yang Anda masukkan salah. Silakan periksa kembali informasi login Anda dan coba lagi.",
+          errorMessage,
           textAlign: TextAlign.center,
           style: TextStylesConstant.nunitoSubtitle.copyWith(
             color: ColorsConstant.neutral600,

@@ -34,12 +34,14 @@ class GlobalButtonWidget extends StatelessWidget {
           color: buttonColor,
           borderRadius: BorderRadius.circular(10.0),
         ),
-        child: Text(
-          text,
-          style: TextStylesConstant.nunitoButtonLarge.copyWith(
-            color: textColor,
+        child: Center(
+          child: Text(
+            text,
+            style: TextStylesConstant.nunitoButtonLarge.copyWith(
+              color: textColor,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: TextAlign.center,
         ),
       ),
     );

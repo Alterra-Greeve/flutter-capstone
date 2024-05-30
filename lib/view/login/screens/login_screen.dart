@@ -6,9 +6,10 @@ import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/routes_constant.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/login_controller.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -51,16 +52,19 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Obx(() => GlobalTextFieldWidget(
-                          focusNode: controller.emailFocusNode,
-                          controller: controller.emailController,
-                          errorText: controller.emailErrorText.value,
-                          hintText: 'Masukkan Email Anda',
-                          prefixIcon: IconsConstant.message,
-                          showSuffixIcon: false,
-                          onChanged: (value) => controller.validateEmail(value),
-                          helperText: 'Contoh : johndoe123@gmail.com',
-                        )),
+                    Obx(
+                      () => GlobalTextFieldWidget(
+                        focusNode: controller.emailFocusNode,
+                        controller: controller.emailController,
+                        errorText: controller.emailErrorText.value,
+                        hintText: 'Masukkan Email Anda',
+                        prefixIcon: IconsConstant.message,
+                        showSuffixIcon: false,
+                        onChanged: (value) => controller.validateEmail(value),
+                        helperText: 'Contoh : johndoe123@gmail.com',
+                        keyboardType: TextInputType.emailAddress,
+                      ),
+                    ),
                     const SizedBox(height: 20),
                     SizedBox(
                       height: 20,
@@ -84,6 +88,7 @@ class LoginScreen extends StatelessWidget {
                         obscureText: controller.obscureText.value,
                         onPressedSuffixIcon: () =>
                             controller.toggleObscureText(),
+                        keyboardType: TextInputType.text,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -93,23 +98,25 @@ class LoginScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Obx(() => Checkbox(
-                                  value: controller.remindMe.value,
-                                  onChanged: (bool? newValue) {
-                                    controller.setRemindMe(newValue);
-                                  },
-                                  checkColor: ColorsConstant.white,
-                                  activeColor: ColorsConstant.primary500,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(4),
-                                    ),
+                            Obx(
+                              () => Checkbox(
+                                value: controller.remindMe.value,
+                                onChanged: (bool? newValue) {
+                                  controller.setRemindMe(newValue);
+                                },
+                                checkColor: ColorsConstant.white,
+                                activeColor: ColorsConstant.primary500,
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4),
                                   ),
-                                  side: const BorderSide(
-                                    color: ColorsConstant.primary500,
-                                    width: 2,
-                                  ),
-                                )),
+                                ),
+                                side: const BorderSide(
+                                  color: ColorsConstant.primary500,
+                                  width: 2,
+                                ),
+                              ),
+                            ),
                             Text(
                               'Ingatkan Saya',
                               style: TextStylesConstant.nunitoCaption,
@@ -118,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.toNamed(RoutesConstant.forgotPassword);
+                            Get.offNamed(AppRoutes.forgotPassword);
                           },
                           child: Text(
                             'Lupa Kata Sandi',
@@ -136,7 +143,7 @@ class LoginScreen extends StatelessWidget {
                         text: 'Masuk',
                         isFormValid: controller.isFormValid.value,
                         onTap: () {
-                          controller.login();
+                          controller.postLogin();
                         },
                       ),
                     ),
@@ -163,7 +170,7 @@ class LoginScreen extends StatelessWidget {
                               ),
                             ),
                             onPressed: () {
-                              Get.toNamed(RoutesConstant.register);
+                              Get.toNamed(AppRoutes.register);
                             },
                             child: Text(
                               'Daftar',
@@ -177,6 +184,20 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+              ),
+              Obx(
+                () => controller.isLoading.value
+                    ? const Center(
+                        child: SizedBox(
+                          width: 50,
+                          child: LoadingIndicator(
+                            indicatorType: Indicator.ballBeat,
+                            strokeWidth: 4.0,
+                            pathBackgroundColor: ColorsConstant.black,
+                          ),
+                        ),
+                      )
+                    : const SizedBox.shrink(),
               ),
             ],
           ),
