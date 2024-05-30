@@ -7,4 +7,5 @@ class ApiConstant {
   static const String forgotPassword = '$baseUrl/user/forgot-password';
   static const String verifyOtp = '$baseUrl/user/verify-otp';
   static const String resetPassword = '$baseUrl/user/reset-password';
+  static const String userChallenge = '$baseUrl/challenges/user';
 }

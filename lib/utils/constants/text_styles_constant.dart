@@ -48,4 +48,7 @@ class TextStylesConstant {
 
   static final TextStyle nunitoButtonMedium =
       _baseNunito.copyWith(fontSize: 12, fontWeight: FontWeight.w500);
+
+  static final TextStyle nunitoSemiBoldButton =
+      _baseNunito.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
 }

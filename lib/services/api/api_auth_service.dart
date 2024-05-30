@@ -1,11 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:greeve/utils/helpers/error_handler_helper.dart';
+import 'package:greeve/utils/helpers/auth_error_helper.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/login_response_model.dart';
 import 'package:greeve/utils/constants/api_constant.dart';
 
-class ApiService {
+class ApiAuthService {
   final Dio _dio = Dio();
 
   Future<LoginResponseModel> postLogin(String email, String password) async {
@@ -16,10 +16,10 @@ class ApiService {
       if (response.statusCode == 200) {
         return LoginResponseModel.fromJson(response.data);
       } else {
-        throw ErrorHandlerHelper.tryPostLogin(response.statusCode);
+        throw AuthErrorHelper.tryPostLogin(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchPostLogin(e);
+      throw AuthErrorHelper.catchPostLogin(e);
     }
   }
 
@@ -42,10 +42,10 @@ class ApiService {
       if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw ErrorHandlerHelper.tryPostRegister(response.statusCode);
+        throw AuthErrorHelper.tryPostRegister(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchPostRegister(e);
+      throw AuthErrorHelper.catchPostRegister(e);
     }
   }
 
@@ -60,10 +60,10 @@ class ApiService {
       if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw ErrorHandlerHelper.tryPostForgotPassword(response.statusCode);
+        throw AuthErrorHelper.tryPostForgotPassword(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchPostForgotPassword(e);
+      throw AuthErrorHelper.catchPostForgotPassword(e);
     }
   }
 
@@ -79,10 +79,10 @@ class ApiService {
       if (response.statusCode == 200) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw ErrorHandlerHelper.tryPostOtp(response.statusCode);
+        throw AuthErrorHelper.tryPostOtp(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchPostOtp(e);
+      throw AuthErrorHelper.catchPostOtp(e);
     }
   }
 
@@ -102,10 +102,10 @@ class ApiService {
       if (response.statusCode == 200) {
         return GenericResponseModel.fromJson(response.data);
       } else {
-        throw ErrorHandlerHelper.tryPostResetPassword(response.statusCode);
+        throw AuthErrorHelper.tryPostResetPassword(response.statusCode);
       }
     } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchPostResetPassword(e);
+      throw AuthErrorHelper.catchPostResetPassword(e);
     }
   }
 }
