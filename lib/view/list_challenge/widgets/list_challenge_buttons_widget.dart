@@ -43,10 +43,10 @@ class ListChallengeButtonsWidget extends StatelessWidget {
           child: Text(
             title,
             style: isActive
-                ? TextStylesConstant.nunitoSemiBoldButton.copyWith(
+                ? TextStylesConstant.nunitoButtonSemibold.copyWith(
                     color: ColorsConstant.neutral900,
                   )
-                : TextStylesConstant.nunitoSemiBoldButton.copyWith(
+                : TextStylesConstant.nunitoButtonSemibold.copyWith(
                     color: ColorsConstant.neutral400,
                   ),
           ),

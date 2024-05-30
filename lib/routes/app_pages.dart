@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/view/challenge/screens/challenge_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
@@ -67,6 +68,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.listChallenge,
       page: () => const ListChallengeScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.challenge,
+      page: () => const ChallengeScreen(),
     ),
   ];
 }

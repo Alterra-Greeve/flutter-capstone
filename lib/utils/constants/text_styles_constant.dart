@@ -40,15 +40,29 @@ class TextStylesConstant {
     fontSize: 10,
   );
 
-  static final TextStyle nunitoCaption =
-      _baseNunito.copyWith(fontSize: 12, fontWeight: FontWeight.w600);
+  static final TextStyle nunitoCaption = _baseNunito.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle nunitoCaptionBold = _baseNunito.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+  );
 
   static final TextStyle nunitoButtonLarge = _baseNunito.copyWith(
-      fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white);
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
 
-  static final TextStyle nunitoButtonMedium =
-      _baseNunito.copyWith(fontSize: 12, fontWeight: FontWeight.w500);
+  static final TextStyle nunitoButtonMedium = _baseNunito.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
 
-  static final TextStyle nunitoSemiBoldButton =
-      _baseNunito.copyWith(fontSize: 16, fontWeight: FontWeight.w600);
+  static final TextStyle nunitoButtonSemibold = _baseNunito.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
 }

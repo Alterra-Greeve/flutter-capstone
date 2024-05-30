@@ -26,7 +26,9 @@ class IconsConstant {
   static const String stickerTwo = 'assets/images/stickerTwo.svg';
   static const String stickerThree = 'assets/images/stickerThree.svg';
   static const String stickerFour = 'assets/images/stickerFour.svg';
-
-
-  
+  static const String shuffle = 'assets/images/shuffle.svg';
+  static const String trash = 'assets/images/trash.svg';
+  static const String threeUser = 'assets/images/threeUser.svg';
+  static const String poinXp = 'assets/images/poin_xp.svg';
+  static const String cardChallenge = 'assets/images/card_challenge.svg';
 }
