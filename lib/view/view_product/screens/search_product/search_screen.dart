@@ -44,6 +44,7 @@ class SearchScreen extends StatelessWidget {
             errorText: null,
             prefixIcon: ImagesConstant.search,
             showSuffixIcon: false,
+            keyboardType: TextInputType.text,
           ),
         ),
       ),

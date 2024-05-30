@@ -22,6 +22,7 @@ class RegisterFormPasswordConfirmationWidget extends StatelessWidget {
         ),
         obscureText: controller.obscurePasswordText.value,
         onPressedSuffixIcon: () => controller.toggleObscurePasswordText(),
+        keyboardType: TextInputType.text,
         helperText: 'Masukkan kembali kata sandi yang sama',
       ),
     );
