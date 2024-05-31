@@ -31,4 +31,7 @@ class IconsConstant {
   static const String threeUser = 'assets/images/three_user.svg';
   static const String poinXp = 'assets/images/poin_xp.svg';
   static const String cardChallenge = 'assets/images/card_challenge.svg';
+  static const String shuffleSuccess = 'assets/images/shuffle_succes.svg';
+  static const String shuffleFailed = 'assets/images/shuffle_failed.svg';
+  static const String closeShuffleSnackbar = 'assets/images/close_shuffle_snackbar.svg';
 }

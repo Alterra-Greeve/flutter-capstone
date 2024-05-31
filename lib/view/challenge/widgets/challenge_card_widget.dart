@@ -2,55 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:palette_generator/palette_generator.dart';
 
-class ChallengeCardWidget extends StatefulWidget {
-  final int index;
-  const ChallengeCardWidget({super.key, required this.index});
-
-  @override
-  State<ChallengeCardWidget> createState() => _ChallengeCardWidgetState();
-}
-
-class _ChallengeCardWidgetState extends State<ChallengeCardWidget> {
-  List images = [
-    ImagesConstant.forgotPass,
-    ImagesConstant.onboardingImage2,
-    ImagesConstant.onboardingImage3,
-    ImagesConstant.onboardingImage1,
-    ImagesConstant.registerSuccessImage,
-  ];
-
-  PaletteGenerator? paletteGenerator;
-
-  List<Color> cardColors = [];
-
-  @override
-  void initState() {
-    super.initState();
-    initializeCardColors();
-  }
-
-  void initializeCardColors() {
-    List<Color> baseColors = [
-      ColorsConstant.info300,
-      ColorsConstant.danger300,
-      ColorsConstant.warning300
-    ];
-
-    cardColors = List.generate(images.length, (index) {
-      return baseColors[index % baseColors.length];
-    });
-  }
+class ChallengeCardWidget extends StatelessWidget {
+  final Color cardColors;
+  final String cardImage;
+  const ChallengeCardWidget(
+      {super.key, required this.cardColors, required this.cardImage});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: cardColors[widget.index],
-          borderRadius: const BorderRadius.all(Radius.circular(8))),
+        color: cardColors,
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 6,
+            offset: const Offset(0, 3), 
+          ),
+        ],
+      ),
       child: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -143,6 +117,7 @@ class _ChallengeCardWidgetState extends State<ChallengeCardWidget> {
                 color: Color(0xFF113E35),
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
+              child: SvgPicture.asset(cardImage),
             ),
             const SizedBox(height: 18),
             Text(
