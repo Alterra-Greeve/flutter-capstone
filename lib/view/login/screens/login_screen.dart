@@ -125,7 +125,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                         TextButton(
                           onPressed: () {
-                            Get.offNamed(AppRoutes.forgotPassword);
+                            Get.toNamed(AppRoutes.forgotPassword);
                           },
                           child: Text(
                             'Lupa Kata Sandi',
