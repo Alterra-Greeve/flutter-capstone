@@ -9,7 +9,6 @@ import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/login_controller.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -145,6 +144,7 @@ class LoginScreen extends StatelessWidget {
                         onTap: () {
                           controller.postLogin();
                         },
+                        isLoading: controller.isLoading.value,
                       ),
                     ),
                     SizedBox(
@@ -184,20 +184,6 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
-              Obx(
-                () => controller.isLoading.value
-                    ? const Center(
-                        child: SizedBox(
-                          width: 50,
-                          child: LoadingIndicator(
-                            indicatorType: Indicator.ballBeat,
-                            strokeWidth: 4.0,
-                            pathBackgroundColor: ColorsConstant.black,
-                          ),
-                        ),
-                      )
-                    : const SizedBox.shrink(),
               ),
             ],
           ),
