@@ -13,6 +13,7 @@ class RegisterButtonWidget extends StatelessWidget {
         onTap: () {
           controller.postRegister();
         },
+        isLoading: controller.isLoading.value,
       ),
     );
   }

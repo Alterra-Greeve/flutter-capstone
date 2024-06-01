@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 import 'package:greeve/routes/app_pages.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/routes/app_routes.dart';
+
+import 'package:greeve/utils/constants/colors_constant.dart';
 
 void main() {
   runApp(const MyApp());
