@@ -11,6 +11,7 @@ import 'package:greeve/view/onboarding/screens/on_boarding_screen.dart';
 import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/splash_screen.dart';
+import 'package:greeve/view/view_product/screens/search_product/search_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -57,6 +58,14 @@ class AppPages {
     GetPage(
       name: AppRoutes.onboarding,
       page: () => const OnBoardingScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.splashApp,
+      page: () => const SearchScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.searchProduct,
+      page: () => const SearchScreen(),
     ),
   ];
 }

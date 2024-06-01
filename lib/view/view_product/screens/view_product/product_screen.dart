@@ -114,7 +114,7 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mau Beli apa hari ini ? '),
+        title: const Text('Mau Beli apa hari ini ? '),
         actions: [
           IconButton(
             onPressed: () {},

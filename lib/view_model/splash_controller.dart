@@ -20,8 +20,7 @@ class SplashController extends GetxController {
       Get.off(() => const HomeScreen());
     } else {
       await Future.delayed(const Duration(seconds: 3));
-      // Get.off(() => const OnBoardingScreen());
-      Get.off(() => const ProductScreen());
+      Get.off(() => const OnBoardingScreen());
     }
   }
 }

@@ -54,7 +54,7 @@ class AllProductScreen extends StatelessWidget {
                 controller: TextEditingController(),
                 errorText: null,
                 prefixIcon: ImagesConstant.search,
-                showSuffixIcon: false,
+                showSuffixIcon: false, keyboardType: null,
               ),
             ),
             Padding(

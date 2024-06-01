@@ -30,6 +30,12 @@ class TextStylesConstant {
     color: ColorsConstant.neutral600,
   );
 
+  static final TextStyle nunitoSubtitle4 = _baseNunito.copyWith(
+    fontSize: 16,
+    color: ColorsConstant.neutral900,
+    fontWeight: FontWeight.w600,
+  );
+
   static final TextStyle nunitoFooter = _baseNunito.copyWith(
     fontSize: 10,
   );

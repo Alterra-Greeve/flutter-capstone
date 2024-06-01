@@ -16,6 +16,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final bool obscureText;
   final void Function()? onPressedSuffixIcon;
   final bool? enabled;
+  final TextInputType keyboardType;
 
   const GlobalTextFieldWidget({
     super.key,
@@ -30,6 +31,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.onPressedSuffixIcon,
     this.enabled,
+    required this.keyboardType,
   });
 
   @override
@@ -124,6 +126,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
           ),
           onChanged: onChanged,
           enabled: enabled,
+          keyboardType: keyboardType,
         ),
         if (helperText != null && controller.text.isEmpty)
           Padding(
