@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/challenge/widgets/challenge_card_widget.dart';
 import 'package:greeve/view_model/challenge_controller.dart';
@@ -32,7 +34,15 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
         isLoop: true,
         onSwipe: (previous, current, direction) {
           if (direction == CardSwiperDirection.right) {
-          } else if (direction == CardSwiperDirection.left) {}
+            // showChallengeLimitDialog(
+            //   context,
+            //   ImagesConstant.takeChallengeLimit,
+            //   "Batas Tantangan Sudah Habis!",
+            //   "Kamu harus menunggu besok untuk mengisi ulang batas tantangan.",
+            // );
+          } else if (direction == CardSwiperDirection.left) {
+            // showShuffleSuccessSnackbar(context);
+          }
           return true;
         },
       ),
@@ -62,7 +72,12 @@ void showShuffleSuccessSnackbar(
               ),
             ],
           ),
-          SvgPicture.asset(IconsConstant.closeShuffleSnackbar),
+          GestureDetector(
+            onTap: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+            child: SvgPicture.asset(
+              IconsConstant.closeShuffleSnackbar,
+            ),
+          ),
         ],
       ),
     ),
@@ -71,6 +86,11 @@ void showShuffleSuccessSnackbar(
       borderRadius: BorderRadius.circular(8.0),
     ),
     padding: const EdgeInsets.all(0),
+    margin: const EdgeInsets.only(
+      bottom: 88,
+      right: 16,
+      left: 16,
+    ),
     duration: const Duration(seconds: 3),
     backgroundColor: ColorsConstant.neutral50,
   );
@@ -100,10 +120,13 @@ void showShuffleFailedSnackbar(
               ),
             ],
           ),
-          SvgPicture.asset(
-            IconsConstant.closeShuffleSnackbar,
-            colorFilter: const ColorFilter.mode(
-                ColorsConstant.neutral50, BlendMode.srcIn),
+          GestureDetector(
+            onTap: () => ScaffoldMessenger.of(context).hideCurrentSnackBar(),
+            child: SvgPicture.asset(
+              IconsConstant.closeShuffleSnackbar,
+              colorFilter: const ColorFilter.mode(
+                  ColorsConstant.neutral50, BlendMode.srcIn),
+            ),
           ),
         ],
       ),
@@ -113,9 +136,72 @@ void showShuffleFailedSnackbar(
       borderRadius: BorderRadius.circular(8.0),
     ),
     padding: const EdgeInsets.all(0),
+    margin: const EdgeInsets.only(
+      bottom: 88,
+      right: 16,
+      left: 16,
+    ),
     duration: const Duration(seconds: 3),
     backgroundColor: ColorsConstant.danger500,
   );
 
   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+}
+
+void showChallengeLimitDialog(
+  BuildContext context,
+  String image,
+  String title,
+  String description,
+) {
+  showDialog(
+    context: context,
+    barrierDismissible: false,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        contentPadding: const EdgeInsets.all(24),
+        content: SizedBox(
+          width: 326,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SvgPicture.asset(image),
+              const SizedBox(height: 28),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  title,
+                  style: TextStylesConstant.nunitoTitleBold.copyWith(
+                    color: ColorsConstant.neutral800,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 4),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  description,
+                  style: TextStylesConstant.nunitoCaption.copyWith(
+                    color: ColorsConstant.neutral800,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 28),
+              Align(
+                alignment: Alignment.centerRight,
+                child: GlobalButtonWidget(
+                  text: 'Oke',
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
+                  buttonWidth: 135,
+                ),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
