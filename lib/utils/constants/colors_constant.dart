@@ -15,10 +15,14 @@ class ColorsConstant {
   static const Color primary100 = Color(0xFFD2E1DE);
   static const Color primary400 = Color(0xFF498579);
   static const Color primary500 = Color(0xFF1C6758);
+  static const Color danger300 = Color(0xFFE5817E);
+  static const Color danger400 = Color(0xFFDC5753);
   static const Color danger500 = Color(0xFFD32D28);
   static const Color warning500 = Color(0xFFF7C100);
   static const Color success100 = Color(0xFFD1EDD7);
   static const Color success500 = Color(0xFFF1AA536);
   static const Color success600 = Color(0xFF15842B);
+  static const Color info300 = Color(0xFF68A8EC);
   static const Color info500 = Color(0xFF046EE0);
+  static const Color warning300 = Color(0xFFFADA66);
 }

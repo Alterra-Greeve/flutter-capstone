@@ -12,11 +12,13 @@ class IconsConstant {
   static const String bottle = 'assets/images/bottle.svg';
   static const String greeveContainer = 'assets/images/bag.svg';
   static const String home = 'assets/images/home.svg';
-  static const String challenge = 'assets/images/challenge.svg';
+  static const String challengeInactive =
+      'assets/images/challenge_inactive.svg';
   static const String product = 'assets/images/product.svg';
   static const String impact = 'assets/images/help_earth.svg';
   static const String profile = 'assets/images/profile.svg';
   static const String yellowCoin = 'assets/images/coin.svg';
+  static const String coin = 'assets/images/coin.svg';
   static const String increase = 'assets/images/increase.svg';
   static const String decrease = 'assets/images/decrease.svg';
   static const String voucherActived = 'assets/images/voucherActived.svg';
@@ -37,4 +39,8 @@ class IconsConstant {
   static const String gallery = 'assets/images/gallery.svg';
   static const String camera = 'assets/images/camera.svg';
   static const String imageBreak = 'assets/images/image_break.svg';
+  static const String shuffleSuccess = 'assets/images/shuffle_succes.svg';
+  static const String shuffleFailed = 'assets/images/shuffle_failed.svg';
+  static const String closeShuffleSnackbar =
+      'assets/images/close_shuffle_snackbar.svg';
 }
