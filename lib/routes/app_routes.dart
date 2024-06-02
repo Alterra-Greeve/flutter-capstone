@@ -13,4 +13,5 @@ class AppRoutes {
   static const String searchProduct = '/search_product';
   static const String listChallenge = '/list_challenge';
   static const String challenge = '/challenge';
+  static const String detailChallenge = '/detail_challenge';
 }

@@ -14,9 +14,9 @@ class IconsConstant {
   static const String home = 'assets/images/home.svg';
   static const String challenge = 'assets/images/challenge.svg';
   static const String product = 'assets/images/product.svg';
-  static const String impact = 'assets/images/impact.svg';
+  static const String impact = 'assets/images/help_earth.svg';
   static const String profile = 'assets/images/profile.svg';
-  static const String yellowCoin = 'assets/images/yellowCoin.svg';
+  static const String yellowCoin = 'assets/images/coin.svg';
   static const String increase = 'assets/images/increase.svg';
   static const String decrease = 'assets/images/decrease.svg';
   static const String voucherActived = 'assets/images/voucherActived.svg';
@@ -28,7 +28,13 @@ class IconsConstant {
   static const String stickerFour = 'assets/images/stickerFour.svg';
   static const String shuffle = 'assets/images/shuffle.svg';
   static const String trash = 'assets/images/trash.svg';
-  static const String threeUser = 'assets/images/threeUser.svg';
+  static const String threeUser = 'assets/images/three_user.svg';
   static const String poinXp = 'assets/images/poin_xp.svg';
   static const String cardChallenge = 'assets/images/card_challenge.svg';
+  static const String helpCoin = 'assets/images/help_coin.svg';
+  static const String helpEarth = 'assets/images/help_earth.svg';
+  static const String uploadImage = 'assets/images/upload.svg';
+  static const String gallery = 'assets/images/gallery.svg';
+  static const String camera = 'assets/images/camera.svg';
+  static const String imageBreak = 'assets/images/image_break.svg';
 }

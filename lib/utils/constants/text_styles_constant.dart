@@ -6,6 +6,16 @@ class TextStylesConstant {
     fontFamily: 'Nunito',
   );
 
+  static final TextStyle nunitoExtraBoldTitle = _baseNunito.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w800,
+  );
+
+  static final TextStyle nunitoExtraBoldFooter = _baseNunito.copyWith(
+    fontSize: 10,
+    fontWeight: FontWeight.w800,
+  );
+
   static final TextStyle nunitoHeading3 = _baseNunito.copyWith(
     fontSize: 24,
     fontWeight: FontWeight.w700,

@@ -9,5 +9,7 @@ class ImagesConstant {
   static const String success = 'assets/images/success.svg';
   static const String search = 'assets/images/search.svg';
   static const String searchEngines = 'assets/images/search_engines.svg';
-  static const String registerSuccessImage = 'assets/images/register_success_image.svg';
+  static const String registerSuccessImage =
+      'assets/images/register_success_image.svg';
+  static const String bannerChallenge = 'assets/images/banner_challenge.svg';
 }
