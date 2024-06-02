@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greeve/models/api_responses/product_model.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/view/view_product/screens/cart/cart_screen.dart';
 import 'package:greeve/view/view_product/screens/product/all_product/all_product_screen.dart';
 
 class ListHorizontalProduct extends StatelessWidget {
@@ -15,7 +16,7 @@ class ListHorizontalProduct extends StatelessWidget {
         name: 'Tumbler',
         description: 'Botol air',
         price: 148500,
-        image: ImagesConstant.bottleProduct, // Use ImagesConstant
+        image: ImagesConstant.bottleCard, // Use ImagesConstant
         quantity: 1,
       ),
       Product(
@@ -28,7 +29,7 @@ class ListHorizontalProduct extends StatelessWidget {
       // Tambahkan produk lainnya jika ada
     ];
     return Container(
-      height: 300, // Ensure the container has a fixed height
+      height: 380, // Ensure the container has a fixed height
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: products.length + 1, // Adding 1 for the custom container
@@ -55,17 +56,6 @@ class ListHorizontalProduct extends StatelessWidget {
               ),
               child: Stack(
                 children: [
-                  // SVG Background
-                  // Positioned.fill(
-                  //   // child: SvgPicture.asset(
-                  //   //   ImagesConstant.cardVariant, // Path to your SVG asset
-                  //   //   fit: BoxFit.cover,
-                  //   // ),
-                  //   child: Image.asset(
-                  //     ImagesConstant.cardvariant,
-                  //     fit: BoxFit.cover,
-                  //   ),
-                  // ),
                   Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -116,6 +106,7 @@ class ListHorizontalProduct extends StatelessWidget {
 
           return Container(
             width: 210,
+            height: 300,
             margin: EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: Colors.white,
@@ -137,9 +128,9 @@ class ListHorizontalProduct extends StatelessWidget {
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10),
                   ),
-                  child: SvgPicture.asset(
-                    product.image, // Use SvgPicture to load SVGs
-                    height: 140,
+                  child: Image.asset(
+                    product.image,
+                    height: 200, // Adjust the height as needed
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -152,38 +143,44 @@ class ListHorizontalProduct extends StatelessWidget {
                       Text(
                         product.name,
                         style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       Text(
                         product.description,
-                        style: TextStyle(fontSize: 12, color: Colors.grey),
-                      ),
-                      SizedBox(height: 8),
-                      Text(
-                        'Rp ${product.price}',
                         style: TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
+                          fontSize: 12,
+                          color: Colors.grey,
+                        ),
                       ),
                     ],
                   ),
                 ),
-                Spacer(),
-                Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200],
-                        shape: BoxShape.circle,
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Rp ${product.price}',
+                        style: TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                      child: IconButton(
-                        icon: Icon(Icons.shopping_cart),
+                      IconButton(
                         onPressed: () {
-                          // Add to cart functionality
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CartScreen(),
+                            ),
+                          );
                         },
+                        icon: SvgPicture.asset(IconsConstant.bag),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ],

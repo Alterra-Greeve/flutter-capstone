@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class ListVerticalProduct extends StatefulWidget {
@@ -11,18 +12,32 @@ class ListVerticalProduct extends StatefulWidget {
 
 class _ListVerticalProductState extends State<ListVerticalProduct> {
   List<Map<String, dynamic>> cartItems = [
+    // {
+    //   "name": "Tumbler",
+    //   "description": "Botol air",
+    //   "price": 148500,
+    //   "image": ImagesConstant.bottleList,
+    //   "quantity": 1
+    // },
     {
-      "name": "Tumbler",
-      "description": "Botol air",
-      "price": 148500,
-      "image": "images/bottle_list.svg", // Update this path to your image
+      "name": "Greeve Container",
+      "description": "Wadah makanan kaca",
+      "price": 69900,
+      "image": ImagesConstant.greeveContainer,
       "quantity": 1
     },
     {
       "name": "Greeve Container",
       "description": "Wadah makanan kaca",
       "price": 69900,
-      "image": "images/greeveContainer.svg", // Update this path to your image
+      "image": ImagesConstant.greeveContainer,
+      "quantity": 1
+    },
+    {
+      "name": "Greeve Container",
+      "description": "Wadah makanan kaca",
+      "price": 69900,
+      "image": ImagesConstant.greeveContainer,
       "quantity": 1
     },
   ];
@@ -56,7 +71,13 @@ class _ListVerticalProductState extends State<ListVerticalProduct> {
                   padding: const EdgeInsets.all(8.0),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(8.0),
-                    child: SvgPicture.asset(
+                    // child: SvgPicture.asset(
+                    //   item["image"],
+                    //   width: 80,
+                    //   height: 80,
+                    //   fit: BoxFit.cover,
+                    // ),
+                    child: Image.asset(
                       item["image"],
                       width: 80,
                       height: 80,

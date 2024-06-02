@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/view/register/screens/challenge_screen.dart';
 import 'package:greeve/view/register/screens/impact_screen.dart';
@@ -44,7 +46,7 @@ class GlobalBottomNavbar extends StatelessWidget {
       onTap: (index) => _onItemTapped(context, index),
       items: [
         BottomNavigationBarItem(
-          icon: Icon(Icons.home),
+          icon: Image.asset(IconsConstant.game),
           label: 'Beranda',
         ),
         BottomNavigationBarItem(

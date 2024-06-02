@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/view_product/screens/cart/widget/custom_switch.dart';
 
@@ -18,14 +19,14 @@ class _CartScreenState extends State<CartScreen> {
       "name": "Tumbler",
       "description": "Botol air",
       "price": 148500,
-      "image": "images/bottle_list.svg", // Update this path to your image
+      "image": ImagesConstant.bottleList, // Update this path to your image
       "quantity": 1
     },
     {
       "name": "Greeve Container",
       "description": "Wadah makanan kaca",
       "price": 69900,
-      "image": "images/greeveContainer.svg", // Update this path to your image
+      "image": ImagesConstant.greeveContainer, // Update this path to your image
       "quantity": 1
     },
   ];
@@ -143,7 +144,8 @@ class _CartScreenState extends State<CartScreen> {
                                             item["quantity"]--;
                                         });
                                       },
-                                      icon: Icon(Icons.remove_circle_outline),
+                                      icon: SvgPicture.asset(
+                                          IconsConstant.decrease),
                                     ),
                                     Text(
                                       item["quantity"]
@@ -160,7 +162,8 @@ class _CartScreenState extends State<CartScreen> {
                                           item["quantity"]++;
                                         });
                                       },
-                                      icon: Icon(Icons.add_circle_outline),
+                                      icon: SvgPicture.asset(
+                                          IconsConstant.increase),
                                     ),
                                   ],
                                 )
@@ -205,7 +208,10 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   ListTile(
                     leading: Icon(Icons.monetization_on),
-                    title: Text('Tukarkan Koin'),
+                    title: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [Text('Tukarkan Koin'), Text('[-Rp 5]')],
+                    ),
                     trailing: CustomAnimatedToggleSwitch(
                       value: isDiscountActive,
                       onChanged: (bool value) {
@@ -214,7 +220,6 @@ class _CartScreenState extends State<CartScreen> {
                         });
                       },
                     ),
-                    subtitle: Text('[-Rp 5]'),
                   ),
                   Divider(),
                   ListTile(

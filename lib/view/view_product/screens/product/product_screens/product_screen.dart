@@ -65,8 +65,13 @@ class _ProductScreenState extends State<ProductScreen> {
             BannerSlider(),
             ListCategoriesProduct(),
             ListHorizontalProduct(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text('Rekomendasi Produk'),
+              ],
+            ),
             ListVerticalProduct(),
-            Text(' Rekomendasi Produk'),
           ],
         ),
       ),

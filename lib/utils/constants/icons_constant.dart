@@ -24,4 +24,6 @@ class IconsConstant {
   static const String stickerTwo = 'assets/images/stickerTwo.svg';
   static const String stickerThree = 'assets/images/stickerThree.svg';
   static const String stickerFour = 'assets/images/stickerFour.svg';
+
+  static const String game = 'assets/images/game_icono.png';
 }
