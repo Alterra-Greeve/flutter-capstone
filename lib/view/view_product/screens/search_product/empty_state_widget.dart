@@ -4,9 +4,7 @@ import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class EmptyStateWidget extends StatelessWidget {
-  const EmptyStateWidget({
-    super.key,
-  });
+  const EmptyStateWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

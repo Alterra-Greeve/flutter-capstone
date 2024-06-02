@@ -7,7 +7,6 @@ class IconsConstant {
   static const String search = 'assets/images/search.svg';
 
   static const String bag = 'assets/images/bag.svg';
-  static const String banner = 'assets/images/banner.svg';
   static const String bottle = 'assets/images/bottle_list.svg';
   static const String greeveContainer = 'assets/images/bag.svg';
   static const String home = 'assets/images/home.svg';
@@ -20,7 +19,7 @@ class IconsConstant {
   static const String decrease = 'assets/images/decrease.svg';
   static const String voucherActived = 'assets/images/voucherActived.svg';
   static const String voucherDeactived = 'assets/images/voucherDeactived.svg';
-  static const String arrowRight = 'assets/images/arrowRight.svg';
+  static const String arrowRight = 'assets/images/arrow_right.svg';
   static const String stickerOne = 'assets/images/stickerOne.svg';
   static const String stickerTwo = 'assets/images/stickerTwo.svg';
   static const String stickerThree = 'assets/images/stickerThree.svg';

@@ -3,7 +3,7 @@ import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/view/register/screens/challenge_screen.dart';
 import 'package:greeve/view/register/screens/impact_screen.dart';
 import 'package:greeve/view/register/screens/profile_screen.dart';
-import 'package:greeve/view/view_product/screens/view_product/product_screen.dart';
+import 'package:greeve/view/view_product/screens/product/product_screens/product_screen.dart';
 
 class GlobalBottomNavbar extends StatelessWidget {
   final int currentIndex;

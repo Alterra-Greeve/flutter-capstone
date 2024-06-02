@@ -31,7 +31,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.obscureText = false,
     this.onPressedSuffixIcon,
     this.enabled,
-    required this.keyboardType,
+    this.keyboardType = TextInputType.text,
   });
 
   @override

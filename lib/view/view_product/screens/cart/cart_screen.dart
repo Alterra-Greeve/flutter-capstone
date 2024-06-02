@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/view_product/screens/view_product/widget/swicth_button/custom_switch.dart';
+import 'package:greeve/view/view_product/screens/cart/widget/custom_switch.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});

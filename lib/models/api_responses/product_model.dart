@@ -1,3 +1,5 @@
+import 'package:flutter/src/widgets/basic.dart';
+
 class Product {
   final String name;
   final String description;
@@ -12,4 +14,6 @@ class Product {
     required this.image,
     required this.quantity,
   });
+
+  map(Builder Function(dynamic product) param0) {}
 }
