@@ -15,7 +15,7 @@ class IconsConstant {
   static const String challengeInactive =
       'assets/images/challenge_inactive.svg';
   static const String product = 'assets/images/product.svg';
-  static const String impact = 'assets/images/help_earth.svg';
+  static const String impact = 'assets/images/impact.svg';
   static const String profile = 'assets/images/profile.svg';
   static const String yellowCoin = 'assets/images/coin.svg';
   static const String coin = 'assets/images/coin.svg';

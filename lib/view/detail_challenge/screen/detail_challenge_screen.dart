@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -28,50 +29,28 @@ class DetailChallengeScreen extends StatelessWidget {
                     DetailChallengeHeaderWidget(),
                     DetailChallengeArrowBackWidget(),
                     DetailChallengeTimeWidget(),
-                    Positioned(
-                      bottom: -30,
-                      left: 16,
-                      right: 16,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          PointCardWidget(
-                              image: IconsConstant.poinXp,
-                              points: '50',
-                              color: ColorsConstant.danger500),
-                          PointCardWidget(
-                              image: IconsConstant.yellowCoin,
-                              points: '20',
-                              color: ColorsConstant.warning500),
-                          PointCardWidget(
-                              image: IconsConstant.impact,
-                              points: '2',
-                              color: ColorsConstant.success500),
-                        ],
-                      ),
-                    ),
                   ],
                 ),
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
                     ContentContainer(controller),
-                    const Positioned(
-                      bottom: -30,
+                    Positioned(
+                      top: -35,
                       left: 16,
                       right: 16,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          PointCardWidget(
+                          DetailChallengePointCardWidget(
                               image: IconsConstant.poinXp,
                               points: '50',
                               color: ColorsConstant.danger500),
-                          PointCardWidget(
+                          DetailChallengePointCardWidget(
                               image: IconsConstant.yellowCoin,
                               points: '20',
                               color: ColorsConstant.warning500),
-                          PointCardWidget(
+                          DetailChallengePointCardWidget(
                               image: IconsConstant.impact,
                               points: '2',
                               color: ColorsConstant.success500),
@@ -145,7 +124,7 @@ class DetailChallengeScreen extends StatelessWidget {
           const SizedBox(height: 8),
           Row(
             children: [
-              Text('Membantu', style: TextStylesConstant.nunitoButtonSemibold),
+              Text('Membantu', style: TextStylesConstant.nunitoButtonBold),
               const SizedBox(width: 8),
               Container(
                 child: SvgPicture.asset(IconsConstant.helpCoin),
@@ -177,6 +156,7 @@ class DetailChallengeScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              //radio button
               Obx(
                 () => controller.isUploaded.value
                     ? GestureDetector(
@@ -186,11 +166,11 @@ class DetailChallengeScreen extends StatelessWidget {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.green[100],
+                            color: ColorsConstant.primary100,
                             borderRadius: BorderRadius.circular(60),
                             border: Border.all(
                                 width: 2,
-                                color: Colors.green,
+                                color: ColorsConstant.primary500,
                                 style: BorderStyle.values[1]),
                           ),
                           width: 25,
@@ -200,11 +180,11 @@ class DetailChallengeScreen extends StatelessWidget {
                             children: [
                               Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.green,
+                                  color: ColorsConstant.primary500,
                                   borderRadius: BorderRadius.circular(60),
                                   border: Border.all(
                                       width: 2,
-                                      color: Colors.green,
+                                      color: ColorsConstant.primary500,
                                       style: BorderStyle.values[1]),
                                 ),
                                 width: 15,
@@ -221,11 +201,11 @@ class DetailChallengeScreen extends StatelessWidget {
                         },
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
+                            color: ColorsConstant.white,
                             borderRadius: BorderRadius.circular(60),
                             border: Border.all(
                                 width: 2,
-                                color: Colors.green,
+                                color: ColorsConstant.primary500,
                                 style: BorderStyle.values[1]),
                           ),
                           width: 25,
@@ -234,11 +214,9 @@ class DetailChallengeScreen extends StatelessWidget {
                       ),
               ),
               const SizedBox(width: 8),
-              const Text('Pengunggahan telah selesai',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 12,
-                      fontWeight: FontWeight.w500)),
+              Text('Pengunggahan telah selesai',
+                  style: TextStylesConstant.nunitoButtonMedium
+                      .copyWith(color: ColorsConstant.neutral700)),
             ],
           ),
           const SizedBox(height: 16),
@@ -248,19 +226,17 @@ class DetailChallengeScreen extends StatelessWidget {
                     onTap: () {},
                     child: Container(
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 3, 68, 21),
+                        color: ColorsConstant.primary500,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       width: double.infinity,
                       height: 70,
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Saya ingin menyelesaikannya',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500)),
+                              style: TextStylesConstant.nunitoButtonLarge
+                                  .copyWith(color: ColorsConstant.neutral100)),
                         ],
                       ),
                     ),
@@ -269,19 +245,19 @@ class DetailChallengeScreen extends StatelessWidget {
                     onTap: () {},
                     child: Container(
                       decoration: BoxDecoration(
-                        color: Colors.grey[300],
+                        color: ColorsConstant.neutral200,
                         borderRadius: BorderRadius.circular(16),
                       ),
                       width: double.infinity,
                       height: 70,
-                      child: const Column(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text('Saya ingin menyelesaikannya',
-                              style: TextStyle(
-                                  color: Colors.grey,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500)),
+                              style:
+                                  TextStylesConstant.nunitoButtonLarge.copyWith(
+                                color: ColorsConstant.neutral500,
+                              )),
                         ],
                       ),
                     ),

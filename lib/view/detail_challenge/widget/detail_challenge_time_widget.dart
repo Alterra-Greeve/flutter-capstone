@@ -13,7 +13,7 @@ class DetailChallengeTimeWidget extends StatelessWidget {
         top: 42,
         right: 16,
         child: Container(
-          width: 150,
+          width: 74,
           padding: const EdgeInsets.all(4),
           decoration: BoxDecoration(
               color: ColorsConstant.neutral100,

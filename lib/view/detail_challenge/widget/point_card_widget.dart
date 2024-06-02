@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-class PointCardWidget extends StatelessWidget {
-  const PointCardWidget({
+class DetailChallengePointCardWidget extends StatelessWidget {
+  const DetailChallengePointCardWidget({
     super.key,
     required this.image,
     required this.points,
