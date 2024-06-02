@@ -1,119 +1,76 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/login/screens/login_screen.dart';
-import 'package:greeve/view/onboarding/screens/screen_one.dart';
-import 'package:greeve/view/onboarding/screens/screen_three.dart';
-import 'package:greeve/view/onboarding/screens/screen_two.dart';
-import 'package:greeve/view/register/screens/register_screen.dart';
+import 'package:greeve/view_model/bottom_navigation_controller.dart';
 
-class BottomNavScreen extends StatefulWidget {
+class BottomNavScreen extends StatelessWidget {
   const BottomNavScreen({super.key});
 
   @override
-  State<BottomNavScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<BottomNavScreen> {
-  late PageController _pageController;
-  int _selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-    _pageController = PageController(initialPage: _selectedIndex);
-  }
-
-  @override
-  void dispose() {
-    _pageController.dispose();
-    super.dispose();
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
-  }
-
-  static final List<Widget> _widgetOptions = [
-    const LoginScreen(),
-    const RegisterScreen(),
-    const ScreenTwo(),
-    const ScreenOne(),
-    const ScreenThree(),
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    final BottomNavController controller = Get.put(BottomNavController());
     return Scaffold(
       body: PageView(
-        controller: _pageController,
-        onPageChanged: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        children: _widgetOptions,
+        controller: controller.pageController,
+        onPageChanged: controller.onPageChanged,
+        children: controller.widgetOptions,
       ),
       bottomNavigationBar: SizedBox(
         height: 88,
-        child: BottomNavigationBar(
-          currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          showUnselectedLabels: true,
-          unselectedLabelStyle: TextStylesConstant.nunitoButtonMedium,
-          selectedLabelStyle: TextStylesConstant.nunitoButtonMedium,
-          selectedItemColor: ColorsConstant.primary500,
-          unselectedItemColor: ColorsConstant.neutral500,
-          items: [
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SvgPicture.asset(
-                  _selectedIndex == 0
-                      ? IconsConstant.homeNavOn
-                      : IconsConstant.homeNavOff,
+        child: Obx(
+          () => BottomNavigationBar(
+            currentIndex: controller.selectedIndex.value,
+            onTap: controller.onItemTapped,
+            showUnselectedLabels: true,
+            unselectedLabelStyle: TextStylesConstant.nunitoButtonMedium,
+            selectedLabelStyle: TextStylesConstant.nunitoButtonMedium,
+            selectedItemColor: ColorsConstant.primary500,
+            unselectedItemColor: ColorsConstant.neutral500,
+            items: [
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 0
+                        ? IconsConstant.homeNavOn
+                        : IconsConstant.homeNavOff,
+                  ),
                 ),
+                label: 'Beranda',
               ),
-              label: 'Beranda',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SvgPicture.asset(IconsConstant.challengeNavOff),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: SvgPicture.asset(IconsConstant.challengeNavOff),
+                ),
+                label: 'Tantangan',
               ),
-              label: 'Tantangan',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SvgPicture.asset(IconsConstant.productNavOff),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: SvgPicture.asset(IconsConstant.productNavOff),
+                ),
+                label: 'Produk',
               ),
-              label: 'Produk',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SvgPicture.asset(IconsConstant.impactNavOff),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: SvgPicture.asset(IconsConstant.impactNavOff),
+                ),
+                label: 'Dampak',
               ),
-              label: 'Dampak',
-            ),
-            BottomNavigationBarItem(
-              icon: Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: SvgPicture.asset(IconsConstant.profileNavOff),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: const EdgeInsets.only(bottom: 10),
+                  child: SvgPicture.asset(IconsConstant.profileNavOff),
+                ),
+                label: 'Profil',
               ),
-              label: 'Profil',
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
