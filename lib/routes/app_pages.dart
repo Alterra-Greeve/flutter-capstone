@@ -4,13 +4,13 @@ import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
-import 'package:greeve/view/home/screens/home_screen.dart';
+import 'package:greeve/view/common/bottom_navigation_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/onboarding/screens/on_boarding_screen.dart';
 import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
-import 'package:greeve/view/splash_screen.dart';
+import 'package:greeve/view/common/splash_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -51,8 +51,8 @@ class AppPages {
       page: () => const LoadingScreen(),
     ),
     GetPage(
-      name: AppRoutes.home,
-      page: () => const HomeScreen(),
+      name: AppRoutes.bottomNavigation,
+      page: () => const BottomNavScreen(),
     ),
     GetPage(
       name: AppRoutes.onboarding,

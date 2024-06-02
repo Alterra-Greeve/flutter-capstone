@@ -8,6 +8,6 @@ class AppRoutes {
   static const String registerSuccess = '/register_success';
   static const String newPassword = '/new_password';
   static const String loading = '/loading';
-  static const String home = '/home';
+  static const String bottomNavigation = '/bottom_navigation';
   static const String onboarding = '/onboarding';
 }

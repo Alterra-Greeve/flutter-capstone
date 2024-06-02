@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.splashApp,
+      initialRoute: AppRoutes.bottomNavigation,
       getPages: AppPages.routes,
     );
   }
