@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/global_widgets/global_button_widget.dart';
+// import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -14,6 +14,8 @@ import '../widget/detail_challenge_upload_button_widget.dart';
 import '../widget/point_card_widget.dart';
 
 class DetailChallengeScreen extends StatelessWidget {
+  const DetailChallengeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DetailChallengeController>(
@@ -34,8 +36,8 @@ class DetailChallengeScreen extends StatelessWidget {
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    ContentContainer(controller),
-                    Positioned(
+                    contentContainer(controller),
+                    const Positioned(
                       top: -35,
                       left: 16,
                       right: 16,
@@ -67,7 +69,7 @@ class DetailChallengeScreen extends StatelessWidget {
     );
   }
 
-  Widget ContentContainer(DetailChallengeController controller) {
+  Widget contentContainer(DetailChallengeController controller) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
       decoration: const BoxDecoration(

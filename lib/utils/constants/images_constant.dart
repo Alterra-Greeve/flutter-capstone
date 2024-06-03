@@ -14,4 +14,8 @@ class ImagesConstant {
   static const String bannerChallenge = 'assets/images/banner_challenge.svg';
   static const String throwChallengeLimit =
       'assets/images/throw_challenge_limit.svg';
+  static const String emptyStateNoData =
+      'assets/images/empty_state_no_data.svg';
+  static const String challengeImageSample =
+      'assets/images/challenge_image_sample.png';
 }

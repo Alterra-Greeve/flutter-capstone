@@ -33,7 +33,7 @@ class DetailChallengeController extends GetxController {
       Get.bottomSheet(
         Container(
           height: 200,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             color: ColorsConstant.white,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
@@ -55,8 +55,8 @@ class DetailChallengeController extends GetxController {
                           Get.back();
                         },
                         child: Container(
-                          margin: EdgeInsets.only(right: 10),
-                          child: Icon(
+                          margin: const EdgeInsets.only(right: 10),
+                          child: const Icon(
                             Icons.close,
                             color: ColorsConstant.white,
                           ),
@@ -88,7 +88,7 @@ class DetailChallengeController extends GetxController {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               SvgPicture.asset(IconsConstant.camera),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
@@ -113,7 +113,7 @@ class DetailChallengeController extends GetxController {
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
                               SvgPicture.asset(IconsConstant.gallery),
-                              SizedBox(
+                              const SizedBox(
                                 height: 10,
                               ),
                               Text(
@@ -125,7 +125,7 @@ class DetailChallengeController extends GetxController {
                         ),
                       ),
                     ]),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
               ]),

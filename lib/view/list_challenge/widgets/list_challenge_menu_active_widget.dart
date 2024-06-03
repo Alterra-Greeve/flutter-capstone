@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/list_challenge/widgets/list_challenge_cancel_item_widget.dart';
+import 'package:greeve/view/list_challenge/widgets/list_challenge_done_item_widget.dart';
+import 'package:greeve/view/list_challenge/widgets/list_challenge_todo_item_widget.dart';
 
 class ListChallengeMenuActiveWidget extends StatelessWidget {
   final String activeButton;
@@ -10,25 +12,13 @@ class ListChallengeMenuActiveWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (activeButton) {
       case 'Lakukan':
-        return _buildLakukanWidget();
+        return const ListChallengeTodoItemWidget();
       case 'Selesai':
-        return _buildSelesaiWidget();
+        return const ListChallengeDoneItemWidget();
       case 'Dibatalkan':
-        return _buildDibatalkanWidget();
+        return const ListChallengeCancelItemWidget();
       default:
         return Container();
     }
-  }
-
-  Widget _buildLakukanWidget() {
-    return Text('Widget untuk Lakukan', style: TextStylesConstant.nunitoHeading3);
-  }
-
-  Widget _buildSelesaiWidget() {
-    return Text('Widget untuk Selesai', style: TextStylesConstant.nunitoHeading3);
-  }
-
-  Widget _buildDibatalkanWidget() {
-    return Text('Widget untuk Dibatalkan', style: TextStylesConstant.nunitoHeading3);
   }
 }
