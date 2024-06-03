@@ -13,7 +13,7 @@ class ImagesConstant {
       'assets/images/register_success_image.svg';
   // static const String banner = 'assets/images/banner.svg';
   static const String bottleDetail = 'assets/images/bottle_detail.svg';
-  static const String bottleGrid = 'assets/images/bottle_grid.svg';
+  // static const String bottleGrid = 'assets/images/bottle_grid.svg';
   static const String bottleProduct = 'assets/images/bottle_product.svg';
   // static const String bottleList = 'assets/images/bottle_list.svg';
   static const String cardVariant = 'assets/images/card_variant.svg';
@@ -24,4 +24,5 @@ class ImagesConstant {
   static const String bottleList = 'bottle_list.png';
   static const String cardvariant = 'assets/images/card_variant.png';
   static const String bottleCard = 'assets/images/bottle_card.png';
+  static const String bottleGrid = 'assets/images/bottle_grid.png';
 }

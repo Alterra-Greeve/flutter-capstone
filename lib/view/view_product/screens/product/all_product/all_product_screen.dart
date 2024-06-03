@@ -24,7 +24,7 @@ class AllProductScreen extends StatelessWidget {
       {
         'name': 'Tumbler',
         'price': 'Rp 148.500',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
         'name': 'Product 2',

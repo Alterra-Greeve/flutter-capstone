@@ -2,8 +2,10 @@ import 'package:get/get.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/view/onboarding/screens/on_boarding_screen.dart';
+import 'package:greeve/view/splash_screen.dart';
 import 'package:greeve/view/view_product/screens/cart/cart_screen.dart';
 import 'package:greeve/view/view_product/screens/product/all_product/all_product_screen.dart';
+import 'package:greeve/view/view_product/screens/product/detail_product/product_detail_screen.dart';
 import 'package:greeve/view/view_product/screens/product/product_screens/product_screen.dart';
 
 class SplashController extends GetxController {
@@ -20,7 +22,7 @@ class SplashController extends GetxController {
       Get.off(() => const HomeScreen());
     } else {
       await Future.delayed(const Duration(seconds: 3));
-      Get.off(() => const ProductScreen());
+      Get.off(() => const OnBoardingScreen());
     }
   }
 }

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/models/api_responses/product_model.dart';  // Jika menggunakan SVG
 
-class ProductDetailPage extends StatelessWidget {
+class ProductDetailScreen extends StatelessWidget {
   final Product product;
 
-  const ProductDetailPage({Key? key, required this.product}) : super(key: key);
+  const ProductDetailScreen({Key? key, required this.product}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
