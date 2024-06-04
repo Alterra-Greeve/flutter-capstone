@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:greeve/routes/app_pages.dart';
 import 'package:greeve/routes/app_routes.dart';
-
 import 'package:greeve/utils/constants/colors_constant.dart';
 
 void main() {
@@ -19,9 +18,16 @@ class MyApp extends StatelessWidget {
       title: 'Greeve',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
+        scaffoldBackgroundColor: ColorsConstant.white,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: ColorsConstant.white,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: ColorsConstant.white,
+        ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.bottomNavigation,
+      initialRoute: AppRoutes.cart,
       getPages: AppPages.routes,
     );
   }

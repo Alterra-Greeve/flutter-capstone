@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/onboarding/screens/screen_one.dart';
 import 'package:greeve/view/onboarding/screens/screen_three.dart';
-import 'package:greeve/view/onboarding/screens/screen_two.dart';
+import 'package:greeve/view/product/screens/product_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 
 class BottomNavController extends GetxController {
@@ -15,7 +15,7 @@ class BottomNavController extends GetxController {
   static final List<Widget> _widgetOptions = [
     const LoginScreen(),
     const RegisterScreen(),
-    const ScreenTwo(),
+    const ProductScreen(),
     const ScreenOne(),
     const ScreenThree(),
   ];

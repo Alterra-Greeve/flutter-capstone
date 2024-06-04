@@ -22,6 +22,7 @@ class BottomNavScreen extends StatelessWidget {
         height: 88,
         child: Obx(
           () => BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
             currentIndex: controller.selectedIndex.value,
             onTap: controller.onItemTapped,
             showUnselectedLabels: true,
@@ -44,14 +45,22 @@ class BottomNavScreen extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: SvgPicture.asset(IconsConstant.challengeNavOff),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 1
+                        ? IconsConstant.challengeNavOn
+                        : IconsConstant.challengeNavOff,
+                  ),
                 ),
                 label: 'Tantangan',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: SvgPicture.asset(IconsConstant.productNavOff),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 2
+                        ? IconsConstant.productNavOn
+                        : IconsConstant.productNavOff,
+                  ),
                 ),
                 label: 'Produk',
               ),
