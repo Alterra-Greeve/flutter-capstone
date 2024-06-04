@@ -33,7 +33,8 @@ class _ProductScreenState extends State<ProductScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mau Beli apa hari ini ? '),
+        title: Text('Mau Beli apa hari ini ? ',
+            style: TextStylesConstant.nunitoHeading3),
         actions: [
           IconButton(
             onPressed: () {
@@ -65,11 +66,17 @@ class _ProductScreenState extends State<ProductScreen> {
             BannerSlider(),
             ListCategoriesProduct(),
             ListHorizontalProduct(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Text('Rekomendasi Produk'),
-              ],
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'Rekomendasi Produk',
+                    style: TextStylesConstant.nunitoHeading4,
+                  ),
+                ],
+              ),
             ),
             ListVerticalProduct(),
           ],

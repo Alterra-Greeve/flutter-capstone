@@ -15,8 +15,6 @@ class IconsConstant {
   static const String impact = 'assets/images/impact.svg';
   static const String profile = 'assets/images/profile.svg';
   static const String yellowCoin = 'assets/images/yellowCoin.svg';
-  static const String increase = 'assets/images/increase.svg';
-  static const String decrease = 'assets/images/decrease.svg';
   static const String voucherActived = 'assets/images/voucherActived.svg';
   static const String voucherDeactived = 'assets/images/voucherDeactived.svg';
   static const String arrowRight = 'assets/images/arrow_right.svg';
@@ -26,4 +24,10 @@ class IconsConstant {
   static const String stickerFour = 'assets/images/stickerFour.svg';
 
   static const String game = 'assets/images/game_icono.png';
+  static const String bag_ = 'assets/images/bag.png';
+  static const String increase = 'assets/images/increase.png';
+  static const String decrease = 'assets/images/decrease.png';
+  static const String voucherOn = 'assets/images/voucher_on.png';
+  static const String voucherOff = 'assets/images/voucher_off.png';
+  static const String coin = 'assets/images/coin.png';
 }

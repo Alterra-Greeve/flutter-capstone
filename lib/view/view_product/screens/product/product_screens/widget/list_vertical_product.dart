@@ -12,13 +12,27 @@ class ListVerticalProduct extends StatefulWidget {
 
 class _ListVerticalProductState extends State<ListVerticalProduct> {
   List<Map<String, dynamic>> cartItems = [
-    // {
-    //   "name": "Tumbler",
-    //   "description": "Botol air",
-    //   "price": 148500,
-    //   "image": ImagesConstant.bottleList,
-    //   "quantity": 1
-    // },
+    {
+      "name": "Greeve Container",
+      "description": "Wadah makanan kaca",
+      "price": 69900,
+      "image": ImagesConstant.greeveContainer,
+      "quantity": 1
+    },
+    {
+      "name": "Greeve Container",
+      "description": "Wadah makanan kaca",
+      "price": 69900,
+      "image": ImagesConstant.greeveContainer,
+      "quantity": 1
+    },
+    {
+      "name": "Greeve Container",
+      "description": "Wadah makanan kaca",
+      "price": 69900,
+      "image": ImagesConstant.greeveContainer,
+      "quantity": 1
+    },
     {
       "name": "Greeve Container",
       "description": "Wadah makanan kaca",
@@ -58,50 +72,36 @@ class _ListVerticalProductState extends State<ListVerticalProduct> {
               borderRadius: BorderRadius.circular(12),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 5,
-                  offset: Offset(0, 3),
+                  color: Colors.grey.withOpacity(0.1),
+                  spreadRadius: 0.5,
+                  blurRadius: 0.5,
+                  offset: Offset(0, 1),
                 ),
               ],
             ),
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    // child: SvgPicture.asset(
-                    //   item["image"],
-                    //   width: 80,
-                    //   height: 80,
-                    //   fit: BoxFit.cover,
-                    // ),
-                    child: Image.asset(
-                      item["image"],
-                      width: 80,
-                      height: 80,
-                      fit: BoxFit.cover,
-                    ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    item["image"],
+                    width: 80,
+                    height: 100,
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          item["name"],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17,
-                          ),
-                        ),
+                        Text(item["name"],
+                            style: TextStylesConstant.nunitoHeading5),
                         Text(
                           item["description"],
-                          style: TextStylesConstant.nunitoCaption,
+                          style: TextStylesConstant.nunitoSubtitle,
                         ),
                       ],
                     ),
@@ -115,7 +115,7 @@ class _ListVerticalProductState extends State<ListVerticalProduct> {
                       Row(
                         children: [
                           Text('Rp ${item["price"].toString()}',
-                              style: TextStylesConstant.nunitoButtonMedium),
+                              style: TextStylesConstant.nunitoSubtitle4),
                         ],
                       )
                     ],

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/view_product/screens/cart/cart_screen.dart';
 import 'package:greeve/view_model/search_product_controller.dart';
 
@@ -27,39 +28,39 @@ class AllProductScreen extends StatelessWidget {
         'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 2',
-        'price': 'Rp 100.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 3',
-        'price': 'Rp 200.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 4',
-        'price': 'Rp 300.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 5',
-        'price': 'Rp 400.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 6',
-        'price': 'Rp 500.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 7',
-        'price': 'Rp 600.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
       {
-        'name': 'Product 8',
-        'price': 'Rp 700.000',
-        'image': ImagesConstant.bottleProduct // Update with correct image path
+        'name': 'Tumbler',
+        'price': 'Rp 148.500',
+        'image': ImagesConstant.bottleGrid // Update with correct image path
       },
     ];
 
@@ -135,29 +136,25 @@ class AllProductScreen extends StatelessWidget {
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
                           ),
-                          child: SvgPicture.asset(
+                          child: Image.asset(
                             product['image'], // path to your image
-                            height: 140,
+                            height: 180,
                             width: double.infinity,
                             fit: BoxFit.cover,
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 15, top: 10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 product['name'],
-                                style: TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                style: TextStylesConstant.nunitoHeading5,
                               ),
-                              SizedBox(height: 8),
-                              Text(
-                                product['price'],
-                                style: TextStyle(
-                                    fontSize: 14, fontWeight: FontWeight.bold),
-                              ),
+                              SizedBox(height: 5),
+                              Text(product['price'],
+                                  style: TextStylesConstant.nunitoSubtitle)
                             ],
                           ),
                         ),

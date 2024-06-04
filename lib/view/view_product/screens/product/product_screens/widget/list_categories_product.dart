@@ -41,12 +41,13 @@ class _ListHorizontalProductState extends State<ListCategoriesProduct> {
                     style: TextStyle(
                       color: isSelected ? Colors.black : Colors.grey,
                       fontSize: 20,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                   if (isSelected)
                     Container(
                       margin: EdgeInsets.only(top: 4),
-                      height: 2,
+                      height: 1,
                       color: ColorsConstant.primary500,
                       width: 125,
                     ),

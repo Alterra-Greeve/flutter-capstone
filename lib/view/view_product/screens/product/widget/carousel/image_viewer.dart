@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greeve/models/api_responses/product_model.dart';
 import 'package:greeve/view/view_product/screens/product/detail_product/product_detail_screen.dart';
 
 class CustomImageViewer {
@@ -8,21 +9,22 @@ class CustomImageViewer {
   static Widget show({
     required BuildContext context,
     required String assetPath,
+    required Product product,
     BoxFit? fit,
     double? radius,
   }) {
-    // Check if the file is an SVG
     bool isSvg = assetPath.toLowerCase().endsWith('.svg');
 
     return ClipRRect(
       borderRadius: BorderRadius.all(Radius.circular(radius ?? 20)),
       child: GestureDetector(
         onTap: () {
-          // Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => ProductDetailScreen(product: null),
-          //     ));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ProductDetailScreen(product: product),
+            ),
+          );
         },
         child: isSvg
             ? SvgPicture.asset(

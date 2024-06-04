@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:greeve/models/api_responses/product_model.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/view/view_product/screens/product/widget/carousel/image_carousel.dart';
 import 'package:greeve/view/view_product/screens/product/widget/carousel/image_viewer.dart';
@@ -21,13 +22,17 @@ class _BannerSliderState extends State<BannerSlider> {
     super.initState();
   }
 
-  // double? height;
-  // double? width;
-
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build(BuildContext context) {
+    final product = Product(
+      name: "Tumbler",
+      description:
+          "Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin mengurangi dampak lingkungan mereka.",
+      price: 148500,
+      image: ImageCarouselData.innerStyleImages[0],
+      quantity: 1,
+    );
+
     return Column(
       children: [
         SizedBox(height: 20),
@@ -36,7 +41,7 @@ class _BannerSliderState extends State<BannerSlider> {
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
           height: 170,
-          width: 380,
+          width: 400,
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -55,12 +60,12 @@ class _BannerSliderState extends State<BannerSlider> {
                     },
                   ),
                   items: ImageCarouselData.innerStyleImages.map((imagePath) {
-                    print('Loading image: $imagePath'); // Debugging
                     return Builder(
                       builder: (BuildContext context) {
                         return CustomImageViewer.show(
                           context: context,
                           assetPath: imagePath,
+                          product: product,
                           fit: BoxFit.cover,
                         );
                       },

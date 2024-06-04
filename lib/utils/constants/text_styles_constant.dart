@@ -16,6 +16,11 @@ class TextStylesConstant {
     fontWeight: FontWeight.w700,
   );
 
+  static final TextStyle nunitoHeading5 = _baseNunito.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+
   static final TextStyle nunitoSubtitle = _baseNunito.copyWith(
     fontSize: 14,
   );

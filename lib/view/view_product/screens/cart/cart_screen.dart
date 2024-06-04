@@ -17,9 +17,9 @@ class _CartScreenState extends State<CartScreen> {
   List<Map<String, dynamic>> cartItems = [
     {
       "name": "Tumbler",
-      "description": "Botol air",
+      "description": "Botol Air",
       "price": 148500,
-      "image": ImagesConstant.bottleList, // Update this path to your image
+      "image": ImagesConstant.greeveContainer, // Update this path to your image
       "quantity": 1
     },
     {
@@ -32,14 +32,21 @@ class _CartScreenState extends State<CartScreen> {
   ];
 
   bool isDiscountActive = false;
+  bool isVoucherActive = false;
+
+  double voucherDiscount = 20000; // Example discount
+  double coinDiscount = 5;
 
   double getTotalPrice() {
     double total = 0;
     for (var item in cartItems) {
       total += item['price'] * item['quantity'];
     }
+    if (isVoucherActive) {
+      total -= voucherDiscount;
+    }
     if (isDiscountActive) {
-      total -= 5; // Apply discount
+      total -= coinDiscount;
     }
     return total;
   }
@@ -79,30 +86,28 @@ class _CartScreenState extends State<CartScreen> {
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.grey.withOpacity(0.5),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: Offset(0, 3),
+                              color: Colors.grey.withOpacity(0.1),
+                              spreadRadius: 0.5,
+                              blurRadius: 0.5,
+                              offset: Offset(0, 1),
                             ),
                           ],
                         ),
                         child: Row(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8.0),
-                                child: SvgPicture.asset(
-                                  item["image"],
-                                  width: 80,
-                                  height: 80,
-                                  fit: BoxFit.cover,
-                                ),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(
+                                item["image"],
+                                width: 80,
+                                height: 100,
+                                fit: BoxFit.cover,
                               ),
                             ),
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.all(5),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 13),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisAlignment: MainAxisAlignment.center,
@@ -144,8 +149,7 @@ class _CartScreenState extends State<CartScreen> {
                                             item["quantity"]--;
                                         });
                                       },
-                                      icon: SvgPicture.asset(
-                                          IconsConstant.decrease),
+                                      icon: Image.asset(IconsConstant.decrease),
                                     ),
                                     Text(
                                       item["quantity"]
@@ -162,8 +166,7 @@ class _CartScreenState extends State<CartScreen> {
                                           item["quantity"]++;
                                         });
                                       },
-                                      icon: SvgPicture.asset(
-                                          IconsConstant.increase),
+                                      icon: Image.asset(IconsConstant.increase),
                                     ),
                                   ],
                                 )
@@ -199,15 +202,22 @@ class _CartScreenState extends State<CartScreen> {
               child: Column(
                 children: [
                   ListTile(
-                    leading: Icon(Icons.card_giftcard),
-                    title: Text('Gunakan Voucher Greeve'),
-                    trailing: Icon(Icons.arrow_forward_ios),
+                    leading: isVoucherActive
+                        ? Image.asset(IconsConstant
+                            .voucherOn) // Replace with appropriate icon
+                        : Image.asset(IconsConstant.voucherOff),
+                    title: isVoucherActive
+                        ? Text('1 Voucher Greeve digunakan')
+                        : Text('Gunakan Voucher Greeve'),
+                    trailing: SvgPicture.asset(IconsConstant.arrowRight),
                     onTap: () {
-                      // Handle voucher tap
+                      setState(() {
+                        isVoucherActive = !isVoucherActive;
+                      });
                     },
                   ),
                   ListTile(
-                    leading: Icon(Icons.monetization_on),
+                    leading: Image.asset(IconsConstant.coin),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text('Tukarkan Koin'), Text('[-Rp 5]')],
@@ -247,11 +257,7 @@ class _CartScreenState extends State<CartScreen> {
                         child: Center(
                           child: Text(
                             'Lanjut checkout',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
+                            style: TextStylesConstant.nunitoSubtitle4,
                           ),
                         ),
                       ),
