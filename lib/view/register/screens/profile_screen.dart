@@ -8,9 +8,9 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile Screen'),
+        title: const Text('Profile Screen'),
       ),
-            bottomNavigationBar: GlobalBottomNavbar(currentIndex: 4),
+            bottomNavigationBar: const GlobalBottomNavbar(currentIndex: 4),
 
     );
   }

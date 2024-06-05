@@ -55,7 +55,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Keranjang'),
+        title: const Text('Keranjang'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -67,12 +67,12 @@ class _CartScreenState extends State<CartScreen> {
       body: Stack(
         children: [
           SingleChildScrollView(
-            padding: EdgeInsets.only(bottom: 150),
+            padding: const EdgeInsets.only(bottom: 150),
             child: Column(
               children: [
                 ListView.builder(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   itemCount: cartItems.length,
                   itemBuilder: (context, index) {
                     final item = cartItems[index];
@@ -89,7 +89,7 @@ class _CartScreenState extends State<CartScreen> {
                               color: Colors.grey.withOpacity(0.1),
                               spreadRadius: 0.5,
                               blurRadius: 0.5,
-                              offset: Offset(0, 1),
+                              offset: const Offset(0, 1),
                             ),
                           ],
                         ),
@@ -114,7 +114,7 @@ class _CartScreenState extends State<CartScreen> {
                                   children: [
                                     Text(
                                       item["name"],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 17,
                                       ),
@@ -133,7 +133,7 @@ class _CartScreenState extends State<CartScreen> {
                             Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Row(
+                                const Row(
                                   children: [
                                     SizedBox(
                                       height: 35,
@@ -145,8 +145,9 @@ class _CartScreenState extends State<CartScreen> {
                                     IconButton(
                                       onPressed: () {
                                         setState(() {
-                                          if (item["quantity"] > 1)
+                                          if (item["quantity"] > 1) {
                                             item["quantity"]--;
+                                          }
                                         });
                                       },
                                       icon: Image.asset(IconsConstant.decrease),
@@ -155,7 +156,7 @@ class _CartScreenState extends State<CartScreen> {
                                       item["quantity"]
                                           .toString()
                                           .padLeft(2, '0'),
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
                                       ),
@@ -187,7 +188,7 @@ class _CartScreenState extends State<CartScreen> {
               height: 275,
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(15),
                     topRight: Radius.circular(15)),
                 boxShadow: [
@@ -195,7 +196,7 @@ class _CartScreenState extends State<CartScreen> {
                     color: Colors.grey.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 5,
-                    offset: Offset(0, 3),
+                    offset: const Offset(0, 3),
                   ),
                 ],
               ),
@@ -207,8 +208,8 @@ class _CartScreenState extends State<CartScreen> {
                             .voucherOn) // Replace with appropriate icon
                         : Image.asset(IconsConstant.voucherOff),
                     title: isVoucherActive
-                        ? Text('1 Voucher Greeve digunakan')
-                        : Text('Gunakan Voucher Greeve'),
+                        ? const Text('1 Voucher Greeve digunakan')
+                        : const Text('Gunakan Voucher Greeve'),
                     trailing: SvgPicture.asset(IconsConstant.arrowRight),
                     onTap: () {
                       setState(() {
@@ -218,7 +219,7 @@ class _CartScreenState extends State<CartScreen> {
                   ),
                   ListTile(
                     leading: Image.asset(IconsConstant.coin),
-                    title: Row(
+                    title: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text('Tukarkan Koin'), Text('[-Rp 5]')],
                     ),
@@ -231,12 +232,12 @@ class _CartScreenState extends State<CartScreen> {
                       },
                     ),
                   ),
-                  Divider(),
+                  const Divider(),
                   ListTile(
-                    title: Text('Total:'),
+                    title: const Text('Total:'),
                     trailing: Text(
                       'Rp ${getTotalPrice().toString()}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                       ),

@@ -13,9 +13,9 @@ class HomeScreen extends StatelessWidget {
             onPressed: () {
               SharedPreferencesManager.removeToken();
             },
-            child: Text('Delete Token')),
+            child: const Text('Delete Token')),
       ),
-      bottomNavigationBar: GlobalBottomNavbar(currentIndex: 0),
+      bottomNavigationBar: const GlobalBottomNavbar(currentIndex: 0),
     );
   }
 }

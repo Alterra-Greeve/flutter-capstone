@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/view/register/screens/challenge_screen.dart';
 import 'package:greeve/view/register/screens/impact_screen.dart';
@@ -17,23 +16,23 @@ class GlobalBottomNavbar extends StatelessWidget {
     switch (index) {
       case 0:
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => HomeScreen()));
+            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
         break;
       case 1:
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => ChallengScreen()));
+            context, MaterialPageRoute(builder: (_) => const ChallengScreen()));
         break;
       case 2:
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => ProductScreen()));
+            context, MaterialPageRoute(builder: (_) => const ProductScreen()));
         break;
       case 3:
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => ImpactScreen()));
+            context, MaterialPageRoute(builder: (_) => const ImpactScreen()));
         break;
       case 4:
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (_) => ProfileScreen()));
+            context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
         break;
     }
   }
@@ -49,19 +48,19 @@ class GlobalBottomNavbar extends StatelessWidget {
           icon: Image.asset(IconsConstant.game),
           label: 'Beranda',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: Icon(Icons.videogame_asset),
           label: 'Tantangan',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: Icon(Icons.shopping_cart),
           label: 'Produk',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: Icon(Icons.show_chart),
           label: 'Dampak',
         ),
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           icon: Icon(Icons.person),
           label: 'Profil',
         ),

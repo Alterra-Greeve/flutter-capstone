@@ -14,7 +14,7 @@ class _ListHorizontalProductState extends State<ListCategoriesProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 60, // Ensure the container has a fixed height
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
@@ -29,7 +29,7 @@ class _ListHorizontalProductState extends State<ListCategoriesProduct> {
             },
             child: Container(
               width: 130,
-              margin: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -46,7 +46,7 @@ class _ListHorizontalProductState extends State<ListCategoriesProduct> {
                   ),
                   if (isSelected)
                     Container(
-                      margin: EdgeInsets.only(top: 4),
+                      margin: const EdgeInsets.only(top: 4),
                       height: 1,
                       color: ColorsConstant.primary500,
                       width: 125,

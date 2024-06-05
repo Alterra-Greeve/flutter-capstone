@@ -8,9 +8,9 @@ class ImpactScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Impact Screen'),
+        title: const Text('Impact Screen'),
       ),
-      bottomNavigationBar: GlobalBottomNavbar(currentIndex: 3),
+      bottomNavigationBar: const GlobalBottomNavbar(currentIndex: 3),
     );
   }
 }

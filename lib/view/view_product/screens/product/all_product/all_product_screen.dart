@@ -66,7 +66,7 @@ class AllProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Dapur',
         ),
         centerTitle: true,
@@ -76,7 +76,7 @@ class AllProductScreen extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CartScreen(),
+                  builder: (context) => const CartScreen(),
                 ),
               );
             },
@@ -105,9 +105,9 @@ class AllProductScreen extends StatelessWidget {
                 shrinkWrap:
                     true, // Important to wrap inside SingleChildScrollView
                 physics:
-                    NeverScrollableScrollPhysics(), // Prevent GridView from scrolling independently
+                    const NeverScrollableScrollPhysics(), // Prevent GridView from scrolling independently
                 itemCount: products.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2, // Number of columns
                   crossAxisSpacing: 10, // Horizontal space between items
                   mainAxisSpacing: 10, // Vertical space between items
@@ -124,7 +124,7 @@ class AllProductScreen extends StatelessWidget {
                           color: Colors.grey.withOpacity(0.3),
                           spreadRadius: 2,
                           blurRadius: 5,
-                          offset: Offset(0, 3),
+                          offset: const Offset(0, 3),
                         ),
                       ],
                     ),
@@ -132,7 +132,7 @@ class AllProductScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
                           ),
@@ -152,7 +152,7 @@ class AllProductScreen extends StatelessWidget {
                                 product['name'],
                                 style: TextStylesConstant.nunitoHeading5,
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(product['price'],
                                   style: TextStylesConstant.nunitoSubtitle)
                             ],
