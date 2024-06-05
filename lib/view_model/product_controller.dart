@@ -15,6 +15,7 @@ class ProductController extends GetxController
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> productsData = <Datum>[].obs;
+  RxList<Datum> productsRecommendationData = <Datum>[].obs;
 
   late TabController _tabController;
   TabController get tabController => _tabController;
@@ -41,29 +42,6 @@ class ProductController extends GetxController
     const Tab(text: 'Reusable'),
     const Tab(text: 'Biodegradable'),
   ];
-  final List<ProductModel> productRecommendationItems = [
-    ProductModel(
-      image: ImagesConstant.recommendationImagePlaceholder,
-      name: 'Wadah Makanan Kaca',
-      description:
-          'Wadah makanan kaca adalah solusi sempurna untuk menyimpan makanan dengan aman dan praktis.',
-      price: "148.500",
-    ),
-    ProductModel(
-      image: ImagesConstant.recommendationImagePlaceholder,
-      name: 'Wadah Makanan Kaca',
-      description:
-          'Wadah makanan kaca adalah solusi sempurna untuk menyimpan makanan dengan aman dan praktis.',
-      price: "148.500",
-    ),
-    ProductModel(
-      image: ImagesConstant.recommendationImagePlaceholder,
-      name: 'Wadah Makanan Kaca',
-      description:
-          'Wadah makanan kaca adalah solusi sempurna untuk menyimpan makanan dengan aman dan praktis.',
-      price: "148.500",
-    ),
-  ];
 
   @override
   void onInit() {
@@ -74,6 +52,7 @@ class ProductController extends GetxController
       }
     });
     getProductsbyCategory(categoryTabs[0].text!);
+    getProducts();
     super.onInit();
   }
 
@@ -90,10 +69,29 @@ class ProductController extends GetxController
     productsData.value = [];
     isLoading.value = true;
     try {
-      final result = await _apiService.getProductsbyCategory(
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZGRyZXNzIjoiIiwiZW1haWwiOiJpdmFudGVuZG91QGdtYWlsLmNvbSIsImV4cCI6MTcyMDI1NzM2OSwiaWF0IjoxNzE3NTc4OTY5LCJpZCI6ImZhMmVjMmUxLThiZTAtNDdiOC1iZTVmLWFmZGQzMDkxMDE2MCIsIm5hbWUiOiJpdmFuIiwicm9sZSI6IlVzZXIiLCJ1c2VybmFtZSI6InVzZXJfM2U0OTJ2azMifQ.UO8yRItN7JnCaeoEaGi54gR-j8N-V_ui6wDb42C4iL4",
-          category);
+      final result = await _apiService.getProductsbyCategory(token, category);
       productsData.value = result.data!;
+      errorMessage.value = '';
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        errorMessage.value ?? '',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  void getProducts() async {
+    final String? token = await SharedPreferencesManager.getToken();
+    productsRecommendationData.value = [];
+    isLoading.value = true;
+    try {
+      final result = await _apiService.getProducts(token);
+      productsRecommendationData.value = result.data!;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();

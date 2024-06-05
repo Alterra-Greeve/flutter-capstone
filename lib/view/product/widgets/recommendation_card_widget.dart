@@ -1,17 +1,18 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-class ProductRecommendationCardWidget extends StatelessWidget {
+class RecommendationCardWidget extends StatelessWidget {
   final String name;
   final String description;
-  final String image;
+  final String imageUrl;
   final String price;
-  const ProductRecommendationCardWidget({
+  const RecommendationCardWidget({
     super.key,
     required this.name,
     required this.description,
-    required this.image,
+    required this.imageUrl,
     required this.price,
   });
 
@@ -31,13 +32,27 @@ class ProductRecommendationCardWidget extends StatelessWidget {
       ),
       margin: const EdgeInsets.only(bottom: 16),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Image.asset(
-            image,
-            width: 70,
-            height: 70,
-            fit: BoxFit.cover,
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(8),
+              bottomLeft: Radius.circular(8),
+            ),
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              height: 70,
+              width: 70,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
+            ),
           ),
           const SizedBox(width: 16),
           SizedBox(

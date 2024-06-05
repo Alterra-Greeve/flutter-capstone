@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/product/widgets/product_recommendation_card_widget.dart';
+import 'package:greeve/view/product/widgets/recommendation_card_shimmer_widget.dart';
+import 'package:greeve/view/product/widgets/recommendation_card_widget.dart';
+import 'package:greeve/view/product/widgets/see_more_product_card.dart';
 import 'package:greeve/view_model/product_controller.dart';
 
 class ProductRecommendationWidget extends StatelessWidget {
@@ -19,20 +22,32 @@ class ProductRecommendationWidget extends StatelessWidget {
             style: TextStylesConstant.nunitoButtonSemibold,
           ),
           const SizedBox(height: 16),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            scrollDirection: Axis.vertical,
-            itemCount: controller.productRecommendationItems.length,
-            itemBuilder: (context, index) {
-              var product = controller.productRecommendationItems[index];
-              return ProductRecommendationCardWidget(
-                name: product.name!,
-                description: product.description!,
-                image: product.image!,
-                price: product.price!,
-              );
-            },
+          Obx(
+            () => controller.isLoading.value
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: 6,
+                    itemBuilder: (context, index) {
+                      return const RecommendationCardShimmerWidget();
+                    },
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.vertical,
+                    itemCount: controller.productsRecommendationData.length,
+                    itemBuilder: (context, index) {
+                      var product =
+                          controller.productsRecommendationData[index];
+                      return RecommendationCardWidget(
+                        name: product.name!,
+                        description: product.description!,
+                        imageUrl: product.images![0].imageUrl!,
+                        price: product.price.toString(),
+                      );
+                    }),
           ),
         ],
       ),
