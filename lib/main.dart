@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.cart,
+      initialRoute: AppRoutes.bottomNavigation,
       getPages: AppPages.routes,
     );
   }

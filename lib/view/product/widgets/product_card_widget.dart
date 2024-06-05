@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -7,13 +8,13 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 class ProductCardWidget extends StatelessWidget {
   final String name;
   final String description;
-  final String image;
+  final String imageUrl;
   final String price;
   const ProductCardWidget({
     super.key,
     required this.name,
     required this.description,
-    required this.image,
+    required this.imageUrl,
     required this.price,
   });
 
@@ -36,11 +37,19 @@ class ProductCardWidget extends StatelessWidget {
               topLeft: Radius.circular(8),
               topRight: Radius.circular(8),
             ),
-            child: Image.asset(
-              image,
-              fit: BoxFit.cover,
-              width: double.infinity,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
               height: 180,
+              width: double.infinity,
+              imageBuilder: (context, imageProvider) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: imageProvider,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           Padding(
