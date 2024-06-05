@@ -18,10 +18,10 @@ class IconsConstant {
   static const String voucherActived = 'assets/images/voucherActived.svg';
   static const String voucherDeactived = 'assets/images/voucherDeactived.svg';
   static const String arrowRight = 'assets/images/arrow_right.svg';
-  static const String stickerOne = 'assets/images/stickerOne.svg';
-  static const String stickerTwo = 'assets/images/stickerTwo.svg';
-  static const String stickerThree = 'assets/images/stickerThree.svg';
-  static const String stickerFour = 'assets/images/stickerFour.svg';
+  // static const String stickerOne = 'assets/images/stickerOne.svg';
+  // static const String stickerTwo = 'assets/images/stickerTwo.svg';
+  // static const String stickerThree = 'assets/images/stickerThree.svg';
+  // static const String stickerFour = 'assets/images/stickerFour.svg';
 
   static const String game = 'assets/images/game_icono.png';
   static const String bag_ = 'assets/images/bag.png';
@@ -30,4 +30,8 @@ class IconsConstant {
   static const String voucherOn = 'assets/images/voucher_on.png';
   static const String voucherOff = 'assets/images/voucher_off.png';
   static const String coin = 'assets/images/coin.png';
+  static const String stickerOne = 'assets/images/sticker_one.png';
+  static const String stickerTwo = 'assets/images/sticker_two.png';
+  static const String stickerThree = 'assets/images/sticker_three.png';
+  static const String stickerFour = 'assets/images/sticker_four.png';
 }

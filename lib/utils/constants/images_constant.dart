@@ -21,8 +21,16 @@ class ImagesConstant {
   static const String bannerOne = 'assets/images/banner.png';
   static const String banner = 'assets/images/banner_.png';
   static const String greeveContainer = 'assets/images/greeve_container.png';
-  static const String bottleList = 'botol_.png';
+  static const String bottleList = 'assets/images/botel.png';
   static const String cardvariant = 'assets/images/card_variant.png';
   static const String bottleCard = 'assets/images/bottle_card.png';
   static const String bottleGrid = 'assets/images/bottle_grid.png';
+  static const String bottleCarouselOne =
+      'assets/images/bottle_carousel_one.png';
+  static const String bottleCarouselTwo =
+      'assets/images/bottle_carousel_two.png';
+  static const String bottleCarouselThree =
+      'assets/images/bottle_carousel_three.png';
+  static const String bottleCarouselFour =
+      'assets/images/bottle_carousel_four.png';
 }

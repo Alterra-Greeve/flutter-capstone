@@ -19,7 +19,7 @@ class _CartScreenState extends State<CartScreen> {
       "name": "Tumbler",
       "description": "Botol Air",
       "price": 148500,
-      "image": ImagesConstant.greeveContainer, // Update this path to your image
+      "image": ImagesConstant.bottleList, // Update this path to your image
       "quantity": 1
     },
     {
