@@ -16,4 +16,6 @@ class Product {
   });
 
   map(Builder Function(dynamic product) param0) {}
+
+  static fromJson(json) {}
 }

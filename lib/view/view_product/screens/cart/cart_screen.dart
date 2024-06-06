@@ -19,7 +19,7 @@ class _CartScreenState extends State<CartScreen> {
       "name": "Tumbler",
       "description": "Botol Air",
       "price": 148500,
-      "image": ImagesConstant.bottleList, // Update this path to your image
+      "image": ImagesConstant.greeveContainer, // Update this path to your image
       "quantity": 1
     },
     {
@@ -217,7 +217,7 @@ class _CartScreenState extends State<CartScreen> {
                     },
                   ),
                   ListTile(
-                    leading: Image.asset(IconsConstant.coin),
+                    leading: SvgPicture.asset(IconsConstant.coin),
                     title: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text('Tukarkan Koin'), Text('[-Rp 5]')],
@@ -257,7 +257,7 @@ class _CartScreenState extends State<CartScreen> {
                         child: Center(
                           child: Text(
                             'Lanjut checkout',
-                            style: TextStylesConstant.nunitoSubtitle4,
+                            style: TextStylesConstant.nunitoButtonLarge,
                           ),
                         ),
                       ),

@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:convert';
 
 ProductResponseModel productResponseModelFromJson(String str) => ProductResponseModel.fromJson(json.decode(str));
@@ -77,5 +73,59 @@ class Data {
         "total_page": totalPage,
         "category": category == null ? [] : List<dynamic>.from(category!.map((x) => x)),
         "images": images == null ? [] : List<dynamic>.from(images!.map((x) => x)),
+    };
+
+    
+}
+
+class Category {
+    String id;
+    String productId;
+    String impactCategoryId;
+
+    Category({
+        required this.id,
+        required this.productId,
+        required this.impactCategoryId,
+    });
+
+    factory Category.fromJson(Map<String, dynamic> json) => Category(
+        id: json["id"],
+        productId: json["product_id"],
+        impactCategoryId: json["impact_category_id"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "product_id": productId,
+        "impact_category_id": impactCategoryId,
+    };
+}
+
+class Image {
+    String id;
+    String productId;
+    String imageUrl;
+    int position;
+
+    Image({
+        required this.id,
+        required this.productId,
+        required this.imageUrl,
+        required this.position,
+    });
+
+    factory Image.fromJson(Map<String, dynamic> json) => Image(
+        id: json["id"],
+        productId: json["product_id"],
+        imageUrl: json["image_url"],
+        position: json["position"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "product_id": productId,
+        "image_url": imageUrl,
+        "position": position,
     };
 }
