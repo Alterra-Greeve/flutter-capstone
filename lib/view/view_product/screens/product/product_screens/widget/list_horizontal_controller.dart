@@ -1,37 +1,94 @@
-// import 'package:get/get.dart';
-// import 'package:dio/dio.dart';
-// import 'package:greeve/models/api_responses/product_model.dart';
-// import 'package:greeve/utils/constants/api_constant.dart';
-// import 'package:greeve/utils/helpers/error_handler_helper.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:greeve/models/api_responses/product_response_model.dart';
+import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-// class ProductController extends GetxController {
-//   var products = <Product>[].obs;
-//   var isLoading = true.obs;
-//   Dio _dio = Dio();
+class ListHorizontalController extends GetxController {
+  var isLoading = true.obs;
+  var productList = <Data>[].obs;
+  Rx<String> errorMessage = ''.obs;
 
-//   @override
-//   void onInit() {
-//     super.onInit();
-//     fetchProducts();
-//   }
+  final ApiService _apiService = ApiService();
 
-//   Future<void> fetchProducts() async {
-//     isLoading(true);
-//     try {
-//       String? token = 'YOUR_TOKEN_HERE'; // Dapatkan token dari penyimpanan atau autentikasi
-//       Options options = Options(headers: {'Authorization': 'Bearer $token'});
-//       final response = await _dio.get(ApiConstant.products, options: options);
+  @override
+  void onInit() {
+    super.onInit();
+    fetchProducts();
+  }
 
-//       if (response.statusCode == 200) {
-//         var data = response.data['data'] as List;
-//         products.value = data.map((json) => Product.fromJson(json)).toList();
-//       } else {
-//         throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
-//       }
-//     } on DioException catch (e) {
-//       throw ErrorHandlerHelper.catchGetProducts(e);
-//     } finally {
-//       isLoading(false);
-//     }
-//   }
-// }
+  void fetchProducts() async {
+    try {
+      String? token = await SharedPreferencesManager.getToken();
+      if (token != null) {
+        isLoading(true);
+        final response = await _apiService.getProducts(token);
+        if (response.status == true) {
+          productList.value = response.data ?? [];
+        } else {
+          errorMessage.value = response.message ?? "Failed to fetch products";
+          showProductFailedDialog(errorMessage.value);
+        }
+      } else {
+        errorMessage.value = "Token not found!";
+        showProductFailedDialog(errorMessage.value);
+      }
+    } catch (e) {
+      errorMessage.value = e.toString();
+      showProductFailedDialog(errorMessage.value);
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  void showProductFailedDialog(String errorMessage) {
+    Get.defaultDialog(
+      backgroundColor: ColorsConstant.white,
+      title: 'Failed to Fetch Products!',
+      titleStyle: TextStylesConstant.nunitoHeading3.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 24),
+      content: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 24,
+          left: 24,
+          right: 24,
+        ),
+        child: Text(
+          errorMessage,
+          textAlign: TextAlign.center,
+          style: TextStylesConstant.nunitoSubtitle.copyWith(
+            color: ColorsConstant.neutral600,
+          ),
+        ),
+      ),
+      confirm: InkWell(
+        onTap: () {
+          Get.back();
+        },
+        child: Ink(
+          width: 250,
+          height: 48,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: ColorsConstant.primary500,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Retry',
+              style: TextStylesConstant.nunitoButtonLarge
+                  .copyWith(color: ColorsConstant.primary500),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

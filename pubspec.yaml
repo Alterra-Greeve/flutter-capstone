@@ -29,6 +29,7 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   another_flutter_splash_screen: ^1.2.0
+  cached_network_image: ^3.0.1
   animated_toggle_switch: ^0.8.2
   carousel_slider: ^4.0.0
   cupertino_icons: ^1.0.2

@@ -66,7 +66,7 @@ class AllProductScreen extends StatelessWidget {
                   if (controller.productData.value == null) {
                     return Center(child: CircularProgressIndicator());
                   }
-                  final products = controller.productData.value!.data!.images!;
+                  final products = controller.productData.value!;
                   return GridView.builder(
                     shrinkWrap:
                         true, // Important to wrap inside SingleChildScrollView
@@ -104,7 +104,7 @@ class AllProductScreen extends StatelessWidget {
                                 topRight: Radius.circular(10),
                               ),
                               child: Image.network(
-                                product.imageUrl, // URL of the image
+                                product.images!.isNotEmpty ? product.images![0].imageUrl! : '',
                                 height: 180,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
