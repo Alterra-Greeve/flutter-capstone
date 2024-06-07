@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/product/widgets/recommendation_card_shimmer_widget.dart';
+import 'package:greeve/view/product/widgets/shimmer/recommendation_card_shimmer_widget.dart';
 import 'package:greeve/view/product/widgets/recommendation_card_widget.dart';
-import 'package:greeve/view/product/widgets/see_more_product_card.dart';
 import 'package:greeve/view_model/product_controller.dart';
 
 class ProductRecommendationWidget extends StatelessWidget {
@@ -23,7 +22,7 @@ class ProductRecommendationWidget extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Obx(
-            () => controller.isLoading.value
+            () => controller.isLoadingRecommendation.value
                 ? ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -42,6 +41,8 @@ class ProductRecommendationWidget extends StatelessWidget {
                       var product =
                           controller.productsRecommendationData[index];
                       return RecommendationCardWidget(
+                        controller: controller,
+                        productId: product.productId!,
                         name: product.name!,
                         description: product.description!,
                         imageUrl: product.images![0].imageUrl!,

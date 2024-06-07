@@ -45,7 +45,7 @@ class DetailProductScreen extends StatelessWidget {
             child: Column(
               children: [
                 ProductDetailImageWidget(controller: controller),
-                const ProductDetailInformationWidget(),
+                ProductDetailInformationWidget(controller: controller),
               ],
             ),
           ),

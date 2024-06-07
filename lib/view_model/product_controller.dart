@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/models/carousel_item_model.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
@@ -12,7 +13,8 @@ class ProductController extends GetxController
 
   Rx<int> currentIndex = Rx<int>(0);
   Rx<int> currentCategory = Rx<int>(0);
-  Rx<bool> isLoading = Rx<bool>(false);
+  Rx<bool> isLoadingProduct = Rx<bool>(false);
+  Rx<bool> isLoadingRecommendation = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> productsData = <Datum>[].obs;
   RxList<Datum> productsRecommendationData = <Datum>[].obs;
@@ -67,7 +69,7 @@ class ProductController extends GetxController
   void getProductsbyCategory(String category) async {
     final String? token = await SharedPreferencesManager.getToken();
     productsData.value = [];
-    isLoading.value = true;
+    isLoadingProduct.value = true;
     try {
       final result = await _apiService.getProductsbyCategory(token, category);
       productsData.value = result.data!;
@@ -81,14 +83,14 @@ class ProductController extends GetxController
         margin: const EdgeInsets.all(16),
       );
     } finally {
-      isLoading.value = false;
+      isLoadingProduct.value = false;
     }
   }
 
   void getProducts() async {
     final String? token = await SharedPreferencesManager.getToken();
     productsRecommendationData.value = [];
-    isLoading.value = true;
+    isLoadingRecommendation.value = true;
     try {
       final result = await _apiService.getProducts(token);
       productsRecommendationData.value = result.data!;
@@ -102,7 +104,18 @@ class ProductController extends GetxController
         margin: const EdgeInsets.all(16),
       );
     } finally {
-      isLoading.value = false;
+      isLoadingRecommendation.value = false;
     }
+  }
+
+  void navigateToProductDetail(String productId) {
+    Get.toNamed(
+      AppRoutes.detailProduct,
+      arguments: productId,
+    );
+  }
+
+  void navigateToSeeAllProducts(String category) {
+    Get.toNamed(AppRoutes.allProduct, arguments: category);
   }
 }
