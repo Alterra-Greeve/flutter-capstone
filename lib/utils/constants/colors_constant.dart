@@ -13,7 +13,7 @@ class ColorsConstant {
   static const Color primary100 = Color(0xFFD2E1DE);
   static const Color primary500 = Color(0xFF1C6758);
   static const Color danger500 = Color(0xFFD32D28);
-  static const Color bg_switch_act = Color(0xFF98C7FF);
-  static const Color switch_act = Color(0xFF4D9FFF);
+  static const Color bgSwitchAct = Color(0xFF98C7FF);
+  static const Color switchAct = Color(0xFF4D9FFF);
   static const Color info500 = Color(0xFF046EE0);
 }

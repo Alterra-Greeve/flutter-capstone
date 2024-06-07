@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
@@ -59,7 +58,7 @@ class _ListVerticalProductState extends State<ListVerticalProduct> {
   Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
-      physics: NeverScrollableScrollPhysics(),
+      physics: const NeverScrollableScrollPhysics(),
       itemCount: cartItems.length,
       itemBuilder: (context, index) {
         final item = cartItems[index];
@@ -75,7 +74,7 @@ class _ListVerticalProductState extends State<ListVerticalProduct> {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 0.5,
                   blurRadius: 0.5,
-                  offset: Offset(0, 1),
+                  offset: const Offset(0, 1),
                 ),
               ],
             ),

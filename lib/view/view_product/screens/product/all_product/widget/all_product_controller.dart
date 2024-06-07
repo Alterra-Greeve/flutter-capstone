@@ -1,29 +1,93 @@
-// import 'package:get/get.dart';
-// import 'package:greeve/utils/constants/images_constant.dart';
+import 'dart:ui';
 
-// class SearchProductController extends GetxController {
-//   var products = [
-//     {
-//       'name': 'Tumbler',
-//       'price': 'Rp 148.500',
-//       'image': ImagesConstant.bottleGrid // Update with correct image path
-//     },
-//     {
-//       'name': 'Tumbler',
-//       'price': 'Rp 148.500',
-//       'image': ImagesConstant.bottleGrid // Update with correct image path
-//     },
-//     // Add more products here
-//   ].obs;
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:greeve/models/api_responses/product_response_model.dart';
+import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/text_styles_constant.dart';
 
-//   var searchQuery = ''.obs;
+class AllProductController extends GetxController {
+  final ApiService _apiService = ApiService();
+  Rx<ProductResponseModel?> productData = Rx<ProductResponseModel?>(null);
 
-//   void updateSearchQuery(String query) {
-//     searchQuery.value = query;
-//     // Implement search logic here if needed
-//   }
+  Rx<String?> errorMessage = Rx<String?>(null);
 
-//   void navigateToCart() {
-//     Get.toNamed('/cart');
-//   }
-// }
+  @override
+  void onInit() {
+    super.onInit();
+  }
+
+  void getToken() async {
+    try {
+      final token = await SharedPreferencesManager.getToken();
+      if (token != null) {
+        getProduct(token);
+      } else {
+        print("Token not found!");
+      }
+    } catch (e) {
+      print("Error getting token: $e");
+    }
+  }
+
+  void getProduct(String token) async {
+    try {
+      final result = await _apiService.getProducts(token);
+      productData.value = productResponseModelFromJson(result as String);
+    } catch (e) {
+      errorMessage.value = e.toString();
+      showProductFailedDialog(errorMessage.value ?? '');
+    }
+  }
+
+  void showProductFailedDialog(String errorMessage) {
+    Get.defaultDialog(
+      backgroundColor: ColorsConstant.white,
+      title: 'Gagal Ngambil Data Productt!',
+      titleStyle: TextStylesConstant.nunitoHeading3.copyWith(
+        fontWeight: FontWeight.w600,
+      ),
+      contentPadding: const EdgeInsets.symmetric(vertical: 24),
+      content: Padding(
+        padding: const EdgeInsets.only(
+          bottom: 24,
+          left: 24,
+          right: 24,
+        ),
+        child: Text(
+          errorMessage,
+          textAlign: TextAlign.center,
+          style: TextStylesConstant.nunitoSubtitle.copyWith(
+            color: ColorsConstant.neutral600,
+          ),
+        ),
+      ),
+      confirm: InkWell(
+        onTap: () {
+          Get.back();
+        },
+        child: Ink(
+          width: 250,
+          height: 48,
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: ColorsConstant.primary500,
+            ),
+            borderRadius: const BorderRadius.all(
+              Radius.circular(8),
+            ),
+          ),
+          child: Center(
+            child: Text(
+              'Coba Kembali',
+              style: TextStylesConstant.nunitoButtonLarge
+                  .copyWith(color: ColorsConstant.primary500),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

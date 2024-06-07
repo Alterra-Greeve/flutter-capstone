@@ -12,11 +12,11 @@ class CustomAnimatedToggleSwitch extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomAnimatedToggleSwitchState createState() =>
-      _CustomAnimatedToggleSwitchState();
+  CustomAnimatedToggleSwitchState createState() =>
+      CustomAnimatedToggleSwitchState();
 }
 
-class _CustomAnimatedToggleSwitchState
+class CustomAnimatedToggleSwitchState
     extends State<CustomAnimatedToggleSwitch> {
   late bool _value;
 
@@ -38,18 +38,18 @@ class _CustomAnimatedToggleSwitchState
     return GestureDetector(
       onTap: _toggleSwitch,
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 300),
         width: 50,
         height: 20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           color:
-              _value ? ColorsConstant.bg_switch_act : ColorsConstant.neutral600,
+              _value ? ColorsConstant.bgSwitchAct : ColorsConstant.neutral600,
         ),
         child: Stack(
           children: [
             AnimatedPositioned(
-              duration: Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 300),
               curve: Curves.easeIn,
               left: _value ? 30 : 0,
               right: _value ? 0 : 30,
@@ -59,14 +59,14 @@ class _CustomAnimatedToggleSwitchState
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color:
-                      _value ? ColorsConstant.switch_act : ColorsConstant.white,
+                      _value ? ColorsConstant.switchAct : ColorsConstant.white,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black
                           .withOpacity(0.2), // Warna dan opasitas bayangan
                       spreadRadius: 2, // Seberapa luas bayangan tersebar
                       blurRadius: 2, // Seberapa kabur bayangan
-                      offset: Offset(
+                      offset: const Offset(
                           0, 1), // Posisi bayangan relatif terhadap kontainer
                     ),
                   ],

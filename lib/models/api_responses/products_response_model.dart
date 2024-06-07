@@ -132,12 +132,12 @@ class ImpactCategory {
       };
 }
 
-enum Name { ECO_FRIENDLY, LESS_WASTE, VERY_GREEN }
+enum Name { ecoFriendly, lessWaste, veryGreen }
 
 final nameValues = EnumValues({
-  "Eco Friendly": Name.ECO_FRIENDLY,
-  "Less Waste": Name.LESS_WASTE,
-  "Very Green": Name.VERY_GREEN
+  "Eco Friendly": Name.ecoFriendly,
+  "Less Waste": Name.lessWaste,
+  "Very Green": Name.veryGreen
 });
 
 class Image {

@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/product_model.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/view_product/screens/cart/cart_screen.dart';
 import 'package:greeve/view/view_product/screens/product/detail_product/widget/product_detail_controller.dart';
@@ -31,12 +30,12 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text('Dapur', style: TextStyle(color: Colors.black)),
+        title: const Text('Dapur', style: TextStyle(color: Colors.black)),
         centerTitle: true,
         actions: [
           IconButton(
@@ -44,7 +43,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => CartScreen(),
+                  builder: (context) => const CartScreen(),
                 ),
               );
             },
@@ -53,7 +52,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
             Stack(
@@ -206,7 +205,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                         child: Text(
                           entry.value,
                           textAlign: TextAlign.right,
-                          style: TextStyle(overflow: TextOverflow.ellipsis),
+                          style: const TextStyle(overflow: TextOverflow.ellipsis),
                         ),
                       ),
                     ],
@@ -214,8 +213,8 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 );
               }).toList(),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
               child: Text(
                 """
 Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin mengurangi dampak lingkungan mereka. Terbuat dari stainless steel 304 yang tahan lama dan aman untuk digunakan, tumbler ini dapat digunakan kembali berkali-kali, sehingga menghilangkan kebutuhan akan botol plastik sekali pakai.
@@ -236,7 +235,7 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                 Row(
                   children: [
                     Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
@@ -244,7 +243,7 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                             borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(IconsConstant.stickerOne)),
                     Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
@@ -252,7 +251,7 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                             borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(IconsConstant.stickerTwo)),
                     Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
@@ -260,7 +259,7 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                             borderRadius: BorderRadius.circular(10)),
                         child: Image.asset(IconsConstant.stickerThree)),
                     Container(
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
@@ -271,7 +270,7 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -290,7 +289,7 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                           height: 50,
                           width: 50,
                           margin:
-                              EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                              const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                           decoration: BoxDecoration(
                             color: isSelected
                                 ? ColorsConstant.primary500
@@ -318,24 +317,24 @@ Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin menguran
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             GestureDetector(
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CartScreen(),
+                    builder: (context) => const CartScreen(),
                   ),
                 );
               },
               child: Container(
                 width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: 16),
+                padding: const EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
                   color: ColorsConstant.primary500,
                   borderRadius: BorderRadius.circular(8),
                 ),
-                child: Center(
+                child: const Center(
                   child: Text(
                     'Tambah ke keranjang',
                     style: TextStyle(

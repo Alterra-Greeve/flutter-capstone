@@ -35,9 +35,9 @@ class _BannerSliderState extends State<BannerSlider> {
 
     return Column(
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(30)),
           ),
           height: 170,
@@ -76,7 +76,7 @@ class _BannerSliderState extends State<BannerSlider> {
             ],
           ),
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: List.generate(

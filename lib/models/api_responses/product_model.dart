@@ -1,4 +1,4 @@
-import 'package:flutter/src/widgets/basic.dart';
+import 'package:flutter/widgets.dart';
 
 class Product {
   final String name;

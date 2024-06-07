@@ -5,7 +5,6 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/view_product/screens/cart/cart_screen.dart';
 import 'package:greeve/view/view_product/screens/product/all_product/all_product_screen.dart';
 
 class ListHorizontalProduct extends StatelessWidget {
@@ -31,7 +30,7 @@ class ListHorizontalProduct extends StatelessWidget {
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Container(
+      child: SizedBox(
         height: 330, // Ensure the container has a fixed height
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -41,9 +40,9 @@ class ListHorizontalProduct extends StatelessWidget {
               // Custom container at the third position
               return Container(
                 width: 210,
-                margin: EdgeInsets.all(8),
+                margin: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  image: DecorationImage(
+                  image: const DecorationImage(
                     image: AssetImage(ImagesConstant.cardvariant),
                     fit: BoxFit.cover,
                   ),
@@ -53,14 +52,14 @@ class ListHorizontalProduct extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.1),
                       spreadRadius: 0.5,
                       blurRadius: 0.5,
-                      offset: Offset(0, 1),
+                      offset: const Offset(0, 1),
                     ),
                   ],
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(height: 110),
+                    const SizedBox(height: 110),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: Text(
@@ -69,7 +68,7 @@ class ListHorizontalProduct extends StatelessWidget {
                         style: TextStylesConstant.nunitoSubtitle4,
                       ),
                     ),
-                    SizedBox(height: 100),
+                    const SizedBox(height: 100),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Row(
@@ -79,7 +78,7 @@ class ListHorizontalProduct extends StatelessWidget {
                             'Lihat Semua',
                             style: TextStylesConstant.nunitoHeading4,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 10,
                           ),
                           IconButton(
@@ -87,7 +86,7 @@ class ListHorizontalProduct extends StatelessWidget {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => AllProductScreen(),
+                                  builder: (context) => const AllProductScreen(),
                                 ),
                               );
                             },
@@ -110,7 +109,7 @@ class ListHorizontalProduct extends StatelessWidget {
             return Container(
               width: 210,
               height: 200,
-              margin: EdgeInsets.all(8),
+              margin: const EdgeInsets.all(8),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
@@ -119,7 +118,7 @@ class ListHorizontalProduct extends StatelessWidget {
                     color: Colors.grey.withOpacity(0.1),
                     spreadRadius: 0.5,
                     blurRadius: 0.5,
-                    offset: Offset(0, 1),
+                    offset: const Offset(0, 1),
                   ),
                 ],
               ),
@@ -127,7 +126,7 @@ class ListHorizontalProduct extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10),
                     ),

@@ -8,9 +8,9 @@ class ChallengScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Challenge Screen'),
+        title: const Text('Challenge Screen'),
       ),
-      bottomNavigationBar: GlobalBottomNavbar(currentIndex: 1),
+      bottomNavigationBar: const GlobalBottomNavbar(currentIndex: 1),
     );
   }
 }
