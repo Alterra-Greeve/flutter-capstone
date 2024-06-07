@@ -27,7 +27,7 @@ class AllProductScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Dapur'),
+        title: const Text('Dapur'),
         centerTitle: true,
         actions: [
           IconButton(
@@ -64,16 +64,17 @@ class AllProductScreen extends StatelessWidget {
               child: Obx(
                 () {
                   if (controller.productData.value == null) {
-                    return Center(child: CircularProgressIndicator());
+                    return const Center(child: CircularProgressIndicator());
                   }
                   final products = controller.productData.value!;
                   return GridView.builder(
                     shrinkWrap:
                         true, // Important to wrap inside SingleChildScrollView
                     physics:
-                        NeverScrollableScrollPhysics(), // Prevent GridView from scrolling independently
+                        const NeverScrollableScrollPhysics(), // Prevent GridView from scrolling independently
                     itemCount: products.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2, // Number of columns
                       crossAxisSpacing: 10, // Horizontal space between items
                       mainAxisSpacing: 10, // Vertical space between items
@@ -81,7 +82,8 @@ class AllProductScreen extends StatelessWidget {
                           2 / 3, // Width / Height ratio of the items
                     ),
                     itemBuilder: (context, index) {
-                      final product = products[index];
+                     final product = products;
+
                       return Container(
                         decoration: BoxDecoration(
                           color: Colors.white,
@@ -91,7 +93,7 @@ class AllProductScreen extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.3),
                               spreadRadius: 2,
                               blurRadius: 5,
-                              offset: Offset(0, 3),
+                              offset: const Offset(0, 3),
                             ),
                           ],
                         ),
@@ -99,12 +101,14 @@ class AllProductScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             ClipRRect(
-                              borderRadius: BorderRadius.only(
+                              borderRadius: const BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10),
                               ),
                               child: Image.network(
-                                product.images!.isNotEmpty ? product.images![0].imageUrl! : '',
+                                product.images!.isNotEmpty
+                                    ? product.images![0].imageUrl!
+                                    : '',
                                 height: 180,
                                 width: double.infinity,
                                 fit: BoxFit.cover,
@@ -119,7 +123,7 @@ class AllProductScreen extends StatelessWidget {
                                     product.name ?? 'Nama Produk',
                                     style: TextStylesConstant.nunitoHeading5,
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Text(
                                     '${product.price ?? 0} IDR',
                                     style: TextStylesConstant.nunitoSubtitle,

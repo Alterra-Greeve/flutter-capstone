@@ -26,7 +26,7 @@ class ListHorizontalController extends GetxController {
         isLoading(true);
         final response = await _apiService.getProducts(token);
         if (response.status == true) {
-          productList.value = response.data ?? [];
+          //productList.value = response.data ?? [];
         } else {
           errorMessage.value = response.message ?? "Failed to fetch products";
           showProductFailedDialog(errorMessage.value);

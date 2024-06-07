@@ -1,8 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:greeve/models/api_responses/product_response_model.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
@@ -121,21 +119,22 @@ class ListHorizontalProduct extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.only(
+                      const ClipRRect(
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(10),
                           topRight: Radius.circular(10),
                         ),
-                        child: CachedNetworkImage(
-                          imageUrl: product.images?.isNotEmpty == true
-                              ? product.images!.first.imageUrl
-                              : '',
-                          placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-                          errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red, size: 48),
-                          height: 200, // Adjust the height as needed
-                          width: double.infinity,
-                          fit: BoxFit.cover,
-                        ),
+                        // child: CachedNetworkImage(
+                        //   imageUrl: 
+                        //   product.images?.isNotEmpty == true
+                        //       ? product.images!.first.imageUrl
+                        //       : '',
+                        //  placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
+                        //   errorWidget: (context, url, error) => const Icon(Icons.error, color: Colors.red, size: 48),
+                        //   height: 200, // Adjust the height as needed
+                        //   width: double.infinity,
+                        //   //fit: BoxFit.cover,
+                        // ),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),

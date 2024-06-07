@@ -1,5 +1,5 @@
-import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
@@ -14,10 +14,6 @@ class AllProductController extends GetxController {
 
   Rx<String?> errorMessage = Rx<String?>(null);
 
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   void getToken() async {
     try {
@@ -25,10 +21,14 @@ class AllProductController extends GetxController {
       if (token != null) {
         getProduct(token);
       } else {
-        print("Token not found!");
+        if (kDebugMode) {
+          print("Token not found!");
+        }
       }
     } catch (e) {
-      print("Error getting token: $e");
+      if (kDebugMode) {
+        print("Error getting token: $e");
+      }
     }
   }
 

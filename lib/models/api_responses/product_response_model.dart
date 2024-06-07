@@ -21,6 +21,14 @@ class ProductResponseModel {
     );
   }
 
+  get length => null;
+
+  get images => null;
+
+  get name => null;
+
+  get price => null;
+
   Map<String, dynamic> toJson() => {
     'status': status,
     'message': message,

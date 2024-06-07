@@ -222,7 +222,7 @@ class _CartScreenState extends State<CartScreen> {
                         });
                       },
                     ),
-                    title: Row(
+                    title: const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [Text('Tukarkan Koin'), Text('[-Rp 5]')],
                       // ),

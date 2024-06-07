@@ -13,7 +13,7 @@ class ListVerticalProduct extends StatelessWidget {
 
     return Obx(() {
       if (productController.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       } else if (productController.errorMessage.isNotEmpty) {
         return Center(child: Text(productController.errorMessage.value));
       } else {
