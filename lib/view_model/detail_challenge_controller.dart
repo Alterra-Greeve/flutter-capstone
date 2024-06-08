@@ -9,7 +9,7 @@ import '../utils/constants/icons_constant.dart';
 
 class DetailChallengeController extends GetxController {
   final count = 0.obs;
-  
+
   @override
   void onInit() {
     super.onInit();
@@ -48,23 +48,19 @@ class DetailChallengeController extends GetxController {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Positioned(
-                      top: 10,
-                      right: 10,
-                      child: GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 10),
-                          child: const Icon(
-                            Icons.close,
-                            color: ColorsConstant.white,
-                          ),
-                          decoration: BoxDecoration(
-                            color: ColorsConstant.danger500,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                          color: ColorsConstant.danger500,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: const Icon(
+                          Icons.close,
+                          color: ColorsConstant.white,
                         ),
                       ),
                     ),
