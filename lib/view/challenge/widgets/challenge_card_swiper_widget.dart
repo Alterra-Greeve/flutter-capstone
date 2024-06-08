@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swiper/flutter_card_swiper.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/challenge/widgets/challenge_card_widget.dart';
 import 'package:greeve/view_model/challenge_controller.dart';
+import 'package:shimmer/shimmer.dart';
 
 class ChallengeCardSwiperWidget extends StatelessWidget {
   final ChallengeController controller;
@@ -14,38 +16,54 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 560,
-      child: CardSwiper(
-        padding: const EdgeInsets.only(top: 32),
-        cardsCount: 5,
-        cardBuilder: (context, index, x, y) {
-          return ChallengeCardWidget(
-            cardColors: controller.cardColors[index],
-            cardImage: controller.images[index],
-          );
-        },
-        backCardOffset: const Offset(0, -35),
-        allowedSwipeDirection:
-            const AllowedSwipeDirection.only(right: true, left: true),
-        numberOfCardsDisplayed: 3,
-        isLoop: true,
-        onSwipe: (previous, current, direction) {
-          if (direction == CardSwiperDirection.right) {
-            // showChallengeLimitDialog(
-            //   context,
-            //   ImagesConstant.takeChallengeLimit,
-            //   "Batas Tantangan Sudah Habis!",
-            //   "Kamu harus menunggu besok untuk mengisi ulang batas tantangan.",
-            // );
-          } else if (direction == CardSwiperDirection.left) {
-            // showShuffleSuccessSnackbar(context);
-          }
-          return true;
-        },
-      ),
-    );
+    return Obx(() => controller.isLoading.value
+        ? Shimmer.fromColors(
+            baseColor: Colors.grey.shade300,
+            highlightColor: Colors.grey.shade200,
+            child: Container(
+              width: double.infinity,
+              height: 546,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+              ),
+            ),
+          )
+        : SizedBox(
+            width: double.infinity,
+            height: 560,
+            child: CardSwiper(
+              padding: const EdgeInsets.only(top: 32),
+              cardsCount: controller.challengesData.length,
+              cardBuilder: (context, index, x, y) {
+                var challenge = controller.challengesData[index];
+                return ChallengeCardWidget(
+                  cardColors: controller.cardColors[index],
+                  image: challenge.imageUrl,
+                  title: challenge.title,
+                  description: challenge.description,
+                );
+              },
+              backCardOffset: const Offset(0, -35),
+              allowedSwipeDirection:
+                  const AllowedSwipeDirection.only(right: true, left: true),
+              numberOfCardsDisplayed: 3,
+              isLoop: true,
+              onSwipe: (previous, current, direction) {
+                if (direction == CardSwiperDirection.right) {
+                  // showChallengeLimitDialog(
+                  //   context,
+                  //   ImagesConstant.takeChallengeLimit,
+                  //   "Batas Tantangan Sudah Habis!",
+                  //   "Kamu harus menunggu besok untuk mengisi ulang batas tantangan.",
+                  // );
+                } else if (direction == CardSwiperDirection.left) {
+                  // showShuffleSuccessSnackbar(context);
+                }
+                return true;
+              },
+            ),
+          ));
   }
 }
 

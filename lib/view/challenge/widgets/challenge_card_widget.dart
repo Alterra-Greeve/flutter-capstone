@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -6,9 +7,16 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class ChallengeCardWidget extends StatelessWidget {
   final Color cardColors;
-  final String cardImage;
-  const ChallengeCardWidget(
-      {super.key, required this.cardColors, required this.cardImage});
+  final String? image;
+  final String? title;
+  final String? description;
+  const ChallengeCardWidget({
+    super.key,
+    required this.cardColors,
+    required this.image,
+    required this.title,
+    required this.description,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +29,7 @@ class ChallengeCardWidget extends StatelessWidget {
             color: Colors.black.withOpacity(0.2),
             spreadRadius: 2,
             blurRadius: 6,
-            offset: const Offset(0, 3), 
+            offset: const Offset(0, 3),
           ),
         ],
       ),
@@ -113,15 +121,26 @@ class ChallengeCardWidget extends StatelessWidget {
             Container(
               width: double.infinity,
               height: 214,
-              decoration: const BoxDecoration(
-                color: Color(0xFF113E35),
-                borderRadius: BorderRadius.all(Radius.circular(8)),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: CachedNetworkImage(
+                  imageUrl: image ?? "",
+                  width: double.infinity,
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
               ),
-              child: SvgPicture.asset(cardImage),
             ),
             const SizedBox(height: 18),
             Text(
-              'Aku Cinta Tote Bag',
+              title ?? "-",
               style: TextStylesConstant.nunitoHeading3.copyWith(
                 fontWeight: FontWeight.w800,
                 color: ColorsConstant.neutral900,
@@ -160,7 +179,7 @@ class ChallengeCardWidget extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             Text(
-              'Dengan menggunakan tote bag, masyarakat dapat mengurangi jumlah sampah plastik yang berkontribusi pada penurunan polusi dan kerusakan ekosistem.',
+              description ?? "-",
               style: TextStylesConstant.nunitoCaption.copyWith(
                 color: ColorsConstant.neutral900,
               ),
