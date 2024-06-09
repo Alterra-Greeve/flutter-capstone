@@ -3,20 +3,21 @@ import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:greeve/view_model/search_controller.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
+// import 'package:greeve/view_model/all_product_controller.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
-// ignore: unused_import
-import 'package:greeve/view/search_product/widgets/see_all_view_product_widget.dart';
+// import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+    // final RxBool isItemSelected = false.obs;
+    // final AllProductScreenController controller = Get.put(AllProductScreenController());
     final searchProductController = Get.put(SearchProductController());
     final TextEditingController searchController = TextEditingController();
     final FocusNode searchFocusNode = FocusNode();
@@ -50,6 +51,7 @@ class SearchScreen extends StatelessWidget {
             onFieldSubmitted: (value) {
               searchProductController.saveSearchHistory(value);
               searchController.clear();
+              // isItemSelected.value = true;
             },
           ),
         ),
@@ -96,7 +98,17 @@ class SearchScreen extends StatelessWidget {
                       searchController.text = value;
                     },
                   );
-                } else {
+                } 
+                // else if (isItemSelected.value == true) {
+                //   return SearchProductCardWidget(
+                //     controller: controller,
+                //     productId: " ",
+                //     imageUrl: " ",
+                //     name: " ",
+                //     price: " ",
+                //   );
+                // } 
+                else {
                   return const EmptyStateWidget();
                 }
               },
