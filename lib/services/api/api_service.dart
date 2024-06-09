@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:greeve/models/api_responses/product_response_model.dart';
+import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/utils/helpers/error_handler_helper.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/login_response_model.dart';
@@ -106,6 +108,74 @@ class ApiService {
       }
     } on DioException catch (e) {
       throw ErrorHandlerHelper.catchPostResetPassword(e);
+    }
+  }
+
+  Future<ProductResponseModel> getProduct(
+      String productId, String? token) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio.get('${ApiConstant.products}/$productId',
+          options: options);
+      if (response.statusCode == 200) {
+        return ProductResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
+    }
+  }
+
+  Future<ProductsResponseModel> getProducts(String? token) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio.get(ApiConstant.products, options: options);
+      if (response.statusCode == 200) {
+        return ProductsResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
+    }
+  }
+
+  Future<ProductsResponseModel> getProductsbyCategory(
+      String? token, String category) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio
+          .get('${ApiConstant.productsCategory}/$category', options: options);
+
+      if (response.statusCode == 200) {
+        return ProductsResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
+    }
+  }
+
+  Future<ProductsResponseModel> getProductsbyCategoryWithPage(
+      String? token, String category, String pageKey) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio.get(
+          '${ApiConstant.productsCategory}/$category?page=$pageKey',
+          options: options);
+      if (response.statusCode == 200) {
+        return ProductsResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
     }
   }
 }

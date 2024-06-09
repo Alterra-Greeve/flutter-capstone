@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/view/login/screens/login_screen.dart';
-import 'package:greeve/view/onboarding/screens/screen_one.dart';
-import 'package:greeve/view/onboarding/screens/screen_three.dart';
 import 'package:greeve/view/product/screens/product_screen.dart';
-import 'package:greeve/view/register/screens/register_screen.dart';
 
 class BottomNavController extends GetxController {
   Rx<int> selectedIndex = Rx<int>(0);
@@ -13,11 +9,12 @@ class BottomNavController extends GetxController {
   PageController get pageController => _pageController;
 
   static final List<Widget> _widgetOptions = [
-    const LoginScreen(),
-    const RegisterScreen(),
+    const Scaffold(body: Center(child: Text('Halaman Beranda (On Progress)'))),
+    const Scaffold(
+        body: Center(child: Text('Halaman Tantangan (On Progress)'))),
     const ProductScreen(),
-    const ScreenOne(),
-    const ScreenThree(),
+    const Scaffold(body: Center(child: Text('Halaman Dampak (On Progress)'))),
+    const Scaffold(body: Center(child: Text('Halaman Profil (On Progress)'))),
   ];
   List<Widget> get widgetOptions => _widgetOptions;
 
