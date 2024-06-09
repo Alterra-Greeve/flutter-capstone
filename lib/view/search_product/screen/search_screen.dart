@@ -7,14 +7,18 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
+import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
+import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
+// ignore: unused_import
 import 'package:greeve/view/search_product/widgets/see_all_view_product_widget.dart';
 
 class SearchScreen extends StatelessWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     final searchProductController = Get.put(SearchProductController());
+    final TextEditingController searchController = TextEditingController();
     final FocusNode searchFocusNode = FocusNode();
 
     searchFocusNode.addListener(() {
@@ -38,22 +42,23 @@ class SearchScreen extends StatelessWidget {
           child: GlobalTextFieldWidget(
             focusNode: searchFocusNode,
             hintText: 'Cari Produk',
-            controller: TextEditingController(),
+            controller: searchController,
             errorText: null,
             prefixIcon: ImagesConstant.search,
             showSuffixIcon: false,
             keyboardType: TextInputType.text,
+            onFieldSubmitted: (value) {
+              searchProductController.saveSearchHistory(value);
+              searchController.clear();
+            },
           ),
         ),
       ),
       body: GestureDetector(
         onTap: () {
-          // Memeriksa apakah TextField sedang difokuskan
           if (searchFocusNode.hasFocus) {
-            // Jika ya, unfokus TextField
             searchFocusNode.unfocus();
           } else {
-            // Jika tidak, fokus ke TextField
             searchFocusNode.requestFocus();
           }
         },
@@ -62,12 +67,13 @@ class SearchScreen extends StatelessWidget {
           child: Center(
             child: Obx(
               () {
-                if (searchProductController.isTextFieldFocused.value) {
+                if (searchProductController.isTextFieldFocused.value &&
+                    searchProductController.historySearch.isEmpty) {
                   return Column(
                     children: [
                       const SizedBox(height: 10),
                       Container(
-                        width: 328,
+                        width: 350,
                         height: 68,
                         padding: const EdgeInsets.all(16.0),
                         decoration: BoxDecoration(
@@ -84,8 +90,14 @@ class SearchScreen extends StatelessWidget {
                       )
                     ],
                   );
+                } else if (searchProductController.historySearch.isNotEmpty) {
+                  return SearchHistoryWidget(
+                    onItemClick: (value) {
+                      searchController.text = value;
+                    },
+                  );
                 } else {
-                  return const SeeAllViewProductWidget();
+                  return const EmptyStateWidget();
                 }
               },
             ),

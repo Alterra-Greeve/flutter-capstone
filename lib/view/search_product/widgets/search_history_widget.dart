@@ -1,13 +1,18 @@
 import 'package:get/get.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:greeve/view_model/search_controller.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class SearchHistoryWidget extends StatelessWidget {
-  const SearchHistoryWidget({super.key});
+  final Function(String) onItemClick;
+  const SearchHistoryWidget({super.key, required this.onItemClick});
 
   @override
   Widget build(BuildContext context) {
+    final searchProductController = Get.find<SearchProductController>();
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +72,8 @@ class SearchHistoryWidget extends StatelessWidget {
                             Expanded(
                               child: TextButton(
                                 onPressed: () {
-                                  // logic delete
+                                  searchProductController.deleteAllHistory();
+                                  Get.back();
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor: ColorsConstant.primary500,
@@ -100,23 +106,52 @@ class SearchHistoryWidget extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 13),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Piring',
-                style: TextStylesConstant.nunitoSubtitle3
-                    .copyWith(color: ColorsConstant.neutral900),
-              ),
-              const SizedBox(height: 8),
-              Text(
-                'Piring keren abiezz',
-                style: TextStylesConstant.nunitoSubtitle3
-                    .copyWith(color: ColorsConstant.neutral900),
+              Obx(
+                () => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: searchProductController.historySearch.map(
+                    (e) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 13),
+                        child: GestureDetector(
+                          onTap: () {
+                            onItemClick(e);
+                          },
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                e,
+                                style:
+                                    TextStylesConstant.nunitoSubtitle3.copyWith(
+                                  fontSize: 15,
+                                  color: ColorsConstant.neutral900,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  searchProductController.deleteHistoryItem(e);
+                                },
+                                child: SvgPicture.asset(
+                                  ImagesConstant.closeSquare,
+                                  width: 22,
+                                  height: 22,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ).toList(),
+                ),
               ),
             ],
           ),

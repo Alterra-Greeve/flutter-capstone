@@ -118,4 +118,8 @@ class ProductController extends GetxController
   void navigateToSeeAllProducts(String category) {
     Get.toNamed(AppRoutes.allProduct, arguments: category);
   }
+
+  void navigateToSearchProduct(){
+    Get.toNamed(AppRoutes.searchProduct);
+  }
 }

@@ -1,63 +1,66 @@
 import 'package:get/get.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchProductController extends GetxController {
   var isTextFieldFocused = false.obs;
+  var historySearch = <String>[].obs;
+
+  @override
+  void onInit() {
+    super.onInit();
+    initHistory();
+  }
 
   void setFocus(bool isFocused) {
     isTextFieldFocused.value = isFocused;
   }
 
-  var products = [
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-    {
-      'name': 'Tumbler',
-      'price': 'Rp 148.500',
-      'image': ImagesConstant.bottleGrid
-    },
-  ].obs;
+  void saveSearchHistory(String valueSearch) async {
+    final prefs = await SharedPreferences.getInstance();
 
-  var searchQuery = ''.obs;
+    if (valueSearch.isEmpty) {
+      return;
+    }
 
-  void updateSearchQuery(String query) {
-    searchQuery.value = query;
+    final historySearchList = await getHistory() ?? <String>[];
+    historySearchList.add(valueSearch);
+
+    await prefs.setStringList('search', historySearchList);
+
+    historySearch.value = historySearchList;
+    if (kDebugMode) {
+      print('Saving search history: $historySearchList');
+    }
   }
 
-  void navigateToCart() {
-    Get.toNamed('/cart');
+  Future<List<String>?> getHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    final listDataHistory = prefs.getStringList('search');
+    return listDataHistory;
+  }
+
+  void initHistory() async {
+    historySearch.value = await getHistory() ?? <String>[];
+  }
+
+  void deleteAllHistory() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('search');
+    historySearch.clear();
+    if (kDebugMode) {
+      print('All search history deleted');
+    }
+  }
+
+  void deleteHistoryItem(String item) async {
+    final prefs = await SharedPreferences.getInstance();
+    final historySearchList = await getHistory() ?? <String>[];
+    historySearchList.remove(item);
+    await prefs.setStringList('search', historySearchList);
+    historySearch.value = historySearchList;
+    if (kDebugMode) {
+      print('Deleted search history item: $item');
+    }
   }
 }
