@@ -145,22 +145,22 @@ class ImpactCategory {
 }
 
 enum Name {
-  HEMAT_UANG,
-  MENGURANGI_LIMBAH,
-  MENGURANGI_PEMANASAN_GLOBAL,
-  PERLUAS_WAWASAN
+  hematUang,
+  mengurangiLimbah,
+  mengurangiPemanasanGlobal,
+  perluasWawasan
 }
 
 final nameValues = EnumValues({
-  "Hemat Uang": Name.HEMAT_UANG,
-  "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
-  "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
-  "Perluas Wawasan": Name.PERLUAS_WAWASAN
+  "Hemat Uang": Name.hematUang,
+  "Mengurangi Limbah": Name.mengurangiLimbah,
+  "Mengurangi Pemanasan Global": Name.mengurangiPemanasanGlobal,
+  "Perluas Wawasan": Name.perluasWawasan
 });
 
-enum AtedAt { THE_09062024 }
+enum AtedAt { the_09062024 }
 
-final atedAtValues = EnumValues({"09/06/2024": AtedAt.THE_09062024});
+final atedAtValues = EnumValues({"09/06/2024": AtedAt.the_09062024});
 
 class Image {
   String? imageUrl;

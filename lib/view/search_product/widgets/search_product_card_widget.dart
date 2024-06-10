@@ -22,9 +22,7 @@ class SearchProductCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-
-      },
+      onTap: () {},
       child: Container(
         decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(
@@ -41,19 +39,19 @@ class SearchProductCardWidget extends StatelessWidget {
                 topRight: Radius.circular(8),
               ),
               child: CachedNetworkImage(
-                  imageUrl: imageUrl ?? "",
-                  height: 156,
-                  width: double.infinity,
-                  imageBuilder: (context, imageProvider) => Container(
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: imageProvider,
-                        fit: BoxFit.cover,
-                      ),
+                imageUrl: imageUrl ?? "",
+                height: 156,
+                width: double.infinity,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8),

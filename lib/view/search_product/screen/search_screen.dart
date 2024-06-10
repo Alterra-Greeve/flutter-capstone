@@ -1,23 +1,25 @@
 import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/view_model/search_controller.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-// import 'package:greeve/view_model/all_product_controller.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
+import 'package:greeve/view/search_product/widgets/not_found_widget.dart';
 import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    // final RxBool isItemSelected = false.obs;
-    // final AllProductScreenController controller = Get.put(AllProductScreenController());
+    final RxBool isItemSelected = false.obs;
+
     final searchProductController = Get.put(SearchProductController());
     final TextEditingController searchController = TextEditingController();
     final FocusNode searchFocusNode = FocusNode();
@@ -25,6 +27,11 @@ class SearchScreen extends StatelessWidget {
     searchFocusNode.addListener(() {
       searchProductController.setFocus(searchFocusNode.hasFocus);
     });
+
+    if (kDebugMode) {
+      print(
+          'Error message search product: ${searchProductController.errorMessage.value}');
+    }
 
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -49,9 +56,10 @@ class SearchScreen extends StatelessWidget {
             showSuffixIcon: false,
             keyboardType: TextInputType.text,
             onFieldSubmitted: (value) {
+              searchProductController.getProductsbyName(value);
               searchProductController.saveSearchHistory(value);
               searchController.clear();
-              // isItemSelected.value = true;
+              isItemSelected.value = true;
             },
           ),
         ),
@@ -69,6 +77,10 @@ class SearchScreen extends StatelessWidget {
           child: Center(
             child: Obx(
               () {
+                if (kDebugMode) {
+                  print(
+                      'Error message search product: ${searchProductController.errorMessage.value}');
+                }
                 if (searchProductController.isTextFieldFocused.value &&
                     searchProductController.historySearch.isEmpty) {
                   return Column(
@@ -92,24 +104,47 @@ class SearchScreen extends StatelessWidget {
                       )
                     ],
                   );
-                } else if (searchProductController.historySearch.isNotEmpty) {
+                } else if (searchProductController.errorMessage.value ==
+                        'Produk tidak ditemukan' &&
+                    !searchProductController.isTextFieldFocused.value) {
+                  return const NotFoundWidget();
+                } else if (searchProductController.isTextFieldFocused.value ||
+                    searchProductController.historySearch.isNotEmpty &&
+                        searchProductController.errorMessage.value !=
+                            'Produk tidak ditemukan') {
                   return SearchHistoryWidget(
                     onItemClick: (value) {
                       searchController.text = value;
                     },
                   );
-                } 
-                // else if (isItemSelected.value == true) {
-                //   return SearchProductCardWidget(
-                //     controller: controller,
-                //     productId: " ",
-                //     imageUrl: " ",
-                //     name: " ",
-                //     price: " ",
-                //   );
-                // } 
-                else {
+                } else if (isItemSelected.value) {
+                  if (searchProductController.isLoadingProduct.value) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (searchProductController.productsData.isEmpty) {
+                    return const EmptyStateWidget();
+                  } else {
+                    return Expanded(
+                      child: ListView.builder(
+                        itemCount: searchProductController.productsData.length,
+                        itemBuilder: (context, index) {
+                          final item =
+                              searchProductController.productsData[index];
+                          return SearchProductCardWidget(
+                            controller: searchProductController,
+                            productId: item.productId!,
+                            imageUrl: item.images?.first.imageUrl ?? '',
+                            name: item.name,
+                            price: item.price.toString(),
+                          );
+                        },
+                      ),
+                    );
+                  }
+                } else if (searchProductController.historySearch.isEmpty &&
+                    !searchProductController.isTextFieldFocused.value) {
                   return const EmptyStateWidget();
+                } else {
+                  return const SizedBox();
                 }
               },
             ),

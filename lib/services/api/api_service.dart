@@ -178,7 +178,7 @@ class ApiService {
     }
   }
 
-  Future<ProductsResponseModel> getProductsbyName(
+  Future<ProductsResponseModel> getProductsbyNameAndPage(
       String? token, String name, String pageKey) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
@@ -186,6 +186,23 @@ class ApiService {
       final response = await _dio.get(
           '${ApiConstant.productsSearch}?name=$name&page=$pageKey',
           options: options);
+      if (response.statusCode == 200) {
+        return ProductsResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
+    }
+  }
+
+  Future<ProductsResponseModel> getProductsbyName(
+      String? token, String name) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio
+          .get('${ApiConstant.productsSearch}?name=$name', options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
       } else {

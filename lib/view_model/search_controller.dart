@@ -1,10 +1,19 @@
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
+import 'package:greeve/models/api_responses/products_response_model.dart';
+import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/material.dart';
 
 class SearchProductController extends GetxController {
   var isTextFieldFocused = false.obs;
   var historySearch = <String>[].obs;
+  final ApiService _apiService = ApiService();
+  Rx<bool> isLoadingProduct = Rx<bool>(false);
+  Rx<String?> errorMessage = Rx<String?>(null);
+  RxList<Datum> productsData = <Datum>[].obs;
+  Rx<int?> statusCode = Rx<int?>(null);
 
   @override
   void onInit() {
@@ -61,6 +70,31 @@ class SearchProductController extends GetxController {
     historySearch.value = historySearchList;
     if (kDebugMode) {
       print('Deleted search history item: $item');
+    }
+  }
+
+  void getProductsbyName(String name) async {
+    final String? token = await SharedPreferencesManager.getToken();
+    productsData.value = [];
+    isLoadingProduct.value = true;
+
+    try {
+      final result = await _apiService.getProductsbyName(token, name);
+      productsData.value = result.data!;
+      errorMessage.value = '';
+      if (kDebugMode) {
+        print('Fetched products: ${result.data}');
+      }
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        errorMessage.value ?? '',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoadingProduct.value = false;
     }
   }
 }
