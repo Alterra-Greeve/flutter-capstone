@@ -28,10 +28,10 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  another_flutter_splash_screen: ^1.2.0
-  cached_network_image: ^3.0.1
   animated_toggle_switch: ^0.8.2
-  carousel_slider: ^4.0.0
+  another_flutter_splash_screen: ^1.2.0
+  cached_network_image: ^3.3.1
+  carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   dio: ^5.4.3+1
   flutter:
@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
   loading_indicator: ^3.1.1
+  shimmer: ^3.0.0
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.2.3
   smooth_page_indicator: ^1.1.0

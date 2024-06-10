@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_form_button_widget.dart';
-import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/view_model/forgot_password_controller.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 class ForgotPassScreen extends StatelessWidget {
   const ForgotPassScreen({Key? key}) : super(key: key);
@@ -21,36 +19,26 @@ class ForgotPassScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(top: 24),
-            child: IconButton(
-              icon: SvgPicture.asset(
-                IconsConstant.arrow,
-                //color: ColorsConstant.black,
-                colorFilter: const ColorFilter.mode(
-                  ColorsConstant.black,
-                  BlendMode.srcIn,
-                ),
-              ),
-              iconSize: 24,
-              onPressed: () {
-                Get.offNamed(AppRoutes.login);
-              },
+          toolbarHeight: 64,
+          leading: IconButton(
+            icon: SvgPicture.asset(
+              IconsConstant.arrow,
             ),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
           ),
           backgroundColor: Colors.transparent,
           elevation: 0,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(
-            top: 16,
             bottom: MediaQuery.of(context).viewInsets.bottom,
           ),
           child: Form(
             child: Container(
               width: double.maxFinite,
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
               child: Column(
                 children: [
                   SvgPicture.asset(
@@ -108,21 +96,8 @@ class ForgotPassScreen extends StatelessWidget {
                       onTap: () {
                         controller.postForgotPassword();
                       },
+                      isLoading: controller.isLoading.value,
                     ),
-                  ),
-                  Obx(
-                    () => controller.isLoading.value
-                        ? const Center(
-                            child: SizedBox(
-                              width: 50,
-                              child: LoadingIndicator(
-                                indicatorType: Indicator.ballBeat,
-                                strokeWidth: 4.0,
-                                pathBackgroundColor: ColorsConstant.black,
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
                   ),
                 ],
               ),

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/view/home/screens/home_screen.dart';
+import 'package:greeve/view/common/bottom_navigation_screen.dart';
 
 class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
@@ -18,7 +18,7 @@ class LoadingScreen extends StatelessWidget {
           ImagesConstant.logoOnly,
         ),
       ),
-      nextScreen: const HomeScreen(),
+      nextScreen: const BottomNavScreen(),
     );
   }
 }

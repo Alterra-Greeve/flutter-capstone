@@ -6,6 +6,21 @@ class TextStylesConstant {
     fontFamily: 'Nunito',
   );
 
+  static final TextStyle nunitoSemiboldTitle = _baseNunito.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle nunitoExtraBoldTitle = _baseNunito.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w800,
+  );
+
+  static final TextStyle nunitoExtraBoldFooter = _baseNunito.copyWith(
+    fontSize: 10,
+    fontWeight: FontWeight.w800,
+  );
+
   static final TextStyle nunitoHeading3 = _baseNunito.copyWith(
     fontSize: 24,
     fontWeight: FontWeight.w700,
@@ -15,8 +30,12 @@ class TextStylesConstant {
     fontSize: 20,
     fontWeight: FontWeight.w700,
   );
-
   static final TextStyle nunitoHeading5 = _baseNunito.copyWith(
+    fontSize: 18,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle nunitoTitleBold = _baseNunito.copyWith(
     fontSize: 18,
     fontWeight: FontWeight.w700,
   );
@@ -45,12 +64,39 @@ class TextStylesConstant {
     fontSize: 10,
   );
 
-  static final TextStyle nunitoCaption =
-      _baseNunito.copyWith(fontSize: 12, fontWeight: FontWeight.w600);
+  static final TextStyle nunitoFooterBold = _baseNunito.copyWith(
+    fontSize: 10,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle nunitoCaption = _baseNunito.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle nunitoCaptionBold = _baseNunito.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w700,
+  );
 
   static final TextStyle nunitoButtonLarge = _baseNunito.copyWith(
-      fontSize: 14, fontWeight: FontWeight.w500, color: Colors.white);
+    fontSize: 14,
+    fontWeight: FontWeight.w500,
+    color: Colors.white,
+  );
 
-  static final TextStyle nunitoButtonMedium =
-      _baseNunito.copyWith(fontSize: 12, fontWeight: FontWeight.w500);
+  static final TextStyle nunitoButtonMedium = _baseNunito.copyWith(
+    fontSize: 12,
+    fontWeight: FontWeight.w500,
+  );
+
+  static final TextStyle nunitoButtonBold = _baseNunito.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+  );
+
+  static final TextStyle nunitoButtonSemibold = _baseNunito.copyWith(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+  );
 }

@@ -9,11 +9,13 @@ String productsResponseModelToJson(ProductsResponseModel data) =>
 class ProductsResponseModel {
   bool? status;
   String? message;
-  List<List<Datum>>? data;
+  Metadata? metadata;
+  List<Datum>? data;
 
   ProductsResponseModel({
     this.status,
     this.message,
+    this.metadata,
     this.data,
   });
 
@@ -21,19 +23,21 @@ class ProductsResponseModel {
       ProductsResponseModel(
         status: json["status"],
         message: json["message"],
+        metadata: json["metadata"] == null
+            ? null
+            : Metadata.fromJson(json["metadata"]),
         data: json["data"] == null
             ? []
-            : List<List<Datum>>.from(json["data"]!
-                .map((x) => List<Datum>.from(x.map((x) => Datum.fromJson(x))))),
+            : List<Datum>.from(json["data"]!.map((x) => Datum.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
+        "metadata": metadata?.toJson(),
         "data": data == null
             ? []
-            : List<dynamic>.from(
-                data!.map((x) => List<dynamic>.from(x.map((x) => x.toJson())))),
+            : List<dynamic>.from(data!.map((x) => x.toJson())),
       };
 }
 
@@ -43,8 +47,9 @@ class Datum {
   String? description;
   int? price;
   int? coin;
-  int? currentPage;
-  int? totalPage;
+  int? stock;
+  AtedAt? createdAt;
+  AtedAt? updatedAt;
   List<Category>? category;
   List<Image>? images;
 
@@ -54,8 +59,9 @@ class Datum {
     this.description,
     this.price,
     this.coin,
-    this.currentPage,
-    this.totalPage,
+    this.stock,
+    this.createdAt,
+    this.updatedAt,
     this.category,
     this.images,
   });
@@ -66,8 +72,9 @@ class Datum {
         description: json["description"],
         price: json["price"],
         coin: json["coin"],
-        currentPage: json["current_page"],
-        totalPage: json["total_page"],
+        stock: json["stock"],
+        createdAt: atedAtValues.map[json["created_at"]]!,
+        updatedAt: atedAtValues.map[json["updated_at"]]!,
         category: json["category"] == null
             ? []
             : List<Category>.from(
@@ -83,8 +90,9 @@ class Datum {
         "description": description,
         "price": price,
         "coin": coin,
-        "current_page": currentPage,
-        "total_page": totalPage,
+        "stock": stock,
+        "created_at": atedAtValues.reverse[createdAt],
+        "updated_at": atedAtValues.reverse[updatedAt],
         "category": category == null
             ? []
             : List<dynamic>.from(category!.map((x) => x.toJson())),
@@ -115,30 +123,44 @@ class Category {
 class ImpactCategory {
   Name? name;
   int? impactPoint;
+  String? iconUrl;
 
   ImpactCategory({
     this.name,
     this.impactPoint,
+    this.iconUrl,
   });
 
   factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
         name: nameValues.map[json["name"]]!,
         impactPoint: json["impact_point"],
+        iconUrl: json["icon_url"],
       );
 
   Map<String, dynamic> toJson() => {
         "name": nameValues.reverse[name],
         "impact_point": impactPoint,
+        "icon_url": iconUrl,
       };
 }
 
-enum Name { ecoFriendly, lessWaste, veryGreen }
+enum Name {
+  hematUang,
+  mengurangiLimbah,
+  mengurangiPemanasanGlobal,
+  perluasWawasan
+}
 
 final nameValues = EnumValues({
-  "Eco Friendly": Name.ecoFriendly,
-  "Less Waste": Name.lessWaste,
-  "Very Green": Name.veryGreen
+  "Hemat Uang": Name.hematUang,
+  "Mengurangi Limbah": Name.mengurangiLimbah,
+  "Mengurangi Pemanasan Global": Name.mengurangiPemanasanGlobal,
+  "Perluas Wawasan": Name.perluasWawasan
 });
+
+enum AtedAt { the_09062024 }
+
+final atedAtValues = EnumValues({"09/06/2024": AtedAt.the_09062024});
 
 class Image {
   String? imageUrl;
@@ -157,6 +179,26 @@ class Image {
   Map<String, dynamic> toJson() => {
         "image_url": imageUrl,
         "position": position,
+      };
+}
+
+class Metadata {
+  int? totalPage;
+  int? currentPage;
+
+  Metadata({
+    this.totalPage,
+    this.currentPage,
+  });
+
+  factory Metadata.fromJson(Map<String, dynamic> json) => Metadata(
+        totalPage: json["total_page"],
+        currentPage: json["current_page"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "total_page": totalPage,
+        "current_page": currentPage,
       };
 }
 

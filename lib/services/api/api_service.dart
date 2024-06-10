@@ -111,13 +111,28 @@ class ApiService {
     }
   }
 
+  Future<ProductResponseModel> getProduct(
+      String productId, String? token) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio.get('${ApiConstant.products}/$productId',
+          options: options);
+      if (response.statusCode == 200) {
+        return ProductResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
+    }
+  }
+
   Future<ProductsResponseModel> getProducts(String? token) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
-      final response =
-          await _dio.get(ApiConstant.products, options: options);
-
+      final response = await _dio.get(ApiConstant.products, options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
       } else {
@@ -128,15 +143,13 @@ class ApiService {
     }
   }
 
-
-  // Get products page
-  Future<ProductsResponseModel> getProductsByPage(String page, String? token) async {
+  Future<ProductsResponseModel> getProductsbyCategory(
+      String? token, String category) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
-      final response =
-          await _dio.get('${ApiConstant.products}?page={$page}', options: options);
-
+      final response = await _dio
+          .get('${ApiConstant.productsCategory}/$category', options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
       } else {
@@ -147,13 +160,14 @@ class ApiService {
     }
   }
 
-  Future<ProductsResponseModel> getSearchProducts(String name, String? token) async {
+  Future<ProductsResponseModel> getProductsbyCategoryWithPage(
+      String? token, String category, String pageKey) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
-      final response =
-          await _dio.get('${ApiConstant.productsSearch}?name={$name}', options: options);
-
+      final response = await _dio.get(
+          '${ApiConstant.productsCategory}/$category?page=$pageKey',
+          options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
       } else {
@@ -164,33 +178,15 @@ class ApiService {
     }
   }
 
-  // Search book with page
-  Future<ProductsResponseModel> getSearchProductsbyPage(String name, String page, String? token) async {
+  Future<ProductsResponseModel> getProductsbyName(
+      String? token, String name) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
-      final response =
-          await _dio.get('${ApiConstant.productsSearch}?name={$name}&page={$page}', options: options);
-
+      final response = await _dio
+          .get('${ApiConstant.productsSearch}?name=$name', options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
-      } else {
-        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
-      }
-    } on DioException catch (e) {
-      throw ErrorHandlerHelper.catchGetProducts(e);
-    }
-  }
-
-  Future<ProductResponseModel> getProduct(String productId, String? token) async {
-    try {
-      Options options = Options(headers: {'Authorization': 'Bearer $token'});
-
-      final response =
-          await _dio.get('${ApiConstant.products}{$productId}', options: options);
-
-      if (response.statusCode == 200) {
-        return ProductResponseModel.fromJson(response.data);
       } else {
         throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
       }

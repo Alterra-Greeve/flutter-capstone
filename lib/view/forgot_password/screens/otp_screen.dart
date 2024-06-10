@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/view_model/otp_controller.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:greeve/global_widgets/global_form_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -19,31 +17,22 @@ class OtpScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            leading: Padding(
-              padding: const EdgeInsets.only(top: 24),
-              child: IconButton(
-                icon: SvgPicture.asset(
-                  IconsConstant.arrow,
-                  colorFilter: const ColorFilter.mode(
-                    ColorsConstant.black,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                iconSize: 24,
-                onPressed: () {
-                  Get.offNamed(AppRoutes.login);
-                },
+            scrolledUnderElevation: 0,
+            toolbarHeight: 64,
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                IconsConstant.arrow,
               ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
           body: Container(
             width: double.maxFinite,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 36,
-            ),
+            padding: const EdgeInsets.all(16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -141,21 +130,8 @@ class OtpScreen extends StatelessWidget {
                     onTap: () {
                       controller.postOtp();
                     },
+                    isLoading: controller.isLoading.value,
                   ),
-                ),
-                Obx(
-                  () => controller.isLoading.value
-                      ? const Center(
-                          child: SizedBox(
-                            width: 50,
-                            child: LoadingIndicator(
-                              indicatorType: Indicator.ballBeat,
-                              strokeWidth: 4.0,
-                              pathBackgroundColor: ColorsConstant.black,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
                 ),
               ],
             ),

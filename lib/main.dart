@@ -7,7 +7,7 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 void main() {
   runApp(const MyApp());
 }
-  
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -18,9 +18,17 @@ class MyApp extends StatelessWidget {
       title: 'Greeve',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
+        scaffoldBackgroundColor: ColorsConstant.white,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: ColorsConstant.white,
+        ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: ColorsConstant.white,
+        ),
         useMaterial3: true,
       ),
       initialRoute: AppRoutes.splashApp,
+      // initialRoute: AppRoutes.cart,
       getPages: AppPages.routes,
     );
   }

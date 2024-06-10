@@ -8,12 +8,11 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/create_new_password_controller.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 class ConfirmPassScreen extends StatelessWidget {
   const ConfirmPassScreen({super.key});
 
-  void _showConfirmationPopup(BuildContext context) {
+  void showConfirmationPopup(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -75,29 +74,25 @@ class ConfirmPassScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            leading: Padding(
-              padding: const EdgeInsets.only(top: 24),
-              child: IconButton(
-                icon: SvgPicture.asset(
-                  IconsConstant.arrow,
-                  colorFilter: const ColorFilter.mode(
-                    ColorsConstant.black,
-                    BlendMode.srcIn,
-                  ),
-                ),
-                iconSize: 24,
-                onPressed: () => _showConfirmationPopup(context),
+            scrolledUnderElevation: 0,
+            toolbarHeight: 64,
+            leading: IconButton(
+              icon: SvgPicture.asset(
+                IconsConstant.arrow,
               ),
+              onPressed: () {
+                showConfirmationPopup(context);
+              },
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,
           ),
           body: SingleChildScrollView(
             padding: EdgeInsets.only(
-                top: 16, bottom: MediaQuery.of(context).viewInsets.bottom),
+                bottom: MediaQuery.of(context).viewInsets.bottom),
             child: Container(
               width: double.maxFinite,
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -175,21 +170,8 @@ class ConfirmPassScreen extends StatelessWidget {
                       onTap: () {
                         controller.postResetPassword();
                       },
+                      isLoading: controller.isLoading.value,
                     ),
-                  ),
-                  Obx(
-                    () => controller.isLoading.value
-                        ? const Center(
-                            child: SizedBox(
-                              width: 50,
-                              child: LoadingIndicator(
-                                indicatorType: Indicator.ballBeat,
-                                strokeWidth: 4.0,
-                                pathBackgroundColor: ColorsConstant.black,
-                              ),
-                            ),
-                          )
-                        : const SizedBox.shrink(),
                   ),
                 ],
               ),

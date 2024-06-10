@@ -9,8 +9,8 @@ class ImagesConstant {
   static const String success = 'assets/images/success.svg';
   static const String search = 'assets/images/search.svg';
   static const String searchEngines = 'assets/images/search_engines.svg';
-  static const String registerSuccessImage =
-      'assets/images/register_success_image.svg';
+  // static const String registerSuccessImage =
+  //     'assets/images/register_success_image.svg';
   // static const String banner = 'assets/images/banner.svg';
   static const String bottleDetail = 'assets/images/bottle_detail.svg';
   // static const String bottleGrid = 'assets/images/bottle_grid.svg';
@@ -33,4 +33,20 @@ class ImagesConstant {
       'assets/images/bottle_carousel_three.png';
   static const String bottleCarouselFour =
       'assets/images/bottle_carousel_four.png';
+  static const String registerSuccessImage =
+      'assets/images/register_success_image.svg';
+  static const String carouselProductImage1 =
+      'assets/images/carousel_product_image1.png';
+  static const String carouselProductImage2 =
+      'assets/images/carousel_product_image2.png';
+  static const String carouselProductImage3 =
+      'assets/images/carousel_product_image3.png';
+  static const String productImagePlaceholder =
+      'assets/images/product_image_placeholder.png';
+  static const String productCardBackground =
+      'assets/images/product_card_background.png';
+      static const String recommendationImagePlaceholder =
+      'assets/images/recommendation_image_placeholder.png';
+      static const String detailProductImagePlaceholder =
+      'assets/images/detail_product_image_placeholder.png';
 }
