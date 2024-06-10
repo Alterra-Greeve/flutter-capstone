@@ -15,6 +15,7 @@ import 'package:greeve/view/product/screens/product_screen.dart';
 import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/common/splash_screen.dart';
+import 'package:greeve/view/search_product/screen/search_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -77,6 +78,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.cart,
       page: () => const CartScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.searchProduct,
+      page: () => const SearchScreen(),
     ),
   ];
 }

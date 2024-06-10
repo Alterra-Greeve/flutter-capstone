@@ -25,7 +25,9 @@ class ProductScreen extends StatelessWidget {
         scrolledUnderElevation: 0,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              controller.navigateToSearchProduct();
+            },
             icon: SvgPicture.asset(IconsConstant.search),
           ),
           IconButton(
