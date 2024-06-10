@@ -39,6 +39,10 @@ class Datum {
   String? id;
   String? title;
   String? description;
+  int? coin;
+  int? exp;
+  int? participant;
+  Difficulty? difficulty;
   String? imageUrl;
   DateTime? dateStart;
   DateTime? dateEnd;
@@ -48,6 +52,10 @@ class Datum {
     this.id,
     this.title,
     this.description,
+    this.coin,
+    this.exp,
+    this.participant,
+    this.difficulty,
     this.imageUrl,
     this.dateStart,
     this.dateEnd,
@@ -58,6 +66,10 @@ class Datum {
         id: json["id"],
         title: json["title"],
         description: json["description"],
+        coin: json["coin"],
+        exp: json["exp"],
+        participant: json["participant"],
+        difficulty: difficultyValues.map[json["difficulty"]]!,
         imageUrl: json["image_url"],
         dateStart: json["date_start"] == null
             ? null
@@ -74,6 +86,10 @@ class Datum {
         "id": id,
         "title": title,
         "description": description,
+        "coin": coin,
+        "exp": exp,
+        "participant": participant,
+        "difficulty": difficultyValues.reverse[difficulty],
         "image_url": imageUrl,
         "date_start":
             "${dateStart!.year.toString().padLeft(4, '0')}-${dateStart!.month.toString().padLeft(2, '0')}-${dateStart!.day.toString().padLeft(2, '0')}",
@@ -104,21 +120,59 @@ class Category {
 }
 
 class ImpactCategory {
-  String? name;
+  Name? name;
   int? impactPoint;
+  String? iconUrl;
 
   ImpactCategory({
     this.name,
     this.impactPoint,
+    this.iconUrl,
   });
 
   factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
-        name: json["name"],
+        name: nameValues.map[json["name"]]!,
         impactPoint: json["impact_point"],
+        iconUrl: json["icon_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
+        "name": nameValues.reverse[name],
         "impact_point": impactPoint,
+        "icon_url": iconUrl,
       };
+}
+
+enum Name {
+  HEMAT_UANG,
+  MENGURANGI_LIMBAH,
+  MENGURANGI_PEMANASAN_GLOBAL,
+  PERLUAS_WAWASAN
+}
+
+final nameValues = EnumValues({
+  "Hemat Uang": Name.HEMAT_UANG,
+  "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
+  "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
+  "Perluas Wawasan": Name.PERLUAS_WAWASAN
+});
+
+enum Difficulty { Mudah, Sedang, Sulit }
+
+final difficultyValues = EnumValues({
+  "Mudah": Difficulty.Mudah,
+  "Sedang": Difficulty.Sedang,
+  "Sulit": Difficulty.Sulit
+});
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

@@ -16,54 +16,75 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => controller.isLoading.value
-        ? Shimmer.fromColors(
-            baseColor: Colors.grey.shade300,
-            highlightColor: Colors.grey.shade200,
-            child: Container(
-              width: double.infinity,
-              height: 546,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(8),
-              ),
-            ),
-          )
-        : SizedBox(
+    return Obx(() {
+      if (controller.isLoading.value) {
+        return Shimmer.fromColors(
+          baseColor: Colors.grey.shade300,
+          highlightColor: Colors.grey.shade200,
+          child: Container(
             width: double.infinity,
-            height: 560,
-            child: CardSwiper(
-              padding: const EdgeInsets.only(top: 32),
-              cardsCount: controller.challengesData.length,
-              cardBuilder: (context, index, x, y) {
-                var challenge = controller.challengesData[index];
-                return ChallengeCardWidget(
-                  cardColors: controller.cardColors[index],
-                  image: challenge.imageUrl,
-                  title: challenge.title,
-                  description: challenge.description,
-                );
-              },
-              backCardOffset: const Offset(0, -35),
-              allowedSwipeDirection:
-                  const AllowedSwipeDirection.only(right: true, left: true),
-              numberOfCardsDisplayed: 3,
-              isLoop: true,
-              onSwipe: (previous, current, direction) {
-                if (direction == CardSwiperDirection.right) {
-                  // showChallengeLimitDialog(
-                  //   context,
-                  //   ImagesConstant.takeChallengeLimit,
-                  //   "Batas Tantangan Sudah Habis!",
-                  //   "Kamu harus menunggu besok untuk mengisi ulang batas tantangan.",
-                  // );
-                } else if (direction == CardSwiperDirection.left) {
-                  // showShuffleSuccessSnackbar(context);
-                }
-                return true;
-              },
+            height: 546,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
             ),
-          ));
+          ),
+        );
+      }
+
+      final int cardsCount = controller.challengesData.length;
+
+      if (cardsCount == 0) {
+        return const Center(
+          child: Text('Tidak ada tantangan tersisa'),
+        );
+      }
+
+      final int numberOfCardsDisplayed = (cardsCount >= 3) ? 3 : cardsCount;
+
+      return SizedBox(
+        width: double.infinity,
+        height: 560,
+        child: CardSwiper(
+          padding: const EdgeInsets.only(top: 32),
+          cardsCount: cardsCount,
+          cardBuilder: (context, index, x, y) {
+            var challenge = controller.challengesData[index];
+            return ChallengeCardWidget(
+              cardColors: controller.cardColors[index],
+              image: challenge.imageUrl,
+              title: challenge.title,
+              description: challenge.description,
+              difficulty: challenge.difficulty?.name,
+              exp: challenge.exp.toString(),
+              coin: challenge.coin.toString(),
+              participant: challenge.participant.toString(),
+              categories: challenge.categories,
+            );
+          },
+          backCardOffset: const Offset(0, -35),
+          allowedSwipeDirection:
+              const AllowedSwipeDirection.only(right: true, left: true),
+          numberOfCardsDisplayed: numberOfCardsDisplayed,
+          isLoop: true,
+          onSwipe: (previous, current, direction) {
+            var challenge = controller.challengesData[previous];
+            if (direction == CardSwiperDirection.right) {
+              controller.postChallengesParticipate(
+                "Diterima",
+                challenge.id,
+              );
+            } else if (direction == CardSwiperDirection.left) {
+              controller.postChallengesParticipate(
+                "Ditolak",
+                challenge.id,
+              );
+            }
+            return true;
+          },
+        ),
+      );
+    });
   }
 }
 

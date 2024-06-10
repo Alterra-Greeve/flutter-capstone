@@ -9,4 +9,5 @@ class ApiConstant {
   static const String resetPassword = '$baseUrl/user/reset-password';
   static const String userChallenge = '$baseUrl/challenges/user';
   static const String challenges = '$baseUrl/challenges';
+  static const String challengesParticipate = '$baseUrl/challenges/participate';
 }

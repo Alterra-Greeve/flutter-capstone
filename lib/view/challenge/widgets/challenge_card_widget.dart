@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greeve/models/api_responses/challenges_response_model.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -10,12 +11,22 @@ class ChallengeCardWidget extends StatelessWidget {
   final String? image;
   final String? title;
   final String? description;
+  final String? difficulty;
+  final String? exp;
+  final String? coin;
+  final String? participant;
+  final List<Category>? categories;
   const ChallengeCardWidget({
     super.key,
     required this.cardColors,
     required this.image,
     required this.title,
     required this.description,
+    required this.difficulty,
+    required this.exp,
+    required this.coin,
+    required this.participant,
+    required this.categories,
   });
 
   @override
@@ -44,17 +55,19 @@ class ChallengeCardWidget extends StatelessWidget {
                 Container(
                   width: 70,
                   height: 36,
-                  decoration: const BoxDecoration(
-                    color: ColorsConstant.success100,
-                    borderRadius: BorderRadius.all(
+                  decoration: BoxDecoration(
+                    color: getDifficultyBackgroundColor(difficulty ?? ""),
+                    borderRadius: const BorderRadius.all(
                       Radius.circular(8),
                     ),
                   ),
                   child: Center(
                     child: Text(
-                      'Mudah',
-                      style: TextStylesConstant.nunitoCaptionBold
-                          .copyWith(color: ColorsConstant.success600),
+                      difficulty ?? "",
+                      style: TextStyle(
+                        color: getDifficultyTextColor(difficulty ?? ""),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
@@ -76,7 +89,7 @@ class ChallengeCardWidget extends StatelessWidget {
                             SvgPicture.asset(IconsConstant.poinXp),
                             const SizedBox(width: 4),
                             Text(
-                              '+50',
+                              "+${exp ?? '0'}",
                               style:
                                   TextStylesConstant.nunitoCaptionBold.copyWith(
                                 color: ColorsConstant.success600,
@@ -103,7 +116,7 @@ class ChallengeCardWidget extends StatelessWidget {
                             SvgPicture.asset(IconsConstant.coin),
                             const SizedBox(width: 4),
                             Text(
-                              '+100',
+                              "+${coin ?? '0'}",
                               style:
                                   TextStylesConstant.nunitoCaptionBold.copyWith(
                                 color: ColorsConstant.success600,
@@ -118,7 +131,7 @@ class ChallengeCardWidget extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 18),
-            Container(
+            SizedBox(
               width: double.infinity,
               height: 214,
               child: ClipRRect(
@@ -140,7 +153,7 @@ class ChallengeCardWidget extends StatelessWidget {
             ),
             const SizedBox(height: 18),
             Text(
-              title ?? "-",
+              title ?? "",
               style: TextStylesConstant.nunitoHeading3.copyWith(
                 fontWeight: FontWeight.w800,
                 color: ColorsConstant.neutral900,
@@ -158,28 +171,28 @@ class ChallengeCardWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 16),
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: const BoxDecoration(
-                    color: ColorsConstant.primary500,
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                Container(
-                  width: 36,
-                  height: 36,
-                  decoration: const BoxDecoration(
-                    color: ColorsConstant.primary500,
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                  ),
+                Row(
+                  children: categories!.map((category) {
+                    return Container(
+                      width: 36,
+                      height: 36,
+                      margin: const EdgeInsets.only(top: 8, right: 8),
+                      decoration: BoxDecoration(
+                        color: ColorsConstant.primary500,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: SvgPicture.network(
+                        category.impactCategory?.iconUrl ?? "",
+                        fit: BoxFit.cover,
+                      ),
+                    );
+                  }).toList(),
                 ),
               ],
             ),
             const SizedBox(height: 18),
             Text(
-              description ?? "-",
+              description ?? "",
               style: TextStylesConstant.nunitoCaption.copyWith(
                 color: ColorsConstant.neutral900,
               ),
@@ -192,7 +205,7 @@ class ChallengeCardWidget extends StatelessWidget {
                 SvgPicture.asset(IconsConstant.threeUser),
                 const SizedBox(width: 8),
                 Text(
-                  '100',
+                  participant ?? "0",
                   style: TextStylesConstant.nunitoFooterBold,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,

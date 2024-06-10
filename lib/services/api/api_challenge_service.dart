@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:greeve/models/api_responses/challenges_response_model.dart';
+import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/get_user_challenge_response_model.dart';
 import 'package:greeve/utils/constants/api_constant.dart';
 import 'package:greeve/utils/helpers/challenge_error_helper.dart';
@@ -33,7 +34,6 @@ class ApiChallengeService {
         ApiConstant.challenges,
         options: options,
       );
-      print(response);
       if (response.statusCode == 200) {
         return ChallengesResponseModel.fromJson(response.data);
       } else {
@@ -41,6 +41,28 @@ class ApiChallengeService {
       }
     } on DioException catch (e) {
       throw ChallengeErrorHelper.catchGetChallenges(e);
+    }
+  }
+
+  Future<GenericResponseModel> postChallengesParticipate(
+      String? token, String? type, String? challengeId) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+      Map<String, dynamic> data = {'challenge_id': challengeId, 'type': type};
+
+      final response = await _dio.post(
+        ApiConstant.challengesParticipate,
+        data: data,
+        options: options,
+      );
+      if (response.statusCode == 200) {
+        return GenericResponseModel.fromJson(response.data);
+      } else {
+        throw ChallengeErrorHelper.tryPostChallengeParticipate(
+            response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ChallengeErrorHelper.catchPostChallengeParticipate(e);
     }
   }
 }

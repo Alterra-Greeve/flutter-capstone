@@ -53,4 +53,20 @@ class ChallengeController extends GetxController {
       isLoading.value = false;
     }
   }
+
+  void postChallengesParticipate(String? type, String? challengeId) async {
+    final String? token = await SharedPreferencesManager.getToken();
+
+    try {
+      await _apiService.postChallengesParticipate(token, type, challengeId);
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        errorMessage.value ?? '',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    }
+  }
 }

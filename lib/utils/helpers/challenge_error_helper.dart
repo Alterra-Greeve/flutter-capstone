@@ -40,4 +40,25 @@ class ChallengeErrorHelper {
       return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
     }
   }
+
+  static String tryPostChallengeParticipate(int? statusCode) {
+    switch (statusCode) {
+      case 401:
+        return 'Unauthorized';
+      case 404:
+        return 'Tidak bisa mendapatkan data, user id tidak ditemukan.';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchPostChallengeParticipate(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryPostChallengeParticipate(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }
