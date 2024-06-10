@@ -108,15 +108,6 @@ class SearchScreen extends StatelessWidget {
                         'Produk tidak ditemukan' &&
                     !searchProductController.isTextFieldFocused.value) {
                   return const NotFoundWidget();
-                } else if (searchProductController.isTextFieldFocused.value ||
-                    searchProductController.historySearch.isNotEmpty &&
-                        searchProductController.errorMessage.value !=
-                            'Produk tidak ditemukan') {
-                  return SearchHistoryWidget(
-                    onItemClick: (value) {
-                      searchController.text = value;
-                    },
-                  );
                 } else if (isItemSelected.value) {
                   if (searchProductController.isLoadingProduct.value) {
                     return const Center(child: CircularProgressIndicator());
@@ -140,6 +131,15 @@ class SearchScreen extends StatelessWidget {
                       ),
                     );
                   }
+                } else if (searchProductController.isTextFieldFocused.value ||
+                    searchProductController.historySearch.isNotEmpty &&
+                        searchProductController.errorMessage.value !=
+                            'Produk tidak ditemukan') {
+                  return SearchHistoryWidget(
+                    onItemClick: (value) {
+                      searchController.text = value;
+                    },
+                  );
                 } else if (searchProductController.historySearch.isEmpty &&
                     !searchProductController.isTextFieldFocused.value) {
                   return const EmptyStateWidget();
