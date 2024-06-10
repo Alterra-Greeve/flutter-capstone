@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
+// import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/list_challenge/widgets/list_challenge_button_item_widget.dart';
 import 'package:greeve/view/list_challenge/widgets/list_challenge_coin_item_widget.dart';
 import 'package:greeve/view/list_challenge/widgets/list_challenge_exp_item_widget.dart';
 import 'package:greeve/view/list_challenge/widgets/list_challenge_level_item_widget.dart';
-import 'package:greeve/view/list_challenge/widgets/list_challenge_status_item_widget.dart';
+// import 'package:greeve/view/list_challenge/widgets/list_challenge_status_item_widget.dart';
 import 'package:greeve/view/list_challenge/widgets/list_challenge_time_item_widget.dart';
 import 'package:greeve/view/list_challenge/widgets/list_challenge_title_item_widget.dart';
 
