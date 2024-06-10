@@ -46,4 +46,10 @@ class AllProductScreenController extends GetxController {
       arguments: productId,
     );
   }
+
+  void navigateToProductSearch() {
+    Get.toNamed(
+      AppRoutes.searchProduct,
+    );
+  }
 }

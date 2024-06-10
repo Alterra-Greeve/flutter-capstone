@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -96,5 +97,12 @@ class SearchProductController extends GetxController {
     } finally {
       isLoadingProduct.value = false;
     }
+  }
+
+  void navigateToProductDetail(String productId) {
+    Get.toNamed(
+      AppRoutes.detailProduct,
+      arguments: productId,
+    );
   }
 }

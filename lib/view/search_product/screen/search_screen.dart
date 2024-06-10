@@ -114,21 +114,27 @@ class SearchScreen extends StatelessWidget {
                   } else if (searchProductController.productsData.isEmpty) {
                     return const EmptyStateWidget();
                   } else {
-                    return Expanded(
-                      child: ListView.builder(
-                        itemCount: searchProductController.productsData.length,
-                        itemBuilder: (context, index) {
-                          final item =
-                              searchProductController.productsData[index];
-                          return SearchProductCardWidget(
-                            controller: searchProductController,
-                            productId: item.productId!,
-                            imageUrl: item.images?.first.imageUrl ?? '',
-                            name: item.name,
-                            price: item.price.toString(),
-                          );
-                        },
+                    return GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 18,
+                        mainAxisExtent: 220,
                       ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: searchProductController.productsData.length,
+                      itemBuilder: (context, index) {
+                        final item =
+                            searchProductController.productsData[index];
+                        return SearchProductCardWidget(
+                          controller: searchProductController,
+                          productId: item.productId!,
+                          imageUrl: item.images?.first.imageUrl ?? '',
+                          name: item.name,
+                          price: item.price.toString(),
+                        );
+                      },
                     );
                   }
                 } else if (searchProductController.isTextFieldFocused.value ||

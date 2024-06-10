@@ -47,7 +47,7 @@ class DetailProductController extends GetxController
       final result = await _apiService.getProduct(productId, token);
       productData.value = result.data;
       productImages = RxList<String>.from(
-        result.data!.images!.map((e) => e['image_url'].toString()).toList(),
+        result.data!.images!.map((e) => e.imageUrl!).toList(),
       );
       errorMessage.value = '';
       _tabController = TabController(length: productImages.length, vsync: this);

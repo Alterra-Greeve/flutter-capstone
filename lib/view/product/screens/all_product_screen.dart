@@ -119,7 +119,9 @@ class AllProductScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    controller.navigateToProductSearch();
+                  },
                   child: Container(
                     width: double.infinity,
                     height: 40,

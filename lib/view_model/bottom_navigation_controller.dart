@@ -14,7 +14,11 @@ class BottomNavController extends GetxController {
         body: Center(child: Text('Halaman Tantangan (On Progress)'))),
     const ProductScreen(),
     const Scaffold(body: Center(child: Text('Halaman Dampak (On Progress)'))),
-    const Scaffold(body: Center(child: Text('Halaman Profil (On Progress)'))),
+    const Scaffold(
+      body: Center(
+        child: Text('Halaman Profil (On Progress)'),
+      ),
+    ),
   ];
   List<Widget> get widgetOptions => _widgetOptions;
 
