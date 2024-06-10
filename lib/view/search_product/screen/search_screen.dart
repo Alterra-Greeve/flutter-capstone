@@ -60,15 +60,19 @@ class SearchScreen extends StatelessWidget {
               searchProductController.saveSearchHistory(value);
               searchController.clear();
               isItemSelected.value = true;
+              searchProductController.getHistory();
             },
           ),
         ),
       ),
       body: GestureDetector(
         onTap: () {
+          searchProductController.getHistory();
           if (searchFocusNode.hasFocus) {
             searchFocusNode.unfocus();
           } else {
+            searchProductController.errorMessage.value = null;
+
             searchFocusNode.requestFocus();
           }
         },
@@ -112,7 +116,7 @@ class SearchScreen extends StatelessWidget {
                   if (searchProductController.isLoadingProduct.value) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (searchProductController.productsData.isEmpty) {
-                    return const EmptyStateWidget();
+                    return const NotFoundWidget();
                   } else {
                     return Expanded(
                       child: ListView.builder(
@@ -131,10 +135,9 @@ class SearchScreen extends StatelessWidget {
                       ),
                     );
                   }
-                } else if (searchProductController.isTextFieldFocused.value ||
-                    searchProductController.historySearch.isNotEmpty &&
-                        searchProductController.errorMessage.value !=
-                            'Produk tidak ditemukan') {
+                } else if (searchProductController.historySearch.isNotEmpty &&
+                    searchProductController.errorMessage.value !=
+                        'Produk tidak ditemukan') {
                   return SearchHistoryWidget(
                     onItemClick: (value) {
                       searchController.text = value;
