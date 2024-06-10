@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/challenges_response_model.dart';
 import 'package:greeve/models/api_responses/get_user_challenge_response_model.dart';
 import 'package:greeve/utils/constants/api_constant.dart';
@@ -15,6 +16,9 @@ class ApiChallengeService {
         ApiConstant.userChallenge,
         options: options,
       );
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 200) {
         return GetUserChallengeResponseModel.fromJson(response.data);
       } else {
@@ -33,7 +37,9 @@ class ApiChallengeService {
         ApiConstant.challenges,
         options: options,
       );
-      print(response);
+       if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 200) {
         return ChallengesResponseModel.fromJson(response.data);
       } else {
