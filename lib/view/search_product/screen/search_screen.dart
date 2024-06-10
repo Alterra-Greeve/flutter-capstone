@@ -19,7 +19,6 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final RxBool isItemSelected = false.obs;
-
     final searchProductController = Get.put(SearchProductController());
     final TextEditingController searchController = TextEditingController();
     final FocusNode searchFocusNode = FocusNode();
@@ -60,15 +59,18 @@ class SearchScreen extends StatelessWidget {
               searchProductController.saveSearchHistory(value);
               searchController.clear();
               isItemSelected.value = true;
+              searchProductController.getHistory();
             },
           ),
         ),
       ),
       body: GestureDetector(
         onTap: () {
+          searchProductController.getHistory();
           if (searchFocusNode.hasFocus) {
             searchFocusNode.unfocus();
           } else {
+            searchProductController.errorMessage.value = null;
             searchFocusNode.requestFocus();
           }
         },
@@ -81,7 +83,15 @@ class SearchScreen extends StatelessWidget {
                   print(
                       'Error message search product: ${searchProductController.errorMessage.value}');
                 }
-                if (searchProductController.isTextFieldFocused.value &&
+                if (searchProductController.historySearch.isNotEmpty &&
+                    searchProductController.errorMessage.value !=
+                        'Produk tidak ditemukan') {
+                  return SearchHistoryWidget(
+                    onItemClick: (value) {
+                      searchController.text = value;
+                    },
+                  );
+                } else if (searchProductController.isTextFieldFocused.value &&
                     searchProductController.historySearch.isEmpty) {
                   return Column(
                     children: [
@@ -112,7 +122,7 @@ class SearchScreen extends StatelessWidget {
                   if (searchProductController.isLoadingProduct.value) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (searchProductController.productsData.isEmpty) {
-                    return const EmptyStateWidget();
+                    return const NotFoundWidget();
                   } else {
                     return GridView.builder(
                       gridDelegate:
@@ -137,15 +147,6 @@ class SearchScreen extends StatelessWidget {
                       },
                     );
                   }
-                } else if (searchProductController.isTextFieldFocused.value ||
-                    searchProductController.historySearch.isNotEmpty &&
-                        searchProductController.errorMessage.value !=
-                            'Produk tidak ditemukan') {
-                  return SearchHistoryWidget(
-                    onItemClick: (value) {
-                      searchController.text = value;
-                    },
-                  );
                 } else if (searchProductController.historySearch.isEmpty &&
                     !searchProductController.isTextFieldFocused.value) {
                   return const EmptyStateWidget();
