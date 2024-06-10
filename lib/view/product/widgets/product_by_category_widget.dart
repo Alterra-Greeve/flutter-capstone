@@ -34,8 +34,6 @@ class ProductByCategoryWidget extends StatelessWidget {
               ProductListWidget(controller: controller),
               ProductListWidget(controller: controller),
               ProductListWidget(controller: controller),
-              ProductListWidget(controller: controller),
-              ProductListWidget(controller: controller),
             ],
           ),
         ),

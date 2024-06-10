@@ -8,7 +8,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
+import 'package:greeve/view/product/widgets/search_product_card_widget.dart';
 import 'package:greeve/view_model/all_product_controller.dart';
 
 class AllProductScreen extends StatelessWidget {

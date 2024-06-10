@@ -10,7 +10,7 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
-// import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
+import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});

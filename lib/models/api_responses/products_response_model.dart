@@ -48,8 +48,8 @@ class Datum {
   int? price;
   int? coin;
   int? stock;
-  String? createdAt;
-  String? updatedAt;
+  AtedAt? createdAt;
+  AtedAt? updatedAt;
   List<Category>? category;
   List<Image>? images;
 
@@ -73,8 +73,8 @@ class Datum {
         price: json["price"],
         coin: json["coin"],
         stock: json["stock"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
+        createdAt: atedAtValues.map[json["created_at"]]!,
+        updatedAt: atedAtValues.map[json["updated_at"]]!,
         category: json["category"] == null
             ? []
             : List<Category>.from(
@@ -91,8 +91,8 @@ class Datum {
         "price": price,
         "coin": coin,
         "stock": stock,
-        "created_at": createdAt,
-        "updated_at": updatedAt,
+        "created_at": atedAtValues.reverse[createdAt],
+        "updated_at": atedAtValues.reverse[updatedAt],
         "category": category == null
             ? []
             : List<dynamic>.from(category!.map((x) => x.toJson())),
@@ -121,24 +121,46 @@ class Category {
 }
 
 class ImpactCategory {
-  String? name;
+  Name? name;
   int? impactPoint;
+  String? iconUrl;
 
   ImpactCategory({
     this.name,
     this.impactPoint,
+    this.iconUrl,
   });
 
   factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
-        name: json["name"],
+        name: nameValues.map[json["name"]]!,
         impactPoint: json["impact_point"],
+        iconUrl: json["icon_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "name": name,
+        "name": nameValues.reverse[name],
         "impact_point": impactPoint,
+        "icon_url": iconUrl,
       };
 }
+
+enum Name {
+  HEMAT_UANG,
+  MENGURANGI_LIMBAH,
+  MENGURANGI_PEMANASAN_GLOBAL,
+  PERLUAS_WAWASAN
+}
+
+final nameValues = EnumValues({
+  "Hemat Uang": Name.HEMAT_UANG,
+  "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
+  "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
+  "Perluas Wawasan": Name.PERLUAS_WAWASAN
+});
+
+enum AtedAt { THE_09062024 }
+
+final atedAtValues = EnumValues({"09/06/2024": AtedAt.THE_09062024});
 
 class Image {
   String? imageUrl;
@@ -178,4 +200,16 @@ class Metadata {
         "total_page": totalPage,
         "current_page": currentPage,
       };
+}
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

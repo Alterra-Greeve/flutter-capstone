@@ -37,17 +37,15 @@ class ProductController extends GetxController
     ),
   ];
   final List<Tab> categoryTabs = <Tab>[
-    const Tab(text: 'Eco-Friendly'),
-    const Tab(text: 'Energy Efficient'),
-    const Tab(text: 'Compostable'),
-    const Tab(text: 'Fair Trade'),
-    const Tab(text: 'Reusable'),
-    const Tab(text: 'Biodegradable'),
+    const Tab(text: 'Hemat Uang'),
+    const Tab(text: 'Mengurangi Limbah'),
+    const Tab(text: 'Perluas Wawasan'),
+    const Tab(text: 'Mengurangi Pemanasan Global'),
   ];
 
   @override
   void onInit() {
-    _tabController = TabController(length: 6, vsync: this);
+    _tabController = TabController(length: 4, vsync: this);
     _tabController.addListener(() {
       if (_tabController.indexIsChanging) {
         getProductsbyCategory(categoryTabs[_tabController.index].text!);
@@ -119,7 +117,7 @@ class ProductController extends GetxController
     Get.toNamed(AppRoutes.allProduct, arguments: category);
   }
 
-  void navigateToSearchProduct(){
+  void navigateToSearchProduct() {
     Get.toNamed(AppRoutes.searchProduct);
   }
 }

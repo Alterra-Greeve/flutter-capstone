@@ -2,10 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view_model/search_controller.dart';
+import 'package:greeve/view_model/all_product_controller.dart';
 
 class SearchProductCardWidget extends StatelessWidget {
-  final SearchProductController controller;
+  final AllProductScreenController controller;
   final String productId;
   final String? imageUrl;
   final String? name;
@@ -23,7 +23,7 @@ class SearchProductCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-
+        controller.navigateToProductDetail(productId);
       },
       child: Container(
         decoration: BoxDecoration(

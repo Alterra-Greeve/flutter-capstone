@@ -150,7 +150,6 @@ class ApiService {
 
       final response = await _dio
           .get('${ApiConstant.productsCategory}/$category', options: options);
-
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
       } else {
@@ -168,6 +167,24 @@ class ApiService {
 
       final response = await _dio.get(
           '${ApiConstant.productsCategory}/$category?page=$pageKey',
+          options: options);
+      if (response.statusCode == 200) {
+        return ProductsResponseModel.fromJson(response.data);
+      } else {
+        throw ErrorHandlerHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ErrorHandlerHelper.catchGetProducts(e);
+    }
+  }
+
+  Future<ProductsResponseModel> getProductsbyName(
+      String? token, String name, String pageKey) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response = await _dio.get(
+          '${ApiConstant.productsSearch}?name=$name&page=$pageKey',
           options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
