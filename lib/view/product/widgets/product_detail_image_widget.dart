@@ -108,7 +108,6 @@ class ProductDetailImageWidget extends StatelessWidget {
                             return GestureDetector(
                               onTap: () {
                                 controller.updateImageIndex(index);
-                                controller.updateRoundedImageIndex(index);
                               },
                               child: Obx(
                                 () => Container(
