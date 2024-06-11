@@ -7,6 +7,7 @@ class ImagesConstant {
   static const String onboardingImage3 = 'assets/images/onboarding_image3.svg';
   static const String forgotPass = 'assets/images/forgot_password.svg';
   static const String success = 'assets/images/success.svg';
+  static const String search = 'assets/images/search.svg';
   static const String registerSuccessImage =
       'assets/images/register_success_image.svg';
   static const String carouselProductImage1 =
@@ -19,8 +20,11 @@ class ImagesConstant {
       'assets/images/product_image_placeholder.png';
   static const String productCardBackground =
       'assets/images/product_card_background.png';
-      static const String recommendationImagePlaceholder =
+  static const String recommendationImagePlaceholder =
       'assets/images/recommendation_image_placeholder.png';
-      static const String detailProductImagePlaceholder =
+  static const String detailProductImagePlaceholder =
       'assets/images/detail_product_image_placeholder.png';
+  static const String bottleGrid = 'assets/images/bottle_grid.png';
+  static const String searchEngines = 'assets/images/search_engines.svg';
+  static const String closeSquare = 'assets/images/close_square.svg';
 }

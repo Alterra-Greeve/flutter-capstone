@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
-import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/product_controller.dart';
 
-class SeeMoreProductCard extends StatelessWidget {
-  const SeeMoreProductCard({super.key});
+class SeeMoreProductCardWidget extends StatelessWidget {
+  final ProductController controller;
+  const SeeMoreProductCardWidget({
+    super.key,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.toNamed(AppRoutes.allProduct);
+        controller.navigateToSeeAllProducts(
+          controller.categoryTabs[controller.currentCategory.value].text!,
+        );
       },
       child: Container(
         width: 180,

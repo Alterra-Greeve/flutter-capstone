@@ -12,6 +12,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final String? prefixIcon;
   final String? helperText;
   final void Function(String)? onChanged;
+  final void Function(String)? onFieldSubmitted;
   final bool showSuffixIcon;
   final bool obscureText;
   final void Function()? onPressedSuffixIcon;
@@ -27,6 +28,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.prefixIcon,
     this.helperText,
     this.onChanged,
+    this.onFieldSubmitted,
     required this.showSuffixIcon,
     this.obscureText = false,
     this.onPressedSuffixIcon,
@@ -126,6 +128,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
           ),
           onChanged: onChanged,
           enabled: enabled,
+          onFieldSubmitted: onFieldSubmitted,
           keyboardType: keyboardType,
         ),
         if (helperText != null && controller.text.isEmpty)
