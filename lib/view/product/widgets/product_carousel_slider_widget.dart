@@ -54,7 +54,11 @@ class ProductCarouselSliderWidget extends StatelessWidget {
                             ),
                             const SizedBox(height: 24),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                controller.navigateToProductDetail(
+                                  item.productId!,
+                                );
+                              },
                               child: Container(
                                 width: 138,
                                 height: 40,

@@ -26,14 +26,17 @@ class ProductController extends GetxController
     ProductModel(
       image: ImagesConstant.carouselProductImage1,
       name: 'Sedotan Besi',
+      productId: '7dcf0f20-d1c6-4d8a-8cf5-de60f5c420be',
     ),
     ProductModel(
       image: ImagesConstant.carouselProductImage2,
       name: 'Sikat Gigi Bambu',
+      productId: '27a731c4-e539-4a13-8b7f-6cf1a7c5d6d5',
     ),
     ProductModel(
       image: ImagesConstant.carouselProductImage3,
       name: 'Botol Minum',
+      productId: '15c9a672-1c1d-41c4-9e65-5c0d2d92b722',
     ),
   ];
   final List<Tab> categoryTabs = <Tab>[
@@ -107,6 +110,7 @@ class ProductController extends GetxController
   }
 
   void navigateToProductDetail(String productId) {
+    print(productId);
     Get.toNamed(
       AppRoutes.detailProduct,
       arguments: productId,
@@ -115,9 +119,5 @@ class ProductController extends GetxController
 
   void navigateToSeeAllProducts(String category) {
     Get.toNamed(AppRoutes.allProduct, arguments: category);
-  }
-
-  void navigateToSearchProduct() {
-    Get.toNamed(AppRoutes.searchProduct);
   }
 }
