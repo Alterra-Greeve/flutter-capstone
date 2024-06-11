@@ -88,12 +88,6 @@ class SearchProductController extends GetxController {
       }
     } catch (e) {
       errorMessage.value = e.toString();
-      Get.snackbar(
-        'Error',
-        errorMessage.value ?? '',
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
     } finally {
       isLoadingProduct.value = false;
     }
