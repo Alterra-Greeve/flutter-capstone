@@ -75,7 +75,7 @@ class SearchScreen extends StatelessWidget {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(15.0),
           child: Center(
             child: Obx(
               () {
@@ -83,9 +83,17 @@ class SearchScreen extends StatelessWidget {
                   print(
                       'Error message search product: ${searchProductController.errorMessage.value}');
                 }
-                if (searchProductController.historySearch.isNotEmpty &&
+                if (searchFocusNode.hasFocus &&
+                    searchProductController.historySearch.isNotEmpty) {
+                  return SearchHistoryWidget(
+                    onItemClick: (value) {
+                      searchController.text = value;
+                    },
+                  );
+                } else if (searchProductController.historySearch.isNotEmpty &&
                     searchProductController.errorMessage.value !=
-                        'Produk tidak ditemukan') {
+                        'Produk tidak ditemukan' &&
+                    !isItemSelected.value) {
                   return SearchHistoryWidget(
                     onItemClick: (value) {
                       searchController.text = value;
