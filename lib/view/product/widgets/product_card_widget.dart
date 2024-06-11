@@ -5,6 +5,7 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/product_controller.dart';
+import 'package:intl/intl.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final ProductController controller;
@@ -25,8 +26,11 @@ class ProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formattedPrice =
+        NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0)
+            .format(double.parse(price ?? '0'));
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         controller.navigateToProductDetail(productId);
       },
       child: Container(
@@ -87,7 +91,7 @@ class ProductCardWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Rp. ${price ?? '-'}",
+                        formattedPrice,
                         style: TextStylesConstant.nunitoButtonSemibold,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
