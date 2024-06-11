@@ -36,6 +36,8 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: ColorsConstant.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 8, top: 3),
           child: IconButton(
@@ -76,7 +78,7 @@ class SearchScreen extends StatelessWidget {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(15.0),
           child: Center(
             child: Obx(
               () {
@@ -84,10 +86,17 @@ class SearchScreen extends StatelessWidget {
                   print(
                       'Error message search product: ${searchProductController.errorMessage.value}');
                 }
-                if (searchProductController.historySearch.isNotEmpty &&
-                    searchProductController.productsData.isEmpty &&
-                    searchProductController.isLoadingProduct.isFalse &&
-                    searchFocusNode.hasFocus) {
+                if (searchFocusNode.hasFocus &&
+                    searchProductController.historySearch.isNotEmpty) {
+                  return SearchHistoryWidget(
+                    onItemClick: (value) {
+                      searchController.text = value;
+                    },
+                  );
+                } else if (searchProductController.historySearch.isNotEmpty &&
+                    searchProductController.errorMessage.value !=
+                        'Produk tidak ditemukan' &&
+                    !isItemSelected.value) {
                   return SearchHistoryWidget(
                     onItemClick: (value) {
                       searchController.text = value;
