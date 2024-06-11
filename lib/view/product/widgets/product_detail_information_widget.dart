@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/product/widgets/shimmer/paragraph_shimmer_widget.dart';
 import 'package:greeve/view_model/detail_product_controller.dart';
@@ -70,42 +68,6 @@ class ProductDetailInformationWidget extends StatelessWidget {
                     style: TextStylesConstant.nunitoButtonSemibold,
                   ),
                   const SizedBox(height: 8),
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: const BoxDecoration(
-                      color: ColorsConstant.neutral100,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: SvgPicture.network(
-                            "https://storage.googleapis.com/alterra-greeve/greeve/ac95e9ed-2c03-4a13-9547-13ec176dcd93peluas_wawasan.svg")),
-                  ),
-                  const SizedBox(height: 16),
-                  Text(
-                    'Ukuran',
-                    style: TextStylesConstant.nunitoButtonSemibold,
-                  ),
-                  Container(
-                    width: 48,
-                    height: 48,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          ColorsConstant.primary400,
-                          ColorsConstant.primary500,
-                        ],
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                      ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ),

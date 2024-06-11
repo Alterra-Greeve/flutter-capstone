@@ -30,11 +30,8 @@ class DetailProductController extends GetxController
 
   void updateImageIndex(int index) {
     currentImageIndex.value = index;
-    _buttonCarouselController.jumpToPage(index);
-  }
-
-  void updateRoundedImageIndex(int index) {
     currentRoundedImageIndex.value = index;
+    _buttonCarouselController.jumpToPage(index);
   }
 
   void getProduct() async {
