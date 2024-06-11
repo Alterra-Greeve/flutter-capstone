@@ -2,13 +2,12 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class DetailProductController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  final ApiService _apiService = ApiService();
-
+  final ApiProductService _apiService = ApiProductService();
   Rx<int> currentImageIndex = Rx<int>(0);
   Rx<int> currentRoundedImageIndex = Rx<int>(0);
   Rx<bool> isLoading = Rx<bool>(false);

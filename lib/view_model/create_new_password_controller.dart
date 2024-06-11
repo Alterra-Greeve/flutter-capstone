@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/routes/app_routes.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_auth_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class CreateNewPasswordController extends GetxController {
-  final ApiService _apiService = ApiService();
-
+  final ApiAuthService _apiService = ApiAuthService();
   Rx<String?> passwordErrorText = Rx<String?>(null);
   Rx<String?> passwordConfirmationErrorText = Rx<String?>(null);
   Rx<bool> isFormValid = Rx<bool>(false);
