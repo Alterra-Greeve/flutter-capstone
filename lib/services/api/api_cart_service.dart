@@ -49,11 +49,13 @@ class ApiCartService {
     }
   }
 
-  Future<CartResponseModel> getCart(String token) async {
+  Future<CartResponseModel> getCart(String? token) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
       final response = await _dio.get(ApiConstant.cart, options: options);
+      print(response);
+      print(response.statusCode);
       if (response.statusCode == 200) {
         return CartResponseModel.fromJson(response.data);
       } else {

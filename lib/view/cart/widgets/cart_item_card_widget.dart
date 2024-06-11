@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -5,10 +6,10 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class CartItemCardWidget extends StatelessWidget {
-  final String name;
-  final String description;
-  final String image;
-  final String price;
+  final String? name;
+  final String? description;
+  final String? image;
+  final String? price;
   const CartItemCardWidget({
     super.key,
     required this.name,
@@ -37,11 +38,19 @@ class CartItemCardWidget extends StatelessWidget {
         children: [
           Row(
             children: [
-              Image.asset(
-                image,
+              CachedNetworkImage(
+                imageUrl: image ?? "",
                 width: 70,
                 height: 70,
-                fit: BoxFit.cover,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
               const SizedBox(width: 16),
               SizedBox(
@@ -51,13 +60,13 @@ class CartItemCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      name ?? "",
                       style: TextStylesConstant.nunitoButtonSemibold,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
-                      description,
+                      description ?? "",
                       style: TextStylesConstant.nunitoCaption.copyWith(
                         color: ColorsConstant.neutral600,
                       ),

@@ -17,7 +17,7 @@ class SearchHistoryWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 10),
+        const SizedBox(height: 3),
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20),
           child: Row(
@@ -107,53 +107,59 @@ class SearchHistoryWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 13),
-        Padding(
-          padding: const EdgeInsets.only(left: 20, right: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Obx(
-                () => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: searchProductController.historySearch.map(
-                    (e) {
-                      return Padding(
-                        padding: const EdgeInsets.only(bottom: 13),
-                        child: GestureDetector(
-                          onTap: () {
-                            onItemClick(e);
-                          },
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                e,
-                                style:
-                                    TextStylesConstant.nunitoSubtitle3.copyWith(
-                                  fontSize: 15,
-                                  color: ColorsConstant.neutral900,
-                                ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(
+                    () => Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: searchProductController.historySearch.map(
+                        (e) {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 13),
+                            child: GestureDetector(
+                              onTap: () {
+                                onItemClick(e);
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    e,
+                                    style: TextStylesConstant.nunitoSubtitle3
+                                        .copyWith(
+                                      fontSize: 15,
+                                      color: ColorsConstant.neutral900,
+                                    ),
+                                  ),
+                                  GestureDetector(
+                                    onTap: () {
+                                      searchProductController
+                                          .deleteHistoryItem(e);
+                                    },
+                                    child: SvgPicture.asset(
+                                      ImagesConstant.closeSquare,
+                                      width: 22,
+                                      height: 22,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              GestureDetector(
-                                onTap: () {
-                                  searchProductController.deleteHistoryItem(e);
-                                },
-                                child: SvgPicture.asset(
-                                  ImagesConstant.closeSquare,
-                                  width: 22,
-                                  height: 22,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ).toList(),
-                ),
+                            ),
+                          );
+                        },
+                      ).toList(),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ],

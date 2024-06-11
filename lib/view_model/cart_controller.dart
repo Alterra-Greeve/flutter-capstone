@@ -1,33 +1,43 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/models/carousel_item_model.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/services/api/api_cart_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
+
+import 'package:greeve/models/api_responses/cart_response_model.dart';
 
 class CartController extends GetxController {
+  final ApiCartService _apiCartService = ApiCartService();
   Rx<bool> isCoinApplied = false.obs;
+  RxList<Item> cartData = <Item>[].obs;
+  Rx<bool> isLoadingCart = Rx<bool>(false);
+  Rx<String?> errorMessage = Rx<String?>(null);
 
-  final List<ProductModel> cartItems = [
-    ProductModel(
-      image: ImagesConstant.recommendationImagePlaceholder,
-      name: 'Wadah Makanan Kaca',
-      description:
-          'Wadah makanan kaca adalah solusi sempurna untuk menyimpan makanan dengan aman dan praktis.',
-      price: "148.500",
-    ),
-    ProductModel(
-      image: ImagesConstant.recommendationImagePlaceholder,
-      name: 'Wadah Makanan Kaca',
-      description:
-          'Wadah makanan kaca adalah solusi sempurna untuk menyimpan makanan dengan aman dan praktis.',
-      price: "148.500",
-    ),
-    ProductModel(
-      image: ImagesConstant.recommendationImagePlaceholder,
-      name: 'Wadah Makanan Kaca',
-      description:
-          'Wadah makanan kaca adalah solusi sempurna untuk menyimpan makanan dengan aman dan praktis.',
-      price: "148.500",
-    ),
-  ];
+  @override
+  void onInit() {
+    getCart();
+    super.onInit();
+  }
+
+  void getCart() async {
+    try {
+      final String? token = await SharedPreferencesManager.getToken();
+      cartData.value = [];
+      isLoadingCart.value = true;
+      final result = await _apiCartService.getCart(token);
+      cartData.value = result.data!.items!;
+      errorMessage.value = '';
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        errorMessage.value ?? '',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoadingCart.value = false;
+    }
+  }
 
   void toggleCoinSwitch() {
     isCoinApplied.value = !isCoinApplied.value;
