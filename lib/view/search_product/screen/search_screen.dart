@@ -35,6 +35,8 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: ColorsConstant.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 8, top: 3),
           child: IconButton(
