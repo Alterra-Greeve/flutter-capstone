@@ -2,19 +2,19 @@ import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class DetailProductController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  final ApiService _apiService = ApiService();
-
+  final ApiProductService _apiService = ApiProductService();
   Rx<int> currentImageIndex = Rx<int>(0);
   Rx<int> currentRoundedImageIndex = Rx<int>(0);
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<Data?> productData = Rx<Data?>(null);
   RxList<String> productImages = <String>[].obs;
+  RxList<String> impactCategories = <String>[].obs;
 
   late TabController _tabController;
   TabController get tabController => _tabController;
@@ -30,11 +30,8 @@ class DetailProductController extends GetxController
 
   void updateImageIndex(int index) {
     currentImageIndex.value = index;
-    _buttonCarouselController.jumpToPage(index);
-  }
-
-  void updateRoundedImageIndex(int index) {
     currentRoundedImageIndex.value = index;
+    _buttonCarouselController.jumpToPage(index);
   }
 
   void getProduct() async {
@@ -49,6 +46,10 @@ class DetailProductController extends GetxController
       productImages = RxList<String>.from(
         result.data!.images!.map((e) => e.imageUrl!).toList(),
       );
+      impactCategories.value = result.data?.category?.map((category) {
+            return category.impactCategory?.name ?? '';
+          }).toList() ??
+          [];
       errorMessage.value = '';
       _tabController = TabController(length: productImages.length, vsync: this);
     } catch (e) {

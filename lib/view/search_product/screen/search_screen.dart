@@ -12,6 +12,7 @@ import 'package:greeve/view/search_product/widgets/not_found_widget.dart';
 import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -35,6 +36,8 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: ColorsConstant.white,
         leading: Padding(
           padding: const EdgeInsets.only(left: 8, top: 3),
           child: IconButton(
@@ -75,7 +78,7 @@ class SearchScreen extends StatelessWidget {
           }
         },
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(15.0),
           child: Center(
             child: Obx(
               () {
@@ -83,9 +86,17 @@ class SearchScreen extends StatelessWidget {
                   print(
                       'Error message search product: ${searchProductController.errorMessage.value}');
                 }
-                if (searchProductController.historySearch.isNotEmpty &&
+                if (searchFocusNode.hasFocus &&
+                    searchProductController.historySearch.isNotEmpty) {
+                  return SearchHistoryWidget(
+                    onItemClick: (value) {
+                      searchController.text = value;
+                    },
+                  );
+                } else if (searchProductController.historySearch.isNotEmpty &&
                     searchProductController.errorMessage.value !=
-                        'Produk tidak ditemukan') {
+                        'Produk tidak ditemukan' &&
+                    !isItemSelected.value) {
                   return SearchHistoryWidget(
                     onItemClick: (value) {
                       searchController.text = value;
@@ -120,7 +131,16 @@ class SearchScreen extends StatelessWidget {
                   return const NotFoundWidget();
                 } else if (isItemSelected.value) {
                   if (searchProductController.isLoadingProduct.value) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        child: LoadingIndicator(
+                          indicatorType: Indicator.ballRotateChase,
+                          strokeWidth: 4.0,
+                          colors: [Theme.of(context).primaryColor],
+                        ),
+                      ),
+                    );
                   } else if (searchProductController.productsData.isEmpty) {
                     return const NotFoundWidget();
                   } else {

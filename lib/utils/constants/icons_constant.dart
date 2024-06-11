@@ -1,5 +1,6 @@
 class IconsConstant {
   static const String message = 'assets/images/message.svg';
+  static const String person = 'assets/images/person.svg';
   static const String lock = 'assets/images/lock.svg';
   static const String show = 'assets/images/show.svg';
   static const String hide = 'assets/images/hide.svg';
@@ -17,10 +18,13 @@ class IconsConstant {
   static const String homeNavOn = 'assets/images/botnav_home_on.svg';
   static const String challengeNavOff =
       'assets/images/botnav_challenge_off.svg';
-      static const String challengeNavOn =
-      'assets/images/botnav_challenge_on.svg';
+  static const String challengeNavOn = 'assets/images/botnav_challenge_on.svg';
   static const String productNavOff = 'assets/images/botnav_product_off.svg';
   static const String productNavOn = 'assets/images/botnav_product_on.svg';
   static const String impactNavOff = 'assets/images/botnav_impact_off.svg';
   static const String profileNavOff = 'assets/images/botnav_profile_off.svg';
+  static const String iconCategory1 = 'assets/images/icon_category1.png';
+  static const String iconCategory2 = 'assets/images/icon_category2.png';
+  static const String iconCategory3 = 'assets/images/icon_category3.png';
+  static const String iconCategory4 = 'assets/images/icon_category4.png';
 }

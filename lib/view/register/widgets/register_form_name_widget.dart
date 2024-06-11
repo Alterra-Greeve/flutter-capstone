@@ -1,8 +1,6 @@
 part of '../screens/register_screen.dart';
 
-
 class RegisterFormNameWidget extends StatelessWidget {
-
   const RegisterFormNameWidget({super.key});
 
   @override
@@ -19,6 +17,7 @@ class RegisterFormNameWidget extends StatelessWidget {
           value,
         ),
         keyboardType: TextInputType.name,
+        prefixIcon: IconsConstant.person,
       ),
     );
   }

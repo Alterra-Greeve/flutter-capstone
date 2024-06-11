@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-class ErrorHandlerHelper {
+class AuthErrorHelper {
   static String tryPostLogin(int? statusCode) {
     switch (statusCode) {
       case 400:
@@ -97,25 +97,6 @@ class ErrorHandlerHelper {
   static String catchPostResetPassword(DioException e) {
     if (e.response != null && e.response!.statusCode != null) {
       return tryPostResetPassword(
-        e.response!.statusCode,
-      );
-    } else {
-      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
-    }
-  }
-
-  static String tryGetProducts(int? statusCode) {
-    switch (statusCode) {
-      case 404:
-        return 'Produk tidak ditemukan';
-      default:
-        return 'Terjadi kesalahan (Status Code: $statusCode).';
-    }
-  }
-
-  static String catchGetProducts(DioException e) {
-    if (e.response != null && e.response!.statusCode != null) {
-      return tryGetProducts(
         e.response!.statusCode,
       );
     } else {
