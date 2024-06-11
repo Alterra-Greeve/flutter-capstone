@@ -12,6 +12,7 @@ import 'package:greeve/view/search_product/widgets/not_found_widget.dart';
 import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -84,8 +85,9 @@ class SearchScreen extends StatelessWidget {
                       'Error message search product: ${searchProductController.errorMessage.value}');
                 }
                 if (searchProductController.historySearch.isNotEmpty &&
-                    searchProductController.errorMessage.value !=
-                        'Produk tidak ditemukan') {
+                    searchProductController.productsData.isEmpty &&
+                    searchProductController.isLoadingProduct.isFalse &&
+                    searchFocusNode.hasFocus) {
                   return SearchHistoryWidget(
                     onItemClick: (value) {
                       searchController.text = value;
@@ -120,7 +122,16 @@ class SearchScreen extends StatelessWidget {
                   return const NotFoundWidget();
                 } else if (isItemSelected.value) {
                   if (searchProductController.isLoadingProduct.value) {
-                    return const Center(child: CircularProgressIndicator());
+                    return Center(
+                      child: SizedBox(
+                        width: 50,
+                        child: LoadingIndicator(
+                          indicatorType: Indicator.ballRotateChase,
+                          strokeWidth: 4.0,
+                          colors: [Theme.of(context).primaryColor],
+                        ),
+                      ),
+                    );
                   } else if (searchProductController.productsData.isEmpty) {
                     return const NotFoundWidget();
                   } else {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/all_product_controller.dart';
+import 'package:intl/intl.dart';
 
 class SearchProductCardWidget extends StatelessWidget {
   final AllProductScreenController controller;
@@ -21,6 +22,7 @@ class SearchProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formattedPrice = NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0).format(double.parse(price ?? '0'));
     return GestureDetector(
       onTap: (){
         controller.navigateToProductDetail(productId);
@@ -67,7 +69,7 @@ class SearchProductCardWidget extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    "Rp. ${price ?? '-'}",
+                    formattedPrice,
                     style: TextStylesConstant.nunitoSubtitle.copyWith(
                       color: ColorsConstant.neutral600,
                     ),
