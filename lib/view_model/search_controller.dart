@@ -5,7 +5,6 @@ import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter/material.dart';
 
 class SearchProductController extends GetxController {
   var isTextFieldFocused = false.obs;
@@ -88,12 +87,6 @@ class SearchProductController extends GetxController {
       }
     } catch (e) {
       errorMessage.value = e.toString();
-      Get.snackbar(
-        'Error',
-        errorMessage.value ?? '',
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
     } finally {
       isLoadingProduct.value = false;
     }
