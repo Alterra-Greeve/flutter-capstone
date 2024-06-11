@@ -49,7 +49,7 @@ class CartScreen extends StatelessWidget {
           },
         ),
       ),
-      bottomSheet: const CheckoutSummaryWidget(),
+      bottomSheet: CheckoutSummaryWidget(controller: controller),
     );
   }
 }
