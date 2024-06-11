@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/product_controller.dart';
+import 'package:intl/intl.dart';
 
 class RecommendationCardWidget extends StatelessWidget {
   final ProductController controller;
   final String productId;
-  final String name;
-  final String description;
-  final String imageUrl;
-  final String price;
+  final String? name;
+  final String? description;
+  final String? imageUrl;
+  final String? price;
   const RecommendationCardWidget({
     super.key,
     required this.controller,
@@ -23,6 +24,9 @@ class RecommendationCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final formattedPrice =
+        NumberFormat.currency(locale: 'id_ID', symbol: 'Rp ', decimalDigits: 0)
+            .format(double.parse(price ?? '0'));
     return GestureDetector(
       onTap: () {
         controller.navigateToProductDetail(productId);
@@ -49,7 +53,7 @@ class RecommendationCardWidget extends StatelessWidget {
                 bottomLeft: Radius.circular(8),
               ),
               child: CachedNetworkImage(
-                imageUrl: imageUrl,
+                imageUrl: imageUrl ?? "",
                 height: 70,
                 width: 70,
                 imageBuilder: (context, imageProvider) => Container(
@@ -71,13 +75,13 @@ class RecommendationCardWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    name,
+                    name ?? "",
                     style: TextStylesConstant.nunitoButtonSemibold,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    description,
+                    description ?? "",
                     style: TextStylesConstant.nunitoCaption.copyWith(
                       color: ColorsConstant.neutral600,
                     ),
@@ -89,7 +93,7 @@ class RecommendationCardWidget extends StatelessWidget {
             ),
             const SizedBox(width: 16),
             Text(
-              'Rp $price',
+              formattedPrice,
               style: TextStylesConstant.nunitoSubtitle.copyWith(
                 fontWeight: FontWeight.w600,
               ),

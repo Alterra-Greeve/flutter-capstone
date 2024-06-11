@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/routes/app_routes.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class AllProductScreenController extends GetxController {
-  final ApiService _apiService = ApiService();
+  final ApiProductService _apiService = ApiProductService();
   final PagingController<int, Datum> pagingController =
       PagingController(firstPageKey: 1);
 
