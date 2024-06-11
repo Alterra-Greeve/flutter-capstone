@@ -77,7 +77,8 @@ class DetailProductController extends GetxController
       isLoadingCartPost.value = true;
       final result = await _apiCartService.postCart(productId, token);
       cartResponseData.value = result;
-      Get.snackbar('Berhasil', 'Produk telah ditambahkan ke keranjang');
+      Get.snackbar('Berhasil', 'Produk telah ditambahkan ke keranjang',
+          snackPosition: SnackPosition.BOTTOM);
     } catch (e) {
       errorMessage.value = e.toString();
       Get.snackbar(

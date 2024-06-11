@@ -67,10 +67,10 @@ class ProductController extends GetxController
   }
 
   void getProductsbyCategory(String category) async {
-    final String? token = await SharedPreferencesManager.getToken();
-    productsData.value = [];
-    isLoadingProduct.value = true;
     try {
+      final String? token = await SharedPreferencesManager.getToken();
+      productsData.value = [];
+      isLoadingProduct.value = true;
       final result = await _apiService.getProductsbyCategory(token, category);
       productsData.value = result.data!;
       errorMessage.value = '';
