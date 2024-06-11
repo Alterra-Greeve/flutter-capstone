@@ -15,6 +15,7 @@ class DetailProductController extends GetxController
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<Data?> productData = Rx<Data?>(null);
   RxList<String> productImages = <String>[].obs;
+  RxList<String> impactCategories = <String>[].obs;
 
   late TabController _tabController;
   TabController get tabController => _tabController;
@@ -46,6 +47,10 @@ class DetailProductController extends GetxController
       productImages = RxList<String>.from(
         result.data!.images!.map((e) => e.imageUrl!).toList(),
       );
+      impactCategories.value = result.data?.category?.map((category) {
+            return category.impactCategory?.name ?? '';
+          }).toList() ??
+          [];
       errorMessage.value = '';
       _tabController = TabController(length: productImages.length, vsync: this);
     } catch (e) {
