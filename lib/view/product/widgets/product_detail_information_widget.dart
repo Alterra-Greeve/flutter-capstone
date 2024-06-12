@@ -77,7 +77,6 @@ class ProductDetailInformationWidget extends StatelessWidget {
                           imagePath = 'assets/images/default.png';
                           break;
                       }
-
                       return Container(
                         width: 48,
                         height: 48,

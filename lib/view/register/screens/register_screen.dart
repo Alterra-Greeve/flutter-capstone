@@ -136,18 +136,18 @@ class RegisterScreen extends StatelessWidget {
                           style: TextStylesConstant.nunitoSubtitle,
                         ),
                         TextButton(
-                          style: ButtonStyle(
-                            padding:
-                                WidgetStateProperty.all<EdgeInsetsGeometry>(
-                              const EdgeInsets.symmetric(
-                                vertical: 2,
-                                horizontal: 4,
-                              ),
-                            ),
-                            minimumSize: WidgetStateProperty.all<Size>(
-                              const Size(41, 24),
-                            ),
-                          ),
+                          // style: ButtonStyle(
+                          //   padding:
+                          //       WidgetStateProperty.all<EdgeInsetsGeometry>(
+                          //     const EdgeInsets.symmetric(
+                          //       vertical: 2,
+                          //       horizontal: 4,
+                          //     ),
+                          //   ),
+                          //   minimumSize: WidgetStateProperty.all<Size>(
+                          //     const Size(41, 24),
+                          //   ),
+                          // ),
                           onPressed: () {
                             Get.offAllNamed(AppRoutes.login);
                           },
