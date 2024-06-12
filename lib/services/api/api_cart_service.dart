@@ -28,7 +28,7 @@ class ApiCartService {
   }
 
   Future<GenericResponseModel> updateCart(
-      String? productId, String type, int qty, String? token) async {
+      String? productId, int qty, String? token, {String? type}) async {
     try {
       Map<String, dynamic> data = {
         'product_id': productId,

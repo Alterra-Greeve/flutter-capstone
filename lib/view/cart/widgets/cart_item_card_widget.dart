@@ -1,12 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:greeve/global_widgets/global_button_widget.dart';
+import 'package:greeve/global_widgets/global_form_button_widget.dart';
+import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/cart_controller.dart';
 import 'package:intl/intl.dart';
 
 class CartItemCardWidget extends StatelessWidget {
+  final CartController controller;
   final String? productId;
   final String? name;
   final String? description;
@@ -16,8 +22,10 @@ class CartItemCardWidget extends StatelessWidget {
   final VoidCallback onAdd;
   final VoidCallback onSubract;
   final VoidCallback onDelete;
+  final VoidCallback onSet;
   const CartItemCardWidget({
     super.key,
+    required this.controller,
     required this.productId,
     required this.name,
     required this.description,
@@ -27,6 +35,7 @@ class CartItemCardWidget extends StatelessWidget {
     required this.onAdd,
     required this.onSubract,
     required this.onDelete,
+    required this.onSet,
   });
 
   @override
@@ -92,7 +101,7 @@ class CartItemCardWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 16),
                 SizedBox(
-                  width: 160,
+                  width: 180,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -129,29 +138,141 @@ class CartItemCardWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    IconButton(
-                      icon: SvgPicture.asset(
-                        IconsConstant.subtraction,
-                        colorFilter: ColorFilter.mode(
-                            qty > 1
-                                ? ColorsConstant.black
-                                : ColorsConstant.neutral500,
-                            BlendMode.srcIn),
+                    InkWell(
+                      onTap: () {
+                        if (qty > 1) {
+                          onSubract();
+                        } else {
+                          Get.dialog(
+                            AlertDialog(
+                              backgroundColor: ColorsConstant.neutral100,
+                              content: Text(
+                                'Yay! Barangmu berhasil dimasukkan ke keranjang.',
+                                style: TextStylesConstant.nunitoHeading4,
+                                textAlign: TextAlign.center,
+                              ),
+                              actions: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: GlobalButtonWidget(
+                                        text: 'Batalkan',
+                                        buttonColor: ColorsConstant.neutral100,
+                                        textColor: ColorsConstant.primary500,
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                      ),
+                                    ),
+                                    const SizedBox(width: 16),
+                                    Expanded(
+                                      child: GlobalButtonWidget(
+                                        text: 'Hapus',
+                                        onTap: () {
+                                          onDelete();
+                                          Get.back();
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          );
+                        }
+                      },
+                      child: Ink(
+                        width: 24,
+                        child: SvgPicture.asset(
+                          IconsConstant.subtraction,
+                        ),
                       ),
-                      onPressed: qty > 1 ? onSubract : null,
                     ),
-                    SizedBox(
-                      width: 24,
-                      child: Text(
-                        textAlign: TextAlign.center,
-                        qty.toString(),
-                        style: TextStylesConstant.nunitoButtonSemibold,
+                    InkWell(
+                      onTap: () {
+                        controller.qtyErrorText = Rx<String?>(null);
+                        controller.qtyController.text = qty.toString();
+                        Get.dialog(
+                          AlertDialog(
+                            backgroundColor: ColorsConstant.neutral100,
+                            content: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  'Masukkan jumlah produk',
+                                  style: TextStylesConstant.nunitoHeading4,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(height: 28),
+                                Obx(
+                                  () => GlobalTextFieldWidget(
+                                    textAlign: TextAlign.center,
+                                    focusNode: controller.qtyFocusNode,
+                                    controller: controller.qtyController,
+                                    errorText: controller.qtyErrorText.value,
+                                    onChanged: (value) =>
+                                        controller.validateQty(value),
+                                    showSuffixIcon: false,
+                                    keyboardType: TextInputType.number,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            actions: [
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: GlobalButtonWidget(
+                                      text: 'Batalkan',
+                                      buttonColor: ColorsConstant.neutral100,
+                                      textColor: ColorsConstant.primary500,
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                    ),
+                                  ),
+                                  const SizedBox(width: 16),
+                                  Expanded(
+                                    child: Obx(
+                                      () => GlobalFormButtonWidget(
+                                        isFormValid:
+                                            controller.isFormValid.value,
+                                        isLoading: false,
+                                        text: 'Konfirmasi',
+                                        onTap: () {
+                                          if (controller.isFormValid.value) {
+                                            onSet();
+                                            Get.back();
+                                          }
+                                        },
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                      child: Ink(
+                        width: 24,
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          qty.toString(),
+                          style: TextStylesConstant.nunitoButtonSemibold,
+                        ),
                       ),
                     ),
-                    IconButton(
-                      icon: SvgPicture.asset(IconsConstant.addition),
-                      onPressed: onAdd,
+                    InkWell(
+                      onTap: onAdd,
+                      child: Ink(
+                        width: 24,
+                        child: SvgPicture.asset(IconsConstant.addition),
+                      ),
                     ),
+                    const SizedBox(width: 8),
                   ],
                 ),
                 const SizedBox(height: 8),

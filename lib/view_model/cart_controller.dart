@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:greeve/services/api/api_cart_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
-
 import 'package:greeve/models/api_responses/cart_response_model.dart';
 
 class CartController extends GetxController {
@@ -12,11 +11,21 @@ class CartController extends GetxController {
   RxList<Item> cartData = <Item>[].obs;
   Rx<bool> isLoadingCart = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
-  final debouncer = Debouncer(delay: const Duration(milliseconds: 100));
+  Rx<String?> qtyErrorText = Rx<String?>(null);
+  Rx<bool> isFormValid = Rx<bool>(false);
+  Rx<int> newQty = Rx<int>(0);
+  final debouncer = Debouncer(delay: const Duration(milliseconds: 250));
+
+  final TextEditingController _qtyController = TextEditingController();
+  final FocusNode _qtyFocusNode = FocusNode();
+  TextEditingController get qtyController => _qtyController;
+  FocusNode get qtyFocusNode => _qtyFocusNode;
 
   @override
   void onInit() {
     getCart();
+    _qtyFocusNode.addListener(() => update());
+    _qtyController.addListener(validateForm);
     super.onInit();
   }
 
@@ -30,12 +39,6 @@ class CartController extends GetxController {
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();
-      Get.snackbar(
-        'Error',
-        errorMessage.value ?? '',
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
     } finally {
       isLoadingCart.value = false;
     }
@@ -46,9 +49,9 @@ class CartController extends GetxController {
     try {
       await _apiCartService.updateCart(
         item.product.productId,
-        'increment',
         item.quantity + 1,
         token,
+        type: 'increment',
       );
       item.quantity += 1;
       cartData.refresh();
@@ -69,9 +72,9 @@ class CartController extends GetxController {
         try {
           await _apiCartService.updateCart(
             item.product.productId,
-            'decrement',
             item.quantity - 1,
             token,
+            type: 'decrement',
           );
           item.quantity -= 1;
           cartData.refresh();
@@ -87,9 +90,50 @@ class CartController extends GetxController {
     });
   }
 
+  void setQuantity(Item item, int newQty) async {
+    final token = await SharedPreferencesManager.getToken();
+    try {
+      await _apiCartService.updateCart(
+        item.product.productId,
+        newQty,
+        token,
+      );
+      item.quantity = newQty;
+      cartData.refresh();
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        e.toString(),
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    }
+  }
+
+  void validateQty(String value) {
+    int qty = int.tryParse(value) ?? 0;
+    if (qty == 0) {
+      qtyErrorText.value = 'Jumlah produk tidak boleh 0!';
+    } else if (qty > 20) {
+      qtyErrorText.value = 'Jumlah produk tidak boleh lebih dari 20!';
+    } else {
+      qtyErrorText.value = null;
+    }
+    validateForm();
+  }
+
+  void validateForm() {
+    if (qtyErrorText.value != null || _qtyController.text == '') {
+      isFormValid.value = false;
+    } else {
+      isFormValid.value = true;
+    }
+  }
+
   void deleteItem(Item item) async {
     final token = await SharedPreferencesManager.getToken();
     await _apiCartService.deleteCart(item.product.productId, token);
+    getCart();
   }
 
   void toggleCoinSwitch() {
@@ -97,9 +141,5 @@ class CartController extends GetxController {
     updateTotalPrice();
   }
 
-  void updateTotalPrice() {
-    // double discount = isCoinApplied.value ? 5 : 0;
-    // totalPrice.value =
-    //     218400 - discount; // Assuming a fixed price for simplicity
-  }
+  void updateTotalPrice() {}
 }

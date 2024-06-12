@@ -1,15 +1,11 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
 import 'package:greeve/services/api/api_cart_service.dart';
 import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class DetailProductController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -19,6 +15,7 @@ class DetailProductController extends GetxController
   Rx<int> currentRoundedImageIndex = Rx<int>(0);
   Rx<bool> isLoadingProduct = Rx<bool>(false);
   Rx<bool> isLoadingCartPost = Rx<bool>(false);
+  Rx<bool> showSuccessDialog = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<Data?> productData = Rx<Data?>(null);
   RxList<String> productImages = <String>[].obs;
@@ -81,7 +78,7 @@ class DetailProductController extends GetxController
       isLoadingCartPost.value = true;
       final result = await _apiCartService.postCart(productId, token);
       cartResponseData.value = result;
-      showSuccessSnackbar();
+      showSuccessDialog.value = true;
     } catch (e) {
       errorMessage.value = e.toString();
       Get.snackbar(
@@ -93,43 +90,5 @@ class DetailProductController extends GetxController
     } finally {
       isLoadingCartPost.value = false;
     }
-  }
-
-  void showSuccessSnackbar() {
-    Get.rawSnackbar(
-      snackPosition: SnackPosition.BOTTOM,
-      margin: const EdgeInsets.only(bottom: 70, right: 16, left: 16),
-      padding: const EdgeInsets.all(0),
-      backgroundColor: ColorsConstant.neutral100,
-      borderRadius: 8,
-      duration: const Duration(seconds: 3),
-      messageText: Container(
-        padding: const EdgeInsets.all(12),
-        height: 56,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                SvgPicture.asset(IconsConstant.success),
-                const SizedBox(width: 12),
-                Text(
-                  'Produk telah ditambahkan ke keranjang',
-                  style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                    color: ColorsConstant.neutral900,
-                  ),
-                ),
-              ],
-            ),
-            GestureDetector(
-              onTap: () => Get.back(),
-              child: SvgPicture.asset(
-                IconsConstant.close,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

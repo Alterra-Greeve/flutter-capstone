@@ -12,133 +12,135 @@ class CheckoutSummaryWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 200,
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(16),
-          topRight: Radius.circular(16),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(IconsConstant.voucherOff),
-                    const SizedBox(width: 11),
-                    Text(
-                      'Gunakan Voucher Greeve',
-                      style: TextStylesConstant.nunitoSubtitle,
-                    )
-                  ],
+    return Obx(() => controller.cartData.isEmpty
+        ? const SizedBox(width: 0, height: 0)
+        : Container(
+            width: double.infinity,
+            height: 200,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16),
+                topRight: Radius.circular(16),
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: const Offset(0, 3),
                 ),
-                SvgPicture.asset(IconsConstant.right),
               ],
             ),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    SvgPicture.asset(IconsConstant.coin),
-                    const SizedBox(width: 11),
-                    Text(
-                      'Tukarkan Koin',
-                      style: TextStylesConstant.nunitoSubtitle.copyWith(
-                        color: ColorsConstant.neutral500,
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(IconsConstant.voucherOff),
+                          const SizedBox(width: 11),
+                          Text(
+                            'Gunakan Voucher Greeve',
+                            style: TextStylesConstant.nunitoSubtitle,
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text(
-                      '-Rp 5',
-                      style: TextStylesConstant.nunitoSubtitle.copyWith(
-                        fontWeight: FontWeight.w600,
-                        color: ColorsConstant.neutral500,
+                      SvgPicture.asset(IconsConstant.right),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          SvgPicture.asset(IconsConstant.coin),
+                          const SizedBox(width: 11),
+                          Text(
+                            'Tukarkan Koin',
+                            style: TextStylesConstant.nunitoSubtitle.copyWith(
+                              color: ColorsConstant.neutral500,
+                            ),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            '-Rp 5',
+                            style: TextStylesConstant.nunitoSubtitle.copyWith(
+                              fontWeight: FontWeight.w600,
+                              color: ColorsConstant.neutral500,
+                            ),
+                          ),
+                          const SizedBox(width: 16),
+                          Obx(
+                            () => SizedBox(
+                              width: 28,
+                              child: Transform.scale(
+                                scale: 0.6,
+                                child: Switch(
+                                  materialTapTargetSize:
+                                      MaterialTapTargetSize.shrinkWrap,
+                                  value: controller.isCoinApplied.value,
+                                  onChanged: (value) {
+                                    controller.toggleCoinSwitch();
+                                  },
+                                  activeTrackColor: ColorsConstant.primary100,
+                                  activeColor: ColorsConstant.primary500,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const Divider(),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Total:',
+                        style: TextStylesConstant.nunitoSubtitle.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        'Rp 218.400',
+                        style: TextStylesConstant.nunitoSubtitle.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  Container(
+                    width: double.infinity,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                      color: ColorsConstant.primary500,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8),
                       ),
                     ),
-                    const SizedBox(width: 16),
-                    Obx(
-                      () => SizedBox(
-                        width: 28,
-                        child: Transform.scale(
-                          scale: 0.6,
-                          child: Switch(
-                            materialTapTargetSize:
-                                MaterialTapTargetSize.shrinkWrap,
-                            value: controller.isCoinApplied.value,
-                            onChanged: (value) {
-                              controller.toggleCoinSwitch();
-                            },
-                            activeTrackColor: ColorsConstant.primary100,
-                            activeColor: ColorsConstant.primary500,
-                          ),
+                    child: Center(
+                      child: Text(
+                        'Lanjut Checkout',
+                        style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                          color: ColorsConstant.neutral100,
                         ),
                       ),
                     ),
-                  ],
-                )
-              ],
-            ),
-            const Divider(),
-            const SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Total:',
-                  style: TextStylesConstant.nunitoSubtitle.copyWith(
-                    fontWeight: FontWeight.w600,
                   ),
-                ),
-                Text(
-                  'Rp 218.400',
-                  style: TextStylesConstant.nunitoSubtitle.copyWith(
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Container(
-              width: double.infinity,
-              height: 40,
-              decoration: const BoxDecoration(
-                color: ColorsConstant.primary500,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(8),
-                ),
-              ),
-              child: Center(
-                child: Text(
-                  'Lanjut Checkout',
-                  style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                    color: ColorsConstant.neutral100,
-                  ),
-                ),
+                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          ));
   }
 }

@@ -40,9 +40,9 @@ class ProductController extends GetxController
   ];
   final List<Tab> categoryTabs = <Tab>[
     const Tab(text: 'Hemat Uang'),
-    const Tab(text: 'Mengurangi Limbah'),
+    const Tab(text: 'Kurangi Limbah'),
     const Tab(text: 'Perluas Wawasan'),
-    const Tab(text: 'Mengurangi Pemanasan Global'),
+    const Tab(text: 'Kurangi Pemanasan'),
   ];
 
   @override
@@ -109,7 +109,6 @@ class ProductController extends GetxController
   }
 
   void navigateToProductDetail(String productId) {
-    print(productId);
     Get.toNamed(
       AppRoutes.detailProduct,
       arguments: productId,
