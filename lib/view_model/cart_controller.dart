@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:greeve/services/api/api_cart_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
@@ -11,6 +12,7 @@ class CartController extends GetxController {
   RxList<Item> cartData = <Item>[].obs;
   Rx<bool> isLoadingCart = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
+  final debouncer = Debouncer(delay: const Duration(milliseconds: 100));
 
   @override
   void onInit() {
@@ -61,26 +63,28 @@ class CartController extends GetxController {
   }
 
   void decrementQuantity(Item item) async {
-    final token = await SharedPreferencesManager.getToken();
-    if (item.quantity > 1) {
-      try {
-        await _apiCartService.updateCart(
-          item.product.productId,
-          'decrement',
-          item.quantity - 1,
-          token,
-        );
-        item.quantity -= 1;
-        cartData.refresh();
-      } catch (e) {
-        Get.snackbar(
-          'Error',
-          e.toString(),
-          snackPosition: SnackPosition.BOTTOM,
-          margin: const EdgeInsets.all(16),
-        );
+    debouncer(() async {
+      final token = await SharedPreferencesManager.getToken();
+      if (item.quantity > 1) {
+        try {
+          await _apiCartService.updateCart(
+            item.product.productId,
+            'decrement',
+            item.quantity - 1,
+            token,
+          );
+          item.quantity -= 1;
+          cartData.refresh();
+        } catch (e) {
+          Get.snackbar(
+            'Error',
+            e.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            margin: const EdgeInsets.all(16),
+          );
+        }
       }
-    }
+    });
   }
 
   void deleteItem(Item item) async {
