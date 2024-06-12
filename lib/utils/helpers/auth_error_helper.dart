@@ -103,4 +103,25 @@ class AuthErrorHelper {
       return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
     }
   }
+
+  static String tryGetUserProfile(int? statusCode) {
+    switch (statusCode) {
+      case 400:
+        return 'Unauthorized! Silahkan login kembali.';
+      case 404:
+        return 'User tidak ditemukan! Silahkan coba lagi.';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchGetUserProfile(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryGetUserProfile(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }

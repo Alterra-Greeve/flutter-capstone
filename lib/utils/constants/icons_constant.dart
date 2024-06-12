@@ -27,4 +27,12 @@ class IconsConstant {
   static const String iconCategory2 = 'assets/images/icon_category2.png';
   static const String iconCategory3 = 'assets/images/icon_category3.png';
   static const String iconCategory4 = 'assets/images/icon_category4.png';
+  static const String notification = 'assets/images/notification.svg';
+  static const String reduceHeating = 'assets/images/reduce_heating.png';
+  static const String saveMoney = 'assets/images/save_money.png';
+  static const String expandInsight = 'assets/images/expand_insight.png';
+  static const String reduceWaste = 'assets/images/reduce_waste.png';
+  static const String poinXp = 'assets/images/poin_xp.svg';
+
+  static const String poinImpact = 'assets/images/poin_impact.png';
 }

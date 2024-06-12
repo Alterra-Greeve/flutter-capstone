@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/view/product/screens/product_screen.dart';
 
 class BottomNavController extends GetxController {
@@ -10,7 +11,7 @@ class BottomNavController extends GetxController {
   PageController get pageController => _pageController;
 
   static final List<Widget> _widgetOptions = [
-    const Scaffold(body: Center(child: Text('Halaman Beranda (On Progress)'))),
+    const HomeScreen(),
     const Scaffold(
         body: Center(child: Text('Halaman Tantangan (On Progress)'))),
     const ProductScreen(),
