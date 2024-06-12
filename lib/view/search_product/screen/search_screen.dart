@@ -39,33 +39,32 @@ class SearchScreen extends StatelessWidget {
         toolbarHeight: 64,
         scrolledUnderElevation: 0,
         backgroundColor: ColorsConstant.white,
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 8, top: 3),
-          child: IconButton(
-            icon: SvgPicture.asset(IconsConstant.arrow),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+        leading: Row(
+          children: [
+            const SizedBox(width: 8),
+            IconButton(
+              icon: SvgPicture.asset(IconsConstant.arrow),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
         ),
-        title: Padding(
-          padding: const EdgeInsets.only(right: 8, top: 3),
-          child: GlobalTextFieldWidget(
-            focusNode: searchFocusNode,
-            hintText: 'Cari Produk',
-            controller: searchController,
-            errorText: null,
-            prefixIcon: ImagesConstant.search,
-            showSuffixIcon: false,
-            keyboardType: TextInputType.text,
-            onFieldSubmitted: (value) {
-              searchProductController.getProductsbyName(value);
-              searchProductController.saveSearchHistory(value);
-              searchController.clear();
-              isItemSelected.value = true;
-              searchProductController.getHistory();
-            },
-          ),
+        title: GlobalTextFieldWidget(
+          focusNode: searchFocusNode,
+          hintText: 'Cari Produk',
+          controller: searchController,
+          errorText: null,
+          prefixIcon: ImagesConstant.search,
+          showSuffixIcon: false,
+          keyboardType: TextInputType.text,
+          onFieldSubmitted: (value) {
+            searchProductController.getProductsbyName(value);
+            searchProductController.saveSearchHistory(value);
+            searchController.clear();
+            isItemSelected.value = true;
+            searchProductController.getHistory();
+          },
         ),
       ),
       body: GestureDetector(
