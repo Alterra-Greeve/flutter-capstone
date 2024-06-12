@@ -24,7 +24,7 @@ class CartController extends GetxController {
       cartData.value = [];
       isLoadingCart.value = true;
       final result = await _apiCartService.getCart(token);
-      cartData.value = result.data!.items!;
+      cartData.value = result.data.items;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();

@@ -67,10 +67,10 @@ class CartScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     var item = controller.cartData[index];
                     return CartItemCardWidget(
-                      name: item.product?.name,
-                      description: item.product?.description,
-                      image: item.product?.images?[0].imageUrl,
-                      price: item.product?.price.toString(),
+                      name: item.product.name,
+                      description: item.product.description,
+                      image: item.product.images[0].imageUrl,
+                      price: item.product.price.toString(),
                     );
                   },
                 ),

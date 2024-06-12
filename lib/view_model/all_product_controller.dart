@@ -27,12 +27,12 @@ class AllProductScreenController extends GetxController {
       final String? token = await SharedPreferencesManager.getToken();
       final result = await _apiService.getProductsbyCategoryWithPage(
           token, category, pageKey.toString());
-      final isLastPage = pageKey >= result.metadata!.totalPage!;
+      final isLastPage = pageKey >= result.metadata.totalPage;
       if (isLastPage) {
-        pagingController.appendLastPage(result.data!);
+        pagingController.appendLastPage(result.data);
       } else {
         final nextPageKey = pageKey + 1;
-        pagingController.appendPage(result.data!, nextPageKey);
+        pagingController.appendPage(result.data, nextPageKey);
       }
       errorMessage.value = '';
     } catch (e) {
