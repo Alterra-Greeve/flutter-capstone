@@ -1,50 +1,86 @@
 import 'dart:convert';
 
-ProductsResponseModel productsResponseModelFromJson(String str) => ProductsResponseModel.fromJson(json.decode(str));
+CartResponseModel cartResponseModelFromJson(String str) => CartResponseModel.fromJson(json.decode(str));
 
-String productsResponseModelToJson(ProductsResponseModel data) => json.encode(data.toJson());
+String cartResponseModelToJson(CartResponseModel data) => json.encode(data.toJson());
 
-class ProductsResponseModel {
+class CartResponseModel {
     bool status;
     String message;
-    Metadata metadata;
-    List<Datum> data;
+    Data data;
 
-    ProductsResponseModel({
+    CartResponseModel({
         required this.status,
         required this.message,
-        required this.metadata,
         required this.data,
     });
 
-    factory ProductsResponseModel.fromJson(Map<String, dynamic> json) => ProductsResponseModel(
+    factory CartResponseModel.fromJson(Map<String, dynamic> json) => CartResponseModel(
         status: json["status"],
         message: json["message"],
-        metadata: Metadata.fromJson(json["metadata"]),
-        data: List<Datum>.from(json["data"].map((x) => Datum.fromJson(x))),
+        data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
-        "metadata": metadata.toJson(),
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "data": data.toJson(),
     };
 }
 
-class Datum {
+class Data {
+    User user;
+    List<Item> items;
+
+    Data({
+        required this.user,
+        required this.items,
+    });
+
+    factory Data.fromJson(Map<String, dynamic> json) => Data(
+        user: User.fromJson(json["user"]),
+        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "user": user.toJson(),
+        "items": List<dynamic>.from(items.map((x) => x.toJson())),
+    };
+}
+
+class Item {
+    int quantity;
+    Product product;
+
+    Item({
+        required this.quantity,
+        required this.product,
+    });
+
+    factory Item.fromJson(Map<String, dynamic> json) => Item(
+        quantity: json["quantity"],
+        product: Product.fromJson(json["product"]),
+    );
+
+    Map<String, dynamic> toJson() => {
+        "quantity": quantity,
+        "product": product.toJson(),
+    };
+}
+
+class Product {
     String productId;
     String name;
     String description;
     int price;
     int coin;
     int stock;
-    AtedAt createdAt;
-    AtedAt updatedAt;
+    DateTime createdAt;
+    DateTime updatedAt;
     List<Category> category;
     List<Image> images;
 
-    Datum({
+    Product({
         required this.productId,
         required this.name,
         required this.description,
@@ -57,15 +93,15 @@ class Datum {
         required this.images,
     });
 
-    factory Datum.fromJson(Map<String, dynamic> json) => Datum(
+    factory Product.fromJson(Map<String, dynamic> json) => Product(
         productId: json["product_id"],
         name: json["name"],
         description: json["description"],
         price: json["price"],
         coin: json["coin"],
         stock: json["stock"],
-        createdAt: atedAtValues.map[json["created_at"]]!,
-        updatedAt: atedAtValues.map[json["updated_at"]]!,
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
         category: List<Category>.from(json["category"].map((x) => Category.fromJson(x))),
         images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
     );
@@ -77,8 +113,8 @@ class Datum {
         "price": price,
         "coin": coin,
         "stock": stock,
-        "created_at": atedAtValues.reverse[createdAt],
-        "updated_at": atedAtValues.reverse[updatedAt],
+        "created_at": "${createdAt.year.toString().padLeft(4, '0')}-${createdAt.month.toString().padLeft(2, '0')}-${createdAt.day.toString().padLeft(2, '0')}",
+        "updated_at": "${updatedAt.year.toString().padLeft(4, '0')}-${updatedAt.month.toString().padLeft(2, '0')}-${updatedAt.day.toString().padLeft(2, '0')}",
         "category": List<dynamic>.from(category.map((x) => x.toJson())),
         "images": List<dynamic>.from(images.map((x) => x.toJson())),
     };
@@ -101,7 +137,7 @@ class Category {
 }
 
 class ImpactCategory {
-    Name name;
+    String name;
     int impactPoint;
     String iconUrl;
 
@@ -112,39 +148,17 @@ class ImpactCategory {
     });
 
     factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
-        name: nameValues.map[json["name"]]!,
+        name: json["name"],
         impactPoint: json["impact_point"],
         iconUrl: json["icon_url"],
     );
 
     Map<String, dynamic> toJson() => {
-        "name": nameValues.reverse[name],
+        "name": name,
         "impact_point": impactPoint,
         "icon_url": iconUrl,
     };
 }
-
-enum Name {
-    HEMAT_UANG,
-    MENGURANGI_LIMBAH,
-    MENGURANGI_PEMANASAN_GLOBAL,
-    PERLUAS_WAWASAN
-}
-
-final nameValues = EnumValues({
-    "Hemat Uang": Name.HEMAT_UANG,
-    "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
-    "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
-    "Perluas Wawasan": Name.PERLUAS_WAWASAN
-});
-
-enum AtedAt {
-    THE_12062024
-}
-
-final atedAtValues = EnumValues({
-    "12/06/2024": AtedAt.THE_12062024
-});
 
 class Image {
     String imageUrl;
@@ -166,34 +180,30 @@ class Image {
     };
 }
 
-class Metadata {
-    int totalPage;
-    int currentPage;
+class User {
+    String id;
+    String username;
+    String email;
+    String address;
 
-    Metadata({
-        required this.totalPage,
-        required this.currentPage,
+    User({
+        required this.id,
+        required this.username,
+        required this.email,
+        required this.address,
     });
 
-    factory Metadata.fromJson(Map<String, dynamic> json) => Metadata(
-        totalPage: json["total_page"],
-        currentPage: json["current_page"],
+    factory User.fromJson(Map<String, dynamic> json) => User(
+        id: json["id"],
+        username: json["username"],
+        email: json["email"],
+        address: json["address"],
     );
 
     Map<String, dynamic> toJson() => {
-        "total_page": totalPage,
-        "current_page": currentPage,
+        "id": id,
+        "username": username,
+        "email": email,
+        "address": address,
     };
-}
-
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-            reverseMap = map.map((k, v) => MapEntry(v, k));
-            return reverseMap;
-    }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/view/product/screens/product_screen.dart';
 
 class BottomNavController extends GetxController {
@@ -14,9 +15,14 @@ class BottomNavController extends GetxController {
         body: Center(child: Text('Halaman Tantangan (On Progress)'))),
     const ProductScreen(),
     const Scaffold(body: Center(child: Text('Halaman Dampak (On Progress)'))),
-    const Scaffold(
+    Scaffold(
       body: Center(
-        child: Text('Halaman Profil (On Progress)'),
+        child: ElevatedButton(
+          onPressed: () {
+            SharedPreferencesManager.removeAllKeys();
+          },
+          child: const Text('Delete Token'),
+        ),
       ),
     ),
   ];

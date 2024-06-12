@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/cart_controller.dart';
 
 class CheckoutSummaryWidget extends StatelessWidget {
-  const CheckoutSummaryWidget({super.key});
+  final CartController controller;
+  const CheckoutSummaryWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -73,17 +76,21 @@ class CheckoutSummaryWidget extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(width: 16),
-                    SizedBox(
-                      width: 28,
-                      child: Transform.scale(
-                        scale: 0.6,
-                        child: Switch(
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                          value: true,
-                          onChanged: (value) {},
-                          activeTrackColor: ColorsConstant.primary100,
-                          activeColor: ColorsConstant.primary500,
+                    Obx(
+                      () => SizedBox(
+                        width: 28,
+                        child: Transform.scale(
+                          scale: 0.6,
+                          child: Switch(
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                            value: controller.isCoinApplied.value,
+                            onChanged: (value) {
+                              controller.toggleCoinSwitch();
+                            },
+                            activeTrackColor: ColorsConstant.primary100,
+                            activeColor: ColorsConstant.primary500,
+                          ),
                         ),
                       ),
                     ),

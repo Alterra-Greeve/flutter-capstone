@@ -60,8 +60,8 @@ class AllProductScreen extends StatelessWidget {
                 itemBuilder: (context, item, index) {
                   return SearchProductCardWidget(
                     controller: controller,
-                    productId: item.productId!,
-                    imageUrl: item.images?[0].imageUrl,
+                    productId: item.productId,
+                    imageUrl: item.images[0].imageUrl,
                     name: item.name,
                     price: item.price.toString(),
                   );

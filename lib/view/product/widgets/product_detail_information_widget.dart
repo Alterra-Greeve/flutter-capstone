@@ -16,7 +16,7 @@ class ProductDetailInformationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => controller.isLoading.value
+      () => controller.isLoadingProduct.value
           ? const ParagraphShimmerWidget()
           : Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),

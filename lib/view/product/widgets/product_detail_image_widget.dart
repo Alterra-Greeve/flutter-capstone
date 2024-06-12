@@ -25,7 +25,7 @@ class ProductDetailImageWidget extends StatelessWidget {
         Stack(
           children: [
             Obx(
-              () => controller.isLoading.value
+              () => controller.isLoadingProduct.value
                   ? const ImageCardShimmerWidget()
                   : CarouselSlider(
                       carouselController: controller.buttonCarouselController,
@@ -66,7 +66,7 @@ class ProductDetailImageWidget extends StatelessWidget {
                     ),
             ),
             Obx(
-              () => controller.isLoading.value
+              () => controller.isLoadingProduct.value
                   ? Container()
                   : Positioned(
                       top: 240,
@@ -89,7 +89,7 @@ class ProductDetailImageWidget extends StatelessWidget {
           ],
         ),
         Obx(
-          () => controller.isLoading.value
+          () => controller.isLoadingProduct.value
               ? const ImagesCardShimmerWidget()
               : Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),

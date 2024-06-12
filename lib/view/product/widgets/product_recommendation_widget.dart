@@ -42,10 +42,10 @@ class ProductRecommendationWidget extends StatelessWidget {
                           controller.productsRecommendationData[index];
                       return RecommendationCardWidget(
                         controller: controller,
-                        productId: product.productId!,
-                        name: product.name!,
-                        description: product.description!,
-                        imageUrl: product.images![0].imageUrl!,
+                        productId: product.productId,
+                        name: product.name,
+                        description: product.description,
+                        imageUrl: product.images[0].imageUrl,
                         price: product.price.toString(),
                       );
                     }),

@@ -102,7 +102,9 @@ class ProductCardWidget extends StatelessWidget {
                           color: ColorsConstant.primary100,
                         ),
                         child: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            controller.navigateToProductDetail(productId);
+                          },
                           icon: SvgPicture.asset(
                             IconsConstant.bag,
                           ),
