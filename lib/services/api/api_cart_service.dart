@@ -28,7 +28,7 @@ class ApiCartService {
   }
 
   Future<GenericResponseModel> updateCart(
-      String? productId, String type, int qty, String token) async {
+      String? productId, int qty, String? token, {String? type}) async {
     try {
       Map<String, dynamic> data = {
         'product_id': productId,
@@ -39,7 +39,7 @@ class ApiCartService {
 
       final response =
           await _dio.put(ApiConstant.cart, data: data, options: options);
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
         throw CartErrorHelper.tryPostCart(response.statusCode);
@@ -54,8 +54,6 @@ class ApiCartService {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
       final response = await _dio.get(ApiConstant.cart, options: options);
-      print(response);
-      print(response.statusCode);
       if (response.statusCode == 200) {
         return CartResponseModel.fromJson(response.data);
       } else {
@@ -66,21 +64,8 @@ class ApiCartService {
     }
   }
 
-  Future<CartResponseModel> deleteCart(String productId, String token) async {
-    try {
-      Map<String, dynamic> data = {
-        'product_id': productId,
-      };
-      Options options = Options(headers: {'Authorization': 'Bearer $token'});
-    
-      final response = await _dio.delete(ApiConstant.cart, data: data, options: options);
-      if (response.statusCode == 201) {
-        return CartResponseModel.fromJson(response.data);
-      } else {
-        throw CartErrorHelper.tryDeleteCart(response.statusCode);
-      }
-    } on DioException catch (e) {
-      throw CartErrorHelper.catchDeleteCart(e);
-    }
+  Future<void> deleteCart(String productId, String? token) async {
+    Options options = Options(headers: {'Authorization': 'Bearer $token'});
+    await _dio.delete('${ApiConstant.cart}/$productId', options: options);
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/product/widgets/product_detail_image_widget.dart';
 import 'package:greeve/view/product/widgets/product_detail_information_widget.dart';
@@ -95,6 +97,40 @@ class DetailProductScreen extends StatelessWidget {
               ),
             ),
           ),
+          Obx(() {
+            if (controller.showSuccessDialog.isTrue) {
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Get.dialog(
+                  AlertDialog(
+                    backgroundColor: ColorsConstant.neutral100,
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SvgPicture.asset(ImagesConstant.addCartSuccess),
+                        const SizedBox(height: 28),
+                        Text(
+                          'Yay! Barangmu berhasil dimasukkan ke keranjang.',
+                          style: TextStylesConstant.nunitoHeading4,
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                    actions: [
+                      GlobalButtonWidget(
+                        text: 'Lanjut Checkout',
+                        onTap: () {
+                          Get.back();
+                          Get.toNamed(AppRoutes.cart);
+                        },
+                      )
+                    ],
+                  ),
+                );
+                controller.showSuccessDialog.value = false;
+              });
+            }
+            return const SizedBox.shrink();
+          }),
         ],
       ),
     );

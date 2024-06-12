@@ -13,6 +13,8 @@ class IconsConstant {
   static const String voucherOff = 'assets/images/voucher_off.svg';
   static const String subtraction = 'assets/images/subtraction.svg';
   static const String addition = 'assets/images/addition.svg';
+  static const String success = 'assets/images/icon_success.svg';
+  static const String close = 'assets/images/icon_close.svg';
 
   static const String homeNavOff = 'assets/images/botnav_home_off.svg';
   static const String homeNavOn = 'assets/images/botnav_home_on.svg';

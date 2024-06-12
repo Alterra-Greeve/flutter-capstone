@@ -27,4 +27,6 @@ class ImagesConstant {
   static const String bottleGrid = 'assets/images/bottle_grid.png';
   static const String searchEngines = 'assets/images/search_engines.svg';
   static const String closeSquare = 'assets/images/close_square.svg';
+  static const String emptyCart = 'assets/images/empty_cart_image.svg';
+  static const String addCartSuccess = 'assets/images/add_cart_success_image.svg';
 }

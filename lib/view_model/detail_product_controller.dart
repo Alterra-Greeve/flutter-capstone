@@ -15,6 +15,7 @@ class DetailProductController extends GetxController
   Rx<int> currentRoundedImageIndex = Rx<int>(0);
   Rx<bool> isLoadingProduct = Rx<bool>(false);
   Rx<bool> isLoadingCartPost = Rx<bool>(false);
+  Rx<bool> showSuccessDialog = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<Data?> productData = Rx<Data?>(null);
   RxList<String> productImages = <String>[].obs;
@@ -77,8 +78,7 @@ class DetailProductController extends GetxController
       isLoadingCartPost.value = true;
       final result = await _apiCartService.postCart(productId, token);
       cartResponseData.value = result;
-      Get.snackbar('Berhasil', 'Produk telah ditambahkan ke keranjang',
-          snackPosition: SnackPosition.BOTTOM);
+      showSuccessDialog.value = true;
     } catch (e) {
       errorMessage.value = e.toString();
       Get.snackbar(
