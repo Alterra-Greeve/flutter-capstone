@@ -36,6 +36,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        toolbarHeight: 64,
         scrolledUnderElevation: 0,
         backgroundColor: ColorsConstant.white,
         leading: Padding(
@@ -77,104 +78,100 @@ class SearchScreen extends StatelessWidget {
             searchFocusNode.requestFocus();
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Center(
-            child: Obx(
-              () {
-                if (kDebugMode) {
-                  print(
-                      'Error message search product: ${searchProductController.errorMessage.value}');
-                }
-                if (searchFocusNode.hasFocus &&
-                    searchProductController.historySearch.isNotEmpty) {
-                  return SearchHistoryWidget(
-                    onItemClick: (value) {
-                      searchController.text = value;
-                    },
-                  );
-                } else if (searchProductController.historySearch.isNotEmpty &&
-                    searchProductController.errorMessage.value !=
-                        'Produk tidak ditemukan' &&
-                    !isItemSelected.value) {
-                  return SearchHistoryWidget(
-                    onItemClick: (value) {
-                      searchController.text = value;
-                    },
-                  );
-                } else if (searchProductController.isTextFieldFocused.value &&
-                    searchProductController.historySearch.isEmpty) {
-                  return Column(
-                    children: [
-                      const SizedBox(height: 10),
-                      Container(
-                        width: 350,
-                        height: 68,
-                        padding: const EdgeInsets.all(16.0),
-                        decoration: BoxDecoration(
-                          color: ColorsConstant.neutral200,
-                          borderRadius: BorderRadius.circular(10),
+        child: Center(
+          child: Obx(
+            () {
+              if (kDebugMode) {
+                print(
+                    'Error message search product: ${searchProductController.errorMessage.value}');
+              }
+              if (searchFocusNode.hasFocus &&
+                  searchProductController.historySearch.isNotEmpty) {
+                return SearchHistoryWidget(
+                  onItemClick: (value) {
+                    searchController.text = value;
+                  },
+                );
+              } else if (searchProductController.historySearch.isNotEmpty &&
+                  searchProductController.errorMessage.value !=
+                      'Produk tidak ditemukan' &&
+                  !isItemSelected.value) {
+                return SearchHistoryWidget(
+                  onItemClick: (value) {
+                    searchController.text = value;
+                  },
+                );
+              } else if (searchProductController.isTextFieldFocused.value &&
+                  searchProductController.historySearch.isEmpty) {
+                return Column(
+                  children: [
+                    const SizedBox(height: 10),
+                    Container(
+                      width: 350,
+                      height: 68,
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: ColorsConstant.neutral200,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Center(
+                        child: Text(
+                          'Coba cari produk atau kata kunci',
+                          style: TextStylesConstant.nunitoSubtitle3,
+                          textAlign: TextAlign.center,
                         ),
-                        child: Center(
-                          child: Text(
-                            'Coba cari produk atau kata kunci',
-                            style: TextStylesConstant.nunitoSubtitle3,
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      )
-                    ],
+                      ),
+                    )
+                  ],
+                );
+              } else if (searchProductController.errorMessage.value ==
+                      'Produk tidak ditemukan' &&
+                  !searchProductController.isTextFieldFocused.value) {
+                return const NotFoundWidget();
+              } else if (isItemSelected.value) {
+                if (searchProductController.isLoadingProduct.value) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50,
+                      child: LoadingIndicator(
+                        indicatorType: Indicator.ballRotateChase,
+                        strokeWidth: 4.0,
+                        colors: [Theme.of(context).primaryColor],
+                      ),
+                    ),
                   );
-                } else if (searchProductController.errorMessage.value ==
-                        'Produk tidak ditemukan' &&
-                    !searchProductController.isTextFieldFocused.value) {
+                } else if (searchProductController.productsData.isEmpty) {
                   return const NotFoundWidget();
-                } else if (isItemSelected.value) {
-                  if (searchProductController.isLoadingProduct.value) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        child: LoadingIndicator(
-                          indicatorType: Indicator.ballRotateChase,
-                          strokeWidth: 4.0,
-                          colors: [Theme.of(context).primaryColor],
-                        ),
-                      ),
-                    );
-                  } else if (searchProductController.productsData.isEmpty) {
-                    return const NotFoundWidget();
-                  } else {
-                    return GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        mainAxisSpacing: 16,
-                        crossAxisSpacing: 18,
-                        mainAxisExtent: 220,
-                      ),
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      itemCount: searchProductController.productsData.length,
-                      itemBuilder: (context, index) {
-                        final item =
-                            searchProductController.productsData[index];
-                        return SearchProductCardWidget(
-                          controller: searchProductController,
-                          productId: item.productId,
-                          imageUrl: item.images.first.imageUrl,
-                          name: item.name,
-                          price: item.price.toString(),
-                        );
-                      },
-                    );
-                  }
-                } else if (searchProductController.historySearch.isEmpty &&
-                    !searchProductController.isTextFieldFocused.value) {
-                  return const EmptyStateWidget();
                 } else {
-                  return const SizedBox();
+                  return GridView.builder(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 16,
+                      crossAxisSpacing: 18,
+                      mainAxisExtent: 220,
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    itemCount: searchProductController.productsData.length,
+                    itemBuilder: (context, index) {
+                      final item = searchProductController.productsData[index];
+                      return SearchProductCardWidget(
+                        controller: searchProductController,
+                        productId: item.productId,
+                        imageUrl: item.images.first.imageUrl,
+                        name: item.name,
+                        price: item.price.toString(),
+                      );
+                    },
+                  );
                 }
-              },
-            ),
+              } else if (searchProductController.historySearch.isEmpty &&
+                  !searchProductController.isTextFieldFocused.value) {
+                return const EmptyStateWidget();
+              } else {
+                return const SizedBox();
+              }
+            },
           ),
         ),
       ),
