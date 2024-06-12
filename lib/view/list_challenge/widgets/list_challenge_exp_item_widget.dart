@@ -1,15 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
+part of '../list_challenge_wrapper_screen.dart';
 
 class ListChallengeExpItemWidget extends StatelessWidget {
-  final String expChallenge;
+  final int? expChallenge;
 
   const ListChallengeExpItemWidget({
     super.key,
-    required this.expChallenge,
+    this.expChallenge,
   });
 
   @override

@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
+part of '../list_challenge_wrapper_screen.dart';
 
 class ListChallengeEmptyItemWidget extends StatelessWidget {
   final String titleText;

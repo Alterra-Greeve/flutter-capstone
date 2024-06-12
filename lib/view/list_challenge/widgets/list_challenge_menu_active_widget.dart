@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:greeve/view/list_challenge/widgets/list_challenge_cancel_item_widget.dart';
-import 'package:greeve/view/list_challenge/widgets/list_challenge_done_item_widget.dart';
-import 'package:greeve/view/list_challenge/widgets/list_challenge_todo_item_widget.dart';
+part of '../list_challenge_wrapper_screen.dart';
 
 class ListChallengeMenuActiveWidget extends StatelessWidget {
   final String activeButton;
@@ -12,11 +9,11 @@ class ListChallengeMenuActiveWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (activeButton) {
       case 'Lakukan':
-        return const ListChallengeTodoItemWidget();
+        return const ListChallengeTodoScreen();
       case 'Selesai':
-        return const ListChallengeDoneItemWidget();
+        return const ListChallengeDoneScreen();
       case 'Dibatalkan':
-        return const ListChallengeCancelItemWidget();
+        return const ListChallengeCancelScreen();
       default:
         return Container();
     }

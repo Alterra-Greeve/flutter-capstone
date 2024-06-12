@@ -5,9 +5,12 @@ import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/models/api_responses/get_user_challenge_response_model.dart';
 
 class ListChallengeController extends GetxController {
-  var activeButton = 'Lakukan'.obs;
-  var challengeList = <Datum>[].obs;
+  RxList<Datum> pendingChallenges = <Datum>[].obs;
+  RxList<Datum> acceptedChallenges = <Datum>[].obs;
+  RxList<Datum> declinedChallenges = <Datum>[].obs;
   Rx<bool> isLoading = Rx<bool>(false);
+  RxnString errorMessage = RxnString();
+  RxString activeButton = 'Lakukan'.obs;
 
   final ApiChallengeService _apiChallengeService = ApiChallengeService();
 
@@ -19,7 +22,6 @@ class ListChallengeController extends GetxController {
 
   void setActiveButton(String title) {
     activeButton.value = title;
-    filterChallenges();
   }
 
   void getChallenges() async {
@@ -27,38 +29,28 @@ class ListChallengeController extends GetxController {
       isLoading(true);
       final String? token = await SharedPreferencesManager.getToken();
       if (token != null) {
-        final response = await _apiChallengeService.getUserChallenge(token);
-        challengeList.assignAll(response.data ?? []);
-        filterChallenges();
+        final pendingResponse =
+            await _apiChallengeService.getUserChallenge(token, 'Pending');
+        final acceptedResponse =
+            await _apiChallengeService.getUserChallenge(token, 'Accepted');
+        final declinedResponse =
+            await _apiChallengeService.getUserChallenge(token, 'Declined');
+
+        pendingChallenges.assignAll(pendingResponse.data ?? []);
+        acceptedChallenges.assignAll(acceptedResponse.data ?? []);
+        declinedChallenges.assignAll(declinedResponse.data ?? []);
       } else {
         if (kDebugMode) {
           print("Token is not available");
         }
       }
     } catch (e) {
+      errorMessage(e.toString());
       if (kDebugMode) {
         print("Error fetching challenges: $e");
       }
     } finally {
       isLoading(false);
     }
-  }
-
-  void filterChallenges() {
-    List<Datum> filteredList;
-    switch (activeButton.value) {
-      case 'Lakukan':
-        filteredList = challengeList.where((challenge) => challenge.status == "Pending").toList();
-        break;
-      case 'Selesai':
-        filteredList = challengeList.where((challenge) => challenge.status == "Accepted").toList();
-        break;
-      case 'Dibatalkan':
-        filteredList = challengeList.where((challenge) => challenge.status == "Declined").toList();
-        break;
-      default:
-        filteredList = [];
-    }
-    challengeList.assignAll(filteredList);
   }
 }

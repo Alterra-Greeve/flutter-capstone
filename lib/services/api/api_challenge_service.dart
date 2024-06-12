@@ -9,12 +9,14 @@ import 'package:greeve/utils/helpers/challenge_error_helper.dart';
 class ApiChallengeService {
   final Dio _dio = Dio();
 
-  Future<GetUserChallengeResponseModel> getUserChallenge(String token) async {
+  Future<GetUserChallengeResponseModel> getUserChallenge(
+      String token, String status) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
+      final String urlChallenge = '${ApiConstant.userChallenge}=$status';
       final response = await _dio.get(
-        ApiConstant.userChallenge,
+        urlChallenge,
         options: options,
       );
       if (kDebugMode) {
@@ -38,7 +40,7 @@ class ApiChallengeService {
         ApiConstant.challenges,
         options: options,
       );
-       if (kDebugMode) {
+      if (kDebugMode) {
         print(response);
       }
       if (response.statusCode == 200) {

@@ -1,20 +1,43 @@
-import 'package:flutter/material.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
+part of '../list_challenge_wrapper_screen.dart';
 
 class ListChallengeStatusItemWidget extends StatelessWidget {
-  final String statusChallenge;
-  final Color backgroundColor;
-  final Color textColor;
+  final Status? statusChallenge;
 
   const ListChallengeStatusItemWidget({
     super.key,
-    required this.statusChallenge,
-    required this.backgroundColor,
-    required this.textColor,
+    this.statusChallenge,
   });
 
   @override
   Widget build(BuildContext context) {
+    Color backgroundColor;
+    Color textColor;
+    String statusChallengeFinal;
+
+    switch (statusChallenge) {
+      case Status.PENDING:
+        backgroundColor = ColorsConstant.warning50;
+        textColor = ColorsConstant.warning600;
+        statusChallengeFinal = 'Tunggu disetujui dulu ya!';
+
+        break;
+      case Status.ACCEPTED:
+        backgroundColor = ColorsConstant.warning50;
+        textColor = ColorsConstant.danger600;
+        statusChallengeFinal = 'Hebat! Kamu bisa menyelesaikannya';
+        break;
+      case Status.DECLINED:
+        backgroundColor = ColorsConstant.success50;
+        textColor = ColorsConstant.success600;
+        statusChallengeFinal = 'Yah! waktunya habis';
+        break;
+      default:
+        backgroundColor = ColorsConstant.neutral100;
+        textColor = ColorsConstant.black;
+        statusChallengeFinal = 'Misterius';
+        break;
+    }
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.symmetric(
@@ -27,7 +50,7 @@ class ListChallengeStatusItemWidget extends StatelessWidget {
         ),
       ),
       child: Text(
-        statusChallenge,
+        statusChallengeFinal.toString(),
         textAlign: TextAlign.center,
         style: TextStylesConstant.nunitoCaptionBold.copyWith(
           color: textColor,

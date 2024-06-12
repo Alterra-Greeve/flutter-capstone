@@ -1,13 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view_model/list_challenge_controller.dart';
+part of '../list_challenge_wrapper_screen.dart';
 
-class ListChallengeButtonsWidget extends StatelessWidget {
+class ListChallengeMenuButtonWidget extends StatelessWidget {
   final ListChallengeController controller;
 
-  const ListChallengeButtonsWidget({required this.controller, super.key});
+  const ListChallengeMenuButtonWidget({required this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
