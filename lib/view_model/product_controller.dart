@@ -72,7 +72,7 @@ class ProductController extends GetxController
       productsData.value = [];
       isLoadingProduct.value = true;
       final result = await _apiService.getProductsbyCategory(token, category);
-      productsData.value = result.data!;
+      productsData.value = result.data;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();
@@ -93,7 +93,7 @@ class ProductController extends GetxController
     isLoadingRecommendation.value = true;
     try {
       final result = await _apiService.getProducts(token);
-      productsRecommendationData.value = result.data!;
+      productsRecommendationData.value = result.data;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();

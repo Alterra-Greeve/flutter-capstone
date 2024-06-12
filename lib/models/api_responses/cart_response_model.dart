@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:convert';
 
 CartResponseModel cartResponseModelFromJson(String str) => CartResponseModel.fromJson(json.decode(str));
@@ -9,92 +5,92 @@ CartResponseModel cartResponseModelFromJson(String str) => CartResponseModel.fro
 String cartResponseModelToJson(CartResponseModel data) => json.encode(data.toJson());
 
 class CartResponseModel {
-    bool? status;
-    String? message;
-    Data? data;
+    bool status;
+    String message;
+    Data data;
 
     CartResponseModel({
-        this.status,
-        this.message,
-        this.data,
+        required this.status,
+        required this.message,
+        required this.data,
     });
 
     factory CartResponseModel.fromJson(Map<String, dynamic> json) => CartResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        data: Data.fromJson(json["data"]),
     );
 
     Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
-        "data": data?.toJson(),
+        "data": data.toJson(),
     };
 }
 
 class Data {
-    User? user;
-    List<Item>? items;
+    User user;
+    List<Item> items;
 
     Data({
-        this.user,
-        this.items,
+        required this.user,
+        required this.items,
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        user: json["user"] == null ? null : User.fromJson(json["user"]),
-        items: json["items"] == null ? [] : List<Item>.from(json["items"]!.map((x) => Item.fromJson(x))),
+        user: User.fromJson(json["user"]),
+        items: List<Item>.from(json["items"].map((x) => Item.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
-        "user": user?.toJson(),
-        "items": items == null ? [] : List<dynamic>.from(items!.map((x) => x.toJson())),
+        "user": user.toJson(),
+        "items": List<dynamic>.from(items.map((x) => x.toJson())),
     };
 }
 
 class Item {
-    int? quantity;
-    Product? product;
+    int quantity;
+    Product product;
 
     Item({
-        this.quantity,
-        this.product,
+        required this.quantity,
+        required this.product,
     });
 
     factory Item.fromJson(Map<String, dynamic> json) => Item(
         quantity: json["quantity"],
-        product: json["product"] == null ? null : Product.fromJson(json["product"]),
+        product: Product.fromJson(json["product"]),
     );
 
     Map<String, dynamic> toJson() => {
         "quantity": quantity,
-        "product": product?.toJson(),
+        "product": product.toJson(),
     };
 }
 
 class Product {
-    String? productId;
-    String? name;
-    String? description;
-    int? price;
-    int? coin;
-    int? stock;
-    DateTime? createdAt;
-    DateTime? updatedAt;
-    List<Category>? category;
-    List<Image>? images;
+    String productId;
+    String name;
+    String description;
+    int price;
+    int coin;
+    int stock;
+    DateTime createdAt;
+    DateTime updatedAt;
+    List<Category> category;
+    List<Image> images;
 
     Product({
-        this.productId,
-        this.name,
-        this.description,
-        this.price,
-        this.coin,
-        this.stock,
-        this.createdAt,
-        this.updatedAt,
-        this.category,
-        this.images,
+        required this.productId,
+        required this.name,
+        required this.description,
+        required this.price,
+        required this.coin,
+        required this.stock,
+        required this.createdAt,
+        required this.updatedAt,
+        required this.category,
+        required this.images,
     });
 
     factory Product.fromJson(Map<String, dynamic> json) => Product(
@@ -104,10 +100,10 @@ class Product {
         price: json["price"],
         coin: json["coin"],
         stock: json["stock"],
-        createdAt: json["created_at"] == null ? null : DateTime.parse(json["created_at"]),
-        updatedAt: json["updated_at"] == null ? null : DateTime.parse(json["updated_at"]),
-        category: json["category"] == null ? [] : List<Category>.from(json["category"]!.map((x) => Category.fromJson(x))),
-        images: json["images"] == null ? [] : List<Image>.from(json["images"]!.map((x) => Image.fromJson(x))),
+        createdAt: DateTime.parse(json["created_at"]),
+        updatedAt: DateTime.parse(json["updated_at"]),
+        category: List<Category>.from(json["category"].map((x) => Category.fromJson(x))),
+        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
     );
 
     Map<String, dynamic> toJson() => {
@@ -117,38 +113,38 @@ class Product {
         "price": price,
         "coin": coin,
         "stock": stock,
-        "created_at": "${createdAt!.year.toString().padLeft(4, '0')}-${createdAt!.month.toString().padLeft(2, '0')}-${createdAt!.day.toString().padLeft(2, '0')}",
-        "updated_at": "${updatedAt!.year.toString().padLeft(4, '0')}-${updatedAt!.month.toString().padLeft(2, '0')}-${updatedAt!.day.toString().padLeft(2, '0')}",
-        "category": category == null ? [] : List<dynamic>.from(category!.map((x) => x.toJson())),
-        "images": images == null ? [] : List<dynamic>.from(images!.map((x) => x.toJson())),
+        "created_at": "${createdAt.year.toString().padLeft(4, '0')}-${createdAt.month.toString().padLeft(2, '0')}-${createdAt.day.toString().padLeft(2, '0')}",
+        "updated_at": "${updatedAt.year.toString().padLeft(4, '0')}-${updatedAt.month.toString().padLeft(2, '0')}-${updatedAt.day.toString().padLeft(2, '0')}",
+        "category": List<dynamic>.from(category.map((x) => x.toJson())),
+        "images": List<dynamic>.from(images.map((x) => x.toJson())),
     };
 }
 
 class Category {
-    ImpactCategory? impactCategory;
+    ImpactCategory impactCategory;
 
     Category({
-        this.impactCategory,
+        required this.impactCategory,
     });
 
     factory Category.fromJson(Map<String, dynamic> json) => Category(
-        impactCategory: json["impact_category"] == null ? null : ImpactCategory.fromJson(json["impact_category"]),
+        impactCategory: ImpactCategory.fromJson(json["impact_category"]),
     );
 
     Map<String, dynamic> toJson() => {
-        "impact_category": impactCategory?.toJson(),
+        "impact_category": impactCategory.toJson(),
     };
 }
 
 class ImpactCategory {
-    String? name;
-    int? impactPoint;
-    String? iconUrl;
+    String name;
+    int impactPoint;
+    String iconUrl;
 
     ImpactCategory({
-        this.name,
-        this.impactPoint,
-        this.iconUrl,
+        required this.name,
+        required this.impactPoint,
+        required this.iconUrl,
     });
 
     factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
@@ -165,12 +161,12 @@ class ImpactCategory {
 }
 
 class Image {
-    String? imageUrl;
-    int? position;
+    String imageUrl;
+    int position;
 
     Image({
-        this.imageUrl,
-        this.position,
+        required this.imageUrl,
+        required this.position,
     });
 
     factory Image.fromJson(Map<String, dynamic> json) => Image(
@@ -185,16 +181,16 @@ class Image {
 }
 
 class User {
-    String? id;
-    String? username;
-    String? email;
-    String? address;
+    String id;
+    String username;
+    String email;
+    String address;
 
     User({
-        this.id,
-        this.username,
-        this.email,
-        this.address,
+        required this.id,
+        required this.username,
+        required this.email,
+        required this.address,
     });
 
     factory User.fromJson(Map<String, dynamic> json) => User(

@@ -159,8 +159,8 @@ class SearchScreen extends StatelessWidget {
                             searchProductController.productsData[index];
                         return SearchProductCardWidget(
                           controller: searchProductController,
-                          productId: item.productId!,
-                          imageUrl: item.images?.first.imageUrl ?? '',
+                          productId: item.productId,
+                          imageUrl: item.images.first.imageUrl,
                           name: item.name,
                           price: item.price.toString(),
                         );

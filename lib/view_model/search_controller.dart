@@ -80,7 +80,7 @@ class SearchProductController extends GetxController {
 
     try {
       final result = await _apiService.getProductsbyName(token, name);
-      productsData.value = result.data!;
+      productsData.value = result.data;
       errorMessage.value = '';
       if (kDebugMode) {
         print('Fetched products: ${result.data}');
