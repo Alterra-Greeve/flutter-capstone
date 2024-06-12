@@ -5,6 +5,7 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/cart_controller.dart';
+import 'package:intl/intl.dart';
 
 class CheckoutSummaryWidget extends StatelessWidget {
   final CartController controller;
@@ -111,11 +112,20 @@ class CheckoutSummaryWidget extends StatelessWidget {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      Text(
-                        'Rp 218.400',
-                        style: TextStylesConstant.nunitoSubtitle.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
+                      Obx(
+                        () {
+                          final formattedTotalPrice = NumberFormat.currency(
+                            locale: 'id_ID',
+                            symbol: 'Rp ',
+                            decimalDigits: 0,
+                          ).format(controller.totalPrice.value);
+                          return Text(
+                            formattedTotalPrice,
+                            style: TextStylesConstant.nunitoSubtitle.copyWith(
+                              fontWeight: FontWeight.w600,
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),

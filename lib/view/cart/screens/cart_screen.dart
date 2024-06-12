@@ -69,7 +69,8 @@ class CartScreen extends StatelessWidget {
                       itemCount: controller.cartData.length,
                       itemBuilder: (context, index) {
                         var item = controller.cartData[index];
-                        int newQty = int.tryParse(controller.qtyController.text) ?? 0;
+                        int newQty =
+                            int.tryParse(controller.qtyController.text) ?? 0;
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: CartItemCardWidget(

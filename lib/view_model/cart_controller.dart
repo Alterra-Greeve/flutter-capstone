@@ -14,8 +14,9 @@ class CartController extends GetxController {
   Rx<String?> qtyErrorText = Rx<String?>(null);
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<int> newQty = Rx<int>(0);
-  final debouncer = Debouncer(delay: const Duration(milliseconds: 250));
+  Rx<double> totalPrice = Rx<double>(0.0);
 
+  final debouncer = Debouncer(delay: const Duration(milliseconds: 250));
   final TextEditingController _qtyController = TextEditingController();
   final FocusNode _qtyFocusNode = FocusNode();
   TextEditingController get qtyController => _qtyController;
@@ -37,6 +38,7 @@ class CartController extends GetxController {
       final result = await _apiCartService.getCart(token);
       cartData.value = result.data.items;
       errorMessage.value = '';
+      updateTotalPrice();
     } catch (e) {
       errorMessage.value = e.toString();
     } finally {
@@ -55,6 +57,7 @@ class CartController extends GetxController {
       );
       item.quantity += 1;
       cartData.refresh();
+      updateTotalPrice();
     } catch (e) {
       Get.snackbar(
         'Error',
@@ -78,6 +81,7 @@ class CartController extends GetxController {
           );
           item.quantity -= 1;
           cartData.refresh();
+          updateTotalPrice();
         } catch (e) {
           Get.snackbar(
             'Error',
@@ -100,6 +104,7 @@ class CartController extends GetxController {
       );
       item.quantity = newQty;
       cartData.refresh();
+      updateTotalPrice();
     } catch (e) {
       Get.snackbar(
         'Error',
@@ -141,5 +146,14 @@ class CartController extends GetxController {
     updateTotalPrice();
   }
 
-  void updateTotalPrice() {}
+  void updateTotalPrice() {
+    double total = 0.0;
+    for (var item in cartData) {
+      total += item.product.price * item.quantity;
+    }
+    if (isCoinApplied.value) {
+      total -= 5;
+    }
+    totalPrice.value = total;
+  }
 }
