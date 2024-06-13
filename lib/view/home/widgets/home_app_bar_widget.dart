@@ -50,7 +50,7 @@ class HomeAppBarWidget extends StatelessWidget {
                         style: TextStylesConstant.nunitoCaption,
                       ),
                       SizedBox(
-                        width: 170,
+                        width: 160,
                         child: Text(
                           userProfile.data?.name ?? 'No name',
                           style: TextStylesConstant.nunitoSubtitle4.copyWith(
