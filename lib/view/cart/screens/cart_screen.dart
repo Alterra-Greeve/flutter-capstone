@@ -15,7 +15,6 @@ class CartScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final CartController controller = Get.put(CartController());
-
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

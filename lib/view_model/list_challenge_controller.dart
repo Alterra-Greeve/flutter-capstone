@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_challenge_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/models/api_responses/get_user_challenge_response_model.dart';
@@ -52,5 +53,12 @@ class ListChallengeController extends GetxController {
     } finally {
       isLoading(false);
     }
+  }
+
+  void navigateToChallengeDetail(String? challengeId) {
+    Get.toNamed(
+      AppRoutes.detailChallenge,
+      arguments: challengeId,
+    );
   }
 }

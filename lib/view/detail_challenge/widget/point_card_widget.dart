@@ -12,22 +12,22 @@ class DetailChallengePointCardWidget extends StatelessWidget {
   });
 
   final String image;
-  final String points;
+  final String? points;
   final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: 110,
       height: 60,
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
             spreadRadius: 1,
             blurRadius: 4,
-            offset: Offset(0, 3),
+            offset: const Offset(0, 3),
           ),
         ],
         color: ColorsConstant.white,
@@ -35,14 +35,22 @@ class DetailChallengePointCardWidget extends StatelessWidget {
       ),
       child: Row(
         children: [
-          SvgPicture.asset(
-            image,
-            width: 40,
+          if (image.endsWith('.svg'))
+            SvgPicture.asset(
+              image,
+              width: 40,
+            )
+          else
+            Image.asset(
+              image,
+              width: 40,
+            ),
+          const SizedBox(height: 4),
+          Text(
+            '+${points ?? ''}',
+            style: TextStylesConstant.nunitoExtraBoldTitle
+                .copyWith(color: color, overflow: TextOverflow.ellipsis),
           ),
-          SizedBox(height: 4),
-          Text('+$points',
-              style: TextStylesConstant.nunitoExtraBoldTitle
-                  .copyWith(color: color)),
         ],
       ),
     );

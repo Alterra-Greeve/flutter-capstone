@@ -36,7 +36,8 @@ class ListChallengeTodoScreen extends StatelessWidget {
           children: listChallengeController.pendingChallenges.map((challenge) {
             return GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoutes.detailChallenge);
+                listChallengeController.navigateToChallengeDetail(
+                    challenge.challengeConfirmationId);
               },
               child: Column(
                 children: [

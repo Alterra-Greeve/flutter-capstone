@@ -26,36 +26,46 @@ class DetailChallengeScreen extends StatelessWidget {
           body: SingleChildScrollView(
             child: Column(
               children: [
-                const Stack(
+                Stack(
                   children: [
-                    DetailChallengeHeaderWidget(),
-                    DetailChallengeArrowBackWidget(),
-                    DetailChallengeTimeWidget(),
+                    DetailChallengeHeaderWidget(controller: controller),
+                    const DetailChallengeArrowBackWidget(),
+                    DetailChallengeTimeWidget(controller: controller),
                   ],
                 ),
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
                     contentContainer(controller),
-                    const Positioned(
+                    Positioned(
                       top: -35,
                       left: 16,
                       right: 16,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          DetailChallengePointCardWidget(
+                          Obx(
+                            () => DetailChallengePointCardWidget(
                               image: IconsConstant.poinXp,
-                              points: '50',
-                              color: ColorsConstant.danger500),
-                          DetailChallengePointCardWidget(
-                              image: IconsConstant.yellowCoin,
-                              points: '20',
-                              color: ColorsConstant.warning500),
-                          DetailChallengePointCardWidget(
-                              image: IconsConstant.impact,
-                              points: '2',
-                              color: ColorsConstant.success500),
+                              points: controller
+                                  .challengeData.value?.challenge.exp
+                                  .toString(),
+                              color: ColorsConstant.danger500,
+                            ),
+                          ),
+                          Obx(
+                            () => DetailChallengePointCardWidget(
+                                image: IconsConstant.yellowCoin,
+                                points: controller
+                                    .challengeData.value?.challenge.coin
+                                    .toString(),
+                                color: ColorsConstant.warning500),
+                          ),
+                          const DetailChallengePointCardWidget(
+                            image: IconsConstant.impact,
+                            points: '10',
+                            color: ColorsConstant.success500,
+                          ),
                         ],
                       ),
                     ),
@@ -101,46 +111,96 @@ class DetailChallengeScreen extends StatelessWidget {
                 children: [
                   SvgPicture.asset(IconsConstant.threeUser, width: 24),
                   const SizedBox(width: 4),
-                  RichText(
+                  Obx(
+                    () => RichText(
                       text: TextSpan(
-                    text: '100',
-                    style: TextStylesConstant.nunitoExtraBoldFooter
-                        .copyWith(color: ColorsConstant.neutral900),
-                    children: [
-                      TextSpan(
-                        text: ' orang sedang melakukannya',
-                        style: TextStylesConstant.nunitoCaption
+                        text: controller
+                                .challengeData.value?.challenge.participant
+                                .toString() ??
+                            "0",
+                        style: TextStylesConstant.nunitoExtraBoldFooter
                             .copyWith(color: ColorsConstant.neutral900),
+                        children: [
+                          TextSpan(
+                            text: ' orang sedang melakukannya',
+                            style: TextStylesConstant.nunitoCaption
+                                .copyWith(color: ColorsConstant.neutral900),
+                          ),
+                        ],
                       ),
-                    ],
-                  )),
+                    ),
+                  ),
                 ],
               ),
             ],
           ),
           const SizedBox(height: 16),
-          Text('Aku Cinta Tote Bag',
+          Obx(
+            () => Text(
+              controller.challengeData.value?.challenge.title ?? "-",
               style: TextStylesConstant.nunitoHeading4.copyWith(
                 color: ColorsConstant.neutral900,
-              )),
+              ),
+            ),
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
               Text('Membantu', style: TextStylesConstant.nunitoButtonBold),
               const SizedBox(width: 8),
-              Container(
-                child: SvgPicture.asset(IconsConstant.helpCoin),
-              ),
-              const SizedBox(width: 8),
-              Container(
-                child: SvgPicture.asset(IconsConstant.helpEarth),
+              Obx(
+                () => Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
+                  children: controller.impactCategories.map((category) {
+                    String imagePath;
+                    switch (category) {
+                      case 'Hemat Uang':
+                        imagePath = IconsConstant.challengeIconCategory1;
+                        break;
+                      case 'Mengurangi Limbah':
+                        imagePath = IconsConstant.challengeIconCategory2;
+                        break;
+                      case 'Perluas Wawasan':
+                        imagePath = IconsConstant.challengeIconCategory3;
+                        break;
+                      case 'Mengurangi Pemanasan Global':
+                        imagePath = IconsConstant.challengeIconCategory4;
+                        break;
+                      default:
+                        imagePath = 'assets/images/default.png';
+                        break;
+                    }
+                    return Container(
+                      width: 28,
+                      height: 28,
+                      decoration: const BoxDecoration(
+                        color: ColorsConstant.primary500,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(8),
+                        ),
+                        child: Image.asset(
+                          imagePath,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          Text(
-            'Dengan menggunakan tote bag, masyarakat dapat mengurangi jumlah sampah plastik yang berkontribusi pada penurunan polusi dan kerusakan ekosistem.',
-            style: TextStylesConstant.nunitoCaption,
+          Obx(
+            () => Text(
+              controller.challengeData.value?.challenge.description ?? "-",
+              style: TextStylesConstant.nunitoCaption,
+            ),
           ),
           const SizedBox(height: 16),
           Text('Unggah Bukti', style: TextStylesConstant.nunitoButtonSemibold),
@@ -216,9 +276,11 @@ class DetailChallengeScreen extends StatelessWidget {
                       ),
               ),
               const SizedBox(width: 8),
-              Text('Pengunggahan telah selesai',
-                  style: TextStylesConstant.nunitoButtonMedium
-                      .copyWith(color: ColorsConstant.neutral700)),
+              Text(
+                'Pengunggahan telah selesai',
+                style: TextStylesConstant.nunitoButtonMedium
+                    .copyWith(color: ColorsConstant.neutral700),
+              ),
             ],
           ),
           const SizedBox(height: 16),
@@ -265,7 +327,7 @@ class DetailChallengeScreen extends StatelessWidget {
                     ),
                   ),
           ),
-          const SizedBox(height: 32),
+          const SizedBox(height: 100),
         ],
       ),
     );

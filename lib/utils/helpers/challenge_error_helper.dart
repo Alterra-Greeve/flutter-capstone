@@ -61,4 +61,23 @@ class ChallengeErrorHelper {
       return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
     }
   }
+
+  static String tryGetChallenge(int? statusCode) {
+    switch (statusCode) {
+      case 404:
+        return 'Tantangan tidak ditemukan';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchGetChallenge(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryGetChallenge(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }

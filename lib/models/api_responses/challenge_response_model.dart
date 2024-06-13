@@ -7,58 +7,90 @@ String challengeResponseModelToJson(ChallengeResponseModel data) =>
     json.encode(data.toJson());
 
 class ChallengeResponseModel {
-  bool? status;
-  String? message;
-  Data? data;
+  bool status;
+  String message;
+  Data data;
 
   ChallengeResponseModel({
-    this.status,
-    this.message,
-    this.data,
+    required this.status,
+    required this.message,
+    required this.data,
   });
 
   factory ChallengeResponseModel.fromJson(Map<String, dynamic> json) =>
       ChallengeResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
         "message": message,
-        "data": data?.toJson(),
+        "data": data.toJson(),
       };
 }
 
 class Data {
-  String? id;
-  String? title;
-  String? description;
-  int? coin;
-  int? exp;
-  int? participant;
-  String? difficulty;
-  String? imageUrl;
-  String? dateStart;
-  String? dateEnd;
-  List<Category>? categories;
+  String challengeConfirmationId;
+  String userId;
+  String status;
+  Challenge challenge;
+  dynamic images;
 
   Data({
-    this.id,
-    this.title,
-    this.description,
-    this.coin,
-    this.exp,
-    this.participant,
-    this.difficulty,
-    this.imageUrl,
-    this.dateStart,
-    this.dateEnd,
-    this.categories,
+    required this.challengeConfirmationId,
+    required this.userId,
+    required this.status,
+    required this.challenge,
+    required this.images,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
+        challengeConfirmationId: json["challenge_confirmation_id"],
+        userId: json["user_id"],
+        status: json["status"],
+        challenge: Challenge.fromJson(json["challenge"]),
+        images: json["images"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "challenge_confirmation_id": challengeConfirmationId,
+        "user_id": userId,
+        "status": status,
+        "challenge": challenge.toJson(),
+        "images": images,
+      };
+}
+
+class Challenge {
+  String id;
+  String title;
+  String description;
+  int coin;
+  int exp;
+  int participant;
+  String difficulty;
+  String imageUrl;
+  String dateStart;
+  String dateEnd;
+  List<Category> categories;
+
+  Challenge({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.coin,
+    required this.exp,
+    required this.participant,
+    required this.difficulty,
+    required this.imageUrl,
+    required this.dateStart,
+    required this.dateEnd,
+    required this.categories,
+  });
+
+  factory Challenge.fromJson(Map<String, dynamic> json) => Challenge(
         id: json["id"],
         title: json["title"],
         description: json["description"],
@@ -69,10 +101,8 @@ class Data {
         imageUrl: json["image_url"],
         dateStart: json["date_start"],
         dateEnd: json["date_end"],
-        categories: json["categories"] == null
-            ? []
-            : List<Category>.from(
-                json["categories"]!.map((x) => Category.fromJson(x))),
+        categories: List<Category>.from(
+            json["categories"].map((x) => Category.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -86,39 +116,35 @@ class Data {
         "image_url": imageUrl,
         "date_start": dateStart,
         "date_end": dateEnd,
-        "categories": categories == null
-            ? []
-            : List<dynamic>.from(categories!.map((x) => x.toJson())),
+        "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
       };
 }
 
 class Category {
-  ImpactCategory? impactCategory;
+  ImpactCategory impactCategory;
 
   Category({
-    this.impactCategory,
+    required this.impactCategory,
   });
 
   factory Category.fromJson(Map<String, dynamic> json) => Category(
-        impactCategory: json["impact_category"] == null
-            ? null
-            : ImpactCategory.fromJson(json["impact_category"]),
+        impactCategory: ImpactCategory.fromJson(json["impact_category"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "impact_category": impactCategory?.toJson(),
+        "impact_category": impactCategory.toJson(),
       };
 }
 
 class ImpactCategory {
-  String? name;
-  int? impactPoint;
-  String? iconUrl;
+  String name;
+  int impactPoint;
+  String iconUrl;
 
   ImpactCategory({
-    this.name,
-    this.impactPoint,
-    this.iconUrl,
+    required this.name,
+    required this.impactPoint,
+    required this.iconUrl,
   });
 
   factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
