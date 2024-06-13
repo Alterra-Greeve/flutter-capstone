@@ -69,8 +69,6 @@ class CartScreen extends StatelessWidget {
                       itemCount: controller.cartData.length,
                       itemBuilder: (context, index) {
                         var item = controller.cartData[index];
-                        int newQty =
-                            int.tryParse(controller.qtyController.text) ?? 0;
                         return Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: CartItemCardWidget(
@@ -84,7 +82,10 @@ class CartScreen extends StatelessWidget {
                             onAdd: () => controller.incrementQuantity(item),
                             onSubract: () => controller.decrementQuantity(item),
                             onDelete: () => controller.deleteItem(item),
-                            onSet: () => controller.setQuantity(item, newQty),
+                            onSet: () => controller.setQuantity(
+                              item,
+                              int.tryParse(controller.qtyController.text)!,
+                            ),
                           ),
                         );
                       },

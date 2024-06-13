@@ -2,6 +2,7 @@ part of '../view/register/screens/register_screen.dart';
 
 class RegisterController extends GetxController {
   final ApiAuthService _apiService = ApiAuthService();
+
   Rx<String?> nameErrorText = Rx<String?>(null);
   Rx<String?> emailErrorText = Rx<String?>(null);
   Rx<String?> passwordErrorText = Rx<String?>(null);

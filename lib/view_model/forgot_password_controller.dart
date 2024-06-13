@@ -7,6 +7,7 @@ import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class ForgotPasswordController extends GetxController {
   final ApiAuthService _apiService = ApiAuthService();
+
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<String?> emailErrorText = Rx<String?>(null);
   Rx<bool> isLoading = Rx<bool>(false);

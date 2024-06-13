@@ -15,13 +15,13 @@ class EmptyCartWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        height: MediaQuery.of(context).size.height - kToolbarHeight,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            const SizedBox(height: 100),
             SvgPicture.asset(ImagesConstant.emptyCart),
             const SizedBox(height: 20),
             Text(
