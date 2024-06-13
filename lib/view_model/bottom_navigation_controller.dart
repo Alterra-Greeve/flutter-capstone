@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:greeve/view/challenge/screens/challenge_screen.dart';
 import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/view/home/screens/home_screen.dart';
 import 'package:greeve/view/product/screens/product_screen.dart';
 
 class BottomNavController extends GetxController {

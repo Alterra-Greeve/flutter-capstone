@@ -78,4 +78,10 @@ class IconsConstant {
       'assets/images/challenge_icon_category3.png';
   static const String challengeIconCategory4 =
       'assets/images/challenge_icon_category4.png';
+  static const String notification = 'assets/images/notification.svg';
+  static const String reduceHeating = 'assets/images/reduce_heating.png';
+  static const String saveMoney = 'assets/images/save_money.png';
+  static const String expandInsight = 'assets/images/expand_insight.png';
+  static const String reduceWaste = 'assets/images/reduce_waste.png';
+  static const String poinImpact = 'assets/images/poin_impact.png';
 }
