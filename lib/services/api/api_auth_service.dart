@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:greeve/models/api_responses/get_user_profile_response_model.dart';
 import 'package:greeve/utils/helpers/auth_error_helper.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/login_response_model.dart';
@@ -57,7 +58,9 @@ class ApiAuthService {
 
       final response = await _dio.post(ApiConstant.forgotPassword,
           data: data, options: options);
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
@@ -107,6 +110,22 @@ class ApiAuthService {
       }
     } on DioException catch (e) {
       throw AuthErrorHelper.catchPostResetPassword(e);
+    }
+  }
+
+  Future<GetUserProfileResponseModel> getUserProfile(String? token) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response =
+          await _dio.get(ApiConstant.userProfile, options: options);
+      if (response.statusCode == 200) {
+        return GetUserProfileResponseModel.fromJson(response.data);
+      } else {
+        throw AuthErrorHelper.tryGetUserProfile(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw AuthErrorHelper.catchGetUserProfile(e);
     }
   }
 }
