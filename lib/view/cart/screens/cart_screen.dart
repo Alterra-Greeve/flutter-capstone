@@ -17,6 +17,7 @@ class CartScreen extends StatelessWidget {
     final CartController controller = Get.put(CartController());
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           'Keranjang',
