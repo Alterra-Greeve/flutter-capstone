@@ -14,6 +14,7 @@ class SplashController extends GetxController {
     final String? token = await SharedPreferencesManager.getToken();
     if (token != null) {
       await Future.delayed(const Duration(seconds: 3));
+      // Get.off(() => const OnBoardingScreen());
       Get.off(() => const BottomNavScreen());
     } else {
       await Future.delayed(const Duration(seconds: 3));

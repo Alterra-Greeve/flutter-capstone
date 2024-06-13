@@ -17,6 +17,15 @@ class ImagesConstant {
   static const String bottleProduct = 'assets/images/bottle_product.svg';
   // static const String bottleList = 'assets/images/bottle_list.svg';
   static const String cardVariant = 'assets/images/card_variant.svg';
+  static const String bgLeaderBoard = 'assets/images/bg_leaderboard.png';
+  static const String bgLeaderBoard_ = 'assets/images/bg_leaderboard.svg';
+
+  static const String circleLeaderBoard =
+      'assets/images/circle_leaderboard.png';
+  static const String firstPlace = 'assets/images/first_place.png';
+  static const String secondPlace = 'assets/images/second_place.png';
+  static const String thirdPlace = 'assets/images/three_place.png';
+  static const String leaderboardEmpty = 'assets/images/leaderboard_empty.png';
 
   static const String bannerOne = 'assets/images/banner.png';
   static const String banner = 'assets/images/banner_.png';
@@ -45,8 +54,8 @@ class ImagesConstant {
       'assets/images/product_image_placeholder.png';
   static const String productCardBackground =
       'assets/images/product_card_background.png';
-      static const String recommendationImagePlaceholder =
+  static const String recommendationImagePlaceholder =
       'assets/images/recommendation_image_placeholder.png';
-      static const String detailProductImagePlaceholder =
+  static const String detailProductImagePlaceholder =
       'assets/images/detail_product_image_placeholder.png';
 }

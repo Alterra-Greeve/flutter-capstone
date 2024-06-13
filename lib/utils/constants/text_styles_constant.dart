@@ -21,6 +21,16 @@ class TextStylesConstant {
     fontWeight: FontWeight.w800,
   );
 
+  static final TextStyle nunitoHeading1 = _baseNunito.copyWith(
+    fontSize: 34,
+    fontWeight: FontWeight.bold,
+  );
+
+  static final TextStyle nunitoHeading2 = _baseNunito.copyWith(
+    fontSize: 30,
+    fontWeight: FontWeight.w700,
+  );
+
   static final TextStyle nunitoHeading3 = _baseNunito.copyWith(
     fontSize: 24,
     fontWeight: FontWeight.w700,
@@ -35,6 +45,11 @@ class TextStylesConstant {
     fontWeight: FontWeight.w700,
   );
 
+  static final TextStyle nunitoHeading6 = _baseNunito.copyWith(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+  );
+
   static final TextStyle nunitoTitleBold = _baseNunito.copyWith(
     fontSize: 18,
     fontWeight: FontWeight.w700,
@@ -47,6 +62,11 @@ class TextStylesConstant {
   static final TextStyle nunitoSubtitle2 = _baseNunito.copyWith(
     fontSize: 17,
     color: ColorsConstant.neutral500,
+  );
+
+  static final TextStyle nunitoSubtitle2_ = _baseNunito.copyWith(
+    fontSize: 17,
+    color: ColorsConstant.neutral600,
   );
 
   static final TextStyle nunitoSubtitle3 = _baseNunito.copyWith(

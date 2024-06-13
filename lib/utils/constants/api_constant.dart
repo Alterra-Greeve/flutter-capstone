@@ -11,4 +11,6 @@ class ApiConstant {
   static const String products = '$baseUrl/products';
   static const String productsSearch = '$baseUrl/products/search';
   static const String productsCategory = '$baseUrl/products/category';
+
+  static const String leaderBoard = '$baseUrl/leaderboard';
 }

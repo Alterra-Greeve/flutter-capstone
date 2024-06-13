@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/view/home/screens/home_screen.dart';
+import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/onboarding/screens/screen_one.dart';
 import 'package:greeve/view/onboarding/screens/screen_three.dart';
@@ -13,7 +15,7 @@ class BottomNavController extends GetxController {
   PageController get pageController => _pageController;
 
   static final List<Widget> _widgetOptions = [
-    const LoginScreen(),
+    const HomeScreen(),
     const RegisterScreen(),
     const ProductScreen(),
     const ScreenOne(),

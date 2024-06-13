@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
+import 'package:greeve/models/api_responses/leaderboard_response_model.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/utils/helpers/error_handler_helper.dart';

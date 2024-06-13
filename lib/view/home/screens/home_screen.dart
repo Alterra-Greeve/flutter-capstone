@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:greeve/global_widgets/global_bottom_navbar_widget.dart';
-import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -8,14 +7,24 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
+      appBar: AppBar(
+        title: Text('Home Screen'),
+        actions: [
+          IconButton(
             onPressed: () {
-              SharedPreferencesManager.removeToken();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LeaderboardScreen(),
+                ),
+              );
             },
-            child: const Text('Delete Token')),
+            icon: Icon(
+              Icons.table_chart,
+            ),
+          ),
+        ],
       ),
-      bottomNavigationBar: const GlobalBottomNavbar(currentIndex: 0),
     );
   }
 }

@@ -36,6 +36,20 @@ class IconsConstant {
   // static const String bag = 'assets/images/bag.svg';
   static const String right = 'assets/images/right.svg';
   static const String coin = 'assets/images/coin.svg';
+
+  /* LEADERBOARD SCREENv */
+  static const String arrowLeft = 'assets/images/arrow_left.svg';
+  static const String arrowLeft_ = 'assets/images/arrow_left.png';
+  static const String arrowDown = 'assets/images/arrow_down.svg';
+  static const String arrowDown_ = 'assets/images/arrow_down.png';
+  static const String clock = 'assets/images/clock.svg';
+  static const String clock_ = 'assets/images/clock.png';
+  static const String crone = 'assets/images/crone.svg';
+  static const String crone_ = 'assets/images/crone.png';
+  static const String arrowUp = 'assets/images/arrow_up.svg';
+  static const String arrowUp_ = 'assets/images/arrow_up.png';
+  static const String help_ = 'assets/images/helper.png';
+
   // static const String voucherOn = 'assets/images/voucher_on.svg';
   // static const String voucherOff = 'assets/images/voucher_off.svg';
   static const String subtraction = 'assets/images/subtraction.svg';
@@ -44,8 +58,7 @@ class IconsConstant {
   static const String homeNavOn = 'assets/images/botnav_home_on.svg';
   static const String challengeNavOff =
       'assets/images/botnav_challenge_off.svg';
-      static const String challengeNavOn =
-      'assets/images/botnav_challenge_on.svg';
+  static const String challengeNavOn = 'assets/images/botnav_challenge_on.svg';
   static const String productNavOff = 'assets/images/botnav_product_off.svg';
   static const String productNavOn = 'assets/images/botnav_product_on.svg';
   static const String impactNavOff = 'assets/images/botnav_impact_off.svg';
