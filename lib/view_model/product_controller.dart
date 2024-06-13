@@ -68,6 +68,11 @@ class ProductController extends GetxController
 
   void getProductsbyCategory(String category) async {
     try {
+      if (category == 'Kurangi Limbah') {
+        category = 'Mengurangi Limbah';
+      } else if (category == 'Kurangi Pemanasan') {
+        category = 'Mengurangi Pemanasan Global';
+      }
       final String? token = await SharedPreferencesManager.getToken();
       productsData.value = [];
       isLoadingProduct.value = true;

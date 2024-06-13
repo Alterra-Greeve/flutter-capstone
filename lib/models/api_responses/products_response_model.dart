@@ -39,8 +39,8 @@ class Datum {
     int price;
     int coin;
     int stock;
-    AtedAt createdAt;
-    AtedAt updatedAt;
+    String createdAt;
+    String updatedAt;
     List<Category> category;
     List<Image> images;
 
@@ -64,8 +64,8 @@ class Datum {
         price: json["price"],
         coin: json["coin"],
         stock: json["stock"],
-        createdAt: atedAtValues.map[json["created_at"]]!,
-        updatedAt: atedAtValues.map[json["updated_at"]]!,
+        createdAt: json["created_at"],
+        updatedAt: json["updated_at"],
         category: List<Category>.from(json["category"].map((x) => Category.fromJson(x))),
         images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
     );
@@ -77,8 +77,8 @@ class Datum {
         "price": price,
         "coin": coin,
         "stock": stock,
-        "created_at": atedAtValues.reverse[createdAt],
-        "updated_at": atedAtValues.reverse[updatedAt],
+        "created_at": createdAt,
+        "updated_at": updatedAt,
         "category": List<dynamic>.from(category.map((x) => x.toJson())),
         "images": List<dynamic>.from(images.map((x) => x.toJson())),
     };
@@ -101,7 +101,7 @@ class Category {
 }
 
 class ImpactCategory {
-    Name name;
+    String name;
     int impactPoint;
     String iconUrl;
 
@@ -112,39 +112,17 @@ class ImpactCategory {
     });
 
     factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
-        name: nameValues.map[json["name"]]!,
+        name: json["name"],
         impactPoint: json["impact_point"],
         iconUrl: json["icon_url"],
     );
 
     Map<String, dynamic> toJson() => {
-        "name": nameValues.reverse[name],
+        "name": name,
         "impact_point": impactPoint,
         "icon_url": iconUrl,
     };
 }
-
-enum Name {
-    HEMAT_UANG,
-    MENGURANGI_LIMBAH,
-    MENGURANGI_PEMANASAN_GLOBAL,
-    PERLUAS_WAWASAN
-}
-
-final nameValues = EnumValues({
-    "Hemat Uang": Name.HEMAT_UANG,
-    "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
-    "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
-    "Perluas Wawasan": Name.PERLUAS_WAWASAN
-});
-
-enum AtedAt {
-    THE_12062024
-}
-
-final atedAtValues = EnumValues({
-    "12/06/2024": AtedAt.THE_12062024
-});
 
 class Image {
     String imageUrl;
@@ -184,16 +162,4 @@ class Metadata {
         "total_page": totalPage,
         "current_page": currentPage,
     };
-}
-
-class EnumValues<T> {
-    Map<String, T> map;
-    late Map<T, String> reverseMap;
-
-    EnumValues(this.map);
-
-    Map<T, String> get reverse {
-            reverseMap = map.map((k, v) => MapEntry(v, k));
-            return reverseMap;
-    }
 }
