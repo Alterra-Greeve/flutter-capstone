@@ -7,8 +7,11 @@ class ApiConstant {
   static const String forgotPassword = '$baseUrl/user/forgot-password';
   static const String verifyOtp = '$baseUrl/user/verify-otp';
   static const String resetPassword = '$baseUrl/user/reset-password';
-
   static const String products = '$baseUrl/products';
   static const String productsSearch = '$baseUrl/products/search';
   static const String productsCategory = '$baseUrl/products/category';
+  static const String cart = '$baseUrl/cart';
+  static const String userChallenge = '$baseUrl/challenges/participate?status';
+  static const String challenges = '$baseUrl/challenges';
+  static const String challengesParticipate = '$baseUrl/challenges/participate';
 }

@@ -18,6 +18,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final void Function()? onPressedSuffixIcon;
   final bool? enabled;
   final TextInputType keyboardType;
+  final TextAlign textAlign;
 
   const GlobalTextFieldWidget({
     super.key,
@@ -34,6 +35,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.onPressedSuffixIcon,
     this.enabled,
     required this.keyboardType,
+    this.textAlign = TextAlign.start,
   });
 
   @override
@@ -42,6 +44,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
+          textAlign: textAlign,
           focusNode: focusNode,
           controller: controller,
           obscureText: obscureText,
@@ -52,6 +55,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
               height: 1.25,
             ),
             errorText: errorText,
+            errorMaxLines: 2,
             contentPadding: EdgeInsets.symmetric(
               vertical: prefixIcon != null ? 8 : 12,
               horizontal: prefixIcon != null ? 0 : 12,

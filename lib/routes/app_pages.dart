@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/view/challenge/screens/challenge_screen.dart';
+import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
 import 'package:greeve/view/cart/screens/cart_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
+import 'package:greeve/view/list_challenge/list_challenge_wrapper_screen.dart';
 import 'package:greeve/view/common/bottom_navigation_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
@@ -82,6 +85,18 @@ class AppPages {
     GetPage(
       name: AppRoutes.searchProduct,
       page: () => const SearchScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.listChallenge,
+      page: () => const ListChallengeWrapperScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.challenge,
+      page: () => const ChallengeScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.detailChallenge,
+      page: () => const DetailChallengeScreen(),
     ),
   ];
 }

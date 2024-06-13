@@ -2,14 +2,14 @@ import 'package:get/get.dart';
 import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/routes/app_routes.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SearchProductController extends GetxController {
+  final ApiProductService _apiService = ApiProductService();
   var isTextFieldFocused = false.obs;
   var historySearch = <String>[].obs;
-  final ApiService _apiService = ApiService();
   Rx<bool> isLoadingProduct = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> productsData = <Datum>[].obs;
@@ -80,7 +80,7 @@ class SearchProductController extends GetxController {
 
     try {
       final result = await _apiService.getProductsbyName(token, name);
-      productsData.value = result.data!;
+      productsData.value = result.data;
       errorMessage.value = '';
       if (kDebugMode) {
         print('Fetched products: ${result.data}');
