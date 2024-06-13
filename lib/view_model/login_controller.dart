@@ -48,7 +48,7 @@ class LoginController extends GetxController {
       if (result.status == true && result.data != null) {
         SharedPreferencesManager.saveToken(token: result.data!.token!);
       }
-      Get.offAllNamed(AppRoutes.challenge);
+      Get.offAllNamed(AppRoutes.loading);
     } catch (e) {
       errorMessage.value = e.toString();
       showLoginFailedDialog(errorMessage.value ?? '');
