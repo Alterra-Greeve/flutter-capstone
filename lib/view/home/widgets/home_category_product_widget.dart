@@ -25,7 +25,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
               InkWell(
                 onTap: () {
                   productController
-                      .navigateToSeeAllProducts('Mengurangi Pemanasan');
+                      .navigateToSeeAllProducts('Mengurangi Pemanasan Global');
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
