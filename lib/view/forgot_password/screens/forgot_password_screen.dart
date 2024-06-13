@@ -23,6 +23,10 @@ class ForgotPassScreen extends StatelessWidget {
           leading: IconButton(
             icon: SvgPicture.asset(
               IconsConstant.arrow,
+              colorFilter: const ColorFilter.mode(
+                  ColorsConstant.black,
+                  BlendMode.srcIn,
+                ),
             ),
             onPressed: () {
               Navigator.of(context).pop();

@@ -13,10 +13,13 @@ class BottomNavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final BottomNavController controller = Get.put(BottomNavController());
     return Scaffold(
-      body: PageView(
-        controller: controller.pageController,
-        onPageChanged: controller.onPageChanged,
-        children: controller.widgetOptions,
+      body: Obx(
+        () {
+          return IndexedStack(
+            index: controller.selectedIndex.value,
+            children: controller.widgetOptions,
+          );
+        },
       ),
       bottomNavigationBar: SizedBox(
         height: 88,

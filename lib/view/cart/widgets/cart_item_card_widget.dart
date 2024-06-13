@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
@@ -147,7 +148,7 @@ class CartItemCardWidget extends StatelessWidget {
                             AlertDialog(
                               backgroundColor: ColorsConstant.neutral100,
                               content: Text(
-                                'Yay! Barangmu berhasil dimasukkan ke keranjang.',
+                                'Hapus ini?',
                                 style: TextStylesConstant.nunitoHeading4,
                                 textAlign: TextAlign.center,
                               ),
@@ -242,10 +243,8 @@ class CartItemCardWidget extends StatelessWidget {
                                         isLoading: false,
                                         text: 'Konfirmasi',
                                         onTap: () {
-                                          if (controller.isFormValid.value) {
-                                            onSet();
-                                            Get.back();
-                                          }
+                                          onSet();
+                                          Get.back();
                                         },
                                       ),
                                     ),
@@ -266,10 +265,18 @@ class CartItemCardWidget extends StatelessWidget {
                       ),
                     ),
                     InkWell(
-                      onTap: onAdd,
+                      onTap: qty < 20 ? onAdd : null,
                       child: Ink(
                         width: 24,
-                        child: SvgPicture.asset(IconsConstant.addition),
+                        child: SvgPicture.asset(
+                          IconsConstant.addition,
+                          colorFilter: ColorFilter.mode(
+                            qty == 20
+                                ? ColorsConstant.neutral500
+                                : ColorsConstant.black,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),

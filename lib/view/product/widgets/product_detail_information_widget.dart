@@ -62,22 +62,21 @@ class ProductDetailInformationWidget extends StatelessWidget {
                       String imagePath;
                       switch (category) {
                         case 'Hemat Uang':
-                          imagePath = IconsConstant.iconCategory1;
+                          imagePath = IconsConstant.productIconCategory1;
                           break;
                         case 'Mengurangi Limbah':
-                          imagePath = IconsConstant.iconCategory2;
+                          imagePath = IconsConstant.productIconCategory2;
                           break;
                         case 'Perluas Wawasan':
-                          imagePath = IconsConstant.iconCategory3;
+                          imagePath = IconsConstant.productIconCategory3;
                           break;
                         case 'Mengurangi Pemanasan Global':
-                          imagePath = IconsConstant.iconCategory4;
+                          imagePath = IconsConstant.productIconCategory4;
                           break;
                         default:
                           imagePath = 'assets/images/default.png';
                           break;
                       }
-
                       return Container(
                         width: 48,
                         height: 48,

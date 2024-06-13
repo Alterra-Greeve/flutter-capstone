@@ -8,6 +8,7 @@ import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class OtpController extends GetxController {
   final ApiAuthService _apiService = ApiAuthService();
+
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<GenericResponseModel?> responseData = Rx<GenericResponseModel?>(null);

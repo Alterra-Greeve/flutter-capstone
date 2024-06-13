@@ -47,25 +47,29 @@ class CartController extends GetxController {
   }
 
   void incrementQuantity(Item item) async {
-    final token = await SharedPreferencesManager.getToken();
-    try {
-      await _apiCartService.updateCart(
-        item.product.productId,
-        item.quantity + 1,
-        token,
-        type: 'increment',
-      );
-      item.quantity += 1;
-      cartData.refresh();
-      updateTotalPrice();
-    } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
-    }
+    debouncer(() async {
+      final token = await SharedPreferencesManager.getToken();
+      if (item.quantity < 20) {
+        try {
+          await _apiCartService.updateCart(
+            item.product.productId,
+            item.quantity + 1,
+            token,
+            type: 'increment',
+          );
+          item.quantity += 1;
+          cartData.refresh();
+          updateTotalPrice();
+        } catch (e) {
+          Get.snackbar(
+            'Error',
+            e.toString(),
+            snackPosition: SnackPosition.BOTTOM,
+            margin: const EdgeInsets.all(16),
+          );
+        }
+      }
+    });
   }
 
   void decrementQuantity(Item item) async {

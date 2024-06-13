@@ -9,6 +9,7 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class LoginController extends GetxController {
   final ApiAuthService _apiService = ApiAuthService();
+
   Rx<String?> emailErrorText = Rx<String?>(null);
   Rx<String?> passwordErrorText = Rx<String?>(null);
   Rx<bool> isFormValid = Rx<bool>(false);
@@ -47,7 +48,7 @@ class LoginController extends GetxController {
       if (result.status == true && result.data != null) {
         SharedPreferencesManager.saveToken(token: result.data!.token!);
       }
-      Get.offAllNamed(AppRoutes.loading);
+      Get.offAllNamed(AppRoutes.challenge);
     } catch (e) {
       errorMessage.value = e.toString();
       showLoginFailedDialog(errorMessage.value ?? '');

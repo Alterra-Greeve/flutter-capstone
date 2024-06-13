@@ -7,6 +7,7 @@ import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class CreateNewPasswordController extends GetxController {
   final ApiAuthService _apiService = ApiAuthService();
+
   Rx<String?> passwordErrorText = Rx<String?>(null);
   Rx<String?> passwordConfirmationErrorText = Rx<String?>(null);
   Rx<bool> isFormValid = Rx<bool>(false);

@@ -159,13 +159,13 @@ class ProductDetailImageWidget extends StatelessWidget {
                             ),
                           ),
                           child: Ink(
+                            padding: const EdgeInsets.symmetric(horizontal: 4),
                             decoration: const BoxDecoration(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
                               ),
                               color: ColorsConstant.neutral100,
                             ),
-                            width: 70,
                             height: 36,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
