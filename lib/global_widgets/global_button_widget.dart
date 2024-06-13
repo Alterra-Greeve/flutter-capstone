@@ -26,6 +26,11 @@ class GlobalButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      customBorder: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
       child: Ink(
         width: buttonWidth,
         height: buttonHeight,

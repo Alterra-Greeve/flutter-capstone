@@ -3,6 +3,7 @@ class ProductModel {
   String? name;
   String? price;
   String? description;
+  String? productId;
   
 
   ProductModel({
@@ -10,5 +11,6 @@ class ProductModel {
     required this.name,
     this.price,
     this.description,
+    this.productId,
   });
 }

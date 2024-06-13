@@ -3,14 +3,13 @@ import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/models/carousel_item_model.dart';
 import 'package:greeve/routes/app_routes.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 
 class ProductController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  final ApiService _apiService = ApiService();
-
+  final ApiProductService _apiService = ApiProductService();
   Rx<int> currentIndex = Rx<int>(0);
   Rx<int> currentCategory = Rx<int>(0);
   Rx<bool> isLoadingProduct = Rx<bool>(false);
@@ -26,21 +25,24 @@ class ProductController extends GetxController
     ProductModel(
       image: ImagesConstant.carouselProductImage1,
       name: 'Sedotan Besi',
+      productId: '7dcf0f20-d1c6-4d8a-8cf5-de60f5c420be',
     ),
     ProductModel(
       image: ImagesConstant.carouselProductImage2,
       name: 'Sikat Gigi Bambu',
+      productId: '27a731c4-e539-4a13-8b7f-6cf1a7c5d6d5',
     ),
     ProductModel(
       image: ImagesConstant.carouselProductImage3,
       name: 'Botol Minum',
+      productId: '15c9a672-1c1d-41c4-9e65-5c0d2d92b722',
     ),
   ];
   final List<Tab> categoryTabs = <Tab>[
     const Tab(text: 'Hemat Uang'),
-    const Tab(text: 'Mengurangi Limbah'),
+    const Tab(text: 'Kurangi Limbah'),
     const Tab(text: 'Perluas Wawasan'),
-    const Tab(text: 'Mengurangi Pemanasan Global'),
+    const Tab(text: 'Kurangi Pemanasan'),
   ];
 
   @override
@@ -65,12 +67,12 @@ class ProductController extends GetxController
   }
 
   void getProductsbyCategory(String category) async {
-    final String? token = await SharedPreferencesManager.getToken();
-    productsData.value = [];
-    isLoadingProduct.value = true;
     try {
+      final String? token = await SharedPreferencesManager.getToken();
+      productsData.value = [];
+      isLoadingProduct.value = true;
       final result = await _apiService.getProductsbyCategory(token, category);
-      productsData.value = result.data!;
+      productsData.value = result.data;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();
@@ -91,7 +93,7 @@ class ProductController extends GetxController
     isLoadingRecommendation.value = true;
     try {
       final result = await _apiService.getProducts(token);
-      productsRecommendationData.value = result.data!;
+      productsRecommendationData.value = result.data;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();
@@ -115,9 +117,5 @@ class ProductController extends GetxController
 
   void navigateToSeeAllProducts(String category) {
     Get.toNamed(AppRoutes.allProduct, arguments: category);
-  }
-
-  void navigateToSearchProduct() {
-    Get.toNamed(AppRoutes.searchProduct);
   }
 }

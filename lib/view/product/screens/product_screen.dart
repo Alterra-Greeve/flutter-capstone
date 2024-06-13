@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/product/widgets/product_by_category_widget.dart';
@@ -26,12 +27,14 @@ class ProductScreen extends StatelessWidget {
         actions: [
           IconButton(
             onPressed: () {
-              controller.navigateToSearchProduct();
+              Get.toNamed(AppRoutes.searchProduct);
             },
             icon: SvgPicture.asset(IconsConstant.search),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.cart);
+            },
             icon: SvgPicture.asset(IconsConstant.bag),
           ),
         ],

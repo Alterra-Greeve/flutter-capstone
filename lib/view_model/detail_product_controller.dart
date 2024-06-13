@@ -1,21 +1,26 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_cart_service.dart';
+import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class DetailProductController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  final ApiService _apiService = ApiService();
-
+  final ApiProductService _apiProductService = ApiProductService();
+  final ApiCartService _apiCartService = ApiCartService();
   Rx<int> currentImageIndex = Rx<int>(0);
   Rx<int> currentRoundedImageIndex = Rx<int>(0);
-  Rx<bool> isLoading = Rx<bool>(false);
+  Rx<bool> isLoadingProduct = Rx<bool>(false);
+  Rx<bool> isLoadingCartPost = Rx<bool>(false);
+  Rx<bool> showSuccessDialog = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<Data?> productData = Rx<Data?>(null);
   RxList<String> productImages = <String>[].obs;
   RxList<String> impactCategories = <String>[].obs;
+  Rx<GenericResponseModel?> cartResponseData = Rx<GenericResponseModel?>(null);
 
   late TabController _tabController;
   TabController get tabController => _tabController;
@@ -36,13 +41,13 @@ class DetailProductController extends GetxController
   }
 
   void getProduct() async {
-    final String productId = Get.arguments;
-    final String? token = await SharedPreferencesManager.getToken();
-    productData.value = null;
-    productImages.value = [];
-    isLoading.value = true;
     try {
-      final result = await _apiService.getProduct(productId, token);
+      final String productId = Get.arguments;
+      final String? token = await SharedPreferencesManager.getToken();
+      productData.value = null;
+      productImages.value = [];
+      isLoadingProduct.value = true;
+      final result = await _apiProductService.getProduct(productId, token);
       productData.value = result.data;
       productImages = RxList<String>.from(
         result.data!.images!.map((e) => e.imageUrl!).toList(),
@@ -62,7 +67,28 @@ class DetailProductController extends GetxController
         margin: const EdgeInsets.all(16),
       );
     } finally {
-      isLoading.value = false;
+      isLoadingProduct.value = false;
+    }
+  }
+
+  void postCart() async {
+    try {
+      final String productId = Get.arguments;
+      final String? token = await SharedPreferencesManager.getToken();
+      isLoadingCartPost.value = true;
+      final result = await _apiCartService.postCart(productId, token);
+      cartResponseData.value = result;
+      showSuccessDialog.value = true;
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        errorMessage.value ?? '',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoadingCartPost.value = false;
     }
   }
 }

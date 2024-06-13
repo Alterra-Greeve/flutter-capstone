@@ -5,7 +5,7 @@ import 'package:greeve/global_widgets/global_form_button_widget.dart';
 
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_auth_service.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
@@ -136,18 +136,18 @@ class RegisterScreen extends StatelessWidget {
                           style: TextStylesConstant.nunitoSubtitle,
                         ),
                         TextButton(
-                          style: ButtonStyle(
-                            padding:
-                                WidgetStateProperty.all<EdgeInsetsGeometry>(
-                              const EdgeInsets.symmetric(
-                                vertical: 2,
-                                horizontal: 4,
-                              ),
-                            ),
-                            minimumSize: WidgetStateProperty.all<Size>(
-                              const Size(41, 24),
-                            ),
-                          ),
+                          // style: ButtonStyle(
+                          //   padding:
+                          //       WidgetStateProperty.all<EdgeInsetsGeometry>(
+                          //     const EdgeInsets.symmetric(
+                          //       vertical: 2,
+                          //       horizontal: 4,
+                          //     ),
+                          //   ),
+                          //   minimumSize: WidgetStateProperty.all<Size>(
+                          //     const Size(41, 24),
+                          //   ),
+                          // ),
                           onPressed: () {
                             Get.offAllNamed(AppRoutes.login);
                           },

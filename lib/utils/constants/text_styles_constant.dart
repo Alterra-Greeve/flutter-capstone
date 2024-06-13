@@ -21,6 +21,7 @@ class TextStylesConstant {
     fontWeight: FontWeight.w800,
   );
 
+
   static final TextStyle nunitoHeading3 = _baseNunito.copyWith(
     fontSize: 24,
     fontWeight: FontWeight.w700,
@@ -55,6 +56,7 @@ class TextStylesConstant {
     color: ColorsConstant.neutral900,
     fontWeight: FontWeight.w600,
   );
+
 
   static final TextStyle nunitoFooter = _baseNunito.copyWith(
     fontSize: 10,
