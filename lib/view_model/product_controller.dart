@@ -30,12 +30,12 @@ class ProductController extends GetxController
     ProductModel(
       image: ImagesConstant.carouselProductImage2,
       name: 'Sikat Gigi Bambu',
-      productId: '27a731c4-e539-4a13-8b7f-6cf1a7c5d6d5',
+      productId: '7c45085a-2466-4f5e-9ccd-bdd139751dac',
     ),
     ProductModel(
       image: ImagesConstant.carouselProductImage3,
       name: 'Botol Minum',
-      productId: '15c9a672-1c1d-41c4-9e65-5c0d2d92b722',
+      productId: '7dc84308-0330-41f1-8072-ca635e5055c8',
     ),
   ];
   final List<Tab> categoryTabs = <Tab>[
