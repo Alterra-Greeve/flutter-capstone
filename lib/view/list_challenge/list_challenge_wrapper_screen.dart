@@ -8,6 +8,7 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/list_challenge_controller.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 part 'screens/list_challenge_cancel_screen.dart';
 part 'screens/list_challenge_done_screen.dart';

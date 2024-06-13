@@ -10,8 +10,15 @@ class ListChallengeTodoScreen extends StatelessWidget {
 
     return Obx(() {
       if (listChallengeController.isLoading.value) {
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Center(
+          child: SizedBox(
+            width: 50,
+            child: LoadingIndicator(
+              indicatorType: Indicator.ballBeat,
+              strokeWidth: 4.0,
+              colors: [Theme.of(context).primaryColor],
+            ),
+          ),
         );
       } else if (listChallengeController.errorMessage.value != null) {
         return const ListChallengeEmptyItemWidget(

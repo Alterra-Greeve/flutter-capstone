@@ -192,7 +192,7 @@ class CartItemCardWidget extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        controller.qtyErrorText = Rx<String?>(null);
+                        controller.qtyErrorText = Rx<String>("");
                         controller.qtyController.text = qty.toString();
                         Get.dialog(
                           AlertDialog(
@@ -206,17 +206,34 @@ class CartItemCardWidget extends StatelessWidget {
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(height: 28),
-                                Obx(
-                                  () => GlobalTextFieldWidget(
-                                    textAlign: TextAlign.center,
-                                    focusNode: controller.qtyFocusNode,
-                                    controller: controller.qtyController,
-                                    errorText: controller.qtyErrorText.value,
-                                    onChanged: (value) =>
-                                        controller.validateQty(value),
-                                    showSuffixIcon: false,
-                                    keyboardType: TextInputType.number,
+                                GlobalTextFieldWidget(
+                                  textAlign: TextAlign.center,
+                                  focusNode: controller.qtyFocusNode,
+                                  controller: controller.qtyController,
+                                  errorStyle:
+                                      TextStylesConstant.nunitoFooter.copyWith(
+                                    color: ColorsConstant.danger500,
                                   ),
+                                  onChanged: (value) =>
+                                      controller.validateQty(value),
+                                  showSuffixIcon: false,
+                                  keyboardType: TextInputType.number,
+                                ),
+                                Obx(
+                                  () => controller.qtyErrorText != "".obs
+                                      ? Padding(
+                                          padding:
+                                              const EdgeInsets.only(top: 10),
+                                          child: Text(
+                                            controller.qtyErrorText.value,
+                                            style: TextStylesConstant
+                                                .nunitoFooter
+                                                .copyWith(
+                                              color: ColorsConstant.danger500,
+                                            ),
+                                          ),
+                                        )
+                                      : const SizedBox.shrink(),
                                 ),
                               ],
                             ),

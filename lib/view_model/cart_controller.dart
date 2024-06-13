@@ -11,12 +11,12 @@ class CartController extends GetxController {
   RxList<Item> cartData = <Item>[].obs;
   Rx<bool> isLoadingCart = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
-  Rx<String?> qtyErrorText = Rx<String?>(null);
+  Rx<String> qtyErrorText = Rx<String>("");
   Rx<bool> isFormValid = Rx<bool>(false);
   Rx<int> newQty = Rx<int>(0);
   Rx<double> totalPrice = Rx<double>(0.0);
 
-  final debouncer = Debouncer(delay: const Duration(milliseconds: 250));
+  final debouncer = Debouncer(delay: const Duration(milliseconds: 200));
   final TextEditingController _qtyController = TextEditingController();
   final FocusNode _qtyFocusNode = FocusNode();
   TextEditingController get qtyController => _qtyController;
@@ -126,13 +126,13 @@ class CartController extends GetxController {
     } else if (qty > 20) {
       qtyErrorText.value = 'Jumlah produk tidak boleh lebih dari 20!';
     } else {
-      qtyErrorText.value = null;
+      qtyErrorText.value = "";
     }
     validateForm();
   }
 
   void validateForm() {
-    if (qtyErrorText.value != null || _qtyController.text == '') {
+    if (_qtyController.text == '') {
       isFormValid.value = false;
     } else {
       isFormValid.value = true;

@@ -12,6 +12,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/view_model/product_controller.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 part '../widgets/home_app_bar_widget.dart';
