@@ -25,7 +25,7 @@ class BottomNavScreen extends StatelessWidget {
                 HomeScreen(),
                 ChallengeScreen(),
                 ProductScreen(),
-                UserProfileScreen(),
+                Placeholder(),
                 UserProfileScreen(),
               ]);
         },
