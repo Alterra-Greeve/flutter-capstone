@@ -95,4 +95,8 @@ class TextStylesConstant {
     fontSize: 16,
     fontWeight: FontWeight.w600,
   );
+
+  static final TextStyle nunitoReguler = _baseNunito.copyWith(
+    fontSize: 14,
+  );
 }

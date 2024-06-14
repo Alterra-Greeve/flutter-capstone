@@ -27,4 +27,5 @@ class IconsConstant {
   static const String iconCategory2 = 'assets/images/icon_category2.png';
   static const String iconCategory3 = 'assets/images/icon_category3.png';
   static const String iconCategory4 = 'assets/images/icon_category4.png';
+  static const String profile = 'assets/images/profile.svg';
 }

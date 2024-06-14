@@ -57,7 +57,9 @@ class ApiAuthService {
 
       final response = await _dio.post(ApiConstant.forgotPassword,
           data: data, options: options);
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 201) {
         return GenericResponseModel.fromJson(response.data);
       } else {
