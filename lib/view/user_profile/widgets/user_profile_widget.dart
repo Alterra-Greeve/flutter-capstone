@@ -82,8 +82,8 @@ class UserProfileWidget extends StatelessWidget {
                                 child: Text(
                                   controller
                                           .userProfileData.value?.data?.name ??
-                                      "=",
-                                  style: TextStylesConstant.nunitoHeading3,
+                                      "-",
+                                  style: TextStylesConstant.nunitoButtonBold,
                                   overflow: TextOverflow.fade,
                                   maxLines: 1,
                                   softWrap: false,
@@ -94,8 +94,11 @@ class UserProfileWidget extends StatelessWidget {
                                 child: Text(
                                   controller
                                           .userProfileData.value?.data?.email ??
-                                      "=",
-                                  style: TextStylesConstant.nunitoCaption,
+                                      "-",
+                                  style:
+                                      TextStylesConstant.nunitoCaption.copyWith(
+                                    color: ColorsConstant.neutral600,
+                                  ),
                                   overflow: TextOverflow.fade,
                                   maxLines: 1,
                                   softWrap: false,

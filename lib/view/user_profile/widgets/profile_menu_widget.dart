@@ -23,12 +23,6 @@ class ProfileMenuWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ProfileMenuCardWidget(
-            menuTitle: 'Alamat',
-            menuIcon: IconsConstant.locationFilled,
-            onTap: () {},
-          ),
-          const SizedBox(height: 12),
-          ProfileMenuCardWidget(
             menuTitle: 'Voucher',
             menuIcon: IconsConstant.percentageFilled,
             onTap: () {},

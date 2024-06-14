@@ -18,10 +18,19 @@ class HomeProductCarouselWidget extends StatelessWidget {
                   (product) => Stack(
                     children: [
                       ClipRRect(
-                        child: Image.network(
-                          product.images[0].imageUrl,
-                          fit: BoxFit.cover,
+                        child: CachedNetworkImage(
+                          imageUrl: product.images[0].imageUrl,
                           width: double.infinity,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                         ),
                       ),
                       Positioned(

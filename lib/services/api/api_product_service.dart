@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/utils/helpers/product_error_helper.dart';
@@ -81,6 +82,9 @@ class ApiProductService {
 
       final response = await _dio
           .get('${ApiConstant.productsSearch}?name=$name', options: options);
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
       } else {
