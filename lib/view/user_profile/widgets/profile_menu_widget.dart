@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/routes/app_routes.dart';
-import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/user_profile/widgets/profile_menu_card_widget.dart';
+import 'package:greeve/view_model/bottom_navigation_controller.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
   const ProfileMenuWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final BottomNavController controller = Get.put(BottomNavController());
     return Container(
       padding: const EdgeInsets.all(16),
       child: Column(
@@ -48,8 +48,7 @@ class ProfileMenuWidget extends StatelessWidget {
           const SizedBox(height: 24),
           InkWell(
             onTap: () {
-              SharedPreferencesManager.removeAllKeys();
-              Get.offAllNamed(AppRoutes.splashApp);
+              controller.logout();
             },
             child: Ink(
               width: 232,

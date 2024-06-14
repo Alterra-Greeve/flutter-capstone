@@ -13,8 +13,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     getUserProfile();
+    super.onInit();
   }
 
   void getUserProfile() async {

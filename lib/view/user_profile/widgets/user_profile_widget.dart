@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -49,30 +50,59 @@ class UserProfileWidget extends StatelessWidget {
                           borderRadius: const BorderRadius.all(
                             Radius.circular(44),
                           ),
-                          child: CachedNetworkImage(
-                            height: 64,
-                            width: 64,
-                            imageUrl: controller
-                                    .userProfileData.value?.data?.avatarUrl ??
-                                "",
+                          child: Obx(
+                            () => CachedNetworkImage(
+                              height: 64,
+                              width: 64,
+                              imageUrl: controller
+                                      .userProfileData.value?.data?.avatarUrl ??
+                                  "",
+                              imageBuilder: (context, imageProvider) =>
+                                  Container(
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: imageProvider,
+                                    fit: BoxFit.cover,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) =>
+                                  const Icon(Icons.error),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 12),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              controller.userProfileData.value?.data?.name ??
-                                  "",
-                              style: TextStylesConstant.nunitoHeading3,
-                            ),
-                            Text(
-                              controller.userProfileData.value?.data?.email ??
-                                  "",
-                              style: TextStylesConstant.nunitoCaption,
-                            )
-                          ],
+                        Obx(
+                          () => Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                width: 205,
+                                child: Text(
+                                  controller
+                                          .userProfileData.value?.data?.name ??
+                                      "=",
+                                  style: TextStylesConstant.nunitoHeading3,
+                                  overflow: TextOverflow.fade,
+                                  maxLines: 1,
+                                  softWrap: false,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 205,
+                                child: Text(
+                                  controller
+                                          .userProfileData.value?.data?.email ??
+                                      "=",
+                                  style: TextStylesConstant.nunitoCaption,
+                                  overflow: TextOverflow.fade,
+                                  maxLines: 1,
+                                  softWrap: false,
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       ],
                     ),

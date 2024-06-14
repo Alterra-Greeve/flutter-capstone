@@ -16,7 +16,7 @@ class UserProfileController extends GetxController {
     getUserProfile();
     super.onInit();
   }
-  
+
   void getUserProfile() async {
     final String? token = await SharedPreferencesManager.getToken();
     if (kDebugMode) {
