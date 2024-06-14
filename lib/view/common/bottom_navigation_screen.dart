@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/challenge/screens/challenge_screen.dart';
+import 'package:greeve/view/home/screens/home_screen.dart';
+import 'package:greeve/view/product/screens/product_screen.dart';
+import 'package:greeve/view/user_profile/screens/user_profile_screen.dart';
 import 'package:greeve/view_model/bottom_navigation_controller.dart';
 
 class BottomNavScreen extends StatelessWidget {
@@ -16,9 +20,14 @@ class BottomNavScreen extends StatelessWidget {
       body: Obx(
         () {
           return IndexedStack(
-            index: controller.selectedIndex.value,
-            children: controller.widgetOptions,
-          );
+              index: controller.selectedIndex.value,
+              children: const [
+                HomeScreen(),
+                ChallengeScreen(),
+                ProductScreen(),
+                Placeholder(),
+                UserProfileScreen(),
+              ]);
         },
       ),
       bottomNavigationBar: SizedBox(

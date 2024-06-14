@@ -1,32 +1,55 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/services/api/api_challenge_service.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:greeve/models/api_responses/challenge_response_model.dart';
 
 import '../utils/constants/icons_constant.dart';
 
 class DetailChallengeController extends GetxController {
-  final count = 0.obs;
+  final ApiChallengeService _apiService = ApiChallengeService();
+  Rx<bool> isLoading = Rx<bool>(false);
+  Rx<String?> errorMessage = Rx<String?>(null);
+  Rx<Data?> challengeData = Rx<Data?>(null);
+  RxList<String> impactCategories = <String>[].obs;
+  var photos = <XFile>[].obs;
+  RxBool isUploaded = false.obs;
 
   @override
   void onInit() {
+    getChallenge();
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void getChallenge() async {
+    try {
+      final String challengeId = Get.arguments;
+      print(challengeId);
+      final String? token = await SharedPreferencesManager.getToken();
+      challengeData.value = null;
+      isLoading.value = true;
+      final result = await _apiService.getChallenge(token, challengeId);
+      challengeData.value = result.data;
+      impactCategories.value = result.data.challenge.categories.map((category) {
+        return category.impactCategory.name;
+      }).toList();
+      errorMessage.value = '';
+    } catch (e) {
+      errorMessage.value = e.toString();
+      Get.snackbar(
+        'Error',
+        errorMessage.value ?? '',
+        snackPosition: SnackPosition.BOTTOM,
+        margin: const EdgeInsets.all(16),
+      );
+    } finally {
+      isLoading.value = false;
+    }
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  var photos = <XFile>[].obs;
-  RxBool isUploaded = false.obs;
 
   void addPhoto() async {
     if (photos.length < 4) {
@@ -135,14 +158,5 @@ class DetailChallengeController extends GetxController {
     if (index >= 0 && index < photos.length) {
       photos.removeAt(index);
     }
-  }
-}
-
-class DetailControllerBindings extends Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut<DetailChallengeController>(
-      () => DetailChallengeController(),
-    );
   }
 }

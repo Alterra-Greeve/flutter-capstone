@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/detail_challenge_controller.dart';
 
 class DetailChallengeTimeWidget extends StatelessWidget {
+  final DetailChallengeController controller;
   const DetailChallengeTimeWidget({
     super.key,
+    required this.controller,
   });
 
   @override
