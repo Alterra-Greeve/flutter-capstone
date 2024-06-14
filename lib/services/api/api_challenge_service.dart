@@ -77,7 +77,6 @@ class ApiChallengeService {
         '${ApiConstant.challengesParticipate}/$challengeId',
         options: options,
       );
-      print(response);
       if (response.statusCode == 200) {
         return ChallengeResponseModel.fromJson(response.data);
       } else {

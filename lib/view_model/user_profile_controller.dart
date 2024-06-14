@@ -4,7 +4,7 @@ import 'package:greeve/models/api_responses/get_user_profile_response_model.dart
 import 'package:greeve/services/api/api_auth_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
-class HomeController extends GetxController {
+class UserProfileController extends GetxController {
   final ApiAuthService _apiAuthService = ApiAuthService();
   Rx<GetUserProfileResponseModel?> userProfileData =
       Rx<GetUserProfileResponseModel?>(null);
@@ -13,10 +13,10 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
     getUserProfile();
+    super.onInit();
   }
-
+  
   void getUserProfile() async {
     final String? token = await SharedPreferencesManager.getToken();
     if (kDebugMode) {

@@ -6,6 +6,7 @@ class ColorsConstant {
   static const Color neutral50 = Color(0xFFFAFAFA);
   static const Color neutral100 = Color(0xFFF5F5F5);
   static const Color neutral200 = Color(0xFFEDEDED);
+  static const Color neutral300 = Color(0xFFE5E5E5);
   static const Color neutral400 = Color(0xFFD4D4D4);
   static const Color neutral500 = Color(0xFFA3A3A3);
   static const Color neutral600 = Color(0xFF737373);
@@ -32,6 +33,7 @@ class ColorsConstant {
   static const Color info300 = Color(0xFF68A8EC);
   static const Color info500 = Color(0xFF046EE0);
   static const Color warning300 = Color(0xFFFADA66);
+
 }
 
 Color getDifficultyBackgroundColor(String difficulty) {

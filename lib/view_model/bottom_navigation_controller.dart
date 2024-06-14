@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/view/challenge/screens/challenge_screen.dart';
 import 'package:greeve/view/home/screens/home_screen.dart';
-import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/view/product/screens/product_screen.dart';
+import 'package:greeve/view/user_profile/screens/user_profile_screen.dart';
 
 class BottomNavController extends GetxController {
   Rx<int> selectedIndex = Rx<int>(0);
@@ -12,17 +12,8 @@ class BottomNavController extends GetxController {
     const HomeScreen(),
     const ChallengeScreen(),
     const ProductScreen(),
-    const Scaffold(body: Center(child: Text('Halaman Dampak (On Progress)'))),
-    Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            SharedPreferencesManager.removeAllKeys();
-          },
-          child: const Text('Delete Token'),
-        ),
-      ),
-    ),
+    const Scaffold(body: Center(child: Text('On progress'),),),
+    const UserProfileScreen(),
   ];
   List<Widget> get widgetOptions => _widgetOptions;
 
