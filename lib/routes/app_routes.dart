@@ -10,12 +10,10 @@ class AppRoutes {
   static const String loading = '/loading';
   static const String bottomNavigation = '/bottom_navigation';
   static const String onboarding = '/onboarding';
-  static const String product = '/product';
   static const String allProduct = '/all_product';
   static const String detailProduct = '/detail_product';
   static const String cart = '/cart';
   static const String searchProduct = '/search_product';
   static const String listChallenge = '/list_challenge';
-  static const String challenge = '/challenge';
   static const String detailChallenge = '/detail_challenge';
 }

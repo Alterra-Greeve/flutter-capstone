@@ -23,11 +23,7 @@ class HomeRecomendedProductWidget extends StatelessWidget {
               const Spacer(),
               TextButton(
                 onPressed: () {
-                  productController.navigateToSeeAllProducts(
-                    productController
-                        .categoryTabs[productController.currentCategory.value]
-                        .text!,
-                  );
+                  productController.navigateToSeeAllProducts();
                 },
                 child: Text(
                   'Selengkapnya',
