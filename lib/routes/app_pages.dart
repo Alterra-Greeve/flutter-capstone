@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/cart/screens/cart_screen.dart';
+import 'package:greeve/view/environtment_impact/screen/chart.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
@@ -15,6 +16,9 @@ import 'package:greeve/view/product/screens/product_screen.dart';
 import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/common/splash_screen.dart';
+
+import '../view/environtment_impact/screen/detail_impact_screen.dart';
+import '../view/environtment_impact/screen/impact_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -77,6 +81,14 @@ class AppPages {
     GetPage(
       name: AppRoutes.cart,
       page: () => const CartScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.impact,
+      page: () => ImpactScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.detailImpact,
+      page: () => const DetailImpactScreen(),
     ),
   ];
 }

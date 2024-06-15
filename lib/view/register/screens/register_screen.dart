@@ -137,29 +137,29 @@ class RegisterScreen extends StatelessWidget {
                           'Sudah Punya Akun?',
                           style: TextStylesConstant.nunitoSubtitle,
                         ),
-                        TextButton(
-                          style: ButtonStyle(
-                            padding:
-                                WidgetStateProperty.all<EdgeInsetsGeometry>(
-                              const EdgeInsets.symmetric(
-                                vertical: 2,
-                                horizontal: 4,
-                              ),
-                            ),
-                            minimumSize: WidgetStateProperty.all<Size>(
-                              const Size(41, 24),
-                            ),
-                          ),
-                          onPressed: () {
-                            Get.offAllNamed(AppRoutes.login);
-                          },
-                          child: Text(
-                            'Masuk',
-                            style: TextStylesConstant.nunitoSubtitle.copyWith(
-                              color: ColorsConstant.primary500,
-                            ),
-                          ),
-                        ),
+                        // TextButton(
+                        //   style: ButtonStyle(
+                        //     padding:
+                        //         WidgetStateProperty.all<EdgeInsetsGeometry>(
+                        //       const EdgeInsets.symmetric(
+                        //         vertical: 2,
+                        //         horizontal: 4,
+                        //       ),
+                        //     ),
+                        //     minimumSize: WidgetStateProperty.all<Size>(
+                        //       const Size(41, 24),
+                        //     ),
+                        //   ),
+                        //   onPressed: () {
+                        //     Get.offAllNamed(AppRoutes.login);
+                        //   },
+                        //   child: Text(
+                        //     'Masuk',
+                        //     style: TextStylesConstant.nunitoSubtitle.copyWith(
+                        //       color: ColorsConstant.primary500,
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
