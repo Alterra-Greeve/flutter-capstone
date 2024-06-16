@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.greeveCoin,
+      initialRoute: AppRoutes.splashApp,
       getPages: AppPages.routes,
     );
   }

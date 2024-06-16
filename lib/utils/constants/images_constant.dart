@@ -27,4 +27,9 @@ class ImagesConstant {
   static const String bottleGrid = 'assets/images/bottle_grid.png';
   static const String searchEngines = 'assets/images/search_engines.svg';
   static const String closeSquare = 'assets/images/close_square.svg';
+  static const String allVoucher = 'assets/images/all_voucher.svg';
+  static const String getCoin = 'assets/images/get_coin.svg';
+  static const String greenVoucher = 'assets/images/green_voucher.png';
+  static const String blueVoucher = 'assets/images/blue_voucher.png';
+  static const String voucherSedotan = 'assets/images/voucher_sedotan.svg';
 }
