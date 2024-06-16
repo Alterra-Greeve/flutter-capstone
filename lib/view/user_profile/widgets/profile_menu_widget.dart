@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/user_profile/widgets/profile_menu_card_widget.dart';
+import 'package:greeve/view/user_profile/widgets/user_profile_dialog_widget.dart';
 import 'package:greeve/view_model/bottom_navigation_controller.dart';
 
 class ProfileMenuWidget extends StatelessWidget {
@@ -19,30 +21,38 @@ class ProfileMenuWidget extends StatelessWidget {
           ProfileMenuCardWidget(
             menuTitle: 'Notifikasi',
             menuIcon: IconsConstant.notificationFilled,
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.notification);
+            },
           ),
           const SizedBox(height: 12),
           ProfileMenuCardWidget(
             menuTitle: 'Voucher',
             menuIcon: IconsConstant.percentageFilled,
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.voucher);
+            },
           ),
           const SizedBox(height: 12),
           ProfileMenuCardWidget(
             menuTitle: 'Pusat Bantuan',
             menuIcon: IconsConstant.messageFilled,
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.helpCenter);
+            },
           ),
           const SizedBox(height: 12),
           ProfileMenuCardWidget(
             menuTitle: 'Syarat dan Ketentuan',
             menuIcon: IconsConstant.notesFilled,
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(AppRoutes.termsAndConditions);
+            },
           ),
           const SizedBox(height: 24),
           InkWell(
             onTap: () {
-              controller.logout();
+              showLogoutConfirmationDialog(controller);
             },
             child: Ink(
               width: 232,

@@ -38,4 +38,7 @@ class ImagesConstant {
   static const String closeSquare = 'assets/images/close_square.svg';
   static const String emptyCart = 'assets/images/empty_cart_image.svg';
   static const String addCartSuccess = 'assets/images/add_cart_success_image.svg';
+  static const String customerServiceImage = 'assets/images/customer_service_image.png';
+  static const String saveUser = 'assets/images/save_user.svg';
+  static const String saveUserSuccess = 'assets/images/save_user_success.svg';
 }

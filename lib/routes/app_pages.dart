@@ -17,6 +17,11 @@ import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/common/splash_screen.dart';
 import 'package:greeve/view/search_product/screen/search_screen.dart';
+import 'package:greeve/view/user_profile/screens/edit_profile_screen.dart';
+import 'package:greeve/view/user_profile/screens/help_center_screen.dart';
+import 'package:greeve/view/user_profile/screens/notification_screen.dart';
+import 'package:greeve/view/user_profile/screens/terms_and_condition_screen.dart';
+import 'package:greeve/view/user_profile/screens/voucher_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -87,6 +92,26 @@ class AppPages {
     GetPage(
       name: AppRoutes.detailChallenge,
       page: () => const DetailChallengeScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.editProfile,
+      page: () => const EditProfileScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.termsAndConditions,
+      page: () => const TermsAndConditionsScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.helpCenter,
+      page: () => const HelpCenterScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.notification,
+      page: () => const NotificationScreen(),
+    ),
+     GetPage(
+      name: AppRoutes.voucher,
+      page: () => const VoucherScreen(),
     ),
   ];
 }

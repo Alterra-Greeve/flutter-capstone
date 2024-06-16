@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -48,7 +49,7 @@ class UserProfileWidget extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: const BorderRadius.all(
-                            Radius.circular(44),
+                            Radius.circular(48),
                           ),
                           child: Obx(
                             () => CachedNetworkImage(
@@ -110,7 +111,9 @@ class UserProfileWidget extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Get.toNamed(AppRoutes.editProfile);
+                      },
                       child: SvgPicture.asset(IconsConstant.edit),
                     ),
                   ],

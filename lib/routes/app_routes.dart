@@ -16,4 +16,9 @@ class AppRoutes {
   static const String searchProduct = '/search_product';
   static const String listChallenge = '/list_challenge';
   static const String detailChallenge = '/detail_challenge';
+  static const String editProfile = '/edit_profile';
+  static const String helpCenter = '/help_center';
+  static const String termsAndConditions= '/terms_and_conditions';
+  static const String notification = '/notification';
+  static const String voucher = '/voucher';
 }

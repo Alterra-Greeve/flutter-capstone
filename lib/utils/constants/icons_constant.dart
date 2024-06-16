@@ -86,7 +86,8 @@ class IconsConstant {
   static const String poinImpact = 'assets/images/poin_impact.png';
   static const String edit = 'assets/images/edit.svg';
   static const String star = 'assets/images/star.svg';
-  static const String notificationFilled = 'assets/images/notification_filled.svg';
+  static const String notificationFilled =
+      'assets/images/notification_filled.svg';
   static const String percentageFilled = 'assets/images/percentage_filled.svg';
   static const String messageFilled = 'assets/images/message_filled.svg';
   static const String notesFilled = 'assets/images/notes_filled.svg';
