@@ -95,7 +95,7 @@ class ListChallengeTodoScreen extends StatelessWidget {
                                     children: [
                                       ListChallengeDifficultyItemWidget(
                                         difficultyChallenge:
-                                            challenge.challenge?.difficulty,
+                                            challenge.challenge!.difficulty!,
                                       ),
                                       const SizedBox(
                                         width: 8,
@@ -127,7 +127,7 @@ class ListChallengeTodoScreen extends StatelessWidget {
                           height: 12,
                         ),
                         ListChallengeStatusItemWidget(
-                          statusChallenge: challenge.status,
+                          statusChallenge: challenge.status!,
                         ),
                       ],
                     ),

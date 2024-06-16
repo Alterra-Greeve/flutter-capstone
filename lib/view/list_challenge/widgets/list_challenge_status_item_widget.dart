@@ -1,11 +1,11 @@
 part of '../list_challenge_wrapper_screen.dart';
 
 class ListChallengeStatusItemWidget extends StatelessWidget {
-  final Status? statusChallenge;
+  final String statusChallenge;
 
   const ListChallengeStatusItemWidget({
     super.key,
-    this.statusChallenge,
+    required this.statusChallenge,
   });
 
   @override
@@ -15,18 +15,18 @@ class ListChallengeStatusItemWidget extends StatelessWidget {
     String statusChallengeFinal;
 
     switch (statusChallenge) {
-      case Status.PENDING:
+      case "Pending":
         backgroundColor = ColorsConstant.primary500;
         textColor = ColorsConstant.neutral100;
         statusChallengeFinal = 'Selesaikan Misi';
 
         break;
-      case Status.ACCEPTED:
+      case "Diterima":
         backgroundColor = ColorsConstant.warning50;
         textColor = ColorsConstant.danger600;
         statusChallengeFinal = 'Hebat! Kamu bisa menyelesaikannya';
         break;
-      case Status.DECLINED:
+      case "Ditolak":
         backgroundColor = ColorsConstant.success50;
         textColor = ColorsConstant.success600;
         statusChallengeFinal = 'Yah! waktunya habis';

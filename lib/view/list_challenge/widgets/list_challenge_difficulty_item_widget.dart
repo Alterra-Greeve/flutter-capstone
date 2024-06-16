@@ -1,11 +1,11 @@
 part of '../list_challenge_wrapper_screen.dart';
 
 class ListChallengeDifficultyItemWidget extends StatelessWidget {
-  final Difficulty? difficultyChallenge;
+  final String difficultyChallenge;
 
   const ListChallengeDifficultyItemWidget({
     super.key,
-    this.difficultyChallenge,
+    required this.difficultyChallenge,
   });
 
   @override
@@ -15,18 +15,18 @@ class ListChallengeDifficultyItemWidget extends StatelessWidget {
     String difficultyText;
 
     switch (difficultyChallenge) {
-      case Difficulty.SULIT:
+      case "Sulit":
         backgroundColor = ColorsConstant.danger100;
         textColor = ColorsConstant.danger600;
         difficultyText = 'Sulit';
 
         break;
-      case Difficulty.SEDANG:
+      case "sedang":
         backgroundColor = ColorsConstant.warning100;
         textColor = ColorsConstant.warning600;
         difficultyText = 'Sedang';
         break;
-      case Difficulty.MUDAH:
+      case "Mudah":
         backgroundColor = ColorsConstant.success100;
         textColor = ColorsConstant.success600;
         difficultyText = 'Mudah';

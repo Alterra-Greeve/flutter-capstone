@@ -38,7 +38,7 @@ class Datum {
   int coin;
   int exp;
   int participant;
-  Difficulty difficulty;
+  String difficulty;
   String imageUrl;
   DateTime dateStart;
   DateTime dateEnd;
@@ -65,7 +65,7 @@ class Datum {
         coin: json["coin"],
         exp: json["exp"],
         participant: json["participant"],
-        difficulty: difficultyValues.map[json["difficulty"]]!,
+        difficulty: json["difficulty"],
         imageUrl: json["image_url"],
         dateStart: DateTime.parse(json["date_start"]),
         dateEnd: DateTime.parse(json["date_end"]),
@@ -80,7 +80,7 @@ class Datum {
         "coin": coin,
         "exp": exp,
         "participant": participant,
-        "difficulty": difficultyValues.reverse[difficulty],
+        "difficulty": difficulty,
         "image_url": imageUrl,
         "date_start":
             "${dateStart.year.toString().padLeft(4, '0')}-${dateStart.month.toString().padLeft(2, '0')}-${dateStart.day.toString().padLeft(2, '0')}",
@@ -107,23 +107,27 @@ class Category {
 }
 
 class ImpactCategory {
+  String id;
   Name name;
   int impactPoint;
   String iconUrl;
 
   ImpactCategory({
+    required this.id,
     required this.name,
     required this.impactPoint,
     required this.iconUrl,
   });
 
   factory ImpactCategory.fromJson(Map<String, dynamic> json) => ImpactCategory(
+        id: json["id"],
         name: nameValues.map[json["name"]]!,
         impactPoint: json["impact_point"],
         iconUrl: json["icon_url"],
       );
 
   Map<String, dynamic> toJson() => {
+        "id": id,
         "name": nameValues.reverse[name],
         "impact_point": impactPoint,
         "icon_url": iconUrl,
@@ -142,14 +146,6 @@ final nameValues = EnumValues({
   "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
   "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
   "Perluas Wawasan": Name.PERLUAS_WAWASAN
-});
-
-enum Difficulty { Mudah, Sedang, Sulit }
-
-final difficultyValues = EnumValues({
-  "Mudah": Difficulty.Mudah,
-  "Sedang": Difficulty.Sedang,
-  "Sulit": Difficulty.Sulit
 });
 
 class EnumValues<T> {

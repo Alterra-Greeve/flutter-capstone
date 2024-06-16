@@ -54,7 +54,7 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
               image: challenge.imageUrl,
               title: challenge.title,
               description: challenge.description,
-              difficulty: challenge.difficulty.name,
+              difficulty: challenge.difficulty,
               exp: challenge.exp.toString(),
               coin: challenge.coin.toString(),
               participant: challenge.participant.toString(),
