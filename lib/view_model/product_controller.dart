@@ -120,7 +120,11 @@ class ProductController extends GetxController
     );
   }
 
-  void navigateToSeeAllProducts(String category) {
-    Get.toNamed(AppRoutes.allProduct, arguments: category);
+  void navigateToSeeAllProducts() {
+    final currentCategoryName = categoryTabs[_tabController.index].text;
+    Get.toNamed(
+      AppRoutes.allProduct,
+      arguments: currentCategoryName,
+    );
   }
 }

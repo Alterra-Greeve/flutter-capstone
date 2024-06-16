@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/get_user_profile_response_model.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_user_serpice.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
@@ -31,5 +32,12 @@ class HomeController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void navigateToSeeAllProducts(String category) {
+    Get.toNamed(
+      AppRoutes.allProduct,
+      arguments: category,
+    );
   }
 }

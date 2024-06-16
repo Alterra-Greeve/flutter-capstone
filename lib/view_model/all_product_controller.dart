@@ -9,7 +9,7 @@ class AllProductScreenController extends GetxController {
   final ApiProductService _apiService = ApiProductService();
   final PagingController<int, Datum> pagingController =
       PagingController(firstPageKey: 1);
-
+  final Rx<String> categoryTitle = Rx<String>('');
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> productsData = <Datum>[].obs;
 
@@ -23,7 +23,13 @@ class AllProductScreenController extends GetxController {
 
   void getProductsbyCategory(int pageKey) async {
     try {
-      final String category = Get.arguments;
+      categoryTitle.value = Get.arguments;
+      String category = Get.arguments;
+      if (category == 'Kurangi Limbah') {
+        category = 'Mengurangi Limbah';
+      } else if (category == 'Kurangi Pemanasan') {
+        category = 'Mengurangi Pemanasan Global';
+      }
       final String? token = await SharedPreferencesManager.getToken();
       final result = await _apiService.getProductsbyCategoryWithPage(
           token, category, pageKey.toString());

@@ -53,7 +53,8 @@ class RecommendationCardWidget extends StatelessWidget {
                 bottomLeft: Radius.circular(8),
               ),
               child: CachedNetworkImage(
-                imageUrl: imageUrl ?? "",
+                imageUrl: imageUrl ??
+                    "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
                 height: 70,
                 width: 70,
                 imageBuilder: (context, imageProvider) => Container(

@@ -5,8 +5,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProductController productController = Get.find<ProductController>();
-
+    final HomeController homeController = Get.find<HomeController>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -24,8 +23,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  productController
-                      .navigateToSeeAllProducts('Mengurangi Pemanasan Global');
+                  homeController.navigateToSeeAllProducts('Rekomendasi');
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -53,7 +51,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  productController.navigateToSeeAllProducts('Hemat Uang');
+                  homeController.navigateToSeeAllProducts('Hemat Uang');
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -81,7 +79,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  productController.navigateToSeeAllProducts('Perluas Wawasan');
+                  homeController.navigateToSeeAllProducts('Perluas Wawasan');
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -109,8 +107,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  productController
-                      .navigateToSeeAllProducts('Mengurangi Limbah');
+                  homeController.navigateToSeeAllProducts('Mengurangi Limbah');
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,

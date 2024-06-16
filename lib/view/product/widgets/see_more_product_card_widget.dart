@@ -17,9 +17,7 @@ class SeeMoreProductCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        controller.navigateToSeeAllProducts(
-          controller.categoryTabs[controller.currentCategory.value].text!,
-        );
+        controller.navigateToSeeAllProducts();
       },
       child: Container(
         width: 180,
