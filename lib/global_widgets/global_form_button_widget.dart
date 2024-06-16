@@ -9,6 +9,7 @@ class GlobalFormButtonWidget extends StatelessWidget {
   final bool isFormValid;
   final bool isLoading;
   final double? buttonWidth;
+  final double? buttonHeight;
 
   const GlobalFormButtonWidget({
     super.key,
@@ -17,6 +18,7 @@ class GlobalFormButtonWidget extends StatelessWidget {
     required this.isLoading,
     this.isFormValid = false,
     this.buttonWidth = double.infinity,
+    this.buttonHeight = 48,
   });
 
   @override
@@ -25,7 +27,7 @@ class GlobalFormButtonWidget extends StatelessWidget {
       onTap: isFormValid ? onTap : null,
       child: Ink(
         width: buttonWidth,
-        height: 48,
+        height: buttonHeight,
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: isFormValid

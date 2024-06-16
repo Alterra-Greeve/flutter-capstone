@@ -86,4 +86,46 @@ class CartErrorHelper {
       return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
     }
   }
+
+  static String tryPostTransaction(int? statusCode) {
+    switch (statusCode) {
+      case 400:
+        return 'Voucher tidak valid';
+      case 404:
+        return 'Voucher tidak ditemukan';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchPostTransaction(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryPostTransaction(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
+
+  static String tryGetTransaction(int? statusCode) {
+    switch (statusCode) {
+      case 401:
+        return 'Unauthorized';
+      case 404:
+        return 'Transaksi tidak ditemukan';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchGetTransaction(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryGetTransaction(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }

@@ -10,7 +10,7 @@ import 'package:greeve/services/shared_pref/shared_pref.dart';
 class DetailProductController extends GetxController
     with GetSingleTickerProviderStateMixin {
   final ApiProductService _apiProductService = ApiProductService();
-  final ApiCartService _apiCartService = ApiCartService();
+  final ApiTransactionService _apiTransactionService = ApiTransactionService();
   Rx<int> currentImageIndex = Rx<int>(0);
   Rx<int> currentRoundedImageIndex = Rx<int>(0);
   Rx<bool> isLoadingProduct = Rx<bool>(false);
@@ -76,7 +76,7 @@ class DetailProductController extends GetxController
       final String productId = Get.arguments;
       final String? token = await SharedPreferencesManager.getToken();
       isLoadingCartPost.value = true;
-      final result = await _apiCartService.postCart(productId, token);
+      final result = await _apiTransactionService.postCart(productId, token);
       cartResponseData.value = result;
       showSuccessDialog.value = true;
     } catch (e) {
