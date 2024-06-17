@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
-import 'package:greeve/services/api/api_cart_service.dart';
+import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/services/api/api_transaction_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/models/api_responses/cart_response_model.dart';
 import 'package:greeve/models/api_responses/post_transaction_response_model.dart';
@@ -173,9 +174,10 @@ class CartController extends GetxController {
       postTransactionData.value = PostTransactionResponseModel();
       final result = await _apiTransactionService.postTransaction(token,
           voucherCode: voucherCode.value, useCoin: useCoin.value);
-      getCart();
       postTransactionData.value = result;
       errorMessage.value = '';
+      getCart();
+      navigateToTransaction();
     } catch (e) {
       errorMessage.value = e.toString();
     } finally {
@@ -183,18 +185,11 @@ class CartController extends GetxController {
     }
   }
 
-  void getTransaction() async {
-    try {
-      final String? token = await SharedPreferencesManager.getToken();
-      cartData.value = [];
-      isLoadingTransaction.value = true;
-      final result = await _apiTransactionService.getCart(token);
-      cartData.value = result.data.items;
-      errorMessage.value = '';
-    } catch (e) {
-      errorMessage.value = e.toString();
-    } finally {
-      isLoadingTransaction.value = false;
-    }
+  void navigateToTransaction() {
+    final snapUrl = postTransactionData.value.data?.snapUrl;
+    Get.toNamed(
+      AppRoutes.transaction,
+      arguments: snapUrl,
+    );
   }
 }

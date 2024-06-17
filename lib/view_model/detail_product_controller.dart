@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
-import 'package:greeve/services/api/api_cart_service.dart';
+import 'package:greeve/services/api/api_transaction_service.dart';
 import 'package:greeve/services/api/api_product_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 

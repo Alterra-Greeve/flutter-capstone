@@ -3,9 +3,9 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/cart/widgets/cart_item_card_widget.dart';
-import 'package:greeve/view/cart/widgets/checkout_summary_widget.dart';
-import 'package:greeve/view/cart/widgets/empty_cart_widget.dart';
+import 'package:greeve/view/transaction/widgets/cart_item_card_widget.dart';
+import 'package:greeve/view/transaction/widgets/checkout_summary_widget.dart';
+import 'package:greeve/view/transaction/widgets/empty_cart_widget.dart';
 import 'package:greeve/view_model/cart_controller.dart';
 import 'package:shimmer/shimmer.dart';
 

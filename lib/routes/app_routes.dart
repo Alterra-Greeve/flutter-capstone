@@ -21,4 +21,5 @@ class AppRoutes {
   static const String termsAndConditions= '/terms_and_conditions';
   static const String notification = '/notification';
   static const String voucher = '/voucher';
+  static const String transaction = '/transaction';
 }
