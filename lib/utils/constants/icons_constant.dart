@@ -28,4 +28,7 @@ class IconsConstant {
   static const String iconCategory3 = 'assets/images/icon_category3.png';
   static const String iconCategory4 = 'assets/images/icon_category4.png';
   static const String profile = 'assets/images/profile.svg';
+  static const String challenge = 'assets/images/challenge.svg';
+  static const String buyProduct = 'assets/images/buy_product.svg';
+  static const String winnerLeaderboard = 'assets/images/winner_leaderboard.svg';
 }

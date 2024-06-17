@@ -16,8 +16,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Greeve',
-      theme: ThemeData(
-        
+      theme: ThemeData( 
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         scaffoldBackgroundColor: ColorsConstant.white,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(

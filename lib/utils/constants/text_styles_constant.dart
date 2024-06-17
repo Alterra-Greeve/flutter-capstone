@@ -105,4 +105,9 @@ class TextStylesConstant {
   static final TextStyle nunitoReguler = _baseNunito.copyWith(
     fontSize: 14,
   );
+
+  static final TextStyle nunitoCaptioReguler = _baseNunito.copyWith(
+    fontSize: 12,
+    color: ColorsConstant.neutral600,
+  );
 }
