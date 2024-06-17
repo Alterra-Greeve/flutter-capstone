@@ -5,8 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/view_model/greeve_coin_controller.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/greeve_coin/widget/bottom_sheet_widget.dart';
 import 'package:greeve/view/greeve_coin/widget/voucher_widget.dart';
 
 class GreeveScreen extends StatelessWidget {
@@ -14,6 +14,7 @@ class GreeveScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final GreeveCoinController controller = Get.put(GreeveCoinController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -135,10 +136,7 @@ class GreeveScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          Get.bottomSheet(
-                            const GreeveCoinBottomSheet(),
-                            isScrollControlled: true,
-                          );
+                          controller.navigateToBottomSheet();
                         },
                         child: Text(
                           'Dapatkan Lebih Banyak Koin!',
@@ -200,46 +198,51 @@ class GreeveScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(width: 15),
-                Stack(
-                  children: [
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: ColorsConstant.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorsConstant.black.withOpacity(0.15),
-                            spreadRadius: 0.5,
-                            blurRadius: 3,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: const SizedBox(
-                        width: 180,
-                        height: 75,
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: SvgPicture.asset(
-                          ImagesConstant.getCoin,
+                GestureDetector(
+                  onTap: (){
+                    controller.navigateToGetCoin();
+                  },
+                  child: Stack(
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: ColorsConstant.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorsConstant.black.withOpacity(0.15),
+                              spreadRadius: 0.5,
+                              blurRadius: 3,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const SizedBox(
+                          width: 180,
+                          height: 75,
                         ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 7,
-                      left: 7,
-                      child: Text(
-                        'Cara Dapat\nGreeve Coin',
-                        style: TextStylesConstant.nunitoCaptionBold
-                            .copyWith(fontSize: 14),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: SvgPicture.asset(
+                            ImagesConstant.getCoin,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        bottom: 7,
+                        left: 7,
+                        child: Text(
+                          'Cara Dapat\nGreeve Coin',
+                          style: TextStylesConstant.nunitoCaptionBold
+                              .copyWith(fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

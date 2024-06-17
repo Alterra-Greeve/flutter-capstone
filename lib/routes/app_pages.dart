@@ -6,6 +6,7 @@ import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart'
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
 import 'package:greeve/view/common/bottom_navigation_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/how_to_get_coin_screen.dart';
 import 'package:greeve/view/greeve_coin/screen/greeve_coin_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
@@ -87,6 +88,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.greeveCoin,
       page: () => const GreeveScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.getCoin,
+      page: () => const GetCoinScreen(),
     ),
   ];
 }

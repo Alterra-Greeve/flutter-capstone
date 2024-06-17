@@ -16,4 +16,5 @@ class AppRoutes {
   static const String cart = '/cart';
   static const String searchProduct = '/search_product';
   static const String greeveCoin = '/greeve_coin';
+  static const String getCoin = '/get_coin';
 }
