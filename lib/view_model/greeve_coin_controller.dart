@@ -1,11 +1,25 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/models/carousel_item_model.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/view/greeve_coin/widget/bottom_sheet_widget.dart';
 
-class GreeveCoinController extends GetxController {
+class GreeveCoinController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   Rx<int> currentIndex = Rx<int>(0);
+
+  late TabController _tabController;
+  TabController get tabController => _tabController;
+
+  @override
+  void onInit() {
+    super.onInit();
+    _tabController = TabController(length: 5, vsync: this);
+    _tabController.addListener(() {
+      if (_tabController.indexIsChanging) {}
+    });
+  }
 
   final List<GetCoinAndVoucher> carouselItems = [
     GetCoinAndVoucher(
@@ -25,6 +39,14 @@ class GreeveCoinController extends GetxController {
     ),
   ];
 
+  final List<Tab> categoryTabsVoucher = <Tab>[
+    const Tab(text: 'Semua'),
+    const Tab(text: 'Hemat Uang'),
+    const Tab(text: 'Mengurangi Limbah'),
+    const Tab(text: 'Perluas Wawasan'),
+    const Tab(text: 'Mengurangi Pemanasan Global'),
+  ];
+
   void navigateToBottomSheet() {
     Get.bottomSheet(
       const GreeveCoinBottomSheet(),
@@ -39,6 +61,18 @@ class GreeveCoinController extends GetxController {
   void navigateToGetCoin() {
     Get.toNamed(
       AppRoutes.getCoin,
+    );
+  }
+
+  void navigateToAllVoucher() {
+    Get.toNamed(
+      AppRoutes.allVoucher,
+    );
+  }
+
+  void navigateToAllHistoryCoin() {
+    Get.toNamed(
+      AppRoutes.historyCoin,
     );
   }
 }

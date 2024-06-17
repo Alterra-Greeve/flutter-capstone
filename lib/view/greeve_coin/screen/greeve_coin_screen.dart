@@ -45,11 +45,16 @@ class GreeveScreen extends StatelessWidget {
                       'Greeve Coin',
                       style: TextStylesConstant.nunitoHeading3,
                     ),
-                    Text(
-                      'History',
-                      style: TextStylesConstant.nunitoSubtitle.copyWith(
-                          fontWeight: FontWeight.w500,
-                          color: ColorsConstant.primary500),
+                    GestureDetector(
+                      onTap: (){
+                        controller.navigateToAllHistoryCoin();
+                      },
+                      child: Text(
+                        'History',
+                        style: TextStylesConstant.nunitoSubtitle.copyWith(
+                            fontWeight: FontWeight.w500,
+                            color: ColorsConstant.primary500),
+                      ),
                     )
                   ],
                 ),
@@ -156,46 +161,51 @@ class GreeveScreen extends StatelessWidget {
             ),
             Row(
               children: [
-                Stack(
-                  children: [
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        color: ColorsConstant.white,
-                        borderRadius: BorderRadius.circular(10),
-                        boxShadow: [
-                          BoxShadow(
-                            color: ColorsConstant.black.withOpacity(0.15),
-                            spreadRadius: 0.5,
-                            blurRadius: 3,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: const SizedBox(
-                        width: 180,
-                        height: 75,
-                      ),
-                    ),
-                    Positioned(
-                      top: 0,
-                      right: 0,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: SvgPicture.asset(
-                          ImagesConstant.allVoucher,
+                GestureDetector(
+                  onTap: (){
+                    controller.navigateToAllVoucher();
+                  },
+                  child: Stack(
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: ColorsConstant.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: ColorsConstant.black.withOpacity(0.15),
+                              spreadRadius: 0.5,
+                              blurRadius: 3,
+                              offset: const Offset(0, 2),
+                            ),
+                          ],
+                        ),
+                        child: const SizedBox(
+                          width: 180,
+                          height: 75,
                         ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 7,
-                      left: 7,
-                      child: Text(
-                        'Cari Semua\nVoucher',
-                        style: TextStylesConstant.nunitoCaptionBold
-                            .copyWith(fontSize: 14),
+                      Positioned(
+                        top: 0,
+                        right: 0,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: SvgPicture.asset(
+                            ImagesConstant.allVoucher,
+                          ),
+                        ),
                       ),
-                    ),
-                  ],
+                      Positioned(
+                        bottom: 7,
+                        left: 7,
+                        child: Text(
+                          'Cari Semua\nVoucher',
+                          style: TextStylesConstant.nunitoCaptionBold
+                              .copyWith(fontSize: 14),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(width: 15),
                 GestureDetector(
