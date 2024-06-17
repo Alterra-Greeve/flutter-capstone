@@ -22,4 +22,5 @@ class AppRoutes {
   static const String notification = '/notification';
   static const String voucher = '/voucher';
   static const String transaction = '/transaction';
+  static const String listTransaction = '/list_transaction';
 }

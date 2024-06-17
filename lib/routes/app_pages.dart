@@ -17,6 +17,7 @@ import 'package:greeve/view/register/register_success_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
 import 'package:greeve/view/common/splash_screen.dart';
 import 'package:greeve/view/search_product/screen/search_screen.dart';
+import 'package:greeve/view/transaction/screens/list_transaction_screen.dart';
 import 'package:greeve/view/transaction/screens/transaction_screen.dart';
 import 'package:greeve/view/user_profile/screens/edit_profile_screen.dart';
 import 'package:greeve/view/user_profile/screens/help_center_screen.dart';
@@ -117,6 +118,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.transaction,
       page: () => const TransactionScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.listTransaction,
+      page: () => const ListTransactionScreen(),
     ),
   ];
 }

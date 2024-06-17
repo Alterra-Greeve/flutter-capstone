@@ -102,7 +102,8 @@ class ApiTransactionService {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
 
       final response =
-          await _dio.post(ApiConstant.transactions, options: options);
+          await _dio.get(ApiConstant.transactions, options: options);
+      print(response);
       if (response.statusCode == 200) {
         return GetTransactionResponseModel.fromJson(response.data);
       } else {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -42,6 +43,10 @@ class TransactionScreen extends StatelessWidget {
               },
               onPageFinished: (url) {
                 controller.updateLoadingPercentage(100);
+
+                if (url.contains("transaction_status=capture")) {
+                  Get.offNamed(AppRoutes.listTransaction);
+                }
               },
               navigationDelegate: (navigation) {
                 final host = Uri.parse(navigation.url).toString();

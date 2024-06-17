@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/utils/status_color_utils.dart';
 
 class ChallengeCardWidget extends StatelessWidget {
   final Color cardColors;
