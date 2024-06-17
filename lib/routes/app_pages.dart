@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/cart/screens/cart_screen.dart';
-import 'package:greeve/view/environtment_impact/screen/chart.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
 import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
