@@ -41,4 +41,5 @@ class ImagesConstant {
   static const String customerServiceImage = 'assets/images/customer_service_image.png';
   static const String saveUser = 'assets/images/save_user.svg';
   static const String saveUserSuccess = 'assets/images/save_user_success.svg';
+  static const String successMembership = 'assets/images/succes_membership.svg';
 }

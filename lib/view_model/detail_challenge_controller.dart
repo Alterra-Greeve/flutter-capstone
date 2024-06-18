@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -28,7 +29,9 @@ class DetailChallengeController extends GetxController {
   void getChallenge() async {
     try {
       final String challengeId = Get.arguments;
-      print(challengeId);
+      if (kDebugMode) {
+        print(challengeId);
+      }
       final String? token = await SharedPreferencesManager.getToken();
       challengeData.value = null;
       isLoading.value = true;
@@ -103,20 +106,18 @@ class DetailChallengeController extends GetxController {
                           }
                           Get.back();
                         },
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SvgPicture.asset(IconsConstant.camera),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Foto',
-                                style: TextStylesConstant.nunitoButtonLarge,
-                              ),
-                            ],
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SvgPicture.asset(IconsConstant.camera),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Foto',
+                              style: TextStylesConstant.nunitoButtonLarge,
+                            ),
+                          ],
                         ),
                       ),
                       GestureDetector(
@@ -128,20 +129,18 @@ class DetailChallengeController extends GetxController {
                           }
                           Get.back();
                         },
-                        child: Container(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              SvgPicture.asset(IconsConstant.gallery),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                'Galeri',
-                                style: TextStylesConstant.nunitoButtonLarge,
-                              ),
-                            ],
-                          ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            SvgPicture.asset(IconsConstant.gallery),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Text(
+                              'Galeri',
+                              style: TextStylesConstant.nunitoButtonLarge,
+                            ),
+                          ],
                         ),
                       ),
                     ]),

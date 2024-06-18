@@ -5,7 +5,8 @@ class HomeWrapperContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return 
+    const Column(
       // TODO: Previously attempted using a stack, but ended up with errors
 
       //   Stack(

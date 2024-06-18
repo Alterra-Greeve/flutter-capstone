@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
+import 'package:greeve/view/membership/screens/membership_screen.dart';
 import 'package:greeve/view/transaction/screens/cart_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
@@ -122,6 +123,14 @@ class AppPages {
     GetPage(
       name: AppRoutes.listTransaction,
       page: () => const ListTransactionScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.membership,
+      page: () => MembershipScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.membershipSuccess,
+      page: () => const MembershiSuccessfullyScreen(),
     ),
   ];
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart' as products;
@@ -99,7 +100,9 @@ class ProductController extends GetxController
       productsRecommendationData.value = [];
       isLoadingRecommendation.value = true;
       final result = await _apiService.getProductsRecommendation(token);
-      print(result);
+      if (kDebugMode) {
+        print(result);
+      }
       productsRecommendationData.value = result.data!;
       errorMessage.value = '';
     } catch (e) {

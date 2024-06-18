@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/challenge_response_model.dart';
 import 'package:greeve/models/api_responses/challenges_response_model.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
@@ -77,7 +78,9 @@ class ApiChallengeService {
         '${ApiConstant.challengesParticipate}/$challengeId',
         options: options,
       );
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 200) {
         return ChallengeResponseModel.fromJson(response.data);
       } else {
