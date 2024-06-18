@@ -27,4 +27,6 @@ class AppRoutes {
   static const String historyCoin = '/history_coin';
   static const String transaction = '/transaction';
   static const String listTransaction = '/list_transaction';
+  static const String membership = '/membership';
+  static const String membershipSuccess = '/membership_success';
 }

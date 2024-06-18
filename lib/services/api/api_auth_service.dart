@@ -111,4 +111,18 @@ class ApiAuthService {
       throw AuthErrorHelper.catchPostResetPassword(e);
     }
   }
+
+  Future<GenericResponseModel> postMembership(String? token) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+      final response = await _dio.post(ApiConstant.userMembership, options: options);
+      if (response.statusCode == 200) {
+        return GenericResponseModel.fromJson(response.data);
+      } else {
+        throw AuthErrorHelper.tryPostLogin(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw AuthErrorHelper.catchPostLogin(e);
+    }
+  }
 }

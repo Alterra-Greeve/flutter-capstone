@@ -43,6 +43,7 @@ class ImagesConstant {
       'assets/images/customer_service_image.png';
   static const String saveUser = 'assets/images/save_user.svg';
   static const String saveUserSuccess = 'assets/images/save_user_success.svg';
+  static const String successMembership = 'assets/images/succes_membership.svg';
   static const String allVoucher = 'assets/images/all_voucher.svg';
   static const String getCoin = 'assets/images/get_coin.svg';
   static const String greenVoucher = 'assets/images/green_voucher.png';

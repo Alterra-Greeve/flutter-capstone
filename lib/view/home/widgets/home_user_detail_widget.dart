@@ -56,7 +56,7 @@ class HomeUserDetailWidget extends StatelessWidget {
                     height: 30,
                   ),
                   titleItem: 'Exp',
-                  valueItem: userProfile.data?.exp,
+                  valueItem: '${userProfile.data?.exp} Exp',
                 ),
                 const SizedBox(height: 16),
                 HomeUserDetailItemWidget(
@@ -65,7 +65,7 @@ class HomeUserDetailWidget extends StatelessWidget {
                     height: 30,
                   ),
                   titleItem: 'Koin',
-                  valueItem: userProfile.data?.coin,
+                  valueItem: '${userProfile.data?.coin} Koin',
                 ),
                 const SizedBox(height: 16),
                 HomeUserDetailItemWidget(
@@ -74,7 +74,7 @@ class HomeUserDetailWidget extends StatelessWidget {
                     height: 30,
                   ),
                   titleItem: 'Dampak',
-                  valueItem: userProfile.data?.impactPoint,
+                  valueItem: '${userProfile.data?.impactPoint} Poin',
                 ),
               ],
             ),

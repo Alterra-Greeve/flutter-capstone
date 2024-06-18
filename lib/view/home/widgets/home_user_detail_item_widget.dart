@@ -3,7 +3,7 @@ part of '../screens/home_screen.dart';
 class HomeUserDetailItemWidget extends StatelessWidget {
   final Widget iconPath;
   final String titleItem;
-  final int? valueItem;
+  final String? valueItem;
   const HomeUserDetailItemWidget({
     super.key,
     required this.iconPath,
