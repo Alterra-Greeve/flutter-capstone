@@ -97,14 +97,8 @@ class ListChallengeTodoScreen extends StatelessWidget {
                                         difficultyChallenge:
                                             challenge.challenge!.difficulty!,
                                       ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
                                       ListChallengeExpItemWidget(
                                         expChallenge: challenge.challenge?.exp,
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
                                       ),
                                       ListChallengeCoinItemWidget(
                                         coinChallenge:

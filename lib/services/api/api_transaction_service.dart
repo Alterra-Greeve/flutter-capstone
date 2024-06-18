@@ -103,7 +103,9 @@ class ApiTransactionService {
 
       final response =
           await _dio.get(ApiConstant.transactions, options: options);
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 200) {
         return GetTransactionResponseModel.fromJson(response.data);
       } else {

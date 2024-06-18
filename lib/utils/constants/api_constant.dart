@@ -16,4 +16,5 @@ class ApiConstant {
   static const String userChallenge = '$baseUrl/challenges/participate?status';
   static const String challenges = '$baseUrl/challenges';
   static const String challengesParticipate = '$baseUrl/challenges/participate';
+  static const String userMembership = '$baseUrl/user/membership';
 }

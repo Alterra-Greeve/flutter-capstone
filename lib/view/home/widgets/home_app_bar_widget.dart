@@ -5,6 +5,7 @@ class HomeAppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     final HomeController homeController = Get.put(HomeController());
     return Obx(
       () {
@@ -56,13 +57,10 @@ class HomeAppBarWidget extends StatelessWidget {
                         'Welcome,',
                         style: TextStylesConstant.nunitoCaption,
                       ),
-                      SizedBox(
-                        width: 160,
-                        child: Text(
-                          userProfile.data?.name ?? 'No name',
-                          style: TextStylesConstant.nunitoSubtitle4.copyWith(
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                      Text(
+                        userProfile.data?.name ?? 'No name',
+                        style: TextStylesConstant.nunitoSubtitle4.copyWith(
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
@@ -73,7 +71,9 @@ class HomeAppBarWidget extends StatelessWidget {
             Row(
               children: [
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.membership);
+                  },
                   child: Text(
                     'Membership',
                     style: TextStylesConstant.nunitoButtonLarge.copyWith(
@@ -85,7 +85,12 @@ class HomeAppBarWidget extends StatelessWidget {
                   icon: SvgPicture.asset(
                     IconsConstant.notification,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.snackbar(
+                      'Coming soon',
+                      'Fitur ini akan segera hadir!',
+                    );
+                  },
                 ),
               ],
             ),
