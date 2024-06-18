@@ -35,4 +35,5 @@ class ImagesConstant {
   static const String carouselGetCoinImage1 = 'assets/images/carousel_getcoin_image1.png';
   static const String carouselGetCoinImage2 = 'assets/images/carousel_getcoin_image2.png';
   static const String carouselGetCoinImage3 = 'assets/images/carousel_getcoin_image3.png';
+  static const String emptyHistoryCoin = 'assets/images/empty_history_coin.svg';
 }

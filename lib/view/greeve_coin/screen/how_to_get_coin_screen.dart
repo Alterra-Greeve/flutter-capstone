@@ -5,7 +5,6 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/view_model/greeve_coin_controller.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/greeve_coin/widget/bottom_sheet_widget.dart';
 import 'package:greeve/view/greeve_coin/widget/how_to_get_coin_carousel_widget.dart';
 
 class GetCoinScreen extends StatelessWidget {
@@ -262,14 +261,10 @@ class GetCoinScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.bottomSheet(
-                    // Sementara dulu
-                    const GreeveCoinBottomSheet(),
-                    isScrollControlled: true,
-                  );
+                  
                 },
                 child: Text(
-                  'Dapatkan Lebih Banyak Koin!',
+                  'Jelajahi Sekarang!',
                   style: TextStylesConstant.nunitoSubtitle4.copyWith(
                       color: ColorsConstant.white,
                       fontSize: 15,

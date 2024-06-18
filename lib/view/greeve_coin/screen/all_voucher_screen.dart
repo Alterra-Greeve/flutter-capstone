@@ -1,19 +1,19 @@
+import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/view_model/greeve_coin_controller.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/greeve_coin/widget/voucher_widget.dart';
-import 'package:greeve/view_model/greeve_coin_controller.dart';
 
 class AllVoucherScreen extends StatelessWidget {
   const AllVoucherScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final GreeveCoinController controller = Get.put(GreeveCoinController());
+    final AllVoucherController controller = Get.put(AllVoucherController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
