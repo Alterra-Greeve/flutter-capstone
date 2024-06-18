@@ -25,4 +25,6 @@ class AppRoutes {
   static const String getCoin = '/get_coin';
   static const String allVoucher = '/all_voucher';
   static const String historyCoin = '/history_coin';
+  static const String transaction = '/transaction';
+  static const String listTransaction = '/list_transaction';
 }

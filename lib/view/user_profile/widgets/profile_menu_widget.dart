@@ -19,6 +19,14 @@ class ProfileMenuWidget extends StatelessWidget {
       child: Column(
         children: [
           ProfileMenuCardWidget(
+            menuTitle: 'Riwayat Transaksi',
+            menuIcon: IconsConstant.historyFilled,
+            onTap: () {
+              Get.toNamed(AppRoutes.listTransaction);
+            },
+          ),
+          const SizedBox(height: 12),
+          ProfileMenuCardWidget(
             menuTitle: 'Notifikasi',
             menuIcon: IconsConstant.notificationFilled,
             onTap: () {

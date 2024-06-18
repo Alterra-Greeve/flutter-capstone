@@ -19,7 +19,7 @@ class HomeProductCarouselWidget extends StatelessWidget {
                     children: [
                       ClipRRect(
                         child: CachedNetworkImage(
-                          imageUrl: product.images[0].imageUrl,
+                          imageUrl: product.images![0].imageUrl!,
                           width: double.infinity,
                           imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(
@@ -51,7 +51,7 @@ class HomeProductCarouselWidget extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 productController.navigateToProductDetail(
-                                  product.productId,
+                                  product.productId!,
                                 );
                               },
                               child: RichText(
@@ -83,7 +83,7 @@ class HomeProductCarouselWidget extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text:
-                                        'Rp${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(product.price * 1.5)}\n',
+                                        'Rp${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(product.price! * 1.5)}\n',
                                     style: TextStylesConstant.nunitoCaption
                                         .copyWith(
                                       fontSize: 10,

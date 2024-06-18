@@ -61,10 +61,10 @@ class HomeRecomendedProductWidget extends StatelessWidget {
                             productController.productsRecommendationData[index];
                         return ProductCardWidget(
                           controller: productController,
-                          productId: product.productId,
+                          productId: product.productId!,
                           name: product.name,
                           description: product.description,
-                          imageUrl: product.images[0].imageUrl,
+                          imageUrl: product.images![0].imageUrl!,
                           price: product.price.toString(),
                         );
                       }
