@@ -20,9 +20,11 @@ class AllProductScreen extends StatelessWidget {
         Get.put(AllProductScreenController());
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Dapur',
-          style: TextStylesConstant.nunitoButtonBold,
+        title: Obx(
+          () => Text(
+            controller.categoryTitle.value,
+            style: TextStylesConstant.nunitoButtonBold,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -48,6 +50,7 @@ class AllProductScreen extends StatelessWidget {
           Positioned.fill(
             top: kToolbarHeight,
             child: PagedGridView<int, Datum>(
+              showNoMoreItemsIndicatorAsGridChild: false,
               pagingController: controller.pagingController,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -104,9 +107,12 @@ class AllProductScreen extends StatelessWidget {
                   ),
                 ),
                 noMoreItemsIndicatorBuilder: (context) => Center(
-                  child: Text(
-                    "Tidak ada item lagi",
-                    style: TextStylesConstant.nunitoSubtitle,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Tidak ada item lagi",
+                      style: TextStylesConstant.nunitoSubtitle,
+                    ),
                   ),
                 ),
               ),

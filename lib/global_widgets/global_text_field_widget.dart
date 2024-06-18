@@ -19,6 +19,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final bool? enabled;
   final TextInputType keyboardType;
   final TextAlign textAlign;
+  final TextStyle? errorStyle;
 
   const GlobalTextFieldWidget({
     super.key,
@@ -36,6 +37,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.enabled,
     required this.keyboardType,
     this.textAlign = TextAlign.start,
+    this.errorStyle,
   });
 
   @override
@@ -55,6 +57,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
               height: 1.25,
             ),
             errorText: errorText,
+            errorStyle: errorStyle,
             errorMaxLines: 2,
             contentPadding: EdgeInsets.symmetric(
               vertical: prefixIcon != null ? 8 : 12,

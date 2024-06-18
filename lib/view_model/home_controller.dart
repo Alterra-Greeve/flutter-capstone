@@ -1,21 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/get_user_profile_response_model.dart';
-import 'package:greeve/services/api/api_auth_service.dart';
+import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/services/api/api_user_serpice.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class HomeController extends GetxController {
-  final ApiAuthService _apiAuthService = ApiAuthService();
+  final ApiUserService _apiUserService = ApiUserService();
   Rx<GetUserProfileResponseModel?> userProfileData =
       Rx<GetUserProfileResponseModel?>(null);
   Rx<String?> errorMessage = Rx<String?>(null);
-
   Rx<bool> isLoading = Rx<bool>(false);
 
   @override
   void onInit() {
-    super.onInit();
     getUserProfile();
+    super.onInit();
   }
 
   void getUserProfile() async {
@@ -25,12 +25,19 @@ class HomeController extends GetxController {
     }
     isLoading.value = true;
     try {
-      final result = await _apiAuthService.getUserProfile(token);
+      final result = await _apiUserService.getUserProfile(token);
       userProfileData.value = result;
     } catch (e) {
       errorMessage.value = e.toString();
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void navigateToSeeAllProducts(String category) {
+    Get.toNamed(
+      AppRoutes.allProduct,
+      arguments: category,
+    );
   }
 }

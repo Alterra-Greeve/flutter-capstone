@@ -10,8 +10,15 @@ class ListChallengeTodoScreen extends StatelessWidget {
 
     return Obx(() {
       if (listChallengeController.isLoading.value) {
-        return const Center(
-          child: CircularProgressIndicator(),
+        return Center(
+          child: SizedBox(
+            width: 50,
+            child: LoadingIndicator(
+              indicatorType: Indicator.ballBeat,
+              strokeWidth: 4.0,
+              colors: [Theme.of(context).primaryColor],
+            ),
+          ),
         );
       } else if (listChallengeController.errorMessage.value != null) {
         return const ListChallengeEmptyItemWidget(
@@ -29,7 +36,8 @@ class ListChallengeTodoScreen extends StatelessWidget {
           children: listChallengeController.pendingChallenges.map((challenge) {
             return GestureDetector(
               onTap: () {
-                Get.toNamed(AppRoutes.detailChallenge);
+                listChallengeController.navigateToChallengeDetail(
+                    challenge.challengeConfirmationId);
               },
               child: Column(
                 children: [
@@ -87,7 +95,7 @@ class ListChallengeTodoScreen extends StatelessWidget {
                                     children: [
                                       ListChallengeDifficultyItemWidget(
                                         difficultyChallenge:
-                                            challenge.challenge?.difficulty,
+                                            challenge.challenge!.difficulty!,
                                       ),
                                       const SizedBox(
                                         width: 8,
@@ -119,7 +127,7 @@ class ListChallengeTodoScreen extends StatelessWidget {
                           height: 12,
                         ),
                         ListChallengeStatusItemWidget(
-                          statusChallenge: challenge.status,
+                          statusChallenge: challenge.status!,
                         ),
                       ],
                     ),

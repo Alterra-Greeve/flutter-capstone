@@ -58,16 +58,25 @@ class Data {
     });
 
     factory Data.fromJson(Map<String, dynamic> json) => Data(
-        productId: json["product_id"],
-        name: json["name"],
-        description: json["description"],
+        productId: json["product_id"] == "" ? null : json["product_id"],
+        name: json["name"] == "" ? null : json["name"],
+        description: json["description"] == "" ? null : json["description"],
         price: json["price"],
         coin: json["coin"],
         stock: json["stock"],
-        createdAt: json["created_at"],
-        updatedAt: json["updated_at"],
-        category: json["category"] == null ? [] : List<Category>.from(json["category"]!.map((x) => Category.fromJson(x))),
-        images: json["images"] == null ? [] : List<Image>.from(json["images"]!.map((x) => Image.fromJson(x))),
+        createdAt: json["created_at"] == "" ? null : json["created_at"],
+        updatedAt: json["updated_at"] == "" ? null : json["updated_at"],
+        category: json["category"] == null
+            ? []
+            : List<Category>.from(json["category"]!.map((x) => Category.fromJson(x))),
+        images: json["images"] != null && (json["images"] as List).isNotEmpty
+            ? List<Image>.from(json["images"].map((x) => Image.fromJson(x)))
+            : [
+                Image(
+                    imageUrl:
+                        'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+                    position: 0)
+              ],
     );
 
     Map<String, dynamic> toJson() => {

@@ -10,9 +10,16 @@ class ListChallengeDoneScreen extends StatelessWidget {
 
     return Obx(() {
       if (listChallengeController.isLoading.value) {
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
+        return Center(
+            child: SizedBox(
+              width: 50,
+              child: LoadingIndicator(
+                indicatorType: Indicator.ballBeat,
+                strokeWidth: 4.0,
+                colors: [Theme.of(context).primaryColor],
+              ),
+            ),
+          );
       } else if (listChallengeController.errorMessage.value != null) {
         return ListChallengeEmptyItemWidget(
           titleText: listChallengeController.errorMessage.value ??
@@ -85,7 +92,7 @@ class ListChallengeDoneScreen extends StatelessWidget {
                                     children: [
                                       ListChallengeDifficultyItemWidget(
                                         difficultyChallenge:
-                                            challenge.challenge?.difficulty,
+                                            challenge.challenge!.difficulty!,
                                       ),
                                       const SizedBox(
                                         width: 8,
@@ -117,7 +124,7 @@ class ListChallengeDoneScreen extends StatelessWidget {
                           height: 12,
                         ),
                         ListChallengeStatusItemWidget(
-                          statusChallenge: challenge.status,
+                          statusChallenge: challenge.status!,
                         ),
                       ],
                     ),

@@ -11,8 +11,15 @@ class HomeAppBarWidget extends StatelessWidget {
         final userProfile = homeController.userProfileData.value;
 
         if (homeController.isLoading.value) {
-          return const Center(
-            child: CircularProgressIndicator(),
+          return Center(
+            child: SizedBox(
+              width: 50,
+              child: LoadingIndicator(
+                indicatorType: Indicator.ballBeat,
+                strokeWidth: 4.0,
+                colors: [Theme.of(context).primaryColor],
+              ),
+            ),
           );
         } else if (homeController.errorMessage.value != null) {
           return Center(

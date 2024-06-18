@@ -10,12 +10,17 @@ class AppRoutes {
   static const String loading = '/loading';
   static const String bottomNavigation = '/bottom_navigation';
   static const String onboarding = '/onboarding';
-  static const String product = '/product';
   static const String allProduct = '/all_product';
   static const String detailProduct = '/detail_product';
   static const String cart = '/cart';
   static const String searchProduct = '/search_product';
   static const String listChallenge = '/list_challenge';
-  static const String challenge = '/challenge';
   static const String detailChallenge = '/detail_challenge';
+  static const String editProfile = '/edit_profile';
+  static const String helpCenter = '/help_center';
+  static const String termsAndConditions= '/terms_and_conditions';
+  static const String notification = '/notification';
+  static const String voucher = '/voucher';
+  static const String transaction = '/transaction';
+  static const String listTransaction = '/list_transaction';
 }

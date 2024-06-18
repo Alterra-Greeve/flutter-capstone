@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/view/common/bottom_navigation_screen.dart';
@@ -12,6 +13,9 @@ class SplashController extends GetxController {
 
   Future<void> checkLogin() async {
     final String? token = await SharedPreferencesManager.getToken();
+    if (kDebugMode) {
+      print('token in splash:$token');
+    }
     if (token != null) {
       await Future.delayed(const Duration(seconds: 3));
       Get.off(() => const BottomNavScreen());

@@ -8,6 +8,8 @@ class GlobalFormButtonWidget extends StatelessWidget {
   final VoidCallback? onTap;
   final bool isFormValid;
   final bool isLoading;
+  final double? buttonWidth;
+  final double? buttonHeight;
 
   const GlobalFormButtonWidget({
     super.key,
@@ -15,6 +17,8 @@ class GlobalFormButtonWidget extends StatelessWidget {
     required this.onTap,
     required this.isLoading,
     this.isFormValid = false,
+    this.buttonWidth = double.infinity,
+    this.buttonHeight = 48,
   });
 
   @override
@@ -22,8 +26,8 @@ class GlobalFormButtonWidget extends StatelessWidget {
     return InkWell(
       onTap: isFormValid ? onTap : null,
       child: Ink(
-        width: double.infinity,
-        height: 48,
+        width: buttonWidth,
+        height: buttonHeight,
         padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: isFormValid

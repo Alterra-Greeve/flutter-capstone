@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class DetailChallengeArrowBackWidget extends StatelessWidget {
   const DetailChallengeArrowBackWidget({
@@ -13,7 +12,7 @@ class DetailChallengeArrowBackWidget extends StatelessWidget {
       left: 16,
       child: GestureDetector(
         onTap: () {
-          Get.back();
+          Navigator.pop(context);
         },
         child: Container(
           padding: const EdgeInsets.all(2),

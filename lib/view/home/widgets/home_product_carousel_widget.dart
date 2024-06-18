@@ -18,10 +18,19 @@ class HomeProductCarouselWidget extends StatelessWidget {
                   (product) => Stack(
                     children: [
                       ClipRRect(
-                        child: Image.network(
-                          product.images[0].imageUrl,
-                          fit: BoxFit.cover,
+                        child: CachedNetworkImage(
+                          imageUrl: product.images![0].imageUrl!,
                           width: double.infinity,
+                          imageBuilder: (context, imageProvider) => Container(
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                image: imageProvider,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
                         ),
                       ),
                       Positioned(
@@ -42,7 +51,7 @@ class HomeProductCarouselWidget extends StatelessWidget {
                             GestureDetector(
                               onTap: () {
                                 productController.navigateToProductDetail(
-                                  product.productId,
+                                  product.productId!,
                                 );
                               },
                               child: RichText(
@@ -74,7 +83,7 @@ class HomeProductCarouselWidget extends StatelessWidget {
                                 children: [
                                   TextSpan(
                                     text:
-                                        'Rp${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(product.price * 1.5)}\n',
+                                        'Rp${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(product.price! * 1.5)}\n',
                                     style: TextStylesConstant.nunitoCaption
                                         .copyWith(
                                       fontSize: 10,

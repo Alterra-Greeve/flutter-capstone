@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/models/api_responses/products_response_model.dart';
+import 'package:greeve/models/api_responses/products_response_model.dart' as products;
+import 'package:greeve/models/api_responses/products_recommendation_response_model.dart' as products_recommendation;
 import 'package:greeve/models/carousel_item_model.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_product_service.dart';
@@ -15,8 +16,8 @@ class ProductController extends GetxController
   Rx<bool> isLoadingProduct = Rx<bool>(false);
   Rx<bool> isLoadingRecommendation = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
-  RxList<Datum> productsData = <Datum>[].obs;
-  RxList<Datum> productsRecommendationData = <Datum>[].obs;
+  RxList<products.Datum> productsData = <products.Datum>[].obs;
+  RxList<products_recommendation.Datum> productsRecommendationData = <products_recommendation.Datum>[].obs;
 
   late TabController _tabController;
   TabController get tabController => _tabController;
@@ -30,12 +31,12 @@ class ProductController extends GetxController
     ProductModel(
       image: ImagesConstant.carouselProductImage2,
       name: 'Sikat Gigi Bambu',
-      productId: '27a731c4-e539-4a13-8b7f-6cf1a7c5d6d5',
+      productId: '7c45085a-2466-4f5e-9ccd-bdd139751dac',
     ),
     ProductModel(
       image: ImagesConstant.carouselProductImage3,
       name: 'Botol Minum',
-      productId: '15c9a672-1c1d-41c4-9e65-5c0d2d92b722',
+      productId: '7dc84308-0330-41f1-8072-ca635e5055c8',
     ),
   ];
   final List<Tab> categoryTabs = <Tab>[
@@ -54,7 +55,7 @@ class ProductController extends GetxController
       }
     });
     getProductsbyCategory(categoryTabs[0].text!);
-    getProducts();
+    getProductsRecommendation();
     super.onInit();
   }
 
@@ -68,6 +69,11 @@ class ProductController extends GetxController
 
   void getProductsbyCategory(String category) async {
     try {
+      if (category == 'Kurangi Limbah') {
+        category = 'Mengurangi Limbah';
+      } else if (category == 'Kurangi Pemanasan') {
+        category = 'Mengurangi Pemanasan Global';
+      }
       final String? token = await SharedPreferencesManager.getToken();
       productsData.value = [];
       isLoadingProduct.value = true;
@@ -87,13 +93,14 @@ class ProductController extends GetxController
     }
   }
 
-  void getProducts() async {
-    final String? token = await SharedPreferencesManager.getToken();
-    productsRecommendationData.value = [];
-    isLoadingRecommendation.value = true;
+  void getProductsRecommendation() async {
     try {
-      final result = await _apiService.getProducts(token);
-      productsRecommendationData.value = result.data;
+      final String? token = await SharedPreferencesManager.getToken();
+      productsRecommendationData.value = [];
+      isLoadingRecommendation.value = true;
+      final result = await _apiService.getProductsRecommendation(token);
+      print(result);
+      productsRecommendationData.value = result.data!;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();
@@ -115,7 +122,11 @@ class ProductController extends GetxController
     );
   }
 
-  void navigateToSeeAllProducts(String category) {
-    Get.toNamed(AppRoutes.allProduct, arguments: category);
+  void navigateToSeeAllProducts() {
+    final currentCategoryName = categoryTabs[_tabController.index].text;
+    Get.toNamed(
+      AppRoutes.allProduct,
+      arguments: currentCategoryName,
+    );
   }
 }
