@@ -91,4 +91,12 @@ class IconsConstant {
   static const String percentageFilled = 'assets/images/percentage_filled.svg';
   static const String messageFilled = 'assets/images/message_filled.svg';
   static const String notesFilled = 'assets/images/notes_filled.svg';
+  static const String iconCategory1 = 'assets/images/icon_category1.png';
+  static const String iconCategory2 = 'assets/images/icon_category2.png';
+  static const String iconCategory3 = 'assets/images/icon_category3.png';
+  static const String iconCategory4 = 'assets/images/icon_category4.png';
+
+  static const String challenge = 'assets/images/challenge.svg';
+  static const String buyProduct = 'assets/images/buy_product.svg';
+  static const String winnerLeaderboard = 'assets/images/winner_leaderboard.svg';
 }

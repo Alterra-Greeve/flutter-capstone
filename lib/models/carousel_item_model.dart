@@ -4,7 +4,6 @@ class ProductModel {
   String? price;
   String? description;
   String? productId;
-  
 
   ProductModel({
     required this.image,

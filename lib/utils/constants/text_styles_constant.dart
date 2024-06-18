@@ -27,6 +27,12 @@ class TextStylesConstant {
     fontWeight: FontWeight.w700,
   );
 
+  static final TextStyle nunitoHeading1 = _baseNunito.copyWith(
+    fontSize: 32,
+    fontWeight: FontWeight.w600,
+    color: ColorsConstant.white,
+  );
+
   static final TextStyle nunitoHeading4 = _baseNunito.copyWith(
     fontSize: 20,
     fontWeight: FontWeight.w700,
@@ -96,5 +102,14 @@ class TextStylesConstant {
   static final TextStyle nunitoButtonSemibold = _baseNunito.copyWith(
     fontSize: 16,
     fontWeight: FontWeight.w600,
+  );
+
+  static final TextStyle nunitoReguler = _baseNunito.copyWith(
+    fontSize: 14,
+  );
+
+  static final TextStyle nunitoCaptioReguler = _baseNunito.copyWith(
+    fontSize: 12,
+    color: ColorsConstant.neutral600,
   );
 }

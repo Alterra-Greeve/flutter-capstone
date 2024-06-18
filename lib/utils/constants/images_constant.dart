@@ -41,4 +41,13 @@ class ImagesConstant {
   static const String customerServiceImage = 'assets/images/customer_service_image.png';
   static const String saveUser = 'assets/images/save_user.svg';
   static const String saveUserSuccess = 'assets/images/save_user_success.svg';
+  static const String allVoucher = 'assets/images/all_voucher.svg';
+  static const String getCoin = 'assets/images/get_coin.svg';
+  static const String greenVoucher = 'assets/images/green_voucher.png';
+  static const String blueVoucher = 'assets/images/blue_voucher.png';
+  static const String voucherSedotan = 'assets/images/voucher_sedotan.svg';
+  static const String carouselGetCoinImage1 = 'assets/images/carousel_getcoin_image1.png';
+  static const String carouselGetCoinImage2 = 'assets/images/carousel_getcoin_image2.png';
+  static const String carouselGetCoinImage3 = 'assets/images/carousel_getcoin_image3.png';
+  static const String emptyHistoryCoin = 'assets/images/empty_history_coin.svg';
 }

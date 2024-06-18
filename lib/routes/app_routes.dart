@@ -21,4 +21,8 @@ class AppRoutes {
   static const String termsAndConditions= '/terms_and_conditions';
   static const String notification = '/notification';
   static const String voucher = '/voucher';
+  static const String greeveCoin = '/greeve_coin';
+  static const String getCoin = '/get_coin';
+  static const String allVoucher = '/all_voucher';
+  static const String historyCoin = '/history_coin';
 }
