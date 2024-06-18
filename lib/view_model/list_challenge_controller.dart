@@ -33,9 +33,9 @@ class ListChallengeController extends GetxController {
         final pendingResponse =
             await _apiChallengeService.getUserChallenge(token, 'Pending');
         final acceptedResponse =
-            await _apiChallengeService.getUserChallenge(token, 'Accepted');
+            await _apiChallengeService.getUserChallenge(token, 'Diterima');
         final declinedResponse =
-            await _apiChallengeService.getUserChallenge(token, 'Declined');
+            await _apiChallengeService.getUserChallenge(token, 'Ditolak');
 
         pendingChallenges.assignAll(pendingResponse.data ?? []);
         acceptedChallenges.assignAll(acceptedResponse.data ?? []);

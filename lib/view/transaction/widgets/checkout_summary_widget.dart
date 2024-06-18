@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -38,21 +39,26 @@ class CheckoutSummaryWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(IconsConstant.voucherOff),
-                          const SizedBox(width: 11),
-                          Text(
-                            'Gunakan Voucher Greeve',
-                            style: TextStylesConstant.nunitoSubtitle,
-                          )
-                        ],
-                      ),
-                      SvgPicture.asset(IconsConstant.right),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.greeveCoin);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(IconsConstant.voucherOff),
+                            const SizedBox(width: 11),
+                            Text(
+                              'Gunakan Voucher Greeve',
+                              style: TextStylesConstant.nunitoSubtitle,
+                            )
+                          ],
+                        ),
+                        SvgPicture.asset(IconsConstant.right),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Row(

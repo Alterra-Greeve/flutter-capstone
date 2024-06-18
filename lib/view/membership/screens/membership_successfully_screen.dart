@@ -14,7 +14,7 @@ class MembershiSuccessfullyScreen extends StatelessWidget {
         child: GlobalButtonWidget(
           text: 'Kembali ke Beranda',
           onTap: () {
-            Get.toNamed(AppRoutes.bottomNavigation);
+            Get.offAllNamed(AppRoutes.bottomNavigation);
           },
         ),
       ),

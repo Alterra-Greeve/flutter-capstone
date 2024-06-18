@@ -84,15 +84,13 @@ void showSaveSuccessDialog() {
         ],
       ),
       actions: [
-        Expanded(
-          child: GlobalButtonWidget(
-            text: 'Oke',
-            buttonColor: ColorsConstant.primary500,
-            textColor: ColorsConstant.neutral100,
-            onTap: () {
-              Get.back();
-            },
-          ),
+        GlobalButtonWidget(
+          text: 'Oke',
+          buttonColor: ColorsConstant.primary500,
+          textColor: ColorsConstant.neutral100,
+          onTap: () {
+            Get.back();
+          },
         ),
       ],
     ),
@@ -121,15 +119,13 @@ void showSaveFailedDialog(String errorMessage) {
         ],
       ),
       actions: [
-        Expanded(
-          child: GlobalButtonWidget(
-            text: 'Oke',
-            buttonColor: ColorsConstant.primary500,
-            textColor: ColorsConstant.neutral100,
-            onTap: () {
-              Get.back();
-            },
-          ),
+        GlobalButtonWidget(
+          text: 'Oke',
+          buttonColor: ColorsConstant.primary500,
+          textColor: ColorsConstant.neutral100,
+          onTap: () {
+            Get.back();
+          },
         ),
       ],
     ),
