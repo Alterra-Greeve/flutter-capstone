@@ -10,7 +10,9 @@ class ApiConstant {
   static const String products = '$baseUrl/products';
   static const String productsSearch = '$baseUrl/products/search';
   static const String productsCategory = '$baseUrl/products/category';
+  static const String productsRecommendation = '$baseUrl/products/recommendation';
   static const String cart = '$baseUrl/cart';
+  static const String transactions = '$baseUrl/transactions';
   static const String userChallenge = '$baseUrl/challenges/participate?status';
   static const String challenges = '$baseUrl/challenges';
   static const String challengesParticipate = '$baseUrl/challenges/participate';

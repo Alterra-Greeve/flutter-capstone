@@ -6,6 +6,7 @@ import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/cart_controller.dart';
 import 'package:intl/intl.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 class CheckoutSummaryWidget extends StatelessWidget {
   final CartController controller;
@@ -87,7 +88,7 @@ class CheckoutSummaryWidget extends StatelessWidget {
                                 child: Switch(
                                   materialTapTargetSize:
                                       MaterialTapTargetSize.shrinkWrap,
-                                  value: controller.isCoinApplied.value,
+                                  value: controller.useCoin.value,
                                   onChanged: (value) {
                                     controller.toggleCoinSwitch();
                                   },
@@ -130,21 +131,40 @@ class CheckoutSummaryWidget extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 8),
-                  Container(
-                    width: double.infinity,
-                    height: 40,
-                    decoration: const BoxDecoration(
-                      color: ColorsConstant.primary500,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(8),
-                      ),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Lanjut Checkout',
-                        style: TextStylesConstant.nunitoButtonLarge.copyWith(
-                          color: ColorsConstant.neutral100,
+                  GestureDetector(
+                    onTap: () {
+                      controller.postTransaction();
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      height: 40,
+                      decoration: const BoxDecoration(
+                        color: ColorsConstant.primary500,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8),
                         ),
+                      ),
+                      child: Center(
+                        child: controller.isLoadingTransaction.value
+                            ? Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  child: LoadingIndicator(
+                                    indicatorType: Indicator.ballBeat,
+                                    strokeWidth: 4.0,
+                                    colors: [
+                                      Theme.of(context).secondaryHeaderColor
+                                    ],
+                                  ),
+                                ),
+                              )
+                            : Text(
+                                'Lanjut Checkout',
+                                style: TextStylesConstant.nunitoButtonLarge
+                                    .copyWith(
+                                  color: ColorsConstant.neutral100,
+                                ),
+                              ),
                       ),
                     ),
                   ),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/product_response_model.dart';
+import 'package:greeve/models/api_responses/products_recommendation_response_model.dart';
 import 'package:greeve/models/api_responses/products_response_model.dart';
 import 'package:greeve/utils/helpers/product_error_helper.dart';
 import 'package:greeve/utils/constants/api_constant.dart';
@@ -32,6 +33,23 @@ class ApiProductService {
       final response = await _dio.get(ApiConstant.products, options: options);
       if (response.statusCode == 200) {
         return ProductsResponseModel.fromJson(response.data);
+      } else {
+        throw ProductErrorHelper.tryGetProducts(response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ProductErrorHelper.catchGetProducts(e);
+    }
+  }
+
+  Future<ProductsRecommendationResponseModel> getProductsRecommendation(
+      String? token) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+
+      final response =
+          await _dio.get(ApiConstant.productsRecommendation, options: options);
+      if (response.statusCode == 200) {
+        return ProductsRecommendationResponseModel.fromJson(response.data);
       } else {
         throw ProductErrorHelper.tryGetProducts(response.statusCode);
       }

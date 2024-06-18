@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/models/api_responses/products_response_model.dart';
+import 'package:greeve/models/api_responses/products_response_model.dart' as products;
+import 'package:greeve/models/api_responses/products_recommendation_response_model.dart' as products_recommendation;
 import 'package:greeve/models/carousel_item_model.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_product_service.dart';
@@ -15,8 +16,8 @@ class ProductController extends GetxController
   Rx<bool> isLoadingProduct = Rx<bool>(false);
   Rx<bool> isLoadingRecommendation = Rx<bool>(false);
   Rx<String?> errorMessage = Rx<String?>(null);
-  RxList<Datum> productsData = <Datum>[].obs;
-  RxList<Datum> productsRecommendationData = <Datum>[].obs;
+  RxList<products.Datum> productsData = <products.Datum>[].obs;
+  RxList<products_recommendation.Datum> productsRecommendationData = <products_recommendation.Datum>[].obs;
 
   late TabController _tabController;
   TabController get tabController => _tabController;
@@ -54,7 +55,7 @@ class ProductController extends GetxController
       }
     });
     getProductsbyCategory(categoryTabs[0].text!);
-    getProducts();
+    getProductsRecommendation();
     super.onInit();
   }
 
@@ -92,13 +93,14 @@ class ProductController extends GetxController
     }
   }
 
-  void getProducts() async {
-    final String? token = await SharedPreferencesManager.getToken();
-    productsRecommendationData.value = [];
-    isLoadingRecommendation.value = true;
+  void getProductsRecommendation() async {
     try {
-      final result = await _apiService.getProducts(token);
-      productsRecommendationData.value = result.data;
+      final String? token = await SharedPreferencesManager.getToken();
+      productsRecommendationData.value = [];
+      isLoadingRecommendation.value = true;
+      final result = await _apiService.getProductsRecommendation(token);
+      print(result);
+      productsRecommendationData.value = result.data!;
       errorMessage.value = '';
     } catch (e) {
       errorMessage.value = e.toString();

@@ -91,4 +91,5 @@ class IconsConstant {
   static const String percentageFilled = 'assets/images/percentage_filled.svg';
   static const String messageFilled = 'assets/images/message_filled.svg';
   static const String notesFilled = 'assets/images/notes_filled.svg';
+  static const String historyFilled = 'assets/images/history_filled.svg';
 }

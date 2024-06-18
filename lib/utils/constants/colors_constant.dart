@@ -33,31 +33,4 @@ class ColorsConstant {
   static const Color info300 = Color(0xFF68A8EC);
   static const Color info500 = Color(0xFF046EE0);
   static const Color warning300 = Color(0xFFFADA66);
-
-}
-
-Color getDifficultyBackgroundColor(String difficulty) {
-  switch (difficulty.toLowerCase()) {
-    case 'mudah':
-      return ColorsConstant.success100;
-    case 'sedang':
-      return ColorsConstant.warning100;
-    case 'sulit':
-      return ColorsConstant.danger100;
-    default:
-      return Colors.grey.shade200;
-  }
-}
-
-Color getDifficultyTextColor(String difficulty) {
-  switch (difficulty.toLowerCase()) {
-    case 'mudah':
-      return ColorsConstant.success600;
-    case 'sedang':
-      return ColorsConstant.warning600;
-    case 'sulit':
-      return ColorsConstant.danger600;
-    default:
-      return Colors.grey.shade600;
-  }
 }
