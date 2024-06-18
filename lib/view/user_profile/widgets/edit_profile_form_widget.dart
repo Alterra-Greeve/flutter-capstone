@@ -115,22 +115,22 @@ class EditProfileFormWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Radio<String>(
-                      value: 'Pria',
+                      value: 'Laki-laki',
                       groupValue: controller.selectedOption.value,
                       onChanged: (value) {
                         controller.setSelectedOption(value!);
                       },
                     ),
-                    const Text('Pria'),
+                    const Text('Laki-laki'),
                     const SizedBox(width: 20),
                     Radio<String>(
-                      value: 'Wanita',
+                      value: 'Perempuan',
                       groupValue: controller.selectedOption.value,
                       onChanged: (value) {
                         controller.setSelectedOption(value!);
                       },
                     ),
-                    const Text('Wanita'),
+                    const Text('Perempuan'),
                     const SizedBox(width: 40),
                   ],
                 ),

@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import '../../../view_model/detail_challenge_controller.dart';
 import '../widget/detail_challenge_arrow_back_widget.dart';
 import '../widget/detail_challenge_header_widget.dart';
@@ -36,7 +36,7 @@ class DetailChallengeScreen extends StatelessWidget {
                 Stack(
                   clipBehavior: Clip.none,
                   children: [
-                    contentContainer(controller),
+                    contentContainer(controller, context),
                     Positioned(
                       top: -35,
                       left: 16,
@@ -61,10 +61,13 @@ class DetailChallengeScreen extends StatelessWidget {
                                     .toString(),
                                 color: ColorsConstant.warning500),
                           ),
-                          const DetailChallengePointCardWidget(
-                            image: IconsConstant.impact,
-                            points: '10',
-                            color: ColorsConstant.success500,
+                          Obx(
+                            () => DetailChallengePointCardWidget(
+                              image: IconsConstant.impact,
+                              points:
+                                  controller.totalImpactPoint.value.toString(),
+                              color: ColorsConstant.success500,
+                            ),
                           ),
                         ],
                       ),
@@ -79,7 +82,8 @@ class DetailChallengeScreen extends StatelessWidget {
     );
   }
 
-  Widget contentContainer(DetailChallengeController controller) {
+  Widget contentContainer(
+      DetailChallengeController controller, BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 24),
       decoration: const BoxDecoration(
@@ -285,47 +289,44 @@ class DetailChallengeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Obx(
-            () => controller.isUploaded.value
-                ? GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: ColorsConstant.primary500,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      width: double.infinity,
-                      height: 70,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Saya ingin menyelesaikannya',
-                              style: TextStylesConstant.nunitoButtonLarge
-                                  .copyWith(color: ColorsConstant.neutral100)),
-                        ],
-                      ),
-                    ),
-                  )
-                : GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: ColorsConstant.neutral200,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      width: double.infinity,
-                      height: 70,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Saya ingin menyelesaikannya',
-                              style:
-                                  TextStylesConstant.nunitoButtonLarge.copyWith(
-                                color: ColorsConstant.neutral500,
-                              )),
-                        ],
-                      ),
-                    ),
-                  ),
+            () => GestureDetector(
+              onTap: controller.isUploaded.value
+                  ? () {
+                      controller.updateChallengesParticipate();
+                    }
+                  : null,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: controller.isUploaded.value
+                      ? ColorsConstant.primary500
+                      : ColorsConstant.neutral200,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                width: double.infinity,
+                height: 70,
+                child: Center(
+                  child: controller.isLoadingUpdateChallenge.value
+                      ? Center(
+                          child: SizedBox(
+                            width: 50,
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.ballBeat,
+                              strokeWidth: 4.0,
+                              colors: [Theme.of(context).secondaryHeaderColor],
+                            ),
+                          ),
+                        )
+                      : Text(
+                          'Saya ingin menyelesaikannya',
+                          style: TextStylesConstant.nunitoButtonLarge.copyWith(
+                            color: controller.isUploaded.value
+                                ? ColorsConstant.white
+                                : ColorsConstant.neutral500,
+                          ),
+                        ),
+                ),
+              ),
+            ),
           ),
           const SizedBox(height: 100),
         ],

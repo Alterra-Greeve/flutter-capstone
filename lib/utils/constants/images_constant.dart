@@ -14,7 +14,7 @@ class ImagesConstant {
   static const String bannerChallenge = 'assets/images/banner_challenge.svg';
   static const String throwChallengeLimit =
       'assets/images/throw_challenge_limit.svg';
-      static const String takeChallengeLimit =
+  static const String takeChallengeLimit =
       'assets/images/take_challenge_limit.svg';
   static const String emptyStateNoData =
       'assets/images/empty_state_no_data.svg';
@@ -37,8 +37,10 @@ class ImagesConstant {
   static const String bottleGrid = 'assets/images/bottle_grid.png';
   static const String closeSquare = 'assets/images/close_square.svg';
   static const String emptyCart = 'assets/images/empty_cart_image.svg';
-  static const String addCartSuccess = 'assets/images/add_cart_success_image.svg';
-  static const String customerServiceImage = 'assets/images/customer_service_image.png';
+  static const String addCartSuccess =
+      'assets/images/add_cart_success_image.svg';
+  static const String customerServiceImage =
+      'assets/images/customer_service_image.png';
   static const String saveUser = 'assets/images/save_user.svg';
   static const String saveUserSuccess = 'assets/images/save_user_success.svg';
   static const String allVoucher = 'assets/images/all_voucher.svg';
@@ -46,8 +48,11 @@ class ImagesConstant {
   static const String greenVoucher = 'assets/images/green_voucher.png';
   static const String blueVoucher = 'assets/images/blue_voucher.png';
   static const String voucherSedotan = 'assets/images/voucher_sedotan.svg';
-  static const String carouselGetCoinImage1 = 'assets/images/carousel_getcoin_image1.png';
-  static const String carouselGetCoinImage2 = 'assets/images/carousel_getcoin_image2.png';
-  static const String carouselGetCoinImage3 = 'assets/images/carousel_getcoin_image3.png';
+  static const String carouselGetCoinImage1 =
+      'assets/images/carousel_getcoin_image1.png';
+  static const String carouselGetCoinImage2 =
+      'assets/images/carousel_getcoin_image2.png';
+  static const String carouselGetCoinImage3 =
+      'assets/images/carousel_getcoin_image3.png';
   static const String emptyHistoryCoin = 'assets/images/empty_history_coin.svg';
 }

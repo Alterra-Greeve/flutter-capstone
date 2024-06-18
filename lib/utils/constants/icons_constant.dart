@@ -61,7 +61,9 @@ class IconsConstant {
   static const String productNavOff = 'assets/images/botnav_product_off.svg';
   static const String productNavOn = 'assets/images/botnav_product_on.svg';
   static const String impactNavOff = 'assets/images/botnav_impact_off.svg';
+  static const String impactNavOn = 'assets/images/botnav_impact_on.svg';
   static const String profileNavOff = 'assets/images/botnav_profile_off.svg';
+  static const String profileNavOn = 'assets/images/botnav_profile_on.svg';
   static const String productIconCategory1 =
       'assets/images/product_icon_category1.png';
   static const String productIconCategory2 =

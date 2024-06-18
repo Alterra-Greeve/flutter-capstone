@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/get_user_profile_response_model.dart';
 import 'package:greeve/models/api_responses/update_user_response_model.dart';
 import 'package:greeve/utils/helpers/user_error_helper.dart';
@@ -27,13 +26,13 @@ class ApiUserService {
   Future<UpdateUserResponseModel> updateUserProfile(
     String? token,
     String? email, {
-    String? username,
-    String? password,
-    String? name,
-    String? address,
-    String? gender,
-    String? phone,
-    String? avatarUrl,
+    String? username = "",
+    String? password = "",
+    String? name = "",
+    String? address = "",
+    String? gender = "",
+    String? phone = "",
+    String? avatarUrl = "",
   }) async {
     try {
       Options options = Options(headers: {'Authorization': 'Bearer $token'});
@@ -47,12 +46,8 @@ class ApiUserService {
         'phone': phone,
         'avatar_url': avatarUrl
       };
-
       final response =
           await _dio.put(ApiConstant.userProfile, data: data, options: options);
-      if (kDebugMode) {
-        print(response);
-      }
       if (response.statusCode == 200) {
         return UpdateUserResponseModel.fromJson(response.data);
       } else {
