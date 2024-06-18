@@ -28,7 +28,7 @@ class DetailChallengeUploadButtonWidget extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: ColorsConstant.primary100,
             ),
             width: double.infinity,
