@@ -92,24 +92,6 @@ class AllVoucherController extends GetxController
     });
   }
 
-  final List<GetCoinAndVoucher> carouselItems = [
-    GetCoinAndVoucher(
-      image: ImagesConstant.carouselGetCoinImage1,
-      name: 'Cara 1',
-      title: 'Selesaikan\nChallenge',
-    ),
-    GetCoinAndVoucher(
-      image: ImagesConstant.carouselGetCoinImage2,
-      name: 'Cara 2',
-      title: 'Beli Beberapa\nProduk',
-    ),
-    GetCoinAndVoucher(
-      image: ImagesConstant.carouselGetCoinImage3,
-      name: 'Cara 3',
-      title: 'Menjadi\nPemenang',
-    ),
-  ];
-
   final List<Tab> categoryTabsVoucher = <Tab>[
     const Tab(text: 'Semua'),
     const Tab(text: 'Hemat Uang'),
@@ -117,33 +99,4 @@ class AllVoucherController extends GetxController
     const Tab(text: 'Perluas Wawasan'),
     const Tab(text: 'Mengurangi Pemanasan Global'),
   ];
-
-  void navigateToBottomSheet() {
-    Get.bottomSheet(
-      const GreeveCoinBottomSheet(),
-      isScrollControlled: true,
-    );
-  }
-
-  void updateIndex(int index) {
-    currentIndex.value = index;
-  }
-
-  void navigateToGetCoin() {
-    Get.toNamed(
-      AppRoutes.getCoin,
-    );
-  }
-
-  void navigateToAllVoucher() {
-    Get.toNamed(
-      AppRoutes.allVoucher,
-    );
-  }
-
-  void navigateToAllHistoryCoin() {
-    Get.toNamed(
-      AppRoutes.historyCoin,
-    );
-  }
 }
