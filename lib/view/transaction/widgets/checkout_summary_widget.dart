@@ -78,12 +78,24 @@ class CheckoutSummaryWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            '-Rp 5',
-                            style: TextStylesConstant.nunitoSubtitle.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: ColorsConstant.neutral500,
-                            ),
+                          Obx(
+                            () {
+                              final formattedCoin = NumberFormat.currency(
+                                locale: 'id_ID',
+                                symbol: 'Rp ',
+                                decimalDigits: 0,
+                              ).format(controller.coinData.value);
+                              return Text(
+                                '[-$formattedCoin]',
+                                style:
+                                    TextStylesConstant.nunitoSubtitle.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: controller.useCoin.value
+                                      ? ColorsConstant.black
+                                      : ColorsConstant.neutral500,
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(width: 16),
                           Obx(
