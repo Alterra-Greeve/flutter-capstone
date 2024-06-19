@@ -78,6 +78,7 @@ class Datum {
   int? exp;
   String? avatarUrl;
   int? rank;
+  int? positionChange;
 
   Datum({
     this.id,
@@ -86,6 +87,7 @@ class Datum {
     this.exp,
     this.avatarUrl,
     this.rank,
+    this.positionChange,
   });
 
   factory Datum.fromJson(Map<String, dynamic> json) => Datum(
@@ -95,6 +97,7 @@ class Datum {
         exp: json["exp"],
         avatarUrl: json["avatar_url"],
         rank: json["rank"],
+        positionChange: json["positionChange"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -104,5 +107,6 @@ class Datum {
         "exp": exp,
         "avatar_url": avatarUrl,
         "rank": rank,
+        "positionChange": positionChange,
       };
 }

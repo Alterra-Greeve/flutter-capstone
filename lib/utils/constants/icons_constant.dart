@@ -49,6 +49,7 @@ class IconsConstant {
   static const String arrowUp = 'assets/images/arrow_up.svg';
   static const String arrowUp_ = 'assets/images/arrow_up.png';
   static const String help_ = 'assets/images/helper.png';
+  static const String decrease_ = 'assets/images/decrease.png';
 
   // static const String voucherOn = 'assets/images/voucher_on.svg';
   // static const String voucherOff = 'assets/images/voucher_off.svg';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
+import 'package:greeve/view/leaderboard/screens/new_leaderboard.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (context) => LeaderboardScreen(),
+                  // builder: (context) => NewLeaderboard(),
                 ),
               );
             },

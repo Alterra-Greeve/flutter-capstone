@@ -265,7 +265,7 @@ class Placement extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    topThree[0].exp.toString(),
+                    topThree[0].exp != null ? topThree[0].exp.toString() : '0',
                     style: TextStylesConstant.nunitoHeading2,
                   ),
                 ),
@@ -278,7 +278,7 @@ class Placement extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    topThree[1].exp.toString(),
+                    topThree[1].exp != null ? topThree[1].exp.toString() : '0',
                     style: TextStylesConstant.nunitoHeading2,
                   ),
                 ),
@@ -291,7 +291,7 @@ class Placement extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    topThree[2].exp.toString(),
+                    topThree[2].exp != null ? topThree[2].exp.toString() : '0',
                     style: TextStylesConstant.nunitoHeading2,
                   ),
                 ),
@@ -307,7 +307,9 @@ class Placement extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    controller.truncateName(topThree[0].name),
+                    controller.truncateName(
+                      topThree[0].name != null ? topThree[0].name! : '-',
+                    ),
                     style: TextStylesConstant.nunitoTitleBold,
                   ),
                 ),
@@ -320,7 +322,9 @@ class Placement extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    controller.truncateName(topThree[1].name),
+                    controller.truncateName(
+                      topThree[1].name != null ? topThree[1].name! : '-',
+                    ),
                     style: TextStylesConstant.nunitoTitleBold,
                   ),
                 ),
@@ -333,7 +337,9 @@ class Placement extends StatelessWidget {
                 child: Align(
                   alignment: Alignment.center,
                   child: Text(
-                    controller.truncateName(topThree[2].name),
+                    controller.truncateName(
+                      topThree[2].name != null ? topThree[2].name! : '-',
+                    ),
                     style: TextStylesConstant.nunitoTitleBold,
                   ),
                 ),

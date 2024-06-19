@@ -1,11 +1,17 @@
+import 'dart:async';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:greeve/models/api_responses/leaderboard_response_model.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 
 class ContainerInfo extends StatelessWidget {
-  const ContainerInfo({super.key});
+  final Datum item;
+
+  const ContainerInfo({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +30,21 @@ class ContainerInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Hari ini', style: TextStylesConstant.nunitoTitleBold),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 Row(
                   children: [
-                    SvgPicture.asset(IconsConstant.arrowDown),
-                    SizedBox(
-                      width: 10,
-                    ),
+                    if (item.positionChange != null) ...[
+                      if (item.positionChange! >= 5)
+                        SvgPicture.asset(IconsConstant.arrowUp)
+                      else if (item.positionChange! <= -5)
+                        SvgPicture.asset(IconsConstant.arrowDown)
+                      else
+                        Image.asset(IconsConstant.decrease_),
+                    ] else
+                      Image.asset(IconsConstant.decrease_),
+                    SizedBox(width: 10),
                     Text(
-                      '5 Posisi',
+                      '${item.positionChange?.abs() ?? 0} Posisi',
                       style: TextStylesConstant.nunitoSubtitle4,
                     ),
                   ],
@@ -56,15 +66,11 @@ class ContainerInfo extends StatelessWidget {
                   'Sisa Waktu',
                   style: TextStylesConstant.nunitoTitleBold,
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                SizedBox(height: 10),
                 Row(
                   children: [
                     Image.asset(IconsConstant.clock_),
-                    SizedBox(
-                      width: 10,
-                    ),
+                    SizedBox(width: 10),
                     Text(
                       '30 Hari',
                       style: TextStylesConstant.nunitoSubtitle4,

@@ -11,11 +11,13 @@ class LeaderboardController extends GetxController {
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> leaderboardData = <Datum>[].obs;
   Rx<bool> isLoading = Rx<bool>(false);
+  Rx<String?> currentUserId = Rx<String?>(null);
 
   @override
   void onInit() {
     super.onInit();
     getLeaderBoardData();
+    getCurrentUser(); // Call getCurrentUser on initialization
   }
 
   void getLeaderBoardData() async {
@@ -26,13 +28,49 @@ class LeaderboardController extends GetxController {
       if (result.status == true) {
         leaderboardData.value = result.data ?? [];
       } else {
-        errorMessage.value = result?.message ?? "Unknown error occurred";
+        errorMessage.value = result.message ?? "Unknown error occurred";
       }
     } catch (e) {
       errorMessage.value = e.toString();
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void getCurrentUser() async {
+    final String? token = await SharedPreferencesManager.getToken();
+    if (token != null) {
+      currentUserId.value = await _apiService.getCurrentUserId(token);
+    }
+  }
+
+  void updateRanks() {
+    for (int i = 0; i < leaderboardData.length; i++) {
+      var currentRank = i + 1;
+      leaderboardData[i] = Datum(
+        name: leaderboardData[i].name,
+        avatarUrl: leaderboardData[i].avatarUrl,
+        exp: leaderboardData[i].exp,
+        rank: currentRank,
+        positionChange: leaderboardData[i].positionChange,
+      );
+    }
+  }
+
+  void updateLeaderboard(Datum player) {
+    // Logika update leaderboard seperti sebelumnya
+    leaderboardData.sort((a, b) => b.exp!.compareTo(a.exp!));
+    updateRanks();
+  }
+
+  void increaseScore(Datum player, int points) {
+    player.exp = (player.exp ?? 0) + points;
+    updateLeaderboard(player);
+  }
+
+  void decreaseScore(Datum player, int points) {
+    player.exp = (player.exp ?? 0) - points;
+    updateLeaderboard(player);
   }
 
   void showHelpBottomSheet(BuildContext context) {
@@ -63,18 +101,15 @@ class LeaderboardController extends GetxController {
                       width: 70,
                       color: ColorsConstant.neutral600,
                     ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    SizedBox(height: 25),
                     Text(
                       'Informasi',
                       style: TextStylesConstant.nunitoHeading4,
                     ),
                     SizedBox(height: 20),
                     Expanded(
-                      child: SingleChildScrollView(
-                        child: Text(
-                          """
+                      child: Text(
+                        """
 Kumpulkan EXP dari challenges untuk menjadi peringkat teratas dan 
 dapatkan hadianya. Hadiah akan diberikan melalui notifikasi dengan 
 jumlah hadiah yang sesuai peringkat ketika waktu Leaderboard berakhir (30 Hari). 
@@ -82,8 +117,7 @@ Peringkat ke 1 : 5000 Coin
 Peringkat ke 2 : 4000 Coin 
 Peringkat ke 3 : 3000 Coin
 """,
-                          style: TextStylesConstant.nunitoSubtitle2_,
-                        ),
+                        style: TextStylesConstant.nunitoSubtitle2_,
                       ),
                     ),
                     GestureDetector(
