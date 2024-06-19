@@ -9,8 +9,7 @@ class IconsConstant {
   static const String leaderboard = 'assets/images/leaderboard.svg';
   static const String search = 'assets/images/search.svg';
   static const String bag = 'assets/images/bag.svg';
-  static const String banner = 'assets/images/banner.svg';
-  static const String bottle = 'assets/images/bottle.svg';
+  static const String bottle = 'assets/images/bottle_list.svg';
   static const String greeveContainer = 'assets/images/bag.svg';
   static const String home = 'assets/images/home.svg';
   static const String challengeInactive =
@@ -44,10 +43,36 @@ class IconsConstant {
   static const String shuffleFailed = 'assets/images/shuffle_failed.svg';
   static const String closeShuffleSnackbar =
       'assets/images/close_shuffle_snackbar.svg';
+  
+  
+  
+  
+
+  static const String game = 'assets/images/game_icono.png';
+  static const String bag_ = 'assets/images/bag.png';
+
+  static const String voucherOn = 'assets/images/voucher_on.png';
+  static const String voucherOff = 'assets/images/voucher_off.png';
+
   static const String right = 'assets/images/right.svg';
 
-  static const String voucherOn = 'assets/images/voucher_on.svg';
-  static const String voucherOff = 'assets/images/voucher_off.svg';
+
+ 
+  static const String arrowLeft = 'assets/images/arrow_left.svg';
+  static const String arrowLeft_ = 'assets/images/arrow_left.png';
+  static const String arrowDown = 'assets/images/arrow_down.svg';
+  static const String arrowDown_ = 'assets/images/arrow_down.png';
+  static const String clock = 'assets/images/clock.svg';
+  static const String clock_ = 'assets/images/clock.png';
+  static const String crone = 'assets/images/crone.svg';
+  static const String crone_ = 'assets/images/crone.png';
+  static const String arrowUp = 'assets/images/arrow_up.svg';
+  static const String arrowUp_ = 'assets/images/arrow_up.png';
+  static const String help_ = 'assets/images/helper.png';
+  static const String decrease_ = 'assets/images/decrease.png';
+
+  
+  
   static const String subtraction = 'assets/images/subtraction.svg';
   static const String addition = 'assets/images/addition.svg';
   static const String success = 'assets/images/icon_success.svg';

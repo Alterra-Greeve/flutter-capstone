@@ -23,7 +23,9 @@ class ChallengeScreen extends StatelessWidget {
         toolbarHeight: 56,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed(AppRoutes.leaderboard);
+            },
             icon: SvgPicture.asset(IconsConstant.leaderboard),
           ),
           IconButton(
