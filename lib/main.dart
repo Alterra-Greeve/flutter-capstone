@@ -9,7 +9,7 @@ import 'package:greeve/utils/helpers/api_key_helper.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
-   Gemini.init(apiKey: geminiKey);
+  Gemini.init(apiKey: geminiKey);
   await dotenv.load(
     fileName: '.env',
   );
@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Greeve',
       theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         scaffoldBackgroundColor: ColorsConstant.white,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(

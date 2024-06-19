@@ -1,5 +1,6 @@
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
@@ -40,7 +41,17 @@ class ChatbotScreen extends StatelessWidget {
           return DashChat(
             currentUser: chatController.currentUser,
             onSend: chatController.sendMessage,
-            messages: chatController.messages.toList(),
+            messages: chatController.messages.map((message) {
+              if (message.user.id == chatController.geminiUser.id) {
+                return ChatMessage(
+                  user: message.user,
+                  createdAt: message.createdAt,
+                  text: Markdown(data: message.text).data, // Render HTML content
+                );
+              } else {
+                return message;
+              }
+            }).toList(),
           );
         }),
       ),

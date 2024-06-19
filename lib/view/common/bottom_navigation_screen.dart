@@ -79,14 +79,22 @@ class BottomNavScreen extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: SvgPicture.asset(IconsConstant.impactNavOff),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 3
+                        ? IconsConstant.impactNavOn
+                        : IconsConstant.impactNavOff,
+                  ),
                 ),
                 label: 'Dampak',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: SvgPicture.asset(IconsConstant.profileNavOff),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 4
+                        ? IconsConstant.profileNavOn
+                        : IconsConstant.profileNavOff,
+                  ),
                 ),
                 label: 'Profil',
               ),

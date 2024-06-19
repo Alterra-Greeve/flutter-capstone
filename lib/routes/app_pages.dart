@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/chatbot/screens/chatbot_screen.dart';
 import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
+import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 import 'package:greeve/view/membership/screens/membership_screen.dart';
 import 'package:greeve/view/transaction/screens/cart_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
@@ -10,6 +11,10 @@ import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
 import 'package:greeve/view/list_challenge/list_challenge_wrapper_screen.dart';
 import 'package:greeve/view/common/bottom_navigation_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/all_voucher_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/history_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/how_to_get_coin_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/greeve_coin_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/onboarding/screens/on_boarding_screen.dart';
@@ -118,6 +123,22 @@ class AppPages {
       page: () => const VoucherScreen(),
     ),
     GetPage(
+      name: AppRoutes.greeveCoin,
+      page: () => const GreeveScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.getCoin,
+      page: () => const GetCoinScreen(),
+    ),
+     GetPage(
+      name: AppRoutes.allVoucher,
+      page: () => const AllVoucherScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.historyCoin,
+      page: () => const HistoryCoinScreen(),
+    ),
+    GetPage(
       name: AppRoutes.transaction,
       page: () => const TransactionScreen(),
     ),
@@ -136,6 +157,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.chatbot,
       page: () => const ChatbotScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.leaderboard,
+      page: () => const LeaderboardScreen(),
     ),
   ];
 }

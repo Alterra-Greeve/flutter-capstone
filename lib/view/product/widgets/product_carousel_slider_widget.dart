@@ -61,7 +61,7 @@ class ProductCarouselSliderWidget extends StatelessWidget {
                               },
                               child: Container(
                                 width: 138,
-                                height: 40,
+                                height: 42,
                                 decoration: const BoxDecoration(
                                   color: ColorsConstant.primary500,
                                   borderRadius: BorderRadius.all(

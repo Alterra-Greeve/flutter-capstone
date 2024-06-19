@@ -4,6 +4,7 @@ import 'package:greeve/models/api_responses/get_user_profile_response_model.dart
 import 'package:greeve/services/api/api_user_serpice.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/view/user_profile/widgets/user_profile_dialog_widget.dart';
+import 'package:greeve/view_model/home_controller.dart';
 
 class UserProfileController extends GetxController {
   final ApiUserService _apiUserService = ApiUserService();
@@ -11,7 +12,7 @@ class UserProfileController extends GetxController {
       Rx<GetUserProfileResponseModel?>(null);
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<bool> isLoading = Rx<bool>(false);
-  Rx<String> selectedOption = Rx<String>('Pria');
+  Rx<String> selectedOption = Rx<String>('Laki-laki');
 
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
@@ -64,12 +65,15 @@ class UserProfileController extends GetxController {
         name: _nameController.text,
         phone: _phoneNumberController.text,
         address: _addressController.text,
+        gender: selectedOption.value,
       );
+      errorMessage.value = '';
       if (result.status == true && result.data != null) {
         SharedPreferencesManager.saveToken(token: result.data!.token!);
       }
       showSaveSuccessDialog();
       getUserProfile();
+      Get.find<HomeController>().getUserProfile();
     } catch (e) {
       showSaveFailedDialog(e.toString());
       errorMessage.value = e.toString();
