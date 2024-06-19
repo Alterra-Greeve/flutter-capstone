@@ -100,7 +100,8 @@ class IconsConstant {
 
   static const String challenge = 'assets/images/challenge.svg';
   static const String buyProduct = 'assets/images/buy_product.svg';
-  static const String winnerLeaderboard = 'assets/images/winner_leaderboard.svg';
+  static const String winnerLeaderboard =
+      'assets/images/winner_leaderboard.svg';
   static const String historyFilled = 'assets/images/history_filled.svg';
   static const String tickSquare = 'assets/images/tick_square.svg';
 }
