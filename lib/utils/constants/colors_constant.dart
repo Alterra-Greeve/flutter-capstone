@@ -24,6 +24,8 @@ class ColorsConstant {
   static const Color danger600 = Color(0xFFA92420);
   static const Color warning50 = Color(0xFFFEF9E6);
   static const Color warning100 = Color(0xFFFFF9C4);
+  static const Color bgSwitchAct = Color(0xFF98C7FF);
+  static const Color switchAct = Color(0xFF4D9FFF);
   static const Color warning500 = Color(0xFFF7C100);
   static const Color warning600 = Color(0xFFF57F17);
   static const Color success50 = Color(0xFFEDF8EF);
