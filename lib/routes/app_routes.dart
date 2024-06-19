@@ -29,4 +29,5 @@ class AppRoutes {
   static const String listTransaction = '/list_transaction';
   static const String membership = '/membership';
   static const String membershipSuccess = '/membership_success';
+  static const String leaderboard = '/leaderboard';
 }

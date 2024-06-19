@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
@@ -14,13 +15,16 @@ class ProductCardWidget extends StatelessWidget {
   final String? description;
   final String? imageUrl;
   final String? price;
+
   const ProductCardWidget({
     super.key,
     required this.controller,
     required this.productId,
+
     required this.name,
     required this.description,
     required this.imageUrl,
+
     required this.price,
   });
 

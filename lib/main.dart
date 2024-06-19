@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Greeve',
       theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         scaffoldBackgroundColor: ColorsConstant.white,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
