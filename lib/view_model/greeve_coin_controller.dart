@@ -1,19 +1,29 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/models/carousel_item_model.dart';
+import 'package:greeve/services/api/api_user_serpice.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
+import 'package:greeve/view/common/bottom_navigation_screen.dart';
 import 'package:greeve/view/greeve_coin/widget/bottom_sheet_widget.dart';
+import 'package:greeve/models/api_responses/get_user_profile_response_model.dart';
 
 class GreeveCoinController extends GetxController
     with GetSingleTickerProviderStateMixin {
+  final ApiUserService _apiUserService = ApiUserService();
+  Rx<GetUserProfileResponseModel?> infoCoinUser =
+      Rx<GetUserProfileResponseModel?>(null);
   Rx<int> currentIndex = Rx<int>(0);
-
+  Rx<String?> errorMessage = Rx<String?>(null);
+  Rx<bool> isLoading = Rx<bool>(false);
   late TabController _tabControllerHistory;
   TabController get tabControllerHistory => _tabControllerHistory;
 
   @override
   void onInit() {
+    getInfoCoinUser();
     super.onInit();
     _tabControllerHistory = TabController(length: 3, vsync: this);
     _tabControllerHistory.addListener(() {
@@ -72,6 +82,33 @@ class GreeveCoinController extends GetxController
     Get.toNamed(
       AppRoutes.historyCoin,
     );
+  }
+
+  void navigateToHome() {
+    Get.offAll(
+      const BottomNavScreen(),
+    );
+  }
+
+  void getInfoCoinUser() async {
+    final String? token = await SharedPreferencesManager.getToken();
+    isLoading.value = true;
+    try {
+      final result = await _apiUserService.getUserProfile(token);
+      infoCoinUser.value = result;
+      var name = result.data?.name;
+      var coin = result.data?.coin;
+      var username = result.data?.username;
+      if (kDebugMode) {
+        print('testing get info $name');
+        print('testing get info $username');
+        print('testing get info $coin');
+      }
+    } catch (e) {
+      errorMessage.value = e.toString();
+    } finally {
+      isLoading.value = false;
+    }
   }
 }
 
