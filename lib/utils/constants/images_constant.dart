@@ -63,6 +63,14 @@ class ImagesConstant {
       'assets/images/product_image_placeholder.png';
   static const String productCardBackground =
       'assets/images/product_card_background.png';
+  static const String recommendationImagePlaceholder =
+      'assets/images/recommendation_image_placeholder.png';
+  static const String detailProductImagePlaceholder =
+      'assets/images/detail_product_image_placeholder.png';
+  static const String hemat = 'assets/images/hemat.png';
+  static const String totebag = 'assets/images/totebag.png';
+  static const String knowledge = 'assets/images/knowledge.png';
+  static const String globalWarming = 'assets/images/global_warming.png';
   static const String closeSquare = 'assets/images/close_square.svg';
   static const String emptyCart = 'assets/images/empty_cart_image.svg';
   static const String addCartSuccess =

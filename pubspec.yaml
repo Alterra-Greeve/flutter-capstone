@@ -34,6 +34,7 @@ dependencies:
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   dio: ^5.4.3+1
+  fl_chart: ^0.68.0
   flutter:
     sdk: flutter
   flutter_svg: ^2.0.10+1
@@ -53,6 +54,8 @@ dependencies:
   interactive_bottom_sheet: ^1.0.0
   sliding_up_panel: ^2.0.0+1
   smooth_page_indicator: ^1.1.0
+  syncfusion_flutter_charts: ^26.1.35
+  syncfusion_flutter_core: ^26.1.35
   jwt_decoder: ^2.0.1
 
 
