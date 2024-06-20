@@ -46,7 +46,7 @@ class ChatbotScreen extends StatelessWidget {
                 return ChatMessage(
                   user: message.user,
                   createdAt: message.createdAt,
-                  text: Markdown(data: message.text).data, // Render HTML content
+                  text: Markdown(data: message.text).data,
                 );
               } else {
                 return message;
