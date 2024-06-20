@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:greeve/view/environtment_impact/model/chart_model.dart';
+import 'package:greeve/models/chart_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ImpactController extends GetxController {

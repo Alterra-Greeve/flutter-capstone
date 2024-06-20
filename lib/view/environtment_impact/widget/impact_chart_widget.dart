@@ -3,7 +3,7 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../../utils/constants/colors_constant.dart';
-import '../model/chart_model.dart';
+import '../../../models/chart_model.dart';
 
 class ImpactChartWidget extends StatefulWidget {
   const ImpactChartWidget({

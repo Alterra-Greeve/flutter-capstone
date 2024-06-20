@@ -1,42 +1,34 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/view/login/screens/login_screen.dart';
-import 'package:greeve/view/onboarding/screens/screen_one.dart';
-import 'package:greeve/view/onboarding/screens/screen_three.dart';
-import 'package:greeve/view/product/screens/product_screen.dart';
-import 'package:greeve/view/register/screens/register_screen.dart';
+import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/services/shared_pref/shared_pref.dart';
 
 class BottomNavController extends GetxController {
   Rx<int> selectedIndex = Rx<int>(0);
-
-  late PageController _pageController;
-  PageController get pageController => _pageController;
-
-  static final List<Widget> _widgetOptions = [
-    const LoginScreen(),
-    const RegisterScreen(),
-    const ProductScreen(),
-    const ScreenOne(),
-    const ScreenThree(),
-  ];
-  List<Widget> get widgetOptions => _widgetOptions;
+  RxBool isLoggedIn = true.obs;
 
   @override
   void onInit() {
-    _pageController = PageController(initialPage: selectedIndex.value);
+    isLoggedIn.value = true;
     super.onInit();
   }
 
   void onItemTapped(int index) {
     selectedIndex.value = index;
-    _pageController.animateToPage(
-      index,
-      duration: const Duration(milliseconds: 300),
-      curve: Curves.easeInOut,
-    );
   }
 
   void onPageChanged(int index) {
     selectedIndex.value = index;
+  }
+
+  void resetSelectedIndex() {
+    selectedIndex.value = 0;
+  }
+
+  void logout() {
+    isLoggedIn.value = false;
+    selectedIndex.value = 0;
+    SharedPreferencesManager.removeAllKeys();
+    Get.deleteAll();
+    Get.offAllNamed(AppRoutes.splashApp);
   }
 }

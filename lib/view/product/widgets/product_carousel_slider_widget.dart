@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -55,10 +54,14 @@ class ProductCarouselSliderWidget extends StatelessWidget {
                             ),
                             const SizedBox(height: 24),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                controller.navigateToProductDetail(
+                                  item.productId!,
+                                );
+                              },
                               child: Container(
                                 width: 138,
-                                height: 40,
+                                height: 42,
                                 decoration: const BoxDecoration(
                                   color: ColorsConstant.primary500,
                                   borderRadius: BorderRadius.all(

@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Greeve',
       theme: ThemeData(
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         colorScheme: ColorScheme.fromSeed(seedColor: ColorsConstant.primary500),
         scaffoldBackgroundColor: ColorsConstant.white,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.impact,
+      initialRoute: AppRoutes.splashApp,
       getPages: AppPages.routes,
     );
   }

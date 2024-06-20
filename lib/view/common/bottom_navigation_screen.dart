@@ -4,6 +4,11 @@ import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/challenge/screens/challenge_screen.dart';
+import 'package:greeve/view/environtment_impact/screen/impact_screen.dart';
+import 'package:greeve/view/home/screens/home_screen.dart';
+import 'package:greeve/view/product/screens/product_screen.dart';
+import 'package:greeve/view/user_profile/screens/user_profile_screen.dart';
 import 'package:greeve/view_model/bottom_navigation_controller.dart';
 
 class BottomNavScreen extends StatelessWidget {
@@ -13,10 +18,18 @@ class BottomNavScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final BottomNavController controller = Get.put(BottomNavController());
     return Scaffold(
-      body: PageView(
-        controller: controller.pageController,
-        onPageChanged: controller.onPageChanged,
-        children: controller.widgetOptions,
+      body: Obx(
+        () {
+          return IndexedStack(
+              index: controller.selectedIndex.value,
+              children: [
+                const HomeScreen(),
+                const ChallengeScreen(),
+                const ProductScreen(),
+                ImpactScreen(),
+                const UserProfileScreen(),
+              ]);
+        },
       ),
       bottomNavigationBar: SizedBox(
         height: 88,
@@ -67,14 +80,22 @@ class BottomNavScreen extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: SvgPicture.asset(IconsConstant.impactNavOff),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 3
+                        ? IconsConstant.impactNavOn
+                        : IconsConstant.impactNavOff,
+                  ),
                 ),
                 label: 'Dampak',
               ),
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: const EdgeInsets.only(bottom: 10),
-                  child: SvgPicture.asset(IconsConstant.profileNavOff),
+                  child: SvgPicture.asset(
+                    controller.selectedIndex.value == 4
+                        ? IconsConstant.profileNavOn
+                        : IconsConstant.profileNavOff,
+                  ),
                 ),
                 label: 'Profil',
               ),

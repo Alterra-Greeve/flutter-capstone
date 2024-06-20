@@ -12,11 +12,14 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final String? prefixIcon;
   final String? helperText;
   final void Function(String)? onChanged;
+  final void Function(String)? onFieldSubmitted;
   final bool showSuffixIcon;
   final bool obscureText;
   final void Function()? onPressedSuffixIcon;
   final bool? enabled;
   final TextInputType keyboardType;
+  final TextAlign textAlign;
+  final TextStyle? errorStyle;
 
   const GlobalTextFieldWidget({
     super.key,
@@ -27,11 +30,14 @@ class GlobalTextFieldWidget extends StatelessWidget {
     this.prefixIcon,
     this.helperText,
     this.onChanged,
+    this.onFieldSubmitted,
     required this.showSuffixIcon,
     this.obscureText = false,
     this.onPressedSuffixIcon,
     this.enabled,
     required this.keyboardType,
+    this.textAlign = TextAlign.start,
+    this.errorStyle,
   });
 
   @override
@@ -40,6 +46,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextFormField(
+          textAlign: textAlign,
           focusNode: focusNode,
           controller: controller,
           obscureText: obscureText,
@@ -50,6 +57,8 @@ class GlobalTextFieldWidget extends StatelessWidget {
               height: 1.25,
             ),
             errorText: errorText,
+            errorStyle: errorStyle,
+            errorMaxLines: 2,
             contentPadding: EdgeInsets.symmetric(
               vertical: prefixIcon != null ? 8 : 12,
               horizontal: prefixIcon != null ? 0 : 12,
@@ -126,6 +135,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
           ),
           onChanged: onChanged,
           enabled: enabled,
+          onFieldSubmitted: onFieldSubmitted,
           keyboardType: keyboardType,
         ),
         if (helperText != null && controller.text.isEmpty)
