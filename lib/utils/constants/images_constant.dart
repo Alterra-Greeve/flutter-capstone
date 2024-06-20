@@ -48,7 +48,8 @@ class ImagesConstant {
   static const String getCoin = 'assets/images/get_coin.svg';
   static const String greenVoucher = 'assets/images/green_voucher.png';
   static const String blueVoucher = 'assets/images/blue_voucher.png';
-  static const String voucherSedotan = 'assets/images/voucher_sedotan.svg';
+  static const String redVoucher = 'assets/images/red_voucher.png';
+  static const String primaryVoucher = 'assets/images/primary_voucher.png';
   static const String carouselGetCoinImage1 =
       'assets/images/carousel_getcoin_image1.png';
   static const String carouselGetCoinImage2 =

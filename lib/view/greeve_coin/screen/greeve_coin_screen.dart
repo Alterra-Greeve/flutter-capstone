@@ -289,8 +289,25 @@ class GreeveScreen extends StatelessWidget {
                   style: TextStylesConstant.nunitoHeading3,
                 ),
                 const SizedBox(height: 10),
-                const VoucherWidget(),
               ],
+            ),
+            Expanded(
+              child: Obx(
+                () => ListView.builder(
+                  itemCount: controller.voucherData.length > 4 ? 4 : controller.voucherData.length,
+                  itemBuilder: (context, index) {
+                    final item = controller.voucherData[index];
+                    return VoucherWidget(
+                      controller: controller,
+                      idVoucher: item.id,
+                      name: item.name,
+                      discount: item.discount,
+                      used: item.used,
+                      index: index,
+                    );
+                  },
+                ),
+              ),
             ),
           ],
         ),

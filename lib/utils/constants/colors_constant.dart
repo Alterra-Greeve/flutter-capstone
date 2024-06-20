@@ -34,4 +34,5 @@ class ColorsConstant {
   static const Color info500 = Color(0xFF046EE0);
   static const Color warning300 = Color(0xFFFADA66);
   static const Color backgroundProduct = Color(0xFFE5E0D6);
+  static const Color avatarVoucher = Color(0xFFEBE869);
 }
