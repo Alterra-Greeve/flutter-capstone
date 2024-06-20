@@ -24,6 +24,8 @@ class CartController extends GetxController {
   Rx<double> totalPrice = Rx<double>(0.0);
   Rx<String> voucherCode = Rx<String>("");
   Rx<int> coinData = Rx<int>(0);
+  Rx<double> discount = Rx<double>(0.0);
+  Rx<bool> isVoucherApplied = Rx<bool>(false);
 
   final debouncer = Debouncer(delay: const Duration(milliseconds: 200));
   final TextEditingController _qtyController = TextEditingController();
@@ -174,6 +176,12 @@ class CartController extends GetxController {
     updateTotalPrice();
   }
 
+  void applyDiscount(double discountValue) {
+    discount.value = discountValue;
+    isVoucherApplied.value = true;
+    updateTotalPrice();
+  }
+
   void updateTotalPrice() {
     double total = 0.0;
     for (var item in cartData) {
@@ -182,6 +190,7 @@ class CartController extends GetxController {
     if (useCoin.value) {
       total -= 5;
     }
+    total -= discount.value;
     totalPrice.value = total;
   }
 
@@ -194,6 +203,7 @@ class CartController extends GetxController {
           voucherCode: voucherCode.value, useCoin: useCoin.value);
       postTransactionData.value = result;
       errorMessage.value = '';
+      isVoucherApplied.value = false;
       getCart();
       navigateToTransaction();
     } catch (e) {
