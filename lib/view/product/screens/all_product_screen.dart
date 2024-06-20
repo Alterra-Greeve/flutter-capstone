@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/models/api_responses/products_response_model.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/product/widgets/search_product_card_widget.dart';
-import 'package:greeve/view_model/all_product_screen_controller.dart';
+import 'package:greeve/view_model/all_product_controller.dart';
 
 class AllProductScreen extends StatelessWidget {
   const AllProductScreen({super.key});
@@ -16,9 +20,11 @@ class AllProductScreen extends StatelessWidget {
         Get.put(AllProductScreenController());
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Dapur',
-          style: TextStylesConstant.nunitoButtonBold,
+        title: Obx(
+          () => Text(
+            controller.categoryTitle.value,
+            style: TextStylesConstant.nunitoButtonBold,
+          ),
         ),
         centerTitle: true,
         leading: IconButton(
@@ -43,7 +49,9 @@ class AllProductScreen extends StatelessWidget {
         children: [
           Positioned.fill(
             top: kToolbarHeight,
-            child: GridView.builder(
+            child: PagedGridView<int, Datum>(
+              showNoMoreItemsIndicatorAsGridChild: false,
+              pagingController: controller.pagingController,
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
@@ -51,15 +59,63 @@ class AllProductScreen extends StatelessWidget {
                 mainAxisSpacing: 16,
                 mainAxisExtent: 220,
               ),
-              itemCount: controller.productItems.length,
-              itemBuilder: (context, index) {
-                var product = controller.productItems[index];
-                return SearchProductCardWidget(
-                  image: product.image!,
-                  name: product.name!,
-                  price: product.price!,
-                );
-              },
+              builderDelegate: PagedChildBuilderDelegate<Datum>(
+                itemBuilder: (context, item, index) {
+                  return SearchProductCardWidget(
+                    controller: controller,
+                    productId: item.productId,
+                    imageUrl: item.images[0].imageUrl,
+                    name: item.name,
+                    price: item.price.toString(),
+                  );
+                },
+                firstPageProgressIndicatorBuilder: (context) => SizedBox(
+                  height: 211,
+                  child: GridView.builder(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 16),
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 18,
+                      mainAxisSpacing: 16,
+                      mainAxisExtent: 220,
+                    ),
+                    itemCount: 8,
+                    itemBuilder: (context, index) {
+                      return Shimmer.fromColors(
+                        baseColor: Colors.grey.shade300,
+                        highlightColor: Colors.grey.shade200,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                newPageProgressIndicatorBuilder: (context) => Center(
+                  child: SizedBox(
+                    width: 50,
+                    child: LoadingIndicator(
+                      indicatorType: Indicator.ballBeat,
+                      strokeWidth: 4.0,
+                      colors: [Theme.of(context).primaryColor],
+                    ),
+                  ),
+                ),
+                noMoreItemsIndicatorBuilder: (context) => Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "Tidak ada item lagi",
+                      style: TextStylesConstant.nunitoSubtitle,
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -69,7 +125,9 @@ class AllProductScreen extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    controller.navigateToProductSearch();
+                  },
                   child: Container(
                     width: double.infinity,
                     height: 40,

@@ -104,20 +104,52 @@ class AuthErrorHelper {
     }
   }
 
+<<<<<<< HEAD
   static String tryGetUserProfile(int? statusCode) {
     switch (statusCode) {
       case 400:
         return 'Unauthorized! Silahkan login kembali.';
       case 404:
         return 'User tidak ditemukan! Silahkan coba lagi.';
+=======
+  static String tryGetProducts(int? statusCode) {
+    switch (statusCode) {
+      case 404:
+        return 'Produk tidak ditemukan';
+>>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
       default:
         return 'Terjadi kesalahan (Status Code: $statusCode).';
     }
   }
 
+<<<<<<< HEAD
   static String catchGetUserProfile(DioException e) {
     if (e.response != null && e.response!.statusCode != null) {
       return tryGetUserProfile(
+=======
+  static String catchGetProducts(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryGetProducts(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
+
+  static String tryGetLeaderBoard(int? statusCode) {
+    switch (statusCode) {
+      case 404:
+        return 'Produk tidak ditemukan';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchGetLeaderBoard(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryGetProducts(
+>>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
         e.response!.statusCode,
       );
     } else {

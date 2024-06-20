@@ -10,10 +10,25 @@ class AppRoutes {
   static const String loading = '/loading';
   static const String bottomNavigation = '/bottom_navigation';
   static const String onboarding = '/onboarding';
-  static const String product = '/product';
   static const String allProduct = '/all_product';
   static const String detailProduct = '/detail_product';
   static const String cart = '/cart';
-  static const String impact = '/impact';
   static const String detailImpact = '/detail_impact';
+  static const String searchProduct = '/search_product';
+  static const String listChallenge = '/list_challenge';
+  static const String detailChallenge = '/detail_challenge';
+  static const String editProfile = '/edit_profile';
+  static const String helpCenter = '/help_center';
+  static const String termsAndConditions= '/terms_and_conditions';
+  static const String notification = '/notification';
+  static const String voucher = '/voucher';
+  static const String greeveCoin = '/greeve_coin';
+  static const String getCoin = '/get_coin';
+  static const String allVoucher = '/all_voucher';
+  static const String historyCoin = '/history_coin';
+  static const String transaction = '/transaction';
+  static const String listTransaction = '/list_transaction';
+  static const String membership = '/membership';
+  static const String membershipSuccess = '/membership_success';
+  static const String leaderboard = '/leaderboard';
 }

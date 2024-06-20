@@ -5,13 +5,12 @@ import 'package:greeve/global_widgets/global_form_button_widget.dart';
 
 import 'package:greeve/global_widgets/global_text_field_widget.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
-import 'package:greeve/services/api/api_service.dart';
+import 'package:greeve/services/api/api_auth_service.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 part '../../../view_model/register_controller.dart';
 part '../widgets/register_button_widget.dart';
@@ -25,7 +24,6 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RegisterController controller = Get.put(RegisterController());
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -140,13 +138,21 @@ class RegisterScreen extends StatelessWidget {
                         TextButton(
                           style: ButtonStyle(
                             padding:
+<<<<<<< HEAD
                                 MaterialStateProperty.all<EdgeInsetsGeometry>(
+=======
+                                WidgetStateProperty.all<EdgeInsetsGeometry>(
+>>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
                               const EdgeInsets.symmetric(
                                 vertical: 2,
                                 horizontal: 4,
                               ),
                             ),
+<<<<<<< HEAD
                             minimumSize: MaterialStateProperty.all<Size>(
+=======
+                            minimumSize: WidgetStateProperty.all<Size>(
+>>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
                               const Size(41, 24),
                             ),
                           ),
@@ -163,20 +169,6 @@ class RegisterScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
-                Obx(
-                  () => controller.isLoading.value
-                      ? const Center(
-                          child: SizedBox(
-                            width: 50,
-                            child: LoadingIndicator(
-                              indicatorType: Indicator.ballBeat,
-                              strokeWidth: 4.0,
-                              pathBackgroundColor: ColorsConstant.black,
-                            ),
-                          ),
-                        )
-                      : const SizedBox.shrink(),
                 ),
               ],
             ),

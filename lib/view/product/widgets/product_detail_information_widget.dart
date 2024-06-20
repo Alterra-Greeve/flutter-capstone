@@ -1,107 +1,106 @@
 import 'package:flutter/material.dart';
+
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
+import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/product/widgets/shimmer/paragraph_shimmer_widget.dart';
+import 'package:greeve/view_model/detail_product_controller.dart';
+import 'package:intl/intl.dart';
 
 class ProductDetailInformationWidget extends StatelessWidget {
-  const ProductDetailInformationWidget({super.key});
+  final DetailProductController controller;
+
+  const ProductDetailInformationWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Tumbler',
-                style: TextStylesConstant.nunitoSemiboldTitle,
-              ),
-              Row(
+    return Obx(
+      () => controller.isLoadingProduct.value
+          ? const ParagraphShimmerWidget()
+          : Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          controller.productData.value?.name ?? "-",
+                          style: TextStylesConstant.nunitoSemiboldTitle,
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Text(
+                            "Rp ${controller.productData.value?.price != null ? NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(controller.productData.value!.price) : '-'}",
+                            style: TextStylesConstant.nunitoSubtitle3,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
                   Text(
-                    'Rp 148.500',
+                    controller.productData.value?.description ?? "-",
                     style: TextStylesConstant.nunitoCaption.copyWith(
-                        fontSize: 10,
-                        color: ColorsConstant.danger500,
-                        decoration: TextDecoration.lineThrough,
-                        decorationColor: ColorsConstant.danger500),
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                  const SizedBox(width: 4),
+                  const SizedBox(height: 16),
                   Text(
-                    'Rp 148.500',
-                    style: TextStylesConstant.nunitoSubtitle3,
+                    'Membantu',
+                    style: TextStylesConstant.nunitoButtonSemibold,
+                  ),
+                  const SizedBox(height: 8),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: controller.impactCategories.map((category) {
+                      String imagePath;
+                      switch (category) {
+                        case 'Hemat Uang':
+                          imagePath = IconsConstant.productIconCategory1;
+                          break;
+                        case 'Mengurangi Limbah':
+                          imagePath = IconsConstant.productIconCategory2;
+                          break;
+                        case 'Perluas Wawasan':
+                          imagePath = IconsConstant.productIconCategory3;
+                          break;
+                        case 'Mengurangi Pemanasan Global':
+                          imagePath = IconsConstant.productIconCategory4;
+                          break;
+                        default:
+                          imagePath = 'assets/images/default.png';
+                          break;
+                      }
+                      return Container(
+                        width: 48,
+                        height: 48,
+                        decoration: const BoxDecoration(
+                          color: ColorsConstant.neutral100,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                        ),
+                        child: ClipRRect(
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(8),
+                          ),
+                          child: Image.asset(
+                            imagePath,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ],
               ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Bahan: Stainless steel 304\n'
-            'Kapasitas: 500 ml (17 oz)\n'
-            'Dimensi: 23 cm x 7 cm (tinggi x diameter)\n'
-            'Berat: 300 gram\n'
-            'Warna: Silver, Biru, Hijau, Pink',
-            style: TextStylesConstant.nunitoCaption,
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Tumbler Ramah Lingkungan adalah pilihan sempurna bagi mereka yang ingin mengurangi dampak lingkungan mereka. Terbuat dari stainless steel 304 yang tahan lama dan aman untuk digunakan, tumbler ini dapat digunakan kembali berkali-kali, sehingga menghilangkan kebutuhan akan botol plastik sekali pakai.',
-            style: TextStylesConstant.nunitoCaption.copyWith(
-              fontWeight: FontWeight.w400,
             ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Membantu',
-            style: TextStylesConstant.nunitoButtonSemibold,
-          ),
-          const SizedBox(height: 8),
-          Container(
-            width: 48,
-            height: 48,
-            decoration: const BoxDecoration(
-              color: ColorsConstant.neutral100,
-              borderRadius: BorderRadius.all(
-                Radius.circular(8),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'Ukuran',
-            style: TextStylesConstant.nunitoButtonSemibold,
-          ),
-          Container(
-            width: 48,
-            height: 48,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  ColorsConstant.primary400,
-                  ColorsConstant.primary500,
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(8),
-              ),
-            ),
-            child: Center(
-              child: Text(
-                'S',
-                style: TextStylesConstant.nunitoButtonSemibold.copyWith(
-                  color: ColorsConstant.white,
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -25,12 +25,6 @@ class ImpactScreen extends StatelessWidget {
             style: TextStylesConstant.nunitoButtonBold,
           ),
           centerTitle: true,
-          leading: IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: SvgPicture.asset(IconsConstant.arrow),
-          ),
           toolbarHeight: 64,
           scrolledUnderElevation: 0,
           backgroundColor: Colors.white,

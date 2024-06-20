@@ -5,7 +5,20 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:greeve/view_model/impact_monthly_controller.dart';
 
+<<<<<<< HEAD
 class ImpactChartWidget extends StatelessWidget {
+=======
+import '../../../utils/constants/colors_constant.dart';
+import '../../../models/chart_model.dart';
+
+class ImpactChartWidget extends StatefulWidget {
+  const ImpactChartWidget({
+    Key? key,
+    required this.tooltipBehavior,
+    required this.chartData,
+  }) : super(key: key);
+
+>>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
   final TooltipBehavior tooltipBehavior;
   final ImpactMonthlyController controller =
       Get.find<ImpactMonthlyController>();
