@@ -23,8 +23,4 @@ class ImagesConstant {
       'assets/images/recommendation_image_placeholder.png';
   static const String detailProductImagePlaceholder =
       'assets/images/detail_product_image_placeholder.png';
-  static const String hemat = 'assets/images/hemat.png';
-  static const String totebag = 'assets/images/totebag.png';
-  static const String knowledge = 'assets/images/knowledge.png';
-  static const String globalWarming = 'assets/images/global_warming.png';
 }

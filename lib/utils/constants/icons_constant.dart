@@ -17,10 +17,14 @@ class IconsConstant {
   static const String homeNavOn = 'assets/images/botnav_home_on.svg';
   static const String challengeNavOff =
       'assets/images/botnav_challenge_off.svg';
-      static const String challengeNavOn =
-      'assets/images/botnav_challenge_on.svg';
+  static const String challengeNavOn = 'assets/images/botnav_challenge_on.svg';
   static const String productNavOff = 'assets/images/botnav_product_off.svg';
   static const String productNavOn = 'assets/images/botnav_product_on.svg';
   static const String impactNavOff = 'assets/images/botnav_impact_off.svg';
   static const String profileNavOff = 'assets/images/botnav_profile_off.svg';
+  static const String saveMoney = 'assets/images/save_money.png';
+  static const String reduceWaste = 'assets/images/reduce_waste.png';
+  static const String expandKnowledge = 'assets/images/expand_knowledge.png';
+  static const String reduceGlobalWarming =
+      'assets/images/reduce_global_warming.png';
 }

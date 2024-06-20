@@ -156,29 +156,29 @@ class LoginScreen extends StatelessWidget {
                             'Belum Punya Akun?',
                             style: TextStylesConstant.nunitoSubtitle,
                           ),
-                          // TextButton(
-                          //   style: ButtonStyle(
-                          //     padding:
-                          //         WidgetStateProperty.all<EdgeInsetsGeometry>(
-                          //       const EdgeInsets.symmetric(
-                          //         vertical: 2,
-                          //         horizontal: 4,
-                          //       ),
-                          //     ),
-                          //     minimumSize: WidgetStateProperty.all<Size>(
-                          //       const Size(41, 24),
-                          //     ),
-                          //   ),
-                          //   onPressed: () {
-                          //     Get.toNamed(AppRoutes.register);
-                          //   },
-                          //   child: Text(
-                          //     'Daftar',
-                          //     style: TextStylesConstant.nunitoSubtitle.copyWith(
-                          //       color: ColorsConstant.primary500,
-                          //     ),
-                          //   ),
-                          // ),
+                          TextButton(
+                            style: ButtonStyle(
+                              padding:
+                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
+                                const EdgeInsets.symmetric(
+                                  vertical: 2,
+                                  horizontal: 4,
+                                ),
+                              ),
+                              minimumSize: MaterialStateProperty.all<Size>(
+                                const Size(41, 24),
+                              ),
+                            ),
+                            onPressed: () {
+                              Get.toNamed(AppRoutes.register);
+                            },
+                            child: Text(
+                              'Daftar',
+                              style: TextStylesConstant.nunitoSubtitle.copyWith(
+                                color: ColorsConstant.primary500,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

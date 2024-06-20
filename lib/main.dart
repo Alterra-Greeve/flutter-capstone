@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.impact,
+      initialRoute: AppRoutes.splashApp,
       getPages: AppPages.routes,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:greeve/view/environtment_impact/screen/impact_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
-import 'package:greeve/view/onboarding/screens/screen_one.dart';
 import 'package:greeve/view/onboarding/screens/screen_three.dart';
 import 'package:greeve/view/product/screens/product_screen.dart';
 import 'package:greeve/view/register/screens/register_screen.dart';
@@ -16,7 +16,7 @@ class BottomNavController extends GetxController {
     const LoginScreen(),
     const RegisterScreen(),
     const ProductScreen(),
-    const ScreenOne(),
+    ImpactScreen(),
     const ScreenThree(),
   ];
   List<Widget> get widgetOptions => _widgetOptions;
