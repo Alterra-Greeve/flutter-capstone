@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/impact_response_model.dart';
+import 'package:greeve/models/chart_model.dart';
 import 'package:greeve/services/api/api_impact_service.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
-import 'package:greeve/view/environtment_impact/model/chart_model.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ImpactDetailController extends GetxController {

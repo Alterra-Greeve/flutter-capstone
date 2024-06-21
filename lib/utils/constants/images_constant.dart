@@ -67,8 +67,6 @@ class ImagesConstant {
       'assets/images/recommendation_image_placeholder.png';
   static const String detailProductImagePlaceholder =
       'assets/images/detail_product_image_placeholder.png';
-<<<<<<< HEAD
-=======
   static const String hemat = 'assets/images/hemat.png';
   static const String totebag = 'assets/images/totebag.png';
   static const String knowledge = 'assets/images/knowledge.png';
@@ -94,5 +92,4 @@ class ImagesConstant {
   static const String carouselGetCoinImage3 =
       'assets/images/carousel_getcoin_image3.png';
   static const String emptyHistoryCoin = 'assets/images/empty_history_coin.svg';
->>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
 }

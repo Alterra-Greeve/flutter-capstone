@@ -47,8 +47,8 @@ class IconsConstant {
   static const String game = 'assets/images/game_icono.png';
   static const String bag_ = 'assets/images/bag.png';
 
-  static const String voucherOn = 'assets/images/voucher_on.png';
-  static const String voucherOff = 'assets/images/voucher_off.png';
+  static const String voucherOn = 'assets/images/voucher_on.svg';
+  static const String voucherOff = 'assets/images/voucher_off.svg';
 
   static const String right = 'assets/images/right.svg';
 
@@ -80,4 +80,49 @@ class IconsConstant {
   static const String impactNavOff = 'assets/images/botnav_impact_off.svg';
   static const String impactNavOn = 'assets/images/botnav_impact_on.svg';
   static const String profileNavOff = 'assets/images/botnav_profile_off.svg';
+  static const String profileNavOn = 'assets/images/botnav_profile_on.svg';
+  static const String productIconCategory1 =
+      'assets/images/product_icon_category1.png';
+  static const String productIconCategory2 =
+      'assets/images/product_icon_category2.png';
+  static const String productIconCategory3 =
+      'assets/images/product_icon_category3.png';
+  static const String productIconCategory4 =
+      'assets/images/product_icon_category4.png';
+  static const String challengeIconCategory1 =
+      'assets/images/challenge_icon_category1.png';
+  static const String challengeIconCategory2 =
+      'assets/images/challenge_icon_category2.png';
+  static const String challengeIconCategory3 =
+      'assets/images/challenge_icon_category3.png';
+  static const String challengeIconCategory4 =
+      'assets/images/challenge_icon_category4.png';
+  static const String notification = 'assets/images/notification.svg';
+  static const String reduceHeating = 'assets/images/reduce_heating.png';
+  static const String saveMoney = 'assets/images/save_money.png';
+  static const String expandInsight = 'assets/images/expand_insight.png';
+  static const String reduceWaste = 'assets/images/reduce_waste.png';
+  static const String expandKnowledge = 'assets/images/expand_knowledge.png';
+  static const String reduceGlobalWarming =
+      'assets/images/reduce_global_warming.png';
+  static const String poinImpact = 'assets/images/poin_impact.png';
+  static const String edit = 'assets/images/edit.svg';
+  static const String star = 'assets/images/star.svg';
+  static const String notificationFilled =
+      'assets/images/notification_filled.svg';
+  static const String percentageFilled = 'assets/images/percentage_filled.svg';
+  static const String messageFilled = 'assets/images/message_filled.svg';
+  static const String notesFilled = 'assets/images/notes_filled.svg';
+  static const String iconCategory1 = 'assets/images/icon_category1.png';
+  static const String iconCategory2 = 'assets/images/icon_category2.png';
+  static const String iconCategory3 = 'assets/images/icon_category3.png';
+  static const String iconCategory4 = 'assets/images/icon_category4.png';
+
+  static const String challenge = 'assets/images/challenge.svg';
+  static const String buyProduct = 'assets/images/buy_product.svg';
+  static const String winnerLeaderboard =
+      'assets/images/winner_leaderboard.svg';
+  static const String historyFilled = 'assets/images/history_filled.svg';
+  static const String tickSquare = 'assets/images/tick_square.svg';
+  static const String iconPlaceholder = 'assets/images/icon_placeholder.png';
 }

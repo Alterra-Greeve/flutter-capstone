@@ -138,21 +138,13 @@ class RegisterScreen extends StatelessWidget {
                         TextButton(
                           style: ButtonStyle(
                             padding:
-<<<<<<< HEAD
-                                MaterialStateProperty.all<EdgeInsetsGeometry>(
-=======
                                 WidgetStateProperty.all<EdgeInsetsGeometry>(
->>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
                               const EdgeInsets.symmetric(
                                 vertical: 2,
                                 horizontal: 4,
                               ),
                             ),
-<<<<<<< HEAD
-                            minimumSize: MaterialStateProperty.all<Size>(
-=======
                             minimumSize: WidgetStateProperty.all<Size>(
->>>>>>> 81f867a5e8cc02eb4eb92360bf9c872a4426b0bc
                               const Size(41, 24),
                             ),
                           ),
