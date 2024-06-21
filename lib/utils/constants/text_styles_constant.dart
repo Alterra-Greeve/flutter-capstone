@@ -91,6 +91,11 @@ class TextStylesConstant {
     fontSize: 10,
   );
 
+  static final TextStyle nunitoFooterSemiBold = _baseNunito.copyWith(
+    fontSize: 10,
+    fontWeight: FontWeight.w600,
+  );
+
   static final TextStyle nunitoFooterBold = _baseNunito.copyWith(
     fontSize: 10,
     fontWeight: FontWeight.w700,

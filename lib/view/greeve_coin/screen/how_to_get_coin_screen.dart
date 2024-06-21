@@ -261,7 +261,7 @@ class GetCoinScreen extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  
+                  controller.navigateToHome();
                 },
                 child: Text(
                   'Jelajahi Sekarang!',

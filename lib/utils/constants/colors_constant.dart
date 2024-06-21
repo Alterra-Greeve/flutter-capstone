@@ -36,4 +36,8 @@ class ColorsConstant {
   static const Color info500 = Color(0xFF046EE0);
   static const Color warning300 = Color(0xFFFADA66);
   static const Color backgroundProduct = Color(0xFFE5E0D6);
+  static const Color secondary700 = Color(0xFF8E8B3F);
+  static const Color secondary400 = Color(0xFFF1ED87);
+  static const Color primary800 = Color(0xFF0B2923);
+  static const Color avatarVoucher = Color(0xFFEBE869);
 }

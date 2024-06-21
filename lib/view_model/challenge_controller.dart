@@ -11,7 +11,6 @@ class ChallengeController extends GetxController {
   Rx<bool> isLoading = Rx<bool>(true);
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> challengesData = <Datum>[].obs;
-  RxList<String> impactCategories = <String>[].obs;
 
   var cardColors = <Color>[].obs;
 
@@ -35,14 +34,11 @@ class ChallengeController extends GetxController {
 
   void getChallenges() async {
     final String? token = await SharedPreferencesManager.getToken();
-    challengesData.value = [];
+    challengesData.clear();
     isLoading.value = true;
     try {
       final result = await _apiService.getChallenges(token);
       challengesData.value = result.data;
-      impactCategories.value = result.data.expand((datum) =>
-        datum.categories.map((category) => nameValues.reverse[category.impactCategory.name]!)
-      ).toSet().toList();
       errorMessage.value = '';
       initializeCardColors();
     } catch (e) {

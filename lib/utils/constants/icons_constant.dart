@@ -43,21 +43,15 @@ class IconsConstant {
   static const String shuffleFailed = 'assets/images/shuffle_failed.svg';
   static const String closeShuffleSnackbar =
       'assets/images/close_shuffle_snackbar.svg';
-  
-  
-  
-  
 
   static const String game = 'assets/images/game_icono.png';
   static const String bag_ = 'assets/images/bag.png';
 
-  static const String voucherOn = 'assets/images/voucher_on.png';
-  static const String voucherOff = 'assets/images/voucher_off.png';
+  static const String voucherOn = 'assets/images/voucher_on.svg';
+  static const String voucherOff = 'assets/images/voucher_off.svg';
 
   static const String right = 'assets/images/right.svg';
 
-
- 
   static const String arrowLeft = 'assets/images/arrow_left.svg';
   static const String arrowLeft_ = 'assets/images/arrow_left.png';
   static const String arrowDown = 'assets/images/arrow_down.svg';
@@ -71,8 +65,6 @@ class IconsConstant {
   static const String help_ = 'assets/images/helper.png';
   static const String decrease_ = 'assets/images/decrease.png';
 
-  
-  
   static const String subtraction = 'assets/images/subtraction.svg';
   static const String addition = 'assets/images/addition.svg';
   static const String success = 'assets/images/icon_success.svg';
@@ -110,6 +102,9 @@ class IconsConstant {
   static const String saveMoney = 'assets/images/save_money.png';
   static const String expandInsight = 'assets/images/expand_insight.png';
   static const String reduceWaste = 'assets/images/reduce_waste.png';
+  static const String expandKnowledge = 'assets/images/expand_knowledge.png';
+  static const String reduceGlobalWarming =
+      'assets/images/reduce_global_warming.png';
   static const String poinImpact = 'assets/images/poin_impact.png';
   static const String edit = 'assets/images/edit.svg';
   static const String star = 'assets/images/star.svg';
@@ -129,4 +124,5 @@ class IconsConstant {
       'assets/images/winner_leaderboard.svg';
   static const String historyFilled = 'assets/images/history_filled.svg';
   static const String tickSquare = 'assets/images/tick_square.svg';
+  static const String iconPlaceholder = 'assets/images/icon_placeholder.png';
 }

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
@@ -24,7 +25,7 @@ class GreeveScreen extends StatelessWidget {
         leading: IconButton(
           icon: SvgPicture.asset(IconsConstant.arrow),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
         ),
         centerTitle: true,
@@ -46,7 +47,7 @@ class GreeveScreen extends StatelessWidget {
                       style: TextStylesConstant.nunitoHeading3,
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         controller.navigateToAllHistoryCoin();
                       },
                       child: Text(
@@ -80,55 +81,77 @@ class GreeveScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(15.0),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Lee John Doe',
-                          style: TextStylesConstant.nunitoSemiboldTitle,
-                        ),
-                        Text(
-                          'Greeve Coin',
-                          style: TextStylesConstant.nunitoFooter
-                              .copyWith(fontSize: 12),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                    Obx(() {
+                      if (controller.isLoading.value) {
+                        return Center(
+                          child: SizedBox(
+                            height: 50,
+                            width: 50,
+                            child: LoadingIndicator(
+                              indicatorType: Indicator.ballBeat,
+                              strokeWidth: 4.0,
+                              colors: [Theme.of(context).primaryColor],
+                            ),
+                          ),
+                        );
+                      } else {
+                        final user = controller.infoCoinUser.value?.data;
+                        return Column(
                           children: [
-                            SvgPicture.asset(
-                              IconsConstant.profile,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  user?.name ?? '',
+                                  style: TextStylesConstant.nunitoSemiboldTitle,
+                                ),
+                                Text(
+                                  'Greeve Coin',
+                                  style: TextStylesConstant.nunitoFooter
+                                      .copyWith(fontSize: 12),
+                                ),
+                              ],
                             ),
-                            const SizedBox(
-                              width: 3,
-                            ),
-                            Text(
-                              'ID 19210024',
-                              style: TextStylesConstant.nunitoReguler,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    SvgPicture.asset(
+                                      IconsConstant.profile,
+                                    ),
+                                    const SizedBox(
+                                      width: 3,
+                                    ),
+                                    Text(
+                                      'ID ${user?.username ?? ''}',
+                                      style: TextStylesConstant.nunitoReguler,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    SvgPicture.asset(
+                                      IconsConstant.coin,
+                                    ),
+                                    const SizedBox(
+                                      width: 3,
+                                    ),
+                                    Text(
+                                      user?.coin.toString() ?? '-',
+                                      style: TextStylesConstant
+                                          .nunitoSemiboldTitle,
+                                    ),
+                                  ],
+                                ),
+                              ],
                             ),
                           ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            SvgPicture.asset(
-                              IconsConstant.coin,
-                            ),
-                            const SizedBox(
-                              width: 3,
-                            ),
-                            Text(
-                              '800',
-                              style: TextStylesConstant.nunitoSemiboldTitle,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                        );
+                      }
+                    }),
                     const SizedBox(height: 15),
                     SizedBox(
                       height: 42,
@@ -162,7 +185,7 @@ class GreeveScreen extends StatelessWidget {
             Row(
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     controller.navigateToAllVoucher();
                   },
                   child: Stack(
@@ -209,7 +232,7 @@ class GreeveScreen extends StatelessWidget {
                 ),
                 const SizedBox(width: 15),
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     controller.navigateToGetCoin();
                   },
                   child: Stack(
@@ -266,8 +289,26 @@ class GreeveScreen extends StatelessWidget {
                   style: TextStylesConstant.nunitoHeading3,
                 ),
                 const SizedBox(height: 10),
-                const VoucherWidget(),
               ],
+            ),
+            Expanded(
+              child: Obx(
+                () => ListView.builder(
+                  itemCount: controller.voucherData.length > 4 ? 4 : controller.voucherData.length,
+                  itemBuilder: (context, index) {
+                    final item = controller.voucherData[index];
+                    return VoucherWidget(
+                      controller: controller,
+                      idVoucher: item.id,
+                      name: item.name,
+                      discount: item.discount,
+                      used: item.used,
+                      index: index,
+                      code: item.code,
+                    );
+                  },
+                ),
+              ),
             ),
           ],
         ),
