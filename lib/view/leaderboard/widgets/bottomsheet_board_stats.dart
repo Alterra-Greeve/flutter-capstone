@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view/leaderboard/screens/board_stats.dart';
-import 'package:greeve/view/leaderboard/screens/board_stats_two.dart';
+import 'package:greeve/view/leaderboard/widgets/board_stats.dart';
 import 'package:greeve/view_model/leaderboard_controller.dart';
 
 class BottomsheetBoardStats extends StatelessWidget {

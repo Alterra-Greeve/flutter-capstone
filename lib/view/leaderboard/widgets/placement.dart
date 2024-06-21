@@ -234,7 +234,7 @@ class Placement extends StatelessWidget {
                 left: 185,
                 child: Text(
                   '1',
-                  style: TextStylesConstant.nunitoHeading1,
+                  style: TextStylesConstant.nunitoHeading1Blk,
                 ),
               ),
             if (topThree.length > 1)
@@ -243,7 +243,7 @@ class Placement extends StatelessWidget {
                 left: 77,
                 child: Text(
                   '2',
-                  style: TextStylesConstant.nunitoHeading1,
+                  style: TextStylesConstant.nunitoHeading1Blk,
                 ),
               ),
             if (topThree.length > 2)
@@ -252,7 +252,7 @@ class Placement extends StatelessWidget {
                 right: 78,
                 child: Text(
                   '3',
-                  style: TextStylesConstant.nunitoHeading1,
+                  style: TextStylesConstant.nunitoHeading1Blk,
                 ),
               ),
 
