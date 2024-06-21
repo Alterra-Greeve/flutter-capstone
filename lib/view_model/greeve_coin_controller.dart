@@ -12,6 +12,7 @@ import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/view/common/bottom_navigation_screen.dart';
 import 'package:greeve/view/greeve_coin/widget/bottom_sheet_widget.dart';
 import 'package:greeve/models/api_responses/get_user_profile_response_model.dart';
+import 'package:greeve/view_model/cart_controller.dart';
 
 class GreeveCoinController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -35,7 +36,6 @@ class GreeveCoinController extends GetxController
     _tabControllerHistory.addListener(() {
       if (_tabControllerHistory.indexIsChanging) {}
     });
-    
   }
 
   final List<GetCoinAndVoucher> carouselItems = [
@@ -98,14 +98,15 @@ class GreeveCoinController extends GetxController
   }
 
   void navigateToCart(String code, String discountValue) {
-  Get.toNamed(
-    AppRoutes.cart,
-    arguments: {
-      'code': code,
-      'discountValue': discountValue,
-    },
-  );
-}
+    Get.toNamed(
+      AppRoutes.cart,
+      arguments: {
+        'code': code,
+        'discountValue': discountValue,
+      },
+    );
+    Get.find<CartController>().applyDiscount();
+  }
 
   String getInitials(String fullName) {
     List<String> nameSplit = fullName.split(' ');
@@ -129,11 +130,11 @@ class GreeveCoinController extends GetxController
       case 3:
         return ImagesConstant.primaryVoucher;
       default:
-      return ImagesConstant. blueVoucher;
+        return ImagesConstant.blueVoucher;
     }
   }
 
-  Color getColorDividerVoucher(int index){
+  Color getColorDividerVoucher(int index) {
     switch (index % 4) {
       case 0:
         return ColorsConstant.success500;
@@ -144,7 +145,7 @@ class GreeveCoinController extends GetxController
       case 3:
         return ColorsConstant.primary500;
       default:
-      return ColorsConstant.info500;
+        return ColorsConstant.info500;
     }
   }
 
