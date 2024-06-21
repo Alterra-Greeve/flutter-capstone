@@ -162,6 +162,9 @@ class GreeveCoinController extends GetxController
       }
     } catch (e) {
       errorMessage.value = e.toString();
+      if (kDebugMode) {
+        print('Testing Error Voucher${errorMessage.value}');
+      }
     } finally {
       isLoading.value = false;
     }
