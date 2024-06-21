@@ -136,16 +136,18 @@ class ImpactCategory {
 
 enum Name {
   HEMAT_UANG,
-  MENGURANGI_LIMBAH,
   MENGURANGI_PEMANASAN_GLOBAL,
-  PERLUAS_WAWASAN
+  PERLUAS_WAWASAN,
+  UMBUL_PONGGOK_BARU,
+  MENGURANGI_LIMBAH
 }
 
 final nameValues = EnumValues({
   "Hemat Uang": Name.HEMAT_UANG,
-  "Mengurangi Limbah": Name.MENGURANGI_LIMBAH,
   "Mengurangi Pemanasan Global": Name.MENGURANGI_PEMANASAN_GLOBAL,
-  "Perluas Wawasan": Name.PERLUAS_WAWASAN
+  "Perluas Wawasan": Name.PERLUAS_WAWASAN,
+  "Umbul Ponggok Baru": Name.UMBUL_PONGGOK_BARU,
+  "Mengurangi Limbah": Name.MENGURANGI_LIMBAH
 });
 
 class EnumValues<T> {

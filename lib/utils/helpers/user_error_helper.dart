@@ -67,4 +67,23 @@ class UserErrorHelper {
       return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
     }
   }
+
+  static String tryGetLeaderBoard(int? statusCode) {
+    switch (statusCode) {
+      case 404:
+        return 'Produk tidak ditemukan';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchGetLeaderBoard(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryGetLeaderBoard(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }

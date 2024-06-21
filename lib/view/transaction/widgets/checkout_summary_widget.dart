@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -38,21 +39,34 @@ class CheckoutSummaryWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          SvgPicture.asset(IconsConstant.voucherOff),
-                          const SizedBox(width: 11),
-                          Text(
-                            'Gunakan Voucher Greeve',
-                            style: TextStylesConstant.nunitoSubtitle,
-                          )
-                        ],
-                      ),
-                      SvgPicture.asset(IconsConstant.right),
-                    ],
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(AppRoutes.greeveCoin);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Obx(
+                          () => Row(
+                            children: [
+                              SvgPicture.asset(
+                                controller.isVoucherApplied.value
+                                    ? IconsConstant.voucherOn
+                                    : IconsConstant.voucherOff,
+                              ),
+                              const SizedBox(width: 11),
+                              Text(
+                                controller.isVoucherApplied.value
+                                    ? '1 Voucher Greeve digunakan'
+                                    : 'Gunakan Voucher Greeve',
+                                style: TextStylesConstant.nunitoSubtitle,
+                              )
+                            ],
+                          ),
+                        ),
+                        SvgPicture.asset(IconsConstant.right),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -72,12 +86,24 @@ class CheckoutSummaryWidget extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Text(
-                            '-Rp 5',
-                            style: TextStylesConstant.nunitoSubtitle.copyWith(
-                              fontWeight: FontWeight.w600,
-                              color: ColorsConstant.neutral500,
-                            ),
+                          Obx(
+                            () {
+                              final formattedCoin = NumberFormat.currency(
+                                locale: 'id_ID',
+                                symbol: 'Rp ',
+                                decimalDigits: 0,
+                              ).format(controller.coinData.value);
+                              return Text(
+                                '[-$formattedCoin]',
+                                style:
+                                    TextStylesConstant.nunitoSubtitle.copyWith(
+                                  fontWeight: FontWeight.w600,
+                                  color: controller.useCoin.value
+                                      ? ColorsConstant.black
+                                      : ColorsConstant.neutral500,
+                                ),
+                              );
+                            },
                           ),
                           const SizedBox(width: 16),
                           Obx(

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:greeve/view_model/search_controller.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
@@ -12,7 +13,6 @@ import 'package:greeve/view/search_product/widgets/not_found_widget.dart';
 import 'package:greeve/view/search_product/widgets/empty_state_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_history_widget.dart';
 import 'package:greeve/view/search_product/widgets/search_product_card_widget.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -133,7 +133,7 @@ class SearchScreen extends StatelessWidget {
                     child: SizedBox(
                       width: 50,
                       child: LoadingIndicator(
-                        indicatorType: Indicator.ballRotateChase,
+                        indicatorType: Indicator.ballBeat,
                         strokeWidth: 4.0,
                         colors: [Theme.of(context).primaryColor],
                       ),
@@ -142,26 +142,30 @@ class SearchScreen extends StatelessWidget {
                 } else if (searchProductController.productsData.isEmpty) {
                   return const NotFoundWidget();
                 } else {
-                  return GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 18,
-                      mainAxisExtent: 220,
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 16),
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16,
+                        crossAxisSpacing: 18,
+                        mainAxisExtent: 220,
+                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      itemCount: searchProductController.productsData.length,
+                      itemBuilder: (context, index) {
+                        final item =
+                            searchProductController.productsData[index];
+                        return SearchProductCardWidget(
+                          controller: searchProductController,
+                          productId: item.productId,
+                          imageUrl: item.images.first.imageUrl,
+                          name: item.name,
+                          price: item.price.toString(),
+                        );
+                      },
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    itemCount: searchProductController.productsData.length,
-                    itemBuilder: (context, index) {
-                      final item = searchProductController.productsData[index];
-                      return SearchProductCardWidget(
-                        controller: searchProductController,
-                        productId: item.productId,
-                        imageUrl: item.images.first.imageUrl,
-                        name: item.name,
-                        price: item.price.toString(),
-                      );
-                    },
                   );
                 }
               } else if (searchProductController.historySearch.isEmpty &&

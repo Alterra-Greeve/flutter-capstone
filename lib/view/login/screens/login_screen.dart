@@ -159,13 +159,13 @@ class LoginScreen extends StatelessWidget {
                           TextButton(
                             style: ButtonStyle(
                               padding:
-                                  WidgetStateProperty.all<EdgeInsetsGeometry>(
+                                  MaterialStateProperty.all<EdgeInsetsGeometry>(
                                 const EdgeInsets.symmetric(
                                   vertical: 2,
                                   horizontal: 4,
                                 ),
                               ),
-                              minimumSize: WidgetStateProperty.all<Size>(
+                              minimumSize: MaterialStateProperty.all<Size>(
                                 const Size(41, 24),
                               ),
                             ),

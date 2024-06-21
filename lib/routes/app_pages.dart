@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
+import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
+import 'package:greeve/view/membership/screens/membership_screen.dart';
 import 'package:greeve/view/transaction/screens/cart_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
 import 'package:greeve/view/forgot_password/screens/forgot_password_screen.dart';
@@ -8,6 +10,10 @@ import 'package:greeve/view/forgot_password/screens/new_pass_screen.dart';
 import 'package:greeve/view/forgot_password/screens/otp_screen.dart';
 import 'package:greeve/view/list_challenge/list_challenge_wrapper_screen.dart';
 import 'package:greeve/view/common/bottom_navigation_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/all_voucher_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/history_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/how_to_get_coin_screen.dart';
+import 'package:greeve/view/greeve_coin/screen/greeve_coin_screen.dart';
 import 'package:greeve/view/login/screens/loading_screen.dart';
 import 'package:greeve/view/login/screens/login_screen.dart';
 import 'package:greeve/view/onboarding/screens/on_boarding_screen.dart';
@@ -24,6 +30,9 @@ import 'package:greeve/view/user_profile/screens/help_center_screen.dart';
 import 'package:greeve/view/user_profile/screens/notification_screen.dart';
 import 'package:greeve/view/user_profile/screens/terms_and_condition_screen.dart';
 import 'package:greeve/view/user_profile/screens/voucher_screen.dart';
+
+import '../view/environtment_impact/screen/detail_impact_screen.dart';
+import '../view/environtment_impact/screen/impact_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -116,12 +125,44 @@ class AppPages {
       page: () => const VoucherScreen(),
     ),
     GetPage(
+      name: AppRoutes.greeveCoin,
+      page: () => const GreeveScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.getCoin,
+      page: () => const GetCoinScreen(),
+    ),
+     GetPage(
+      name: AppRoutes.allVoucher,
+      page: () => const AllVoucherScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.historyCoin,
+      page: () => const HistoryCoinScreen(),
+    ),
+    GetPage(
       name: AppRoutes.transaction,
       page: () => const TransactionScreen(),
     ),
     GetPage(
       name: AppRoutes.listTransaction,
       page: () => const ListTransactionScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.membership,
+      page: () => MembershipScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.membershipSuccess,
+      page: () => const MembershiSuccessfullyScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.leaderboard,
+      page: () => const LeaderboardScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.detailImpact,
+      page: () => const DetailImpactScreen(),
     ),
   ];
 }

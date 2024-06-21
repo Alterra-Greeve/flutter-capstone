@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/challenge_response_model.dart';
 import 'package:greeve/models/api_responses/challenges_response_model.dart';
 import 'package:greeve/models/api_responses/generic_response_model.dart';
@@ -69,6 +70,33 @@ class ApiChallengeService {
     }
   }
 
+  Future<GenericResponseModel> updateChallengesParticipate(String? token,
+      List<String?> image, String? challengeConfirmationId) async {
+    try {
+      Options options = Options(headers: {'Authorization': 'Bearer $token'});
+      Map<String, dynamic> data = {'image': image};
+      if (kDebugMode) {
+        print(data);
+      }
+      final response = await _dio.put(
+        '${ApiConstant.challengesParticipate}/$challengeConfirmationId',
+        data: data,
+        options: options,
+      );
+      if (kDebugMode) {
+        print(response);
+      }
+      if (response.statusCode == 200) {
+        return GenericResponseModel.fromJson(response.data);
+      } else {
+        throw ChallengeErrorHelper.tryUpdateChallengeParticipate(
+            response.statusCode);
+      }
+    } on DioException catch (e) {
+      throw ChallengeErrorHelper.catchUpdateChallengeParticipate(e);
+    }
+  }
+
   Future<ChallengeResponseModel> getChallenge(
       String? token, String? challengeId) async {
     try {
@@ -77,7 +105,9 @@ class ApiChallengeService {
         '${ApiConstant.challengesParticipate}/$challengeId',
         options: options,
       );
-      print(response);
+      if (kDebugMode) {
+        print(response);
+      }
       if (response.statusCode == 200) {
         return ChallengeResponseModel.fromJson(response.data);
       } else {

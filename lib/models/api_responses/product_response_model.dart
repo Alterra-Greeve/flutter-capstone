@@ -1,7 +1,3 @@
-
-
-
-
 import 'dart:convert';
 
 ProductResponseModel productResponseModelFromJson(String str) => ProductResponseModel.fromJson(json.decode(str));

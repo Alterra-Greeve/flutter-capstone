@@ -72,12 +72,14 @@ class ListChallengeTodoScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(
                                 8,
                               ),
-                              child: Image.network(
-                                challenge.challenge?.imageUrl ??
-                                    ImagesConstant.challengeImageSample,
+                              child: CachedNetworkImage(
+                                imageUrl: challenge.challenge?.imageUrl ??
+                                    "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
                                 height: 70,
                                 width: 100,
                                 fit: BoxFit.cover,
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
                             ),
                             const SizedBox(
@@ -97,14 +99,8 @@ class ListChallengeTodoScreen extends StatelessWidget {
                                         difficultyChallenge:
                                             challenge.challenge!.difficulty!,
                                       ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
                                       ListChallengeExpItemWidget(
                                         expChallenge: challenge.challenge?.exp,
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
                                       ),
                                       ListChallengeCoinItemWidget(
                                         coinChallenge:

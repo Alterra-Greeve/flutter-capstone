@@ -24,6 +24,8 @@ class ColorsConstant {
   static const Color danger600 = Color(0xFFA92420);
   static const Color warning50 = Color(0xFFFEF9E6);
   static const Color warning100 = Color(0xFFFFF9C4);
+  static const Color bgSwitchAct = Color(0xFF98C7FF);
+  static const Color switchAct = Color(0xFF4D9FFF);
   static const Color warning500 = Color(0xFFF7C100);
   static const Color warning600 = Color(0xFFF57F17);
   static const Color success50 = Color(0xFFEDF8EF);
@@ -33,4 +35,9 @@ class ColorsConstant {
   static const Color info300 = Color(0xFF68A8EC);
   static const Color info500 = Color(0xFF046EE0);
   static const Color warning300 = Color(0xFFFADA66);
+  static const Color backgroundProduct = Color(0xFFE5E0D6);
+  static const Color secondary700 = Color(0xFF8E8B3F);
+  static const Color secondary400 = Color(0xFFF1ED87);
+  static const Color primary800 = Color(0xFF0B2923);
+  static const Color avatarVoucher = Color(0xFFEBE869);
 }

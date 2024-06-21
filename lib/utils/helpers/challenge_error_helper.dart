@@ -80,4 +80,25 @@ class ChallengeErrorHelper {
       return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
     }
   }
+
+  static String tryUpdateChallengeParticipate(int? statusCode) {
+    switch (statusCode) {
+      case 401:
+        return 'Unauthorized';
+        case 409:
+        return 'Tantangan sudah diterima';
+      default:
+        return 'Terjadi kesalahan (Status Code: $statusCode).';
+    }
+  }
+
+  static String catchUpdateChallengeParticipate(DioException e) {
+    if (e.response != null && e.response!.statusCode != null) {
+      return tryUpdateChallengeParticipate(
+        e.response!.statusCode,
+      );
+    } else {
+      return 'Koneksi internet tidak tersedia. Silahkan periksa koneksi Anda dan coba lagi.';
+    }
+  }
 }
