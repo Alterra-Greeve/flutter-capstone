@@ -5,10 +5,12 @@ class HomeWrapperContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    double screenWidth = MediaQuery.of(context).size.width;
+    double aspectRatio = screenWidth < 1000 ? 1.3 : 16 / 9;
+    return Column(
       children: [
-        HomeProductCarouselWidget(),
-        HomeContentWidget(),
+        HomeProductCarouselWidget(aspectRatio: aspectRatio),
+        const HomeContentWidget(),
       ],
     );
   }

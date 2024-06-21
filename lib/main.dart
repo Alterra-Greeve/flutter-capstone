@@ -1,4 +1,3 @@
-import 'package:flutter/services.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +12,6 @@ void main() async {
   await dotenv.load(
     fileName: '.env',
   );
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-  ));
   runApp(const MyApp());
 }
 

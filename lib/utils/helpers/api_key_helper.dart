@@ -1,4 +1,2 @@
-// TODO 2: MIGRATE TO ENVIED
-
-const String geminiKey = "";
+const String geminiKey = "YOUR_API_KEY";
 

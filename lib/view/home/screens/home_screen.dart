@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       
-      backgroundColor: ColorsConstant.backgroundProduct,
+      backgroundColor: ColorsConstant.neutral50,
         body: SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -46,4 +46,3 @@ class HomeScreen extends StatelessWidget {
     ));
   }
 }
-

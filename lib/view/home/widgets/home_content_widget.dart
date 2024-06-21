@@ -5,27 +5,18 @@ class HomeContentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return const Stack(
       clipBehavior: Clip.none,
       children: [
-        Container(
-          decoration: const BoxDecoration(
-            color: ColorsConstant.neutral50,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(24),
-              topRight: Radius.circular(24),
-            ),
-          ),
-          child: const Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              HomeCategoryProductWidget(),
-              HomeRecomendedProductWidget(),
-            ],
-          ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            HomeCategoryProductWidget(),
+            HomeRecomendedProductWidget(),
+          ],
         ),
-        const Positioned(
-          top: -80,
+        Positioned(
+          top: -130,
           left: 0,
           right: 0,
           child: HomeUserDetailWidget(),

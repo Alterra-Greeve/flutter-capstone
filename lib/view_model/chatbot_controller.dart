@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:translator/translator.dart';
 
-// TODO 1: WRAP WITH HTML
 class ChatbotController extends GetxController {
   final ChatUser currentUser = ChatUser(
     id: "0",
