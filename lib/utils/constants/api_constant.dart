@@ -7,6 +7,8 @@ class ApiConstant {
   static const String forgotPassword = '$baseUrl/user/forgot-password';
   static const String verifyOtp = '$baseUrl/user/verify-otp';
   static const String resetPassword = '$baseUrl/user/reset-password';
+  static const String impact = '$baseUrl/impact';
+  static const String impactPoint = '$baseUrl/dashboard';
   static const String products = '$baseUrl/products';
   static const String productsSearch = '$baseUrl/products/search';
   static const String productsCategory = '$baseUrl/products/category';
@@ -18,4 +20,5 @@ class ApiConstant {
   static const String challengesParticipate = '$baseUrl/challenges/participate';
   static const String userMembership = '$baseUrl/user/membership';
   static const String leaderBoard = '$baseUrl/leaderboard';
+  static const String voucher = '$baseUrl/voucher';
 }

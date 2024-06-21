@@ -34,32 +34,37 @@ dependencies:
   carousel_slider: ^4.2.1
   cupertino_icons: ^1.0.2
   dio: ^5.4.3+1
+  dotted_border: ^2.1.0
+  fl_chart: ^0.68.0
   flutter:
     sdk: flutter
+  flutter_card_swiper: ^7.0.1
+  flutter_html: ^3.0.0-beta.2
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
-  loading_indicator: ^3.1.1
+  html: ^0.15.4
   image_picker: ^1.1.2
-  dotted_border: ^2.1.0
-  flutter_card_swiper: ^7.0.1
-  shimmer: ^3.0.0
   infinite_scroll_pagination: ^4.0.0
+  interactive_bottom_sheet: ^1.0.0
   intl: ^0.19.0
+  jwt_decoder: ^2.0.1
+  loading_indicator: ^3.1.1
   percent_indicator: ^4.2.3
-  webview_flutter: ^3.0.4
-  url_launcher: ^6.3.0
   pin_code_fields: ^8.0.1
   shared_preferences: ^2.2.3
-  interactive_bottom_sheet: ^1.0.0
+  shimmer: ^3.0.0
   sliding_up_panel: ^2.0.0+1
   smooth_page_indicator: ^1.1.0
-  jwt_decoder: ^2.0.1
+  syncfusion_flutter_charts: ^26.1.35
+  syncfusion_flutter_core: ^26.1.35
+  url_launcher: ^6.3.0
+  webview_flutter: ^3.0.4
   flutter_gemini: ^2.0.3
   dash_chat_2: ^0.0.20
   flutter_dotenv: ^5.1.0
   translator: ^1.0.0
   flutter_markdown: ^0.7.2+1
-  
+
 dev_dependencies:
   flutter_lints: ^2.0.3
   flutter_test:

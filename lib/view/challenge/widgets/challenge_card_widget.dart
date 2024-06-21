@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:greeve/models/api_responses/challenges_response_model.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
@@ -15,7 +16,7 @@ class ChallengeCardWidget extends StatelessWidget {
   final String? exp;
   final String? coin;
   final String? participant;
-  final List<String> impactCategories;
+  final List<Category> impactCategories;
   const ChallengeCardWidget({
     super.key,
     required this.cardColors,
@@ -176,21 +177,21 @@ class ChallengeCardWidget extends StatelessWidget {
                   runSpacing: 8,
                   children: impactCategories.map((category) {
                     String imagePath;
-                    switch (category) {
-                      case 'Hemat Uang':
+                    switch (category.impactCategory.name) {
+                      case Name.HEMAT_UANG:
                         imagePath = IconsConstant.challengeIconCategory1;
                         break;
-                      case 'Mengurangi Limbah':
+                      case Name.MENGURANGI_PEMANASAN_GLOBAL:
                         imagePath = IconsConstant.challengeIconCategory2;
                         break;
-                      case 'Perluas Wawasan':
+                      case Name.PERLUAS_WAWASAN:
                         imagePath = IconsConstant.challengeIconCategory3;
                         break;
-                      case 'Mengurangi Pemanasan Global':
+                      case Name.MENGURANGI_LIMBAH:
                         imagePath = IconsConstant.challengeIconCategory4;
                         break;
                       default:
-                        imagePath = 'assets/images/default.png';
+                        imagePath = IconsConstant.iconPlaceholder;
                         break;
                     }
                     return Container(

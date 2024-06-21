@@ -24,7 +24,7 @@ class GetCoinCarouselWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                         child: Image.asset(
                           item.image!,
-                        fit: BoxFit.cover,
+                          fit: BoxFit.cover,
                           width: double.infinity,
                         ),
                       ),
@@ -50,7 +50,9 @@ class GetCoinCarouselWidget extends StatelessWidget {
                             ),
                             const SizedBox(height: 24),
                             GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                controller.navigateToHome();
+                              },
                               child: Container(
                                 width: 138,
                                 height: 40,
@@ -91,7 +93,9 @@ class GetCoinCarouselWidget extends StatelessWidget {
             },
           ),
         ),
-        const SizedBox(height: 16,),
+        const SizedBox(
+          height: 16,
+        ),
         Obx(
           () => AnimatedSmoothIndicator(
             activeIndex: controller.currentIndex.value,

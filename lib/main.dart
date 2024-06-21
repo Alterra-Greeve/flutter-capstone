@@ -1,3 +1,4 @@
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import 'package:greeve/routes/app_pages.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/helpers/api_key_helper.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   Gemini.init(apiKey: geminiKey);

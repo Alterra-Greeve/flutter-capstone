@@ -74,7 +74,7 @@ class ProductDetailInformationWidget extends StatelessWidget {
                           imagePath = IconsConstant.productIconCategory4;
                           break;
                         default:
-                          imagePath = 'assets/images/default.png';
+                          imagePath = IconsConstant.iconPlaceholder;
                           break;
                       }
                       return Container(
