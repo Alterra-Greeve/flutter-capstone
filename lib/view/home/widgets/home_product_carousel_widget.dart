@@ -1,184 +1,67 @@
 part of '../screens/home_screen.dart';
 
 class HomeProductCarouselWidget extends StatelessWidget {
+  final double aspectRatio;
+
   const HomeProductCarouselWidget({
     super.key,
+    required this.aspectRatio,
   });
 
   @override
   Widget build(BuildContext context) {
     final ProductController productController = Get.put(ProductController());
-    return Obx(
-      () => Column(
-        children: [
-          CarouselSlider(
-            items: productController.productsRecommendationData
-                .take(3)
-                .map(
-                  (product) => Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 16),
-                    color: ColorsConstant.backgroundProduct,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(
-                          ImagesConstant.logoPotrait,
-                          width: 24,
-                          height: 24,
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(
-                                width: 200,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        productController
-                                            .navigateToProductDetail(
-                                          product.productId!,
-                                        );
-                                      },
-                                      child: RichText(
-                                        overflow: TextOverflow.ellipsis,
-                                        text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: 'Segera dapatkan!\n',
-                                              style: TextStylesConstant
-                                                  .nunitoTitleBold
-                                                  .copyWith(
-                                                color:
-                                                    ColorsConstant.neutral900,
-                                                fontWeight: FontWeight.w900,
-                                              ),
-                                            ),
-                                            TextSpan(
-                                              text: product.name,
-                                              style: TextStylesConstant
-                                                  .nunitoTitleBold
-                                                  .copyWith(
-                                                color:
-                                                    ColorsConstant.neutral900,
-                                                fontWeight: FontWeight.w900,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 8),
-                                    RichText(
-                                      overflow: TextOverflow.ellipsis,
-                                      text: TextSpan(
-                                        children: [
-                                          TextSpan(
-                                            text:
-                                                'Rp${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(product.price! * 1.5)}\n',
-                                            style: TextStylesConstant
-                                                .nunitoCaption
-                                                .copyWith(
-                                              fontSize: 10,
-                                              color: ColorsConstant.neutral900,
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                            ),
-                                          ),
-                                          TextSpan(
-                                            text:
-                                                'Rp${NumberFormat.currency(locale: 'id_ID', symbol: '', decimalDigits: 0).format(product.price)}',
-                                            style: TextStylesConstant
-                                                .nunitoSubtitle4
-                                                .copyWith(
-                                              color: ColorsConstant.neutral900,
-                                              fontWeight: FontWeight.w700,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: () {
-                                  productController.navigateToProductDetail(
-                                    product.productId!,
-                                  );
-                                },
-                                child: SizedBox(
-                                  width: 80,
-                                  height: 80,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(8),
-                                        topRight: Radius.circular(22),
-                                        bottomLeft: Radius.circular(22),
-                                        bottomRight: Radius.circular(8),
-                                      ),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: ColorsConstant.neutral900
-                                              .withOpacity(0.2),
-                                          spreadRadius: 4,
-                                          blurRadius: 10,
-                                          offset: const Offset(0, 3),
-                                        ),
-                                      ],
-                                    ),
-                                    child: ClipRRect(
-                                      borderRadius: const BorderRadius.only(
-                                        topLeft: Radius.circular(8),
-                                        topRight: Radius.circular(22),
-                                        bottomLeft: Radius.circular(22),
-                                        bottomRight: Radius.circular(8),
-                                      ),
-                                      child: CachedNetworkImage(
-                                        imageUrl: product.images![0].imageUrl!,
-                                        width: 80,
-                                        height: 80,
-                                        fit: BoxFit.cover,
-                                        errorWidget: (context, url, error) =>
-                                            const Icon(Icons.error),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ],
+    return Column(
+      children: [
+        CarouselSlider(
+          items: [
+            ImagesConstant.bannerGreeve1,
+            ImagesConstant.bannerGreeve2,
+            ImagesConstant.bannerGreeve3,
+            ImagesConstant.bannerGreeve4,
+            ImagesConstant.bannerGreeve5,
+          ]
+              .map(
+                (image) => Stack(
+                  children: [
+                    Image.asset(
+                      image,
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      left: 0,
+                      child: Container(
+                        width: double.infinity,
+                        height: 62,
+                        decoration: const BoxDecoration(
+                          color: ColorsConstant.neutral50,
+                          borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(24),
+                            topRight: Radius.circular(24),
                           ),
                         ),
-                      ],
+                      ),
                     ),
-                  ),
-                )
-                .toList(),
-            options: CarouselOptions(
-              autoPlay: true,
-              enlargeCenterPage: true,
-              aspectRatio: 1.7,
-              viewportFraction: 1,
-              onPageChanged: (index, reason) {
-                productController.updateIndex(index);
-              },
-            ),
+                  ],
+                ),
+              )
+              .toList(),
+          options: CarouselOptions(
+            autoPlay: true,
+            enlargeCenterPage: true,
+            aspectRatio: aspectRatio,
+            viewportFraction: 1,
           ),
-          Transform.translate(
-            offset: const Offset(0, -80),
-            child: AnimatedSmoothIndicator(
+        ),
+        Transform.translate(
+          offset: const Offset(0, -120),
+          child: Obx(
+            () => AnimatedSmoothIndicator(
               activeIndex: productController.currentIndex.value,
-              count: productController.carouselItems.length,
+              count: 5,
               effect: const WormEffect(
                 activeDotColor: ColorsConstant.primary500,
                 dotColor: ColorsConstant.neutral500,
@@ -187,8 +70,8 @@ class HomeProductCarouselWidget extends StatelessWidget {
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

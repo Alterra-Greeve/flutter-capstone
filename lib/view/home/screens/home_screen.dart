@@ -32,14 +32,13 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      
+      backgroundColor: ColorsConstant.neutral50,
         body: SafeArea(
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-              child: HomeAppBarWidget(),
-            ),
+            HomeAppBarWidget(),
             HomeWrapperContentWidget(),
           ],
         ),
@@ -47,4 +46,3 @@ class HomeScreen extends StatelessWidget {
     ));
   }
 }
-

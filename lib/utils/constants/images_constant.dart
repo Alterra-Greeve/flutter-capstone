@@ -80,6 +80,7 @@ class ImagesConstant {
   static const String saveUser = 'assets/images/save_user.svg';
   static const String saveUserSuccess = 'assets/images/save_user_success.svg';
   static const String successMembership = 'assets/images/succes_membership.svg';
+  static const String logoGrevee = 'assets/images/logo_greeve.png';
   static const String allVoucher = 'assets/images/all_voucher.svg';
   static const String getCoin = 'assets/images/get_coin.svg';
   static const String greenVoucher = 'assets/images/green_voucher.png';
@@ -93,4 +94,9 @@ class ImagesConstant {
   static const String carouselGetCoinImage3 =
       'assets/images/carousel_getcoin_image3.png';
   static const String emptyHistoryCoin = 'assets/images/empty_history_coin.svg';
+  static const String bannerGreeve1 = 'assets/images/banner_greeve1.png';
+  static const String bannerGreeve2 = 'assets/images/banner_greeve2.png';
+  static const String bannerGreeve3 = 'assets/images/banner_greeve3.png';
+  static const String bannerGreeve4 = 'assets/images/banner_greeve4.png';
+  static const String bannerGreeve5 = 'assets/images/banner_greeve5.png';
 }

@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/view/chatbot/screens/chatbot_screen.dart';
 import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
 import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 import 'package:greeve/view/membership/screens/membership_screen.dart';
@@ -155,6 +156,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.membershipSuccess,
       page: () => const MembershiSuccessfullyScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.chatbot,
+      page: () => const ChatbotScreen(),
     ),
     GetPage(
       name: AppRoutes.leaderboard,
