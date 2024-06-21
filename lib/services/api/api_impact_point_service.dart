@@ -29,7 +29,7 @@ class ApiMonthlyImpactService {
       } else {
         throw Exception("Failed to load monthly impact data");
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception("Failed to load monthly impact data: $e");
     }
   }

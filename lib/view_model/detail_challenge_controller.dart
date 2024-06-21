@@ -144,20 +144,18 @@ class DetailChallengeController extends GetxController {
                         }
                         Get.back();
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SvgPicture.asset(IconsConstant.camera),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Foto',
-                              style: TextStylesConstant.nunitoButtonLarge,
-                            ),
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SvgPicture.asset(IconsConstant.camera),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Foto',
+                            style: TextStylesConstant.nunitoButtonLarge,
+                          ),
+                        ],
                       ),
                     ),
                     GestureDetector(
@@ -173,20 +171,18 @@ class DetailChallengeController extends GetxController {
                         }
                         Get.back();
                       },
-                      child: Container(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SvgPicture.asset(IconsConstant.gallery),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text(
-                              'Galeri',
-                              style: TextStylesConstant.nunitoButtonLarge,
-                            ),
-                          ],
-                        ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SvgPicture.asset(IconsConstant.gallery),
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          Text(
+                            'Galeri',
+                            style: TextStylesConstant.nunitoButtonLarge,
+                          ),
+                        ],
                       ),
                     ),
                   ],

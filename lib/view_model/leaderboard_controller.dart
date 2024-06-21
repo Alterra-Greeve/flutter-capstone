@@ -85,7 +85,7 @@ class LeaderboardController extends GetxController {
           maxChildSize: 0.7,
           builder: (BuildContext context, ScrollController scrollController) {
             return Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15),
@@ -101,12 +101,12 @@ class LeaderboardController extends GetxController {
                       width: 70,
                       color: ColorsConstant.neutral600,
                     ),
-                    SizedBox(height: 25),
+                    const SizedBox(height: 25),
                     Text(
                       'Informasi',
                       style: TextStylesConstant.nunitoHeading4,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Expanded(
                       child: Text(
                         """
@@ -125,13 +125,13 @@ Peringkat ke 3 : 3000 Coin
                         Navigator.pop(context);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 15),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
                         width: double.infinity,
                         decoration: BoxDecoration(
                           color: ColorsConstant.primary500,
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: Center(
+                        child: const Center(
                           child: Text(
                             'Mengerti',
                             style: TextStyle(

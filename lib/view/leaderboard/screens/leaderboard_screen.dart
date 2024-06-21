@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/leaderboard_response_model.dart';
@@ -14,7 +13,7 @@ class LeaderboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final LeaderboardController _leaderController = LeaderboardController();
+    final LeaderboardController leaderController = LeaderboardController();
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -23,7 +22,7 @@ class LeaderboardScreen extends StatelessWidget {
           // Gradient Background
           Positioned.fill(
             child: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(ImagesConstant.bgLeaderBoard),
                   fit: BoxFit.cover,
@@ -39,7 +38,7 @@ class LeaderboardScreen extends StatelessWidget {
               child: Container(
                 width: 380,
                 height: 270,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage(ImagesConstant.circleLeaderBoard),
                     fit: BoxFit.cover,
@@ -54,22 +53,22 @@ class LeaderboardScreen extends StatelessWidget {
             left: 20,
             child: Center(
               child: Obx(() {
-                if (_leaderController.leaderboardData.isEmpty) {
+                if (leaderController.leaderboardData.isEmpty) {
                   return ContainerInfo(
                       item: Datum(positionChange: 0)); // Provide default data
                 } else {
-                  final Datum item = _leaderController
+                  final Datum item = leaderController
                       .leaderboardData.first; // Change logic as needed
                   return ContainerInfo(item: item);
                 }
               }),
             ),
           ),
-          LeaderboardAppbar(),
+          const LeaderboardAppbar(),
           // Placement Bar
-          Placement(),
+          const Placement(),
           // Sliding Up Panel
-          BottomsheetBoardStats()
+          const BottomsheetBoardStats()
         ],
       ),
     );
