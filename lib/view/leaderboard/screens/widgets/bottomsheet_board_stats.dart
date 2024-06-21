@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/view/leaderboard/screens/board_stats.dart';
-import 'package:greeve/view/leaderboard/screens/fix_board_stats.dart';
+import 'package:greeve/view/leaderboard/widgets/board_stats.dart';
 
-class BoardsheetStats extends StatelessWidget {
-  const BoardsheetStats({super.key});
+class BottomsheetBoardStats extends StatelessWidget {
+  const BottomsheetBoardStats({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +13,13 @@ class BoardsheetStats extends StatelessWidget {
 
     return SizedBox.expand(
       child: DraggableScrollableSheet(
+        // controller: sheetControllerr,
         initialChildSize: 0.3,
         minChildSize: 0.3,
         maxChildSize: maxChildSize,
         builder: (context, ScrollController scrollController) {
           return Container(
+              // clipBehavior: Clip.hardEdge,
               decoration: BoxDecoration(
                 color: ColorsConstant.neutral100,
                 borderRadius: BorderRadius.only(
@@ -26,7 +27,9 @@ class BoardsheetStats extends StatelessWidget {
                   topRight: Radius.circular(15),
                 ),
               ),
-              child: BoardStats(scrollController: scrollController));
+              child: BoardStats(
+                scrollController: scrollController,
+              ));
         },
       ),
     );

@@ -35,42 +35,6 @@ class LeaderboardResponseModel {
       };
 }
 
-// class Datum {
-//     String? id;
-//     String? username;
-//     String? name;
-//     int? exp;
-//     String? avatarUrl;
-//     int? rank;
-
-//     Datum({
-//         this.id,
-//         this.username,
-//         this.name,
-//         this.exp,
-//         this.avatarUrl,
-//         this.rank,
-//     });
-
-//     factory Datum.fromJson(Map<String, dynamic> json) => Datum(
-//         id: json["id"],
-//         username: json["username"],
-//         name: json["name"],
-//         exp: json["exp"],
-//         avatarUrl: json["avatar_url"],
-//         rank: json["rank"],
-//     );
-
-//     Map<String, dynamic> toJson() => {
-//         "id": id,
-//         "username": username,
-//         "name": name,
-//         "exp": exp,
-//         "avatar_url": avatarUrl,
-//         "rank": rank,
-//     };
-// }
-
 class Datum {
   String? id;
   String? username;
