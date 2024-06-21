@@ -58,7 +58,7 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
               exp: challenge.exp.toString(),
               coin: challenge.coin.toString(),
               participant: challenge.participant.toString(),
-              impactCategories: controller.impactCategories,
+              impactCategories: challenge.categories,
             );
           },
           backCardOffset: const Offset(0, -35),

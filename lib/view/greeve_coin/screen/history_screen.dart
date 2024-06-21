@@ -45,9 +45,15 @@ class HistoryCoinScreen extends StatelessWidget {
                     const SizedBox(
                       width: 3,
                     ),
-                    Text(
-                      '800',
-                      style: TextStylesConstant.nunitoSemiboldTitle,
+                    Obx(
+                      () => Text(
+                        controller.isLoading.value
+                            ? '-'
+                            : controller.infoCoinUser.value?.data?.coin
+                                    .toString() ??
+                                '-',
+                        style: TextStylesConstant.nunitoSemiboldTitle,
+                      ),
                     ),
                     const SizedBox(
                       width: 3,

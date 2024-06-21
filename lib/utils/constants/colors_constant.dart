@@ -39,4 +39,5 @@ class ColorsConstant {
   static const Color secondary700 = Color(0xFF8E8B3F);
   static const Color secondary400 = Color(0xFFF1ED87);
   static const Color primary800 = Color(0xFF0B2923);
+  static const Color avatarVoucher = Color(0xFFEBE869);
 }

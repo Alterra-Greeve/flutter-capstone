@@ -14,6 +14,7 @@ class AllVoucherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AllVoucherController controller = Get.put(AllVoucherController());
+    final GreeveCoinController controller2 = Get.put(GreeveCoinController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -45,10 +46,44 @@ class AllVoucherScreen extends StatelessWidget {
           ),
           Expanded(
             child: Padding(
-             padding: const EdgeInsets.all(15.0),
-              child: TabBarView(
-                controller: controller.tabController,
-                children: const [VoucherWidget()],
+              padding: const EdgeInsets.only(left: 15, right: 15),
+              child: Obx(
+                () => TabBarView(
+                  controller: controller.tabController,
+                  children: List.generate(
+                    controller.categoryTabsVoucher.length,
+                    (tabIndex) {
+                      final tabName =
+                          controller.categoryTabsVoucher[tabIndex].text!;
+                      return tabName == 'Semua Voucher'
+                          ? ListView.builder(
+                              itemCount: controller2.voucherData.length,
+                              itemBuilder: (context, index) {
+                                final item = controller2.voucherData[index];
+                                return VoucherWidget(
+                                  controller: controller2,
+                                  idVoucher: item.id,
+                                  name: item.name,
+                                  discount: item.discount,
+                                  used: item.used,
+                                  index: index,
+                                  code: item.code,
+                                );
+                              },
+                            )
+                          : Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Center(
+                                child: Text(
+                                  'Belum ada voucher dalam kategori "$tabName"',
+                                  style: TextStylesConstant.nunitoSubtitle4.copyWith(fontSize: 15),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            );
+                    },
+                  ),
+                ),
               ),
             ),
           ),
