@@ -102,6 +102,9 @@ class IconsConstant {
   static const String saveMoney = 'assets/images/save_money.png';
   static const String expandInsight = 'assets/images/expand_insight.png';
   static const String reduceWaste = 'assets/images/reduce_waste.png';
+  static const String expandKnowledge = 'assets/images/expand_knowledge.png';
+  static const String reduceGlobalWarming =
+      'assets/images/reduce_global_warming.png';
   static const String poinImpact = 'assets/images/poin_impact.png';
   static const String edit = 'assets/images/edit.svg';
   static const String star = 'assets/images/star.svg';
