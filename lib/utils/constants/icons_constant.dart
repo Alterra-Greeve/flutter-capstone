@@ -103,4 +103,5 @@ class IconsConstant {
   static const String winnerLeaderboard = 'assets/images/winner_leaderboard.svg';
   static const String historyFilled = 'assets/images/history_filled.svg';
   static const String tickSquare = 'assets/images/tick_square.svg';
+  static const String iconPlaceholder = 'assets/images/icon_placeholder.png';
 }

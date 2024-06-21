@@ -25,7 +25,7 @@ class GreeveScreen extends StatelessWidget {
         leading: IconButton(
           icon: SvgPicture.asset(IconsConstant.arrow),
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
         ),
         centerTitle: true,
@@ -304,6 +304,7 @@ class GreeveScreen extends StatelessWidget {
                       discount: item.discount,
                       used: item.used,
                       index: index,
+                      code: item.code,
                     );
                   },
                 ),

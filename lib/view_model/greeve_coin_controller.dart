@@ -97,6 +97,16 @@ class GreeveCoinController extends GetxController
     );
   }
 
+  void navigateToCart(String code, String discountValue) {
+  Get.toNamed(
+    AppRoutes.cart,
+    arguments: {
+      'code': code,
+      'discountValue': discountValue,
+    },
+  );
+}
+
   String getInitials(String fullName) {
     List<String> nameSplit = fullName.split(' ');
     if (nameSplit.length >= 2) {

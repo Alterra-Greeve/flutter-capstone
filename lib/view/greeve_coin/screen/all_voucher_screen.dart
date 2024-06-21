@@ -67,6 +67,7 @@ class AllVoucherScreen extends StatelessWidget {
                                   discount: item.discount,
                                   used: item.used,
                                   index: index,
+                                  code: item.code,
                                 );
                               },
                             )

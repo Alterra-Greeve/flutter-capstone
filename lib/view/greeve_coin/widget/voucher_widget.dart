@@ -11,15 +11,18 @@ class VoucherWidget extends StatelessWidget {
   final String discount;
   final int used;
   final int index;
+  final String code;
 
-  const VoucherWidget(
-      {super.key,
-      required this.controller,
-      required this.idVoucher,
-      required this.discount,
-      required this.name,
-      required this.used,
-      required this.index});
+  const VoucherWidget({
+    super.key,
+    required this.controller,
+    required this.idVoucher,
+    required this.discount,
+    required this.name,
+    required this.used,
+    required this.index,
+    required this.code,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -106,13 +109,14 @@ class VoucherWidget extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
-                                  Column(
+                                Column(
                                   children: [
                                     SizedBox(
                                       height: 50,
                                       child: VerticalDivider(
                                         thickness: 2,
-                                        color: controller.getColorDividerVoucher(index),
+                                        color: controller
+                                            .getColorDividerVoucher(index),
                                       ),
                                     ),
                                   ],
@@ -165,7 +169,12 @@ class VoucherWidget extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
-                              onPressed: () {},
+                              onPressed: () {
+                                controller.navigateToCart(
+                                  code,
+                                  discount,
+                                );
+                              },
                               child: Text(
                                 'Pakai',
                                 style:
