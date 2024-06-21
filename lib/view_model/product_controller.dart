@@ -47,6 +47,7 @@ class ProductController extends GetxController
     const Tab(text: 'Kurangi Pemanasan'),
   ];
 
+
   @override
   void onInit() {
     _tabController = TabController(length: 4, vsync: this);

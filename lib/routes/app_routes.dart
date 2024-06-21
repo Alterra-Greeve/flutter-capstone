@@ -13,6 +13,7 @@ class AppRoutes {
   static const String allProduct = '/all_product';
   static const String detailProduct = '/detail_product';
   static const String cart = '/cart';
+  static const String detailImpact = '/detail_impact';
   static const String searchProduct = '/search_product';
   static const String listChallenge = '/list_challenge';
   static const String detailChallenge = '/detail_challenge';
@@ -29,4 +30,5 @@ class AppRoutes {
   static const String listTransaction = '/list_transaction';
   static const String membership = '/membership';
   static const String membershipSuccess = '/membership_success';
+  static const String leaderboard = '/leaderboard';
 }

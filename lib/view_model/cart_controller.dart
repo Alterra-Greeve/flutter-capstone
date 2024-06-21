@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/services/api/api_transaction_service.dart';
+import 'package:greeve/services/api/api_user_serpice.dart';
 import 'package:greeve/services/shared_pref/shared_pref.dart';
 import 'package:greeve/models/api_responses/cart_response_model.dart';
 import 'package:greeve/models/api_responses/post_transaction_response_model.dart';
 
 class CartController extends GetxController {
   final ApiTransactionService _apiTransactionService = ApiTransactionService();
+  final ApiUserService _apiUserService = ApiUserService();
   Rx<bool> useCoin = Rx<bool>(false);
   RxList<Item> cartData = <Item>[].obs;
   Rx<PostTransactionResponseModel> postTransactionData =
@@ -21,6 +23,9 @@ class CartController extends GetxController {
   Rx<int> newQty = Rx<int>(0);
   Rx<double> totalPrice = Rx<double>(0.0);
   Rx<String> voucherCode = Rx<String>("");
+  Rx<int> coinData = Rx<int>(0);
+  Rx<double> discount = Rx<double>(0.0);
+  Rx<bool> isVoucherApplied = Rx<bool>(false);
 
   final debouncer = Debouncer(delay: const Duration(milliseconds: 200));
   final TextEditingController _qtyController = TextEditingController();
@@ -31,6 +36,7 @@ class CartController extends GetxController {
   @override
   void onInit() {
     getCart();
+    getCoin();
     _qtyFocusNode.addListener(() => update());
     _qtyController.addListener(validateForm);
     super.onInit();
@@ -49,6 +55,20 @@ class CartController extends GetxController {
       errorMessage.value = e.toString();
     } finally {
       isLoadingCart.value = false;
+    }
+  }
+
+  void getCoin() async {
+    try {
+      final String? token = await SharedPreferencesManager.getToken();
+      coinData.value = 0;
+      final result = await _apiUserService.getUserProfile(token);
+      if (result.status == true && result.data != null) {
+        coinData.value = result.data!.coin!;
+      }
+      errorMessage.value = '';
+    } catch (e) {
+      errorMessage.value = e.toString();
     }
   }
 
@@ -156,6 +176,12 @@ class CartController extends GetxController {
     updateTotalPrice();
   }
 
+  void applyDiscount(double discountValue) {
+    discount.value = discountValue;
+    isVoucherApplied.value = true;
+    updateTotalPrice();
+  }
+
   void updateTotalPrice() {
     double total = 0.0;
     for (var item in cartData) {
@@ -164,6 +190,7 @@ class CartController extends GetxController {
     if (useCoin.value) {
       total -= 5;
     }
+    total -= discount.value;
     totalPrice.value = total;
   }
 
@@ -176,6 +203,7 @@ class CartController extends GetxController {
           voucherCode: voucherCode.value, useCoin: useCoin.value);
       postTransactionData.value = result;
       errorMessage.value = '';
+      isVoucherApplied.value = false;
       getCart();
       navigateToTransaction();
     } catch (e) {

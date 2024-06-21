@@ -74,6 +74,9 @@ class DetailChallengeController extends GetxController {
             "https://www.example.com/challenge-2.jpg"
           ],
           challengeId);
+      photos.clear();
+      photosBase64.clear();
+      isUploaded.value = false;
       errorMessage.value = '';
       Get.find<HomeController>().getUserProfile();
       Get.find<ListChallengeController>().getChallenges();

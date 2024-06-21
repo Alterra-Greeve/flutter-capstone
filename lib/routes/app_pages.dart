@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
+import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 import 'package:greeve/view/membership/screens/membership_screen.dart';
 import 'package:greeve/view/transaction/screens/cart_screen.dart';
 import 'package:greeve/view/forgot_password/screens/confirmation_screen.dart';
@@ -29,6 +30,9 @@ import 'package:greeve/view/user_profile/screens/help_center_screen.dart';
 import 'package:greeve/view/user_profile/screens/notification_screen.dart';
 import 'package:greeve/view/user_profile/screens/terms_and_condition_screen.dart';
 import 'package:greeve/view/user_profile/screens/voucher_screen.dart';
+
+import '../view/environtment_impact/screen/detail_impact_screen.dart';
+import '../view/environtment_impact/screen/impact_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -151,6 +155,14 @@ class AppPages {
     GetPage(
       name: AppRoutes.membershipSuccess,
       page: () => const MembershiSuccessfullyScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.leaderboard,
+      page: () => const LeaderboardScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.detailImpact,
+      page: () => const DetailImpactScreen(),
     ),
   ];
 }
