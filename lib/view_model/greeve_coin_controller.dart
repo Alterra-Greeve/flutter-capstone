@@ -24,6 +24,8 @@ class GreeveCoinController extends GetxController
   Rx<String?> errorMessage = Rx<String?>(null);
   Rx<bool> isLoading = Rx<bool>(false);
   RxList<Datum> voucherData = <Datum>[].obs;
+  RxList<CoinDatum> coinData = <CoinDatum>[].obs;
+  RxList<CoinSpendingDatum> coinDataSpending = <CoinSpendingDatum>[].obs;
   late TabController _tabControllerHistory;
   TabController get tabControllerHistory => _tabControllerHistory;
 
@@ -31,6 +33,8 @@ class GreeveCoinController extends GetxController
   void onInit() {
     getInfoCoinUser();
     getVoucher();
+    getCoin();
+    getCoinSpending();
     super.onInit();
     _tabControllerHistory = TabController(length: 3, vsync: this);
     _tabControllerHistory.addListener(() {
@@ -164,6 +168,48 @@ class GreeveCoinController extends GetxController
       errorMessage.value = e.toString();
       if (kDebugMode) {
         print('Testing Error Voucher${errorMessage.value}');
+      }
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  void getCoin() async {
+    final String? token = await SharedPreferencesManager.getToken();
+    coinData.value = [];
+    isLoading.value = true;
+    try {
+      final result = await _apiVoucherService.getCoin(token);
+      coinData.value = result.data;
+      errorMessage.value = '';
+      if (kDebugMode) {
+        print('Fetched Coin: ${result.data}');
+      }
+    } catch (e) {
+      errorMessage.value = e.toString();
+      if (kDebugMode) {
+        print('Error Fetched Coin: ${errorMessage.value}');
+      }
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  void getCoinSpending() async {
+    final String? token = await SharedPreferencesManager.getToken();
+    coinDataSpending.value = [];
+    isLoading.value = true;
+    try {
+      final result = await _apiVoucherService.getCoinSpending(token);
+      coinDataSpending.value = result.data;
+      errorMessage.value = '';
+      if (kDebugMode) {
+        print('Fetched Spending Coin: ${result.data}');
+      }
+    } catch (e) {
+      errorMessage.value = e.toString();
+      if (kDebugMode) {
+        print('Error fetching Spending Coin: ${errorMessage.value}');
       }
     } finally {
       isLoading.value = false;

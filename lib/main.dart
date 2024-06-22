@@ -8,9 +8,7 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/helpers/api_key_helper.dart';
 
 void main() async {
-  await dotenv.load(
-    fileName: '.env',
-  );
+  await dotenv.load(fileName: '.env');
   Gemini.init(apiKey: geminiKey);
   runApp(const MyApp());
 }
@@ -35,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.splashApp,
+      initialRoute: AppRoutes.historyCoin,
       getPages: AppPages.routes,
     );
   }
