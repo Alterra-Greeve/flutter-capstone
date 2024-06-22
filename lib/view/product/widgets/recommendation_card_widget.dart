@@ -93,13 +93,16 @@ class RecommendationCardWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 16),
-            Text(
-              formattedPrice,
-              style: TextStylesConstant.nunitoSubtitle.copyWith(
-                fontWeight: FontWeight.w600,
+            SizedBox(
+              width: 80,
+              child: Text(
+                formattedPrice,
+                style: TextStylesConstant.nunitoSubtitle.copyWith(
+                  fontWeight: FontWeight.w600,
+                ),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
               ),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(width: 16),
           ],

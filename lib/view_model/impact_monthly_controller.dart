@@ -26,8 +26,6 @@ class ImpactMonthlyController extends GetxController {
             await ApiMonthlyImpactService().getMonthlyImpact(token);
         monthlyImpact.value = impactList;
         prepareChartData(impactList);
-      } else {
-        throw Exception("Token not available");
       }
     } catch (e) {
       log('Error fetching monthly impact: $e');

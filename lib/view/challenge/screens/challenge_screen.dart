@@ -41,7 +41,7 @@ class ChallengeScreen extends StatelessWidget {
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: Column(
             children: [
-              const ChallengeActionPanelWidget(),
+              ChallengeActionPanelWidget(controller: controller),
               const SizedBox(height: 12),
               ChallengeCardSwiperWidget(controller: controller),
             ],

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:greeve/global_widgets/global_button_widget.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
+import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view/challenge/widgets/challenge_card_widget.dart';
 import 'package:greeve/view/challenge/widgets/challenge_empty_widget.dart';
@@ -13,7 +14,8 @@ import 'package:shimmer/shimmer.dart';
 
 class ChallengeCardSwiperWidget extends StatelessWidget {
   final ChallengeController controller;
-  const ChallengeCardSwiperWidget({super.key, required this.controller});
+  const ChallengeCardSwiperWidget({Key? key, required this.controller})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,9 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
         child: CardSwiper(
           padding: const EdgeInsets.only(top: 32),
           cardsCount: cardsCount,
+          onEnd: () {
+            controller.getChallenges();
+          },
           cardBuilder: (context, index, x, y) {
             var challenge = controller.challengesData[index];
             return ChallengeCardWidget(
@@ -69,15 +74,33 @@ class ChallengeCardSwiperWidget extends StatelessWidget {
           onSwipe: (previous, current, direction) {
             var challenge = controller.challengesData[previous];
             if (direction == CardSwiperDirection.right) {
-              controller.postChallengesParticipate(
-                "Diterima",
-                challenge.id,
-              );
+              if (controller.remainingTake.value > 0) {
+                controller.postChallengesParticipate(
+                  "Diterima",
+                  challenge.id,
+                );
+              } else {
+                showChallengeLimitDialog(
+                  context,
+                  ImagesConstant.throwChallengeLimit,
+                  'Batas Tantangan Sudah Habis!',
+                  'Kamu harus menunggu besok untuk mengisi ulang batas tantangan.',
+                );
+              }
             } else if (direction == CardSwiperDirection.left) {
-              controller.postChallengesParticipate(
-                "Ditolak",
-                challenge.id,
-              );
+              if (controller.remainingDiscards.value > 0) {
+                controller.postChallengesParticipate(
+                  "Ditolak",
+                  challenge.id,
+                );
+              } else {
+                showChallengeLimitDialog(
+                  context,
+                  ImagesConstant.throwChallengeLimit,
+                  'Batas Pembuangan Sudah Habis!',
+                  'Kamu harus menunggu besok untuk mengisi ulang batas pembuangan tantangan.',
+                );
+              }
             }
             return true;
           },
@@ -204,19 +227,18 @@ void showChallengeLimitDialog(
             children: [
               SvgPicture.asset(image),
               const SizedBox(height: 28),
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  title,
-                  style: TextStylesConstant.nunitoTitleBold.copyWith(
-                    color: ColorsConstant.neutral800,
-                  ),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStylesConstant.nunitoTitleBold.copyWith(
+                  color: ColorsConstant.neutral800,
                 ),
               ),
               const SizedBox(height: 4),
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
+                  textAlign: TextAlign.center,
                   description,
                   style: TextStylesConstant.nunitoCaption.copyWith(
                     color: ColorsConstant.neutral800,
@@ -232,7 +254,7 @@ void showChallengeLimitDialog(
                   onTap: () {
                     Navigator.pop(context);
                   },
-                  buttonWidth: 135,
+                  buttonWidth: double.infinity,
                 ),
               ),
             ],

@@ -11,6 +11,9 @@ class ChallengeController extends GetxController {
   Rx<bool> isLoading = Rx<bool>(true);
   Rx<String?> errorMessage = Rx<String?>(null);
   RxList<Datum> challengesData = <Datum>[].obs;
+  Rx<int> remainingDiscards = Rx<int>(3);
+  Rx<int> remainingTake = Rx<int>(3);
+  Rx<int> remainingShuffle = Rx<int>(5);
 
   var cardColors = <Color>[].obs;
 
@@ -50,17 +53,25 @@ class ChallengeController extends GetxController {
 
   void postChallengesParticipate(String? type, String? challengeId) async {
     final String? token = await SharedPreferencesManager.getToken();
-
     try {
       await _apiService.postChallengesParticipate(token, type, challengeId);
+      if (type == "Ditolak") {
+        if (remainingDiscards.value > 0) {
+          remainingDiscards.value--;
+        }
+      } else if (type == "Diterima") {
+        if (remainingTake.value > 0) {
+          remainingTake.value--;
+        }
+      }
     } catch (e) {
       errorMessage.value = e.toString();
-      Get.snackbar(
-        'Error',
-        errorMessage.value ?? '',
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
     }
+  }
+
+  void shuffleCards() {
+    challengesData.shuffle();
+    initializeCardColors();
+    remainingShuffle.value--;
   }
 }
