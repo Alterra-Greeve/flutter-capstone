@@ -33,7 +33,6 @@ import 'package:greeve/view/user_profile/screens/terms_and_condition_screen.dart
 import 'package:greeve/view/user_profile/screens/voucher_screen.dart';
 
 import '../view/environtment_impact/screen/detail_impact_screen.dart';
-import '../view/environtment_impact/screen/impact_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -133,7 +132,7 @@ class AppPages {
       name: AppRoutes.getCoin,
       page: () => const GetCoinScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.allVoucher,
       page: () => const AllVoucherScreen(),
     ),

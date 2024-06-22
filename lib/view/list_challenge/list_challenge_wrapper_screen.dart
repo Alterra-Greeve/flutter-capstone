@@ -44,7 +44,7 @@ class ListChallengeWrapperScreen extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => LeaderboardScreen(),
+                    builder: (context) => const LeaderboardScreen(),
                   ));
             },
             icon: SvgPicture.asset(IconsConstant.leaderboard),

@@ -4,9 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
-import 'package:greeve/utils/constants/images_constant.dart';
+import 'package:greeve/view/greeve_coin/widget/not_found_history.dart';
 import 'package:greeve/view_model/greeve_coin_controller.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/greeve_coin/widget/history_coin_widget.dart';
 
 class HistoryCoinScreen extends StatelessWidget {
   const HistoryCoinScreen({super.key});
@@ -98,25 +99,87 @@ class HistoryCoinScreen extends StatelessWidget {
               labelPadding: const EdgeInsets.symmetric(horizontal: 30.0),
             ),
             Expanded(
-              child: TabBarView(
-                controller: controller.tabControllerHistory,
-                children: [
-                  Center(
-                    child: Column(
+              child: Obx(
+                () => TabBarView(
+                  controller: controller.tabControllerHistory,
+                  children: [
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        SvgPicture.asset(ImagesConstant.emptyHistoryCoin),
-                        Text(
-                          'Hmm! Belum ada riwayat coin',
-                          style: TextStylesConstant.nunitoSubtitle.copyWith(
-                            fontWeight: FontWeight.w600,
+                        if (controller.coinData.isEmpty &&
+                            controller.coinDataSpending.isEmpty)
+                          const NotFoundHistoryCoinWidget()
+                        else
+                          ListView.builder(
+                            itemCount: controller.coinData.length +
+                                controller.coinDataSpending.length,
+                            itemBuilder: (context, index) {
+                              if (index < controller.coinData.length) {
+                                final item = controller.coinData[index];
+                                return HistoryCoinWidget(
+                                  controller: controller,
+                                  id: item.id,
+                                  name: item.name,
+                                  type: item.type,
+                                  coin: item.coin,
+                                  date: item.date,
+                                  spending: false,
+                                );
+                              } else {
+                                final item = controller.coinDataSpending[
+                                    index - controller.coinData.length];
+                                return HistoryCoinWidget(
+                                  controller: controller,
+                                  id: item.id,
+                                  name: item.name,
+                                  coin: item.coin,
+                                  date: item.date,
+                                  spending: true,
+                                );
+                              }
+                            },
                           ),
-                        ),
-                        const SizedBox(height: 130),
                       ],
                     ),
-                  )
-                ],
+                    Obx(
+                      () => controller.coinData.isEmpty
+                          ? const NotFoundHistoryCoinWidget()
+                          : ListView.builder(
+                              itemCount: controller.coinData.length,
+                              itemBuilder: (context, index) {
+                                final item = controller.coinData[index];
+                                return HistoryCoinWidget(
+                                  controller: controller,
+                                  id: item.id,
+                                  name: item.name,
+                                  type: item.type,
+                                  coin: item.coin,
+                                  date: item.date,
+                                  spending: false,
+                                );
+                              },
+                            ),
+                    ),
+                    Obx(
+                      () => controller.coinDataSpending.isEmpty
+                          ? const NotFoundHistoryCoinWidget()
+                          : ListView.builder(
+                              itemCount: controller.coinDataSpending.length,
+                              itemBuilder: (context, index) {
+                                final item = controller.coinDataSpending[index];
+                                return HistoryCoinWidget(
+                                  controller: controller,
+                                  id: item.id,
+                                  name: item.name,
+                                  coin: item.coin,
+                                  date: item.date,
+                                  spending: true,
+                                );
+                              },
+                            ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

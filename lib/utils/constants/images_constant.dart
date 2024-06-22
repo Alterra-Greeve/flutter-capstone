@@ -99,4 +99,5 @@ class ImagesConstant {
   static const String bannerGreeve3 = 'assets/images/banner_greeve3.png';
   static const String bannerGreeve4 = 'assets/images/banner_greeve4.png';
   static const String bannerGreeve5 = 'assets/images/banner_greeve5.png';
+  static const String coinHistory = 'assets/images/bi_coin.svg';
 }

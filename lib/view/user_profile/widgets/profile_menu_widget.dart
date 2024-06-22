@@ -35,10 +35,10 @@ class ProfileMenuWidget extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           ProfileMenuCardWidget(
-            menuTitle: 'Voucher',
+            menuTitle: 'Koin Saya & Voucher',
             menuIcon: IconsConstant.percentageFilled,
             onTap: () {
-              Get.toNamed(AppRoutes.voucher);
+              Get.toNamed(AppRoutes.greeveCoin);
             },
           ),
           const SizedBox(height: 12),

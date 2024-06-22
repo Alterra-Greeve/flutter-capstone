@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -13,7 +12,6 @@ import 'package:greeve/view_model/home_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/view_model/product_controller.dart';
-import 'package:intl/intl.dart';
 import 'package:loading_indicator/loading_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
