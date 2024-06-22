@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      initialRoute: AppRoutes.historyCoin,
+      initialRoute: AppRoutes.splashApp,
       getPages: AppPages.routes,
     );
   }
