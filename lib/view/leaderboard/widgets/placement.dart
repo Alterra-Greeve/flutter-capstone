@@ -22,6 +22,8 @@ class Placement extends StatelessWidget {
         final topThree = controller.leaderboardData.take(3).toList();
         return Stack(
           children: [
+
+
             Positioned(
               top: 260,
               left: 15,
@@ -36,11 +38,6 @@ class Placement extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              top: 260,
-              left: 177,
-              child: Center(child: SvgPicture.asset(IconsConstant.crone)),
             ),
 
             // Top 2
@@ -78,7 +75,29 @@ class Placement extends StatelessWidget {
                 ),
               ),
             ),
+            
+            Positioned(
+              top: 290,
+              left: -94,
+              child: Center(
+                child: Container(
+                  width: 360,
+                  height: 360,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(ImagesConstant
+                          .secondPlace), // Assuming bgLeaderBoard is an SVG asset
+                    ),
+                  ),
+                ),
+              ),
+            ),
 
+            Positioned(
+              top: 260,
+              left: 177,
+              child: Center(child: SvgPicture.asset(IconsConstant.crone)),
+            ),
             // Top 1
             if (topThree.isNotEmpty)
               Positioned(
