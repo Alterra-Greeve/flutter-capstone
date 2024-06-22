@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/leaderboard_controller.dart';
@@ -20,14 +19,14 @@ class BoardStats extends StatelessWidget {
     return Obx(
       () {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (controller.leaderboardData.isEmpty) {
           return Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(ImagesConstant.leaderboardEmpty),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   'Belum ada user yang masuk ke Leaderboard',
                   style: TextStylesConstant.nunitoHeading4,

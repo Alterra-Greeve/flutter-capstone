@@ -21,4 +21,6 @@ class ApiConstant {
   static const String userMembership = '$baseUrl/user/membership';
   static const String leaderBoard = '$baseUrl/leaderboard';
   static const String voucher = '$baseUrl/voucher';
+  static const String coin = '$baseUrl/coin';
+  static const String coinSpending = '$baseUrl/coin/spending';
 }

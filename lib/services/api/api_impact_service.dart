@@ -23,7 +23,7 @@ class ApiDetailImpactService {
       } else {
         throw Exception("Failed to load impact data");
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception("Failed to load impact data: $e");
     }
   }
@@ -36,7 +36,7 @@ class ApiDetailImpactService {
       } else {
         throw Exception("Failed to load impact detail");
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       throw Exception("Failed to load impact detail: $e");
     }
   }

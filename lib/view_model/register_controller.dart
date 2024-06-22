@@ -140,7 +140,7 @@ class RegisterController extends GetxController {
   void showRegisterFailedDialog(String errorMessage) {
     Get.defaultDialog(
       backgroundColor: ColorsConstant.white,
-      title: 'Gagal Daftar!',
+      title: 'Pendaftaran Gagal!',
       titleStyle: TextStylesConstant.nunitoHeading3.copyWith(
         fontWeight: FontWeight.w600,
       ),
@@ -176,7 +176,7 @@ class RegisterController extends GetxController {
           ),
           child: Center(
             child: Text(
-              'Daftar Kembali',
+              'Coba Lagi',
               style: TextStylesConstant.nunitoButtonLarge
                   .copyWith(color: ColorsConstant.primary500),
             ),
