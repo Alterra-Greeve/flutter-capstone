@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:greeve/view_model/leaderboard_controller.dart';
@@ -20,14 +19,14 @@ class BoardStats extends StatelessWidget {
     return Obx(
       () {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else if (controller.leaderboardData.isEmpty) {
           return Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.asset(ImagesConstant.leaderboardEmpty),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Text(
                   'Belum ada user yang masuk ke Leaderboard',
                   style: TextStylesConstant.nunitoHeading4,
@@ -99,74 +98,6 @@ class BoardStats extends StatelessWidget {
                   ),
                 ),
               )
-              // return Padding(
-              //   padding: const EdgeInsets.only(
-              //     right: 20,
-              //     left: 20,
-              //   ),
-              //   child: Column(
-              //     mainAxisSize: MainAxisSize.min,
-              //     children: [
-              //       if (controller.leaderboardData.length > 3) ...[
-              //         SizedBox(height: 40),
-              //         Container(
-              //           width: 60,
-              //           height: 1.5,
-              //           color: ColorsConstant.neutral600,
-              //         ),
-              //       ],
-              //       Container(
-              //         height: 500,
-              //         // fit: FlexFit.loose,
-              //         child: ListView.builder(
-              //           shrinkWrap: true,
-              //           controller: scrollController,
-              //           // itemCount: controller.leaderboardData.length > 9
-              //           //     ? 8
-              //           //     : controller.leaderboardData.length - 3,
-              //           itemCount: controller.leaderboardData.length,
-              //           itemBuilder: (context, int index) {
-              //             final item = controller.leaderboardData[index];
-              //             return Padding(
-              //               padding: const EdgeInsets.only(
-              //                   left: 10, right: 10, bottom: 10),
-              //               child: Container(
-              //                 color: item.id == controller.currentUserId.value
-              //                     ? Colors.green.withOpacity(0.3)
-              //                     : Colors.transparent,
-              //                 // child: Text('Testing 1'),
-              //                 child: ListTile(
-              //                   leading: Row(
-              //                     mainAxisSize: MainAxisSize.min,
-              //                     children: [
-              //                       Text(
-              //                         item.rank.toString(),
-              //                         style: TextStylesConstant.nunitoTitleBold,
-              //                       ),
-              //                       SizedBox(width: 20),
-              //                       CircleAvatar(
-              //                         backgroundImage:
-              //                             NetworkImage(item.avatarUrl ?? ''),
-              //                       ),
-              //                     ],
-              //                   ),
-              //                   title: Text(
-              //                     item.name ?? '',
-              //                     style: TextStylesConstant.nunitoTitleBold,
-              //                   ),
-              //                   trailing: Text(
-              //                     item.exp.toString(),
-              //                     style: TextStylesConstant.nunitoTitleBold,
-              //                   ),
-              //                 ),
-              //               ),
-              //             );
-              //           },
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // );
             ],
           );
         }

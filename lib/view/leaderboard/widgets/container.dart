@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -30,7 +29,7 @@ class ContainerInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text('Hari ini', style: TextStylesConstant.nunitoTitleBold),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     if (item.positionChange != null) ...[
@@ -42,7 +41,7 @@ class ContainerInfo extends StatelessWidget {
                         Image.asset(IconsConstant.decrease_),
                     ] else
                       Image.asset(IconsConstant.decrease_),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Text(
                       '${item.positionChange?.abs() ?? 0} Posisi',
                       style: TextStylesConstant.nunitoSubtitle4,
@@ -55,7 +54,7 @@ class ContainerInfo extends StatelessWidget {
           Container(
             height: 120,
             width: 1,
-            decoration: BoxDecoration(color: ColorsConstant.primary100),
+            decoration: const BoxDecoration(color: ColorsConstant.primary100),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -66,11 +65,11 @@ class ContainerInfo extends StatelessWidget {
                   'Sisa Waktu',
                   style: TextStylesConstant.nunitoTitleBold,
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Image.asset(IconsConstant.clock_),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Text(
                       '30 Hari',
                       style: TextStylesConstant.nunitoSubtitle4,

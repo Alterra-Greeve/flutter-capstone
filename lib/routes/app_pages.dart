@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
+import 'package:greeve/view/chatbot/screens/chatbot_screen.dart';
 import 'package:greeve/view/detail_challenge/screen/detail_challenge_screen.dart';
 import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 import 'package:greeve/view/membership/screens/membership_screen.dart';
@@ -32,7 +33,6 @@ import 'package:greeve/view/user_profile/screens/terms_and_condition_screen.dart
 import 'package:greeve/view/user_profile/screens/voucher_screen.dart';
 
 import '../view/environtment_impact/screen/detail_impact_screen.dart';
-import '../view/environtment_impact/screen/impact_screen.dart';
 
 class AppPages {
   static final routes = [
@@ -132,7 +132,7 @@ class AppPages {
       name: AppRoutes.getCoin,
       page: () => const GetCoinScreen(),
     ),
-     GetPage(
+    GetPage(
       name: AppRoutes.allVoucher,
       page: () => const AllVoucherScreen(),
     ),
@@ -155,6 +155,10 @@ class AppPages {
     GetPage(
       name: AppRoutes.membershipSuccess,
       page: () => const MembershiSuccessfullyScreen(),
+    ),
+    GetPage(
+      name: AppRoutes.chatbot,
+      page: () => const ChatbotScreen(),
     ),
     GetPage(
       name: AppRoutes.leaderboard,

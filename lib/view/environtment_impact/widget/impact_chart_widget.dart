@@ -5,9 +5,7 @@ import 'package:greeve/utils/constants/text_styles_constant.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:greeve/view_model/impact_monthly_controller.dart';
 
-
 class ImpactChartWidget extends StatelessWidget {
-
   final TooltipBehavior tooltipBehavior;
   final ImpactMonthlyController controller =
       Get.find<ImpactMonthlyController>();

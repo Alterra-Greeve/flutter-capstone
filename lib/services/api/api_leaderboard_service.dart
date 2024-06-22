@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:greeve/models/api_responses/leaderboard_response_model.dart';
 import 'package:greeve/utils/constants/api_constant.dart';
 import 'package:greeve/utils/helpers/user_error_helper.dart';
@@ -28,7 +29,9 @@ class ApiLeaderboardService {
       Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
       return decodedToken['userId']; 
     } catch (e) {
-      print("Error decoding token: $e");
+      if (kDebugMode) {
+        print("Error decoding token: $e");
+      }
       return null;
     }
   }

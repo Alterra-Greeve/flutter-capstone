@@ -9,6 +9,8 @@ class ImpactListCardWidget extends StatelessWidget {
   final ImpactDetailController impactController =
       Get.put(ImpactDetailController());
 
+  ImpactListCardWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(

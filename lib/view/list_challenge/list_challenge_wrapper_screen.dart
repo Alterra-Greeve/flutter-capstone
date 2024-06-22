@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:greeve/routes/app_routes.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view/leaderboard/screens/leaderboard_screen.dart';
 import 'package:greeve/view_model/list_challenge_controller.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/images_constant.dart';
@@ -39,7 +40,13 @@ class ListChallengeWrapperScreen extends StatelessWidget {
         toolbarHeight: 56,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LeaderboardScreen(),
+                  ));
+            },
             icon: SvgPicture.asset(IconsConstant.leaderboard),
           ),
           IconButton(

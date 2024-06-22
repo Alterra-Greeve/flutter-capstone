@@ -15,9 +15,9 @@ class Placement extends StatelessWidget {
 
     return Obx(() {
       if (controller.isLoading.value) {
-        return Center(child: CircularProgressIndicator());
+        return const Center(child: CircularProgressIndicator());
       } else if (controller.leaderboardData.isEmpty) {
-        return Center(child: Text("No data available"));
+        return const Center(child: Text("No data available"));
       } else {
         final topThree = controller.leaderboardData.take(3).toList();
         return Stack(
@@ -29,7 +29,7 @@ class Placement extends StatelessWidget {
                 child: Container(
                   width: 360,
                   height: 350,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImagesConstant.firstPlace),
                     ),
@@ -51,7 +51,7 @@ class Placement extends StatelessWidget {
                 child: Container(
                   width: 370,
                   height: 370,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImagesConstant
                           .thirdPlace), // Assuming bgLeaderBoard is an SVG asset
@@ -69,7 +69,7 @@ class Placement extends StatelessWidget {
                 child: Container(
                   width: 360,
                   height: 360,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                       image: AssetImage(ImagesConstant
                           .secondPlace), // Assuming bgLeaderBoard is an SVG asset
@@ -116,7 +116,7 @@ class Placement extends StatelessWidget {
                         child: topThree[0].avatarUrl == null ||
                                 topThree[0].avatarUrl!.isEmpty
                             ? Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors
                                       .black, // Fallback color when no image is available
@@ -165,7 +165,7 @@ class Placement extends StatelessWidget {
                         child: topThree[1].avatarUrl == null ||
                                 topThree[1].avatarUrl!.isEmpty
                             ? Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors
                                       .black, // Fallback color when no image is available
@@ -214,7 +214,7 @@ class Placement extends StatelessWidget {
                         child: topThree[2].avatarUrl == null ||
                                 topThree[2].avatarUrl!.isEmpty
                             ? Container(
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   color: Colors
                                       .black, // Fallback color when no image is available
@@ -234,7 +234,7 @@ class Placement extends StatelessWidget {
                 left: 185,
                 child: Text(
                   '1',
-                  style: TextStylesConstant.nunitoHeading1,
+                  style: TextStylesConstant.nunitoHeading1Blk,
                 ),
               ),
             if (topThree.length > 1)
@@ -243,7 +243,7 @@ class Placement extends StatelessWidget {
                 left: 77,
                 child: Text(
                   '2',
-                  style: TextStylesConstant.nunitoHeading1,
+                  style: TextStylesConstant.nunitoHeading1Blk,
                 ),
               ),
             if (topThree.length > 2)
@@ -252,7 +252,7 @@ class Placement extends StatelessWidget {
                 right: 78,
                 child: Text(
                   '3',
-                  style: TextStylesConstant.nunitoHeading1,
+                  style: TextStylesConstant.nunitoHeading1Blk,
                 ),
               ),
 
