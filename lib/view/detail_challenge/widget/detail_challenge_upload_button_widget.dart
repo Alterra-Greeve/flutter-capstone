@@ -38,12 +38,17 @@ class DetailChallengeUploadButtonWidget extends StatelessWidget {
               children: [
                 SvgPicture.asset(
                   IconsConstant.uploadImage,
-                  color: ColorsConstant.neutral700,
+                  colorFilter: const ColorFilter.mode(
+                    ColorsConstant.neutral700,
+                    BlendMode.srcIn,
+                  ),
                 ),
-                Text('Unggah disini',
-                    style: TextStylesConstant.nunitoFooter.copyWith(
-                      color: ColorsConstant.neutral700,
-                    )),
+                Text(
+                  'Unggah disini',
+                  style: TextStylesConstant.nunitoFooter.copyWith(
+                    color: ColorsConstant.neutral700,
+                  ),
+                ),
               ],
             ),
           ),

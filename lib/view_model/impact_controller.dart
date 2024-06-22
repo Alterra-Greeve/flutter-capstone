@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/impact_response_model.dart';
 import 'package:greeve/models/chart_model.dart';
@@ -14,6 +13,7 @@ class ImpactDetailController extends GetxController {
   final ApiDetailImpactService _apiImpactService = ApiDetailImpactService();
   RxBool isLoading = RxBool(false);
   RxList<Datum> impactData = <Datum>[].obs;
+  Rx<String?> errorMessage = Rx<String?>(null);
   Rx<Datum?> selectedImpactData = Rx<Datum?>(null);
 
   @override
@@ -26,19 +26,10 @@ class ImpactDetailController extends GetxController {
     try {
       isLoading.value = true;
       final String? token = await SharedPreferencesManager.getToken();
-      if (token != null) {
-        List<Datum> data = await _apiImpactService.getImpactData(token);
-        impactData.assignAll(data);
-      } else {
-        throw Exception("Token not available");
-      }
+      List<Datum> data = await _apiImpactService.getImpactData(token!);
+      impactData.assignAll(data);
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
+      errorMessage.value = e.toString();
     } finally {
       isLoading.value = false;
     }
@@ -50,12 +41,7 @@ class ImpactDetailController extends GetxController {
       Datum detail = await _apiImpactService.getImpactDetail(impactId);
       selectedImpactData.value = detail;
     } catch (e) {
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
+      errorMessage.value = e.toString();
     } finally {
       isLoading.value = false;
     }

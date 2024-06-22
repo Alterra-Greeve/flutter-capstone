@@ -7,7 +7,7 @@ class BottomsheetBoardStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final double appBarHeight = 245;
+    const double appBarHeight = 245;
     final double screenHeight = MediaQuery.of(context).size.height;
     final double maxChildSize = (screenHeight - appBarHeight) / screenHeight;
 
@@ -20,7 +20,7 @@ class BottomsheetBoardStats extends StatelessWidget {
         builder: (context, ScrollController scrollController) {
           return Container(
               // clipBehavior: Clip.hardEdge,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: ColorsConstant.neutral100,
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(15),
