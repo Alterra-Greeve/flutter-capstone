@@ -53,15 +53,11 @@ class ChatbotScreen extends StatelessWidget {
             currentUser: chatController.currentUser,
             onSend: chatController.sendMessage,
             messages: chatController.messages.map((message) {
-              if (message.user.id == chatController.geminiUser.id) {
-                return ChatMessage(
-                  user: message.user,
-                  createdAt: message.createdAt,
-                  text: Markdown(data: message.text).data,
-                );
-              } else {
-                return message;
-              }
+              return ChatMessage(
+                user: message.user,
+                createdAt: message.createdAt,
+                text: Markdown(data: chatController.removeUnwantedSymbols(message.text)).data,
+              );
             }).toList(),
           );
         }),
