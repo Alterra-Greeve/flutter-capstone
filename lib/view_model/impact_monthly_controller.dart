@@ -10,6 +10,7 @@ class ImpactMonthlyController extends GetxController {
   var monthlyImpact = <MonthlyImpact>[].obs;
   var chartData = <ChartData>[].obs;
   RxBool isLoading = RxBool(false);
+  RxInt selectedYear = 2024.obs;
 
   @override
   void onInit() {
@@ -22,10 +23,14 @@ class ImpactMonthlyController extends GetxController {
       isLoading.value = true;
       final String? token = await SharedPreferencesManager.getToken();
       if (token != null) {
-        final List<MonthlyImpact> impactList =
-            await ApiMonthlyImpactService().getMonthlyImpact(token);
-        monthlyImpact.value = impactList;
-        prepareChartData(impactList);
+        if (selectedYear.value == 2024) {
+          final List<MonthlyImpact> impactList =
+              await ApiMonthlyImpactService().getMonthlyImpact(token);
+          monthlyImpact.value = impactList;
+          prepareChartData(impactList);
+        } else {
+          prepareEmptyChartData();
+        }
       } else {
         throw Exception("Token not available");
       }
@@ -77,6 +82,24 @@ class ImpactMonthlyController extends GetxController {
         mengurangiLimbah: reducedWaste,
         memperluasWawasan: expandKnowledge,
         mengurangiPemanasanGlobal: reduceGlobalWarming,
+      ));
+    }
+
+    chartData.value = data;
+  }
+
+  void prepareEmptyChartData() {
+    List<ChartData> data = [];
+
+    // empty data
+    for (int i = 1; i <= 6; i++) {
+      String month = i.toString().padLeft(2, '0');
+      data.add(ChartData(
+        month: formatMonth('2021-$month'),
+        hematUang: 0,
+        mengurangiLimbah: 0,
+        memperluasWawasan: 0,
+        mengurangiPemanasanGlobal: 0,
       ));
     }
 

@@ -35,7 +35,7 @@ class ImpactScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: ImpactCategoryList(
-                  impactController: impactDetailController,
+                  impactController: impactMonthlyController,
                 ),
               ),
               const SizedBox(height: 16),
