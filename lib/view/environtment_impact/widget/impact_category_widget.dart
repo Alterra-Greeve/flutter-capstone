@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
-import 'package:greeve/view_model/impact_controller.dart';
+import 'package:greeve/view_model/impact_monthly_controller.dart';
 
 class ImpactCategoryList extends StatelessWidget {
   const ImpactCategoryList({
@@ -10,7 +10,7 @@ class ImpactCategoryList extends StatelessWidget {
     required this.impactController,
   });
 
-  final ImpactDetailController impactController;
+  final ImpactMonthlyController impactController;
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +18,20 @@ class ImpactCategoryList extends StatelessWidget {
     return SizedBox(
       height: 40,
       width: double.infinity,
-      child: Obx(
-        () => Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: categories.map((category) {
-            final index = categories.indexOf(category);
-            final isSelected = impactController.selectedIndex.value == index;
-            return Expanded(
-              child: GestureDetector(
-                onTap: () {
-                  impactController.selectedIndex.value = index;
-                },
-                child: Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: categories.map((category) {
+          return Expanded(
+            child: GestureDetector(
+              onTap: () {
+                impactController.selectedYear.value = int.parse(category);
+                impactController.fetchMonthlyImpact();
+              },
+              child: Obx(() {
+                final isSelected =
+                    impactController.selectedYear.value == int.parse(category);
+
+                return Container(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
                   margin: const EdgeInsets.symmetric(horizontal: 8),
@@ -47,11 +49,11 @@ class ImpactCategoryList extends StatelessWidget {
                               : ColorsConstant.black,
                         )),
                   ),
-                ),
-              ),
-            );
-          }).toList(),
-        ),
+                );
+              }),
+            ),
+          );
+        }).toList(),
       ),
     );
   }

@@ -150,7 +150,7 @@ class VoucherWidget extends StatelessWidget {
                               ),
                               const SizedBox(height: 5),
                               LinearPercentIndicator(
-                                width: 240,
+                                width: 230,
                                 animation: true,
                                 lineHeight: 5.0,
                                 animationDuration: 2000,
