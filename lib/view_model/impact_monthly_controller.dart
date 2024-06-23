@@ -1,4 +1,5 @@
 import 'dart:developer';
+
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/impact_poin_response_model.dart';
 import 'package:greeve/services/api/api_impact_point_service.dart';
@@ -8,6 +9,7 @@ class ImpactMonthlyController extends GetxController {
   var monthlyImpact = <MonthlyImpact>[].obs;
   var chartData = <ChartData>[].obs;
   RxBool isLoading = RxBool(false);
+  RxInt selectedYear = 2024.obs;
 
   @override
   void onInit() {
@@ -20,10 +22,14 @@ class ImpactMonthlyController extends GetxController {
       isLoading.value = true;
       final String? token = await SharedPreferencesManager.getToken();
       if (token != null) {
-        final List<MonthlyImpact> impactList =
-            await ApiMonthlyImpactService().getMonthlyImpact(token);
-        monthlyImpact.value = impactList;
-        prepareChartData(impactList);
+        if (selectedYear.value == 2024) {
+          final List<MonthlyImpact> impactList =
+              await ApiMonthlyImpactService().getMonthlyImpact(token);
+          monthlyImpact.value = impactList;
+          prepareChartData(impactList);
+        } else {
+          prepareEmptyChartData();
+        }
       }
     } catch (e) {
       log('Error fetching monthly impact: $e');
@@ -60,13 +66,31 @@ class ImpactMonthlyController extends GetxController {
         }
       }
 
-      // Add data for the current month to chartData
+      
       data.add(ChartData(
         month: formatMonth(impact.month),
         hematUang: saveMoney,
         mengurangiLimbah: reducedWaste,
         memperluasWawasan: expandKnowledge,
         mengurangiPemanasanGlobal: reduceGlobalWarming,
+      ));
+    }
+
+    chartData.value = data;
+  }
+
+  void prepareEmptyChartData() {
+    List<ChartData> data = [];
+
+    
+    for (int i = 1; i <= 6; i++) {
+      String month = i.toString().padLeft(2, '0');
+      data.add(ChartData(
+        month: formatMonth('2021-$month'),
+        hematUang: 0,
+        mengurangiLimbah: 0,
+        memperluasWawasan: 0,
+        mengurangiPemanasanGlobal: 0,
       ));
     }
 

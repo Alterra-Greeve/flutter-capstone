@@ -9,7 +9,7 @@ import 'package:greeve/utils/helpers/api_key_helper.dart';
 
 void main() async {
   // await dotenv.load(fileName: '.env');
-  // Gemini.init(apiKey: geminiKey);
+  Gemini.init(apiKey: "AIzaSyDof0rg8JBn_6dPIX2BmTm2asvtNHrJ8DQ");
   runApp(const MyApp());
 }
 
