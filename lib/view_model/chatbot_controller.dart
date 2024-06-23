@@ -39,7 +39,13 @@ class ChatbotController extends GetxController {
     return false;
   }
 
+  String removeUnwantedSymbols(String text) {
+    return text.replaceAll(RegExp(r'[*]+'), '');
+  }
+
   Future<void> sendMessage(ChatMessage chatMessage) async {
+    chatMessage.text = removeUnwantedSymbols(chatMessage.text);
+
     _messages.insert(0, chatMessage);
 
     Translation translation = await _translator.translate(chatMessage.text, to: 'en');

@@ -11,28 +11,24 @@ class HomeRecomendedProductWidget extends StatelessWidget {
 
     return Column(
       children: [
-        const SizedBox(height: 12),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: Row(
-            children: [
-              Text(
-                'Rekomendasi',
-                style: TextStylesConstant.nunitoHeading4,
+        Row(
+          children: [
+            Text(
+              'Rekomendasi',
+              style: TextStylesConstant.nunitoHeading4,
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: () {
+                productController.navigateToSeeAllProducts();
+              },
+              child: Text(
+                'Selengkapnya',
+                style: TextStylesConstant.nunitoButtonLarge
+                    .copyWith(color: ColorsConstant.primary500),
               ),
-              const Spacer(),
-              TextButton(
-                onPressed: () {
-                  productController.navigateToSeeAllProducts();
-                },
-                child: Text(
-                  'Selengkapnya',
-                  style: TextStylesConstant.nunitoButtonLarge
-                      .copyWith(color: ColorsConstant.primary500),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
         SizedBox(
           height: 286,
