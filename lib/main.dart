@@ -8,8 +8,8 @@ import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/helpers/api_key_helper.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
-  Gemini.init(apiKey: geminiKey);
+  // await dotenv.load(fileName: '.env');
+  Gemini.init(apiKey: "");
   runApp(const MyApp());
 }
 
