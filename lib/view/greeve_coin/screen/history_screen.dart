@@ -89,7 +89,7 @@ class HistoryCoinScreen extends StatelessWidget {
             TabBar(
               isScrollable: true,
               tabAlignment: TabAlignment.start,
-              padding: const EdgeInsets.only(top: 15, bottom: 15),
+              padding: const EdgeInsets.only(top: 15, bottom: 10),
               controller: controller.tabControllerHistory,
               tabs: controller.categoryTabsHistory,
               indicatorSize: TabBarIndicatorSize.tab,
@@ -110,34 +110,36 @@ class HistoryCoinScreen extends StatelessWidget {
                             controller.coinDataSpending.isEmpty)
                           const NotFoundHistoryCoinWidget()
                         else
-                          ListView.builder(
-                            itemCount: controller.coinData.length +
-                                controller.coinDataSpending.length,
-                            itemBuilder: (context, index) {
-                              if (index < controller.coinData.length) {
-                                final item = controller.coinData[index];
-                                return HistoryCoinWidget(
-                                  controller: controller,
-                                  id: item.id,
-                                  name: item.name,
-                                  type: item.type,
-                                  coin: item.coin,
-                                  date: item.date,
-                                  spending: false,
-                                );
-                              } else {
-                                final item = controller.coinDataSpending[
-                                    index - controller.coinData.length];
-                                return HistoryCoinWidget(
-                                  controller: controller,
-                                  id: item.id,
-                                  name: item.name,
-                                  coin: item.coin,
-                                  date: item.date,
-                                  spending: true,
-                                );
-                              }
-                            },
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: controller.coinData.length +
+                                  controller.coinDataSpending.length,
+                              itemBuilder: (context, index) {
+                                if (index < controller.coinData.length) {
+                                  final item = controller.coinData[index];
+                                  return HistoryCoinWidget(
+                                    controller: controller,
+                                    id: item.id,
+                                    name: item.name,
+                                    type: item.type,
+                                    coin: item.coin,
+                                    date: item.date,
+                                    spending: false,
+                                  );
+                                } else {
+                                  final item = controller.coinDataSpending[
+                                      index - controller.coinData.length];
+                                  return HistoryCoinWidget(
+                                    controller: controller,
+                                    id: item.id,
+                                    name: item.name,
+                                    coin: item.coin,
+                                    date: item.date,
+                                    spending: true,
+                                  );
+                                }
+                              },
+                            ),
                           ),
                       ],
                     ),

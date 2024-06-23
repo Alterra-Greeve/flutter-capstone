@@ -183,6 +183,7 @@ class GreeveScreen extends StatelessWidget {
               height: 20,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -204,7 +205,7 @@ class GreeveScreen extends StatelessWidget {
                           ],
                         ),
                         child: const SizedBox(
-                          width: 180,
+                          width: 172,
                           height: 75,
                         ),
                       ),
@@ -230,7 +231,6 @@ class GreeveScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(width: 15),
                 GestureDetector(
                   onTap: () {
                     controller.navigateToGetCoin();
@@ -251,7 +251,7 @@ class GreeveScreen extends StatelessWidget {
                           ],
                         ),
                         child: const SizedBox(
-                          width: 180,
+                          width: 172,
                           height: 75,
                         ),
                       ),
@@ -294,7 +294,9 @@ class GreeveScreen extends StatelessWidget {
             Expanded(
               child: Obx(
                 () => ListView.builder(
-                  itemCount: controller.voucherData.length > 4 ? 4 : controller.voucherData.length,
+                  itemCount: controller.voucherData.length > 4
+                      ? 4
+                      : controller.voucherData.length,
                   itemBuilder: (context, index) {
                     final item = controller.voucherData[index];
                     return VoucherWidget(
