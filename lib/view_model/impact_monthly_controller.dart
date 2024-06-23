@@ -1,6 +1,4 @@
 import 'dart:developer';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:greeve/models/api_responses/impact_poin_response_model.dart';
 import 'package:greeve/services/api/api_impact_point_service.dart';
@@ -26,17 +24,9 @@ class ImpactMonthlyController extends GetxController {
             await ApiMonthlyImpactService().getMonthlyImpact(token);
         monthlyImpact.value = impactList;
         prepareChartData(impactList);
-      } else {
-        throw Exception("Token not available");
       }
     } catch (e) {
       log('Error fetching monthly impact: $e');
-      Get.snackbar(
-        'Error',
-        e.toString(),
-        snackPosition: SnackPosition.BOTTOM,
-        margin: const EdgeInsets.all(16),
-      );
     } finally {
       isLoading.value = false;
     }

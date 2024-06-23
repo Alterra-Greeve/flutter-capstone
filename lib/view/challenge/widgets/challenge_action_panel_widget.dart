@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:greeve/utils/constants/colors_constant.dart';
 import 'package:greeve/utils/constants/icons_constant.dart';
 import 'package:greeve/utils/constants/text_styles_constant.dart';
+import 'package:greeve/view_model/challenge_controller.dart';
 
 class ChallengeActionPanelWidget extends StatelessWidget {
-  const ChallengeActionPanelWidget({super.key});
+  final ChallengeController controller;
+  const ChallengeActionPanelWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +16,9 @@ class ChallengeActionPanelWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         InkWell(
-          onTap: () {},
+          onTap: () {
+            controller.shuffleCards();
+          },
           customBorder: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(8),
@@ -33,10 +38,12 @@ class ChallengeActionPanelWidget extends StatelessWidget {
               children: [
                 SvgPicture.asset(IconsConstant.shuffle),
                 const SizedBox(width: 4),
-                Text(
-                  'x05',
-                  style: TextStylesConstant.nunitoButtonLarge,
-                )
+                Obx(
+                  () => Text(
+                    'x0${controller.remainingShuffle}',
+                    style: TextStylesConstant.nunitoButtonLarge,
+                  ),
+                ),
               ],
             ),
           ),
@@ -64,10 +71,12 @@ class ChallengeActionPanelWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(IconsConstant.trash),
                     const SizedBox(width: 4),
-                    Text(
-                      'x03',
-                      style: TextStylesConstant.nunitoCaptionBold,
-                    )
+                    Obx(
+                      () => Text(
+                        'x0${controller.remainingDiscards}',
+                        style: TextStylesConstant.nunitoCaptionBold,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -96,10 +105,12 @@ class ChallengeActionPanelWidget extends StatelessWidget {
                   children: [
                     SvgPicture.asset(IconsConstant.cardChallenge),
                     const SizedBox(width: 4),
-                    Text(
-                      'x03',
-                      style: TextStylesConstant.nunitoCaptionBold,
-                    )
+                    Obx(
+                      () => Text(
+                        'x0${controller.remainingTake}',
+                        style: TextStylesConstant.nunitoCaptionBold,
+                      ),
+                    ),
                   ],
                 ),
               ),

@@ -23,7 +23,8 @@ class HomeCategoryProductWidget extends StatelessWidget {
             children: [
               InkWell(
                 onTap: () {
-                  homeController.navigateToSeeAllProducts('Rekomendasi');
+                  homeController
+                      .navigateToSeeAllProducts('Mengurangi Pemanasan Global');
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -42,7 +43,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Mengurangi\nPemanasan',
+                      'Kurangi\nPemanasan',
                       style: TextStylesConstant.nunitoCaption,
                       textAlign: TextAlign.center,
                     )
@@ -126,7 +127,7 @@ class HomeCategoryProductWidget extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Mengurangi\nLimbah',
+                      'Kurangi\nLimbah',
                       style: TextStylesConstant.nunitoCaption,
                       textAlign: TextAlign.center,
                     )

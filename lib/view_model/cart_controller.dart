@@ -192,7 +192,9 @@ class CartController extends GetxController {
     for (var item in cartData) {
       total += item.product.price * item.quantity;
     }
-    if (useCoin.value) {
+    if (useCoin.value && coinData.value > total) {
+      coinData.value = 0;
+    } else if (useCoin.value) {
       total -= coinData.value;
     }
     if (isVoucherApplied.value) {

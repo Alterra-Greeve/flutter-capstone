@@ -26,6 +26,7 @@ class ImagesConstant {
   static const String secondPlace = 'assets/images/second_place.png';
   static const String thirdPlace = 'assets/images/three_place.png';
   static const String leaderboardEmpty = 'assets/images/leaderboard_empty.png';
+  static const String placementComp = 'assets/images/placement_complete.png';
 
   static const String bannerOne = 'assets/images/banner.png';
   static const String banner = 'assets/images/banner_.png';
