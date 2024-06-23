@@ -22,8 +22,6 @@ class Placement extends StatelessWidget {
         final topThree = controller.leaderboardData.take(3).toList();
         return Stack(
           children: [
-
-
             Positioned(
               top: 260,
               left: 15,
@@ -33,65 +31,81 @@ class Placement extends StatelessWidget {
                   height: 350,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage(ImagesConstant.firstPlace),
+                      image: AssetImage(ImagesConstant.placementComp),
                     ),
                   ),
                 ),
               ),
             ),
 
-            // Top 2
-            Positioned(
-              top: 300,
-              right: -96,
-              child: Center(
-                child: Container(
-                  width: 370,
-                  height: 370,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(ImagesConstant
-                          .thirdPlace), // Assuming bgLeaderBoard is an SVG asset
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // Positioned(
+            //   top: 260,
+            //   left: 15,
+            //   child: Center(
+            //     child: Container(
+            //       width: 360,
+            //       height: 350,
+            //       decoration: const BoxDecoration(
+            //         image: DecorationImage(
+            //           image: AssetImage(ImagesConstant.firstPlace),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
-            // Top 3
-            Positioned(
-              top: 290,
-              left: -94,
-              child: Center(
-                child: Container(
-                  width: 360,
-                  height: 360,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(ImagesConstant
-                          .secondPlace), // Assuming bgLeaderBoard is an SVG asset
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            
-            Positioned(
-              top: 290,
-              left: -94,
-              child: Center(
-                child: Container(
-                  width: 360,
-                  height: 360,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(ImagesConstant
-                          .secondPlace), // Assuming bgLeaderBoard is an SVG asset
-                    ),
-                  ),
-                ),
-              ),
-            ),
+            // // Top 2
+            // Positioned(
+            //   top: 300,
+            //   right: -96,
+            //   child: Center(
+            //     child: Container(
+            //       width: 370,
+            //       height: 370,
+            //       decoration: const BoxDecoration(
+            //         image: DecorationImage(
+            //           image: AssetImage(ImagesConstant
+            //               .thirdPlace), // Assuming bgLeaderBoard is an SVG asset
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            // // Top 3
+            // Positioned(
+            //   top: 290,
+            //   left: -94,
+            //   child: Center(
+            //     child: Container(
+            //       width: 360,
+            //       height: 360,
+            //       decoration: const BoxDecoration(
+            //         image: DecorationImage(
+            //           image: AssetImage(ImagesConstant
+            //               .secondPlace), // Assuming bgLeaderBoard is an SVG asset
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+
+            // Positioned(
+            //   top: 290,
+            //   left: -94,
+            //   child: Center(
+            //     child: Container(
+            //       width: 360,
+            //       height: 360,
+            //       decoration: BoxDecoration(
+            //         image: DecorationImage(
+            //           image: AssetImage(ImagesConstant
+            //               .secondPlace), // Assuming bgLeaderBoard is an SVG asset
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
 
             Positioned(
               top: 260,
@@ -150,7 +164,7 @@ class Placement extends StatelessWidget {
 
             if (topThree.length > 1)
               Positioned(
-                top: 350,
+                top: 355,
                 left: 54,
                 child: Center(
                   child: Stack(
@@ -199,7 +213,7 @@ class Placement extends StatelessWidget {
 
             if (topThree.length > 2)
               Positioned(
-                top: 375,
+                top: 385,
                 right: 54,
                 child: Center(
                   child: Stack(
@@ -258,7 +272,7 @@ class Placement extends StatelessWidget {
               ),
             if (topThree.length > 1)
               Positioned(
-                top: 420,
+                top: 425,
                 left: 77,
                 child: Text(
                   '2',
@@ -267,7 +281,7 @@ class Placement extends StatelessWidget {
               ),
             if (topThree.length > 2)
               Positioned(
-                top: 450,
+                top: 455,
                 right: 78,
                 child: Text(
                   '3',
