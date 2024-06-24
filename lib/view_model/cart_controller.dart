@@ -27,6 +27,7 @@ class CartController extends GetxController {
   Rx<double> discount = Rx<double>(0.0);
   Rx<bool> isVoucherApplied = Rx<bool>(false);
   Rx<double> discountPercentage = Rx<double>(0.0);
+  Rx<String> discountValue = Rx<String>("");
 
   final debouncer = Debouncer(delay: const Duration(milliseconds: 200));
   final TextEditingController _qtyController = TextEditingController();
@@ -38,6 +39,7 @@ class CartController extends GetxController {
   void onInit() {
     getCart();
     getCoin();
+    applyDiscount("", "");
     _qtyFocusNode.addListener(() => update());
     _qtyController.addListener(validateForm);
     super.onInit();
@@ -177,13 +179,14 @@ class CartController extends GetxController {
     updateTotalPrice();
   }
 
-  void applyDiscount() {
-    final arguments = Get.arguments as Map<String, dynamic>;
-    voucherCode.value = arguments['code'];
-    final discountValue = arguments['discountValue'];
+  void applyDiscount(String code, String discountValue) {
+    if (code != "" && discountValue != "") {
+      isVoucherApplied.value = true;
+    }
+    voucherCode.value = code;
+    discountValue = discountValue;
     discountPercentage.value =
         (double.tryParse(discountValue.replaceAll('%', '')) ?? 0.0) / 100.0;
-    isVoucherApplied.value = true;
     updateTotalPrice();
   }
 
@@ -192,15 +195,20 @@ class CartController extends GetxController {
     for (var item in cartData) {
       total += item.product.price * item.quantity;
     }
-    if (useCoin.value && coinData.value > total) {
-      coinData.value = 0;
-    } else if (useCoin.value) {
-      total -= coinData.value;
-    }
+
     if (isVoucherApplied.value) {
       total -= total * discountPercentage.value;
     }
-    totalPrice.value = total;
+
+    double totalAfterDiscount = total;
+
+    if (useCoin.value && coinData.value > totalAfterDiscount) {
+      coinData.value = 0;
+    } else if (useCoin.value) {
+      totalAfterDiscount -= coinData.value;
+    }
+
+    totalPrice.value = totalAfterDiscount;
   }
 
   void postTransaction() async {

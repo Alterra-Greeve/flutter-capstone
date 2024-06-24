@@ -17,7 +17,7 @@ class HelpCenterScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(16),
         child: GlobalButtonWidget(
-          text: 'Chat dengan CS',
+          text: 'Chat dengan Greeve AI',
           onTap: () {
             Get.toNamed(AppRoutes.chatbot);
           },
@@ -61,7 +61,7 @@ class HelpCenterScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Ayo tanyakan saja jika ada pertanyaan, Saya akan membantumu',
+                  'Ayo tanyakan pertanyaan seputar lingkungan, Saya akan membantumu',
                   style: TextStylesConstant.nunitoButtonLarge.copyWith(
                     color: ColorsConstant.black,
                     fontWeight: FontWeight.w400,

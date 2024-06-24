@@ -1,104 +1,77 @@
 class ImagesConstant {
-  static const String logoPotrait = 'assets/images/logo_potrait.svg';
-  static const String logoLandscape = "assets/images/logo_landscape.svg";
-  static const String logoOnly = 'assets/images/logo_only.svg';
-  static const String onboardingImage1 = 'assets/images/onboarding_image1.svg';
-  static const String onboardingImage2 = 'assets/images/onboarding_image2.svg';
-  static const String onboardingImage3 = 'assets/images/onboarding_image3.svg';
-  static const String forgotPass = 'assets/images/forgot_password.svg';
-  static const String success = 'assets/images/success.svg';
-  static const String search = 'assets/images/search.svg';
-  static const String searchEngines = 'assets/images/search_engines.svg';
-  // static const String registerSuccessImage =
-  //     'assets/images/register_success_image.svg';
-  // static const String banner = 'assets/images/banner.svg';
-  static const String bottleDetail = 'assets/images/bottle_detail.svg';
-  // static const String bottleGrid = 'assets/images/bottle_grid.svg';
-  static const String bottleProduct = 'assets/images/bottle_product.svg';
-  // static const String bottleList = 'assets/images/bottle_list.svg';
-  static const String cardVariant = 'assets/images/card_variant.svg';
-  static const String bgLeaderBoard = 'assets/images/bg_leaderboard.png';
-  static const String bgLeaderBoard_ = 'assets/images/bg_leaderboard.svg';
+  static const String _basePath = 'assets/images/';
 
-  static const String circleLeaderBoard =
-      'assets/images/circle_leaderboard.png';
-  static const String firstPlace = 'assets/images/first_place.png';
-  static const String secondPlace = 'assets/images/second_place.png';
-  static const String thirdPlace = 'assets/images/three_place.png';
-  static const String leaderboardEmpty = 'assets/images/leaderboard_empty.png';
-  static const String placementComp = 'assets/images/placement_complete.png';
-
-  static const String bannerOne = 'assets/images/banner.png';
-  static const String banner = 'assets/images/banner_.png';
-  static const String greeveContainer = 'assets/images/greeve_container.png';
-  static const String bottleList = 'assets/images/botel.png';
-  static const String cardvariant = 'assets/images/card_variant.png';
-  static const String bottleCard = 'assets/images/bottle_card.png';
-  static const String bottleGrid = 'assets/images/bottle_grid.png';
-  static const String bottleCarouselOne =
-      'assets/images/bottle_carousel_one.png';
-  static const String bottleCarouselTwo =
-      'assets/images/bottle_carousel_two.png';
-  static const String bottleCarouselThree =
-      'assets/images/bottle_carousel_three.png';
-  static const String bottleCarouselFour =
-      'assets/images/bottle_carousel_four.png';
-  static const String registerSuccessImage =
-      'assets/images/register_success_image.svg';
-  static const String bannerChallenge = 'assets/images/banner_challenge.svg';
-  static const String throwChallengeLimit =
-      'assets/images/throw_challenge_limit.svg';
-  static const String takeChallengeLimit =
-      'assets/images/take_challenge_limit.svg';
-  static const String emptyStateNoData =
-      'assets/images/empty_state_no_data.svg';
-  static const String challengeImageSample =
-      'assets/images/challenge_image_sample.png';
-  static const String carouselProductImage1 =
-      'assets/images/carousel_product_image1.png';
-  static const String carouselProductImage2 =
-      'assets/images/carousel_product_image2.png';
-  static const String carouselProductImage3 =
-      'assets/images/carousel_product_image3.png';
-  static const String productImagePlaceholder =
-      'assets/images/product_image_placeholder.png';
-  static const String productCardBackground =
-      'assets/images/product_card_background.png';
-  static const String recommendationImagePlaceholder =
-      'assets/images/recommendation_image_placeholder.png';
-  static const String detailProductImagePlaceholder =
-      'assets/images/detail_product_image_placeholder.png';
-  static const String hemat = 'assets/images/hemat.png';
-  static const String totebag = 'assets/images/totebag.png';
-  static const String knowledge = 'assets/images/knowledge.png';
-  static const String globalWarming = 'assets/images/global_warming.png';
-  static const String closeSquare = 'assets/images/close_square.svg';
-  static const String emptyCart = 'assets/images/empty_cart_image.svg';
-  static const String addCartSuccess =
-      'assets/images/add_cart_success_image.svg';
-  static const String customerServiceImage =
-      'assets/images/customer_service_image.png';
-  static const String saveUser = 'assets/images/save_user.svg';
-  static const String saveUserSuccess = 'assets/images/save_user_success.svg';
-  static const String successMembership = 'assets/images/succes_membership.svg';
-  static const String logoGrevee = 'assets/images/logo_greeve.png';
-  static const String allVoucher = 'assets/images/all_voucher.svg';
-  static const String getCoin = 'assets/images/get_coin.svg';
-  static const String greenVoucher = 'assets/images/green_voucher.png';
-  static const String blueVoucher = 'assets/images/blue_voucher.png';
-  static const String redVoucher = 'assets/images/red_voucher.png';
-  static const String primaryVoucher = 'assets/images/primary_voucher.png';
-  static const String carouselGetCoinImage1 =
-      'assets/images/carousel_getcoin_image1.png';
-  static const String carouselGetCoinImage2 =
-      'assets/images/carousel_getcoin_image2.png';
-  static const String carouselGetCoinImage3 =
-      'assets/images/carousel_getcoin_image3.png';
-  static const String emptyHistoryCoin = 'assets/images/empty_history_coin.svg';
-  static const String bannerGreeve1 = 'assets/images/banner_greeve1.png';
-  static const String bannerGreeve2 = 'assets/images/banner_greeve2.png';
-  static const String bannerGreeve3 = 'assets/images/banner_greeve3.png';
-  static const String bannerGreeve4 = 'assets/images/banner_greeve4.png';
-  static const String bannerGreeve5 = 'assets/images/banner_greeve5.png';
-  static const String coinHistory = 'assets/images/bi_coin.svg';
+  static const String logoPotrait = '${_basePath}logo_potrait.svg';
+  static const String logoLandscape = '${_basePath}logo_landscape.svg';
+  static const String logoOnly = '${_basePath}logo_only.svg';
+  static const String onboardingImage1 = '${_basePath}onboarding_image1.svg';
+  static const String onboardingImage2 = '${_basePath}onboarding_image2.svg';
+  static const String onboardingImage3 = '${_basePath}onboarding_image3.svg';
+  static const String forgotPass = '${_basePath}forgot_password.svg';
+  static const String success = '${_basePath}success.svg';
+  static const String search = '${_basePath}search.svg';
+  static const String searchEngines = '${_basePath}search_engines.svg';
+  static const String bottleDetail = '${_basePath}bottle_detail.svg';
+  static const String bottleProduct = '${_basePath}bottle_product.svg';
+  static const String cardVariant = '${_basePath}card_variant.svg';
+  static const String bgLeaderBoard = '${_basePath}bg_leaderboard.png';
+  static const String bgLeaderBoard_ = '${_basePath}bg_leaderboard.svg';
+  static const String circleLeaderBoard = '${_basePath}circle_leaderboard.png';
+  static const String firstPlace = '${_basePath}first_place.png';
+  static const String secondPlace = '${_basePath}second_place.png';
+  static const String thirdPlace = '${_basePath}three_place.png';
+  static const String leaderboardEmpty = '${_basePath}leaderboard_empty.png';
+  static const String placementComp = '${_basePath}placement_complete.png';
+  static const String bannerOne = '${_basePath}banner.png';
+  static const String banner = '${_basePath}banner_.png';
+  static const String greeveContainer = '${_basePath}greeve_container.png';
+  static const String bottleList = '${_basePath}botel.png';
+  static const String cardvariant = '${_basePath}card_variant.png';
+  static const String bottleCard = '${_basePath}bottle_card.png';
+  static const String bottleGrid = '${_basePath}bottle_grid.png';
+  static const String bottleCarouselOne = '${_basePath}bottle_carousel_one.png';
+  static const String bottleCarouselTwo = '${_basePath}bottle_carousel_two.png';
+  static const String bottleCarouselThree = '${_basePath}bottle_carousel_three.png';
+  static const String bottleCarouselFour = '${_basePath}bottle_carousel_four.png';
+  static const String registerSuccessImage = '${_basePath}register_success_image.svg';
+  static const String bannerChallenge = '${_basePath}banner_challenge.svg';
+  static const String throwChallengeLimit = '${_basePath}throw_challenge_limit.svg';
+  static const String takeChallengeLimit = '${_basePath}take_challenge_limit.svg';
+  static const String emptyStateNoData = '${_basePath}empty_state_no_data.svg';
+  static const String challengeImageSample = '${_basePath}challenge_image_sample.png';
+  static const String carouselProductImage1 = '${_basePath}carousel_product_image1.png';
+  static const String carouselProductImage2 = '${_basePath}carousel_product_image2.png';
+  static const String carouselProductImage3 = '${_basePath}carousel_product_image3.png';
+  static const String productImagePlaceholder = '${_basePath}product_image_placeholder.png';
+  static const String productCardBackground = '${_basePath}product_card_background.png';
+  static const String recommendationImagePlaceholder = '${_basePath}recommendation_image_placeholder.png';
+  static const String detailProductImagePlaceholder = '${_basePath}detail_product_image_placeholder.png';
+  static const String hemat = '${_basePath}hemat.png';
+  static const String totebag = '${_basePath}totebag.png';
+  static const String knowledge = '${_basePath}knowledge.png';
+  static const String globalWarming = '${_basePath}global_warming.png';
+  static const String closeSquare = '${_basePath}close_square.svg';
+  static const String emptyCart = '${_basePath}empty_cart_image.svg';
+  static const String addCartSuccess = '${_basePath}add_cart_success_image.svg';
+  static const String customerServiceImage = '${_basePath}customer_service_image.png';
+  static const String saveUser = '${_basePath}save_user.svg';
+  static const String saveUserSuccess = '${_basePath}save_user_success.svg';
+  static const String successMembership = '${_basePath}succes_membership.svg';
+  static const String logoGrevee = '${_basePath}logo_greeve.png';
+  static const String allVoucher = '${_basePath}all_voucher.svg';
+  static const String getCoin = '${_basePath}get_coin.svg';
+  static const String greenVoucher = '${_basePath}green_voucher.png';
+  static const String blueVoucher = '${_basePath}blue_voucher.png';
+  static const String redVoucher = '${_basePath}red_voucher.png';
+  static const String primaryVoucher = '${_basePath}primary_voucher.png';
+  static const String carouselGetCoinImage1 = '${_basePath}carousel_getcoin_image1.png';
+  static const String carouselGetCoinImage2 = '${_basePath}carousel_getcoin_image2.png';
+  static const String carouselGetCoinImage3 = '${_basePath}carousel_getcoin_image3.png';
+  static const String emptyHistoryCoin = '${_basePath}empty_history_coin.svg';
+  static const String bannerGreeve1 = '${_basePath}banner_greeve1.png';
+  static const String bannerGreeve2 = '${_basePath}banner_greeve2.png';
+  static const String bannerGreeve3 = '${_basePath}banner_greeve3.png';
+  static const String bannerGreeve4 = '${_basePath}banner_greeve4.png';
+  static const String bannerGreeve5 = '${_basePath}banner_greeve5.png';
+  static const String coinHistory = '${_basePath}bi_coin.svg';
 }
