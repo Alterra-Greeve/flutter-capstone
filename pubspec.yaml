@@ -28,7 +28,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  animated_toggle_switch: ^0.8.2
   another_flutter_splash_screen: ^1.2.0
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
