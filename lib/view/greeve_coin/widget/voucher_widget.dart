@@ -121,9 +121,13 @@ class VoucherWidget extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  discount,
-                                  style: TextStylesConstant.nunitoHeading1,
+                                SizedBox(
+                                  width: 80,
+                                  child: Text(
+                                    discount,
+                                    style: TextStylesConstant.nunitoHeading1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ],
                             ),

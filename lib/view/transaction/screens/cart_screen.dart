@@ -25,7 +25,7 @@ class CartScreen extends StatelessWidget {
         centerTitle: true,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Get.back();
           },
           icon: SvgPicture.asset(IconsConstant.arrow),
         ),

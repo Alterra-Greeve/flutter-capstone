@@ -102,14 +102,8 @@ class GreeveCoinController extends GetxController
   }
 
   void navigateToCart(String code, String discountValue) {
-    Get.toNamed(
-      AppRoutes.cart,
-      arguments: {
-        'code': code,
-        'discountValue': discountValue,
-      },
-    );
-    Get.find<CartController>().applyDiscount();
+    Get.back();
+    Get.find<CartController>().applyDiscount(code, discountValue);
   }
 
   String getInitials(String fullName) {

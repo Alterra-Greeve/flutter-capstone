@@ -99,11 +99,13 @@ class GreeveScreen extends StatelessWidget {
                         return Column(
                           children: [
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   user?.name ?? '',
-                                  style: TextStylesConstant.nunitoSemiboldTitle,
+                                  style:
+                                      TextStylesConstant.nunitoSemiboldTitle,
                                 ),
                                 Text(
                                   'Greeve Coin',
@@ -113,7 +115,8 @@ class GreeveScreen extends StatelessWidget {
                               ],
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
