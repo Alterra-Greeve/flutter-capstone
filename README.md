@@ -86,14 +86,13 @@ Compete and earn rewards. Participate in challenges, view the leaderboard, and e
 1. Run the following command:
    ```bash
    # Clone this repo
-   git clone https://github.com/ivantendou/bookstash
+   git clone https://github.com/Alterra-Greeve/flutter-capstone.git
 
    # Install all dependencies and run the project
    flutter pub get
    flutter run
    ```
-2. You need to obtain an API Key from Google to use the book recommendation feature with Gemini AI. Visit this [link](https://ai.google.dev) and create a new project if you haven't already. Next, enable the Gemini AI service and obtain the API Key.
-3. After obtaining the API Key, insert the API Key into your project's code. Open the `constants/gemini_ai.dart` file and replace ApiKey with the API Key you obtained.
+2. For chatbot feature, insert the API Key into your project's code. Open the `lib/utils/contants/gemini_ai.dart` file and replace ApiKey with the API Key you obtained.
    ```dart
    import 'package:flutter_gemini/flutter_gemini.dart';
 
@@ -102,5 +101,5 @@ Compete and earn rewards. Participate in challenges, view the leaderboard, and e
    }
    ```
    If you prefer to use .env to store the API Key, you can use the `flutter_dotenv` or `envied` package. Make sure to install the package and add the .env file to your project by storing the API Key inside it. Then, you can access this API Key from your project's code.
-4. Perform hot reload or hot restart.
+3. Perform hot reload or hot restart.
 
