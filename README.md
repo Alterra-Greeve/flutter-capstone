@@ -11,6 +11,8 @@ This project belong to capstone project on
 
 Star ⭐ the repository if you like what you see😉.
 
+![Presentasi Greeve All Team ](https://github.com/Alterra-Greeve/flutter-capstone/assets/70643310/2b31811a-1df5-4efc-be01-0c67ae31c782)
+
 ## 🌿 About Greeve
 Welcome to Greeve, where sustainable living becomes effortless! 🌍 Greeve is not just another eco-friendly app; it's your gateway to a greener lifestyle. We've identified three common challenges people face in their efforts to protect the environment: lack of information, motivation, and access to eco-friendly products. To overcome these issues, we have designed Greeve with a range of innovative features.
 
