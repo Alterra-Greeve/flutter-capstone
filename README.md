@@ -1,4 +1,5 @@
-# Bookstash App
+# Greeve
+
 [![Stars](https://img.shields.io/github/stars/ivantendou/bookstash.svg)](https://github.com/Alterra-Greeve/flutter-capstone/stargazers)
 [![Forks](https://img.shields.io/github/forks/ivantendou/bookstash.svg)](https://github.com/Alterra-Greeve/flutter-capstone/network/members)
 [![Watchers](https://img.shields.io/github/watchers/ivantendou/bookstash.svg)](https://github.com/Alterra-Greeve/flutter-capstone/watchers)
@@ -14,26 +15,73 @@ Star ⭐ the repository if you like what you see😉.
 ![Presentasi Greeve All Team ](https://github.com/Alterra-Greeve/flutter-capstone/assets/70643310/2b31811a-1df5-4efc-be01-0c67ae31c782)
 
 ## 🌿 About Greeve
+
 Welcome to Greeve, where sustainable living becomes effortless! 🌍 Greeve is not just another eco-friendly app; it's your gateway to a greener lifestyle. We've identified three common challenges people face in their efforts to protect the environment: lack of information, motivation, and access to eco-friendly products. To overcome these issues, we have designed Greeve with a range of innovative features.
 
 ## 🌿 Greeve Features
 
 ### 📝 Register/Join Membership
+
 Become part of the Greeve community. Sign up to access more challenges, rewards and benefits for sustainable living.
+
 ### 📊 Measure Environmental Impacts
+
 Track your environmental impact. Get detailed data on how your actions affect the planet and see your progress in reducing your carbon footprint.
+
 ### 🛒 View Environment-Friendly Products
+
 Discover eco-friendly products. Browse our curated marketplace for items that help you make greener choices.
+
 ### 📚 View Challenges About the Environment
+
 Stay informed and motivated. Access a wealth of information and participate in challenges designed to promote sustainable living.
+
 ### 💳 Purchase a Product (Manual Transfer)
+
 Buy eco-friendly products with ease. Use our manual transfer payment option to make your purchases securely.
+
 ### 🎯 Personalized Content Recommendations
+
 Enjoy content tailored to you. Our AI provides personalized recommendations based on your interests and eco-friendly goals.
+
 ### 💬 AI Chatbot
+
 Get instant support and tips. Our AI chatbot is here to answer your questions and provide eco-friendly advice.
+
 ### 🏆 View Leaderboard of Challenges & Get Rewards
+
 Compete and earn rewards. Participate in challenges, view the leaderboard, and earn rewards for your sustainable efforts.
+
+## Screenshots
+
+Below are some screenshots that demonstrate the usage of the project:
+
+| | | |
+|:--:|:--:|:--:|
+| **Loading Screen** | **Splash Screen** | **On Boarding Page 1** |
+| ![Loading Screen](images/feature/loading_screen.png) | ![Splash Screen](images/feature/splash_screen.png) | ![On Boarding Page 1](images/feature/on_boarding_page1.png) |
+| **On Boarding Page 2** | **On Boarding Page 3** | **Login Screen** |
+| ![On Boarding Page 2](images/feature/on_boarding_page2.png) | ![On Boarding Page 3](images/feature/on_boarding_page3.png) | ![Login Screen](images/feature/login_screen.png) |
+| **Register Screen** | **Register Success Screen** | **Forgot Password Screen** |
+| ![Register Screen](images/feature/register_screen.png) | ![Register Success Screen](images/feature/register_success_screen.png) | ![Forgot Password Screen](images/feature/forgot_password_screen.png) |
+| **OTP Screen** | **New Password Screen** | **New Password Success Screen** |
+| ![OTP Screen](images/feature/otp_screen.png) | ![New Password Screen](images/feature/new_password_screen.png) | ![New Password Success Screen](images/feature/new_password_success_screen.png) |
+| **Showcase 1** | **Showcase 2** | **Showcase 3** |
+| ![Showcase 1](images/feature/showcase1.png) | ![Showcase 2](images/feature/showcase2.png) | ![Showcase 3](images/feature/showcase3.png) |
+| **Showcase 4** | **Home Screen** | **Membership Selected Screen** |
+| ![Showcase 4](images/feature/showcase4.png) | ![Home Screen](images/feature/home_screen.png) | ![Membership Selected Screen](images/feature/membership(selected)_screen.png) |
+| **Membership Success Screen** | **Product Screen** | **Detail Product Screen** |
+| ![Membership Success Screen](images/feature/membership_success_screen.png) | ![Product Screen](images/feature/product_screen.png) | ![Detail Product Screen](images/feature/detail_product_screen.png) |
+| **Cart Screen** | **Payment Screen** | **Payment Success Screen** |
+| ![Cart Screen](images/feature/cart_screen.png) | ![Payment Screen](images/feature/payment_screen.png) | ![Payment Success Screen](images/feature/payment_success_screen.png) |
+| **Impact Screen** | **Detail Impact Screen** | **Profile Screen** |
+| ![Impact Screen](images/feature/impact_screen.png) | ![Detail Impact Screen](images/feature/detail_impact_screen.png) | ![Profile Screen](images/feature/profile_screen.png) |
+| **Edit Profile Screen** | **Coin and Voucer Screen** | **Chatbot Screen 1** |
+| ![Edit Profile Screen](images/feature/edit_profile_screen.png) | ![Coin and Voucer Screen](images/feature/coin_and_voucer_screen.png) | ![Profile Screen](images/feature/chatbot_screen.png) |
+| **Chatbot Screen 2** | **Challenge Screen** | **List Challenge Screen** |
+| ![Chatbot Screen 2](images/feature/chatbot_screen2.png) | ![Challenge Screen](images/feature/challenge_screen.png) | ![List Challenge Screen](images/feature/list_challenge_screen.png) |
+| **Detail Challenge Screen** | **Leaderboard Screen** | **Transaction History Screen** |
+| ![Detail Challenge Screen](images/feature/detail_challenge_screen.png) | ![Leaderboard Screen](images/feature/leaderboard_screen.png) | ![Transaction History Screen](images/feature/transaction_history_screen.png) |
 
 ## 🛠️ Tech Stack
 
@@ -85,6 +133,7 @@ Compete and earn rewards. Participate in challenges, view the leaderboard, and e
 
 
 ## :hammer: Build it yourself
+
 1. Run the following command:
    ```bash
    # Clone this repo
